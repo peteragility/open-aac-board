@@ -147,7 +147,7 @@
   "scripts": {
     "analyze": "source-map-explorer build/static/js/**/*.js",
     "start": "craco start",
-    "build": "craco build  --verbose && sw-precache --config=sw-precache-config.js",
+    "build": "craco build  --verbose && sw-precache --config=sw-precache-config.js && node scripts/limit-precache.cjs",
     "build-cordova-debug": "craco build --verbose --cordova-debug",
     "format": "prettier . --write",
     "format:check": "prettier . --check",

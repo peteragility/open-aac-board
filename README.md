@@ -39,7 +39,7 @@ AWS_PROFILE=default npm run deploy:aws
 
 The script publishes the corresponding source archive alongside every release, even while the development GitHub repository is private. No AWS keys belong in the app or repository. Deployment creates billable S3/CloudFront resources; no always-on server or database is provisioned. The bucket is retained if the stack is deleted, to avoid accidental loss of releases.
 
-The script runs the production build and tests before provisioning or uploading. Initial offline preparation currently caches approximately 85 MB of app files, symbols and bundled audio; allow this download to finish on a suitable connection.
+The script runs the production build and tests before provisioning or uploading. Initial offline preparation currently caches approximately 85 MB of app files, symbols and bundled audio; allow this download to finish on a suitable connection. Downloads are limited to 16 at once, with bounded retries, to avoid launching thousands of simultaneous requests on phones. The build fails if the inherited service-worker generator changes its expected install code.
 
 ## Inherited dependency maintenance
 
