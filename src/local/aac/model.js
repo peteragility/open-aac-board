@@ -3,6 +3,21 @@ import { validateLocalMediaURL } from '../media.js';
 import { parseBoardJSON } from '../importValidation.js';
 
 export const ACTION = 'open-aac/workspace';
+export const RESPONSE_IDS = [
+  'give-time',
+  'no-thanks',
+  'dont-understand',
+  'need-help',
+  'hello',
+  'need-water',
+  'need-toilet',
+  'need-rest',
+  'feel-unwell',
+  'thank-you',
+  'go-home',
+  'try-again'
+];
+export const DEFAULT_RESPONSES = RESPONSE_IDS.slice(0, 4);
 export const initialWorkspace = {
   language: DEFAULT_LANGUAGE,
   preferences: {
@@ -17,6 +32,8 @@ export const initialWorkspace = {
   voices: { yue: '', en: '', cmn: '' },
   voiceChecks: [],
   overrides: {},
+  customWords: [],
+  quickResponses: DEFAULT_RESPONSES,
   phrases: [],
   favourites: ['need-water', 'need-help', 'give-time'],
   routine: ['brush', 'eat', 'school', 'home'],
@@ -25,7 +42,100 @@ export const initialWorkspace = {
 const validLanguage = (id) => LANGUAGES.some((l) => l.id === id);
 const safeText = (value, max = 100) =>
   typeof value === 'string' && value.trim().length > 0 && value.length <= max;
-const safeID = (id) => typeof id === 'string' && /^[a-z0-9-]{1,80}$/.test(id);
+const safeID = (id) =>
+  typeof id === 'string' &&
+  /^[a-z0-9-]{1,80}$/.test(id) &&
+  !['constructor', 'prototype'].includes(id);
+
+function wordContent(word) {
+  if (!word || typeof word !== 'object' || Array.isArray(word))
+    throw new Error('Invalid word.');
+  const entry = { recordings: {} };
+  for (const l of LANGUAGES) {
+    const label = word[l.id] ?? '';
+    if (typeof label !== 'string' || label.length > 80)
+      throw new Error('Invalid word label.');
+    entry[l.id] = label.trim();
+    const sound = word.recordings?.[l.id];
+    if (sound) {
+      validateLocalMediaURL(sound);
+      if (!sound.startsWith('data:audio/') || sound.length > 2 * 1024 * 1024)
+        throw new Error('Invalid recording.');
+      entry.recordings[l.id] = sound;
+    }
+  }
+  if (!LANGUAGES.some((l) => entry[l.id]))
+    throw new Error('Enter a label in at least one language.');
+  if (word.image) {
+    validateLocalMediaURL(word.image);
+    if (
+      !word.image.startsWith('data:image/') ||
+      word.image.length > 3 * 1024 * 1024
+    )
+      throw new Error('Invalid picture.');
+    entry.image = word.image;
+  }
+  return entry;
+}
+
+function validatePhrase(phrase) {
+  if (
+    !phrase ||
+    !safeID(phrase.id) ||
+    !validLanguage(phrase.language) ||
+    !safeText(phrase.text, 500)
+  )
+    throw new Error('Invalid saved phrase.');
+  const entry = { id: phrase.id, language: phrase.language, text: phrase.text };
+  if (phrase.segments !== undefined) {
+    if (
+      !Array.isArray(phrase.segments) ||
+      !phrase.segments.length ||
+      phrase.segments.length > 30
+    )
+      throw new Error('Invalid picture message.');
+    entry.segments = phrase.segments.map((segment) => {
+      if (!segment || !safeText(segment.text, 80))
+        throw new Error('Invalid picture message word.');
+      const result = { text: segment.text };
+      if (segment.image) {
+        if (typeof segment.image !== 'string')
+          throw new Error('Invalid message picture.');
+        if (segment.image.startsWith('data:')) {
+          validateLocalMediaURL(segment.image);
+          if (
+            !segment.image.startsWith('data:image/') ||
+            segment.image.length > 3 * 1024 * 1024
+          )
+            throw new Error('Invalid message picture.');
+        } else if (
+          !/^\/symbols\/(?:mulberry|open-aac|arasaac|cboard)\/[a-zA-Z0-9_,. -]+\.(?:svg|png|jpg|jpeg|gif|webp)$/.test(
+            segment.image
+          ) ||
+          segment.image.includes('..')
+        )
+          throw new Error('Invalid message picture.');
+        result.image = segment.image;
+      }
+      if (segment.recording) {
+        validateLocalMediaURL(segment.recording);
+        if (
+          !segment.recording.startsWith('data:audio/') ||
+          segment.recording.length > 2 * 1024 * 1024
+        )
+          throw new Error('Invalid message recording.');
+        result.recording = segment.recording;
+      }
+      return result;
+    });
+    if (joinPhrase(entry.segments, entry.language) !== entry.text)
+      throw new Error('Picture message text does not match its words.');
+  }
+  return entry;
+}
+
+const joinPhrase = (segments, language) =>
+  segments.map((segment) => segment.text).join(language === 'en' ? ' ' : '');
 
 export function validateWorkspace(value) {
   if (JSON.stringify(value)?.length > 24 * 1024 * 1024)
@@ -74,40 +184,40 @@ export function validateWorkspace(value) {
   for (const [id, word] of Object.entries(value.overrides)) {
     if (!safeID(id) || !word || typeof word !== 'object')
       throw new Error('Invalid customized word.');
-    const entry = { recordings: {} };
-    for (const l of LANGUAGES) {
-      if (!safeText(word[l.id], 80))
-        throw new Error('Enter a label in each language.');
-      entry[l.id] = word[l.id];
-      const sound = word.recordings?.[l.id];
-      if (sound) {
-        validateLocalMediaURL(sound);
-        if (!sound.startsWith('data:audio/') || sound.length > 2 * 1024 * 1024)
-          throw new Error('Invalid recording.');
-        entry.recordings[l.id] = sound;
-      }
-    }
-    if (word.image) {
-      validateLocalMediaURL(word.image);
-      if (
-        !word.image.startsWith('data:image/') ||
-        word.image.length > 3 * 1024 * 1024
-      )
-        throw new Error('Invalid picture.');
-      entry.image = word.image;
-    }
-    overrides[id] = entry;
+    overrides[id] = wordContent(word);
   }
+  const customWords = value.customWords ?? [];
+  if (
+    !Array.isArray(customWords) ||
+    customWords.length > 100 ||
+    new Set(customWords.map((word) => word?.id)).size !== customWords.length
+  )
+    throw new Error('Invalid personal word list.');
+  const personal = customWords.map((word) => {
+    if (
+      !safeID(word?.id) ||
+      !word.id.startsWith('custom-') ||
+      !validLanguage(word.language)
+    )
+      throw new Error('Invalid personal word.');
+    const content = wordContent(word);
+    if (!content[word.language])
+      throw new Error('The original language needs a label.');
+    return { id: word.id, language: word.language, ...content };
+  });
+  const quickResponses = value.quickResponses ?? DEFAULT_RESPONSES;
+  if (
+    !Array.isArray(quickResponses) ||
+    quickResponses.length < 1 ||
+    quickResponses.length > 4 ||
+    new Set(quickResponses).size !== quickResponses.length ||
+    quickResponses.some((id) => !RESPONSE_IDS.includes(id))
+  )
+    throw new Error('Choose one to four quick responses.');
   if (
     !Array.isArray(value.phrases) ||
     value.phrases.length > 100 ||
-    value.phrases.some(
-      (p) =>
-        !p ||
-        !safeID(p.id) ||
-        !validLanguage(p.language) ||
-        !safeText(p.text, 500)
-    )
+    new Set(value.phrases.map((p) => p?.id)).size !== value.phrases.length
   )
     throw new Error('Invalid saved phrases.');
   for (const field of ['favourites', 'routine', 'routineDone']) {
@@ -137,11 +247,9 @@ export function validateWorkspace(value) {
     voices,
     voiceChecks: [...new Set(voiceChecks)],
     overrides,
-    phrases: value.phrases.map(({ id, language, text }) => ({
-      id,
-      language,
-      text
-    })),
+    customWords: personal,
+    quickResponses: [...quickResponses],
+    phrases: value.phrases.map(validatePhrase),
     favourites: [...new Set(value.favourites)],
     routine: [...value.routine],
     routineDone: value.routineDone.filter((id) => value.routine.includes(id))
@@ -181,10 +289,28 @@ export function workspaceReducer(state = initialWorkspace, action) {
       delete overrides[payload];
       return { ...state, overrides };
     }
+    case 'custom-word': {
+      const existing = state.customWords || [];
+      const customWords = existing.some((word) => word.id === payload.id)
+        ? existing.map((word) => (word.id === payload.id ? payload : word))
+        : [...existing, payload];
+      return validateWorkspace({ ...state, customWords });
+    }
+    case 'delete-custom-word':
+      return {
+        ...state,
+        customWords: (state.customWords || []).filter(
+          (word) => word.id !== payload
+        ),
+        routine: state.routine.filter((id) => id !== payload),
+        routineDone: state.routineDone.filter((id) => id !== payload)
+      };
+    case 'quick-responses':
+      return validateWorkspace({ ...state, quickResponses: payload });
     case 'save-phrase':
       return state.phrases.length >= 100
         ? state
-        : { ...state, phrases: [...state.phrases, payload] };
+        : validateWorkspace({ ...state, phrases: [...state.phrases, payload] });
     case 'delete-phrase':
       return {
         ...state,
@@ -220,7 +346,7 @@ export function createWorkspaceBackup(workspace) {
   return JSON.stringify(
     {
       format: 'open-aac-workspace',
-      version: 1,
+      version: 2,
       workspace: validateWorkspace(workspace)
     },
     null,
@@ -230,7 +356,10 @@ export function createWorkspaceBackup(workspace) {
 
 export function parseWorkspaceBackup(text) {
   const backup = parseBoardJSON(text);
-  if (backup?.format !== 'open-aac-workspace' || backup.version !== 1)
+  if (
+    backup?.format !== 'open-aac-workspace' ||
+    ![1, 2].includes(backup.version)
+  )
     throw new Error('Choose an Open AAC workspace backup.');
   return validateWorkspace(backup.workspace);
 }

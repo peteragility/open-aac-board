@@ -593,6 +593,264 @@ test('offline status distinguishes download, lost connection, failure and a comp
   );
 });
 
+test('a Cantonese-only personal word and its saved picture message retain photo and recording through editing, deletion, backup and offline relaunch', async ({
+  page,
+  context
+}) => {
+  await installVoices(page, false);
+  await context.grantPermissions(['microphone']);
+  await open(page);
+  const originalIds = await page
+    .locator('[data-word-id]')
+    .evaluateAll((nodes) => nodes.map((n) => n.dataset.wordId));
+  await page.getByRole('button', { name: '新增字詞', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await dialog.locator('input[type="file"]').setInputFiles({
+    name: 'nurse.png',
+    mimeType: 'image/png',
+    buffer: Buffer.from(
+      'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aNd8AAAAASUVORK5CYII=',
+      'base64'
+    )
+  });
+  await expect(dialog.locator('.aac-editor-preview img')).toHaveAttribute(
+    'src',
+    /^data:image\/png/
+  );
+  await dialog.getByRole('button', { name: '下一步', exact: true }).click();
+  await expect(
+    dialog.getByRole('button', { name: '下一步', exact: true })
+  ).toBeDisabled();
+  await dialog
+    .getByRole('textbox', { name: '廣東話', exact: true })
+    .fill('陳姑娘');
+  await dialog.getByRole('button', { name: '下一步', exact: true }).click();
+  await dialog
+    .getByRole('button', { name: '錄低自己嘅聲音', exact: true })
+    .click();
+  await expect(
+    dialog.getByRole('button', { name: '停止錄音', exact: true })
+  ).toBeEnabled();
+  await page.waitForTimeout(700);
+  await dialog.getByRole('button', { name: '停止錄音', exact: true }).click();
+  await expect(
+    dialog.getByText('已加入呢種語言嘅個人錄音。', { exact: true })
+  ).toBeVisible();
+  await dialog.getByRole('button', { name: '儲存', exact: true }).click();
+  const personal = page.locator('[data-word-id^="custom-"]');
+  await expect(personal).toHaveCount(1);
+  const wordId = await personal.getAttribute('data-word-id');
+  await expect(personal).toContainText('陳姑娘');
+  await page.getByRole('button', { name: '修改圖卡', exact: true }).click();
+  await personal.click();
+  await expect(dialog.locator('.aac-editor-preview img')).toHaveAttribute(
+    'src',
+    /^data:image\/png/
+  );
+  await expect(dialog.locator('audio')).toHaveAttribute('src', /^data:audio\//);
+  await dialog
+    .getByRole('textbox', { name: 'English', exact: true })
+    .fill('Nurse Chan');
+  await dialog.getByRole('button', { name: '儲存', exact: true }).click();
+  await page.getByRole('button', { name: '完成', exact: true }).click();
+  await personal.click();
+  await expect
+    .poll(() =>
+      page.evaluate(() =>
+        window.testAudio.some((url) => url.startsWith('data:audio/'))
+      )
+    )
+    .toBe(true);
+  await page.getByRole('button', { name: '儲存句子', exact: true }).click();
+  await page.getByRole('button', { name: '普通话', exact: true }).click();
+  await expect(
+    page.getByRole('button', { name: '说出来', exact: true })
+  ).toBeDisabled();
+  await page.getByRole('button', { name: '廣東話', exact: true }).click();
+  await page.getByRole('button', { name: '修改圖卡', exact: true }).click();
+  await personal.click();
+  await dialog
+    .getByRole('button', { name: '刪除個人字詞', exact: true })
+    .click();
+  await expect(
+    dialog.getByText(/之前儲存嘅圖片句子同錄音仍然保留/)
+  ).toBeVisible();
+  await dialog
+    .getByRole('button', { name: '刪除個人字詞', exact: true })
+    .click();
+  await expect(page.locator(`[data-word-id="${wordId}"]`)).toHaveCount(0);
+  await page.getByRole('button', { name: '完成', exact: true }).click();
+  await page.getByRole('button', { name: '常用字詞', exact: true }).click();
+  expect(
+    await page
+      .locator('[data-word-id]')
+      .evaluateAll((nodes) => nodes.map((n) => n.dataset.wordId))
+  ).toEqual(originalIds);
+  await page.getByRole('button', { name: '偏好設定', exact: true }).click();
+  const downloadPromise = page.waitForEvent('download');
+  await dialog
+    .getByRole('button', { name: '匯出工作區備份', exact: true })
+    .click();
+  const downloaded = await downloadPromise;
+  const body = await fs.readFile(await downloaded.path(), 'utf8');
+  const backup = JSON.parse(body);
+  expect(backup.version).toBe(2);
+  expect(backup.workspace.customWords).toEqual([]);
+  expect(backup.workspace.phrases[0].segments[0]).toMatchObject({
+    text: '陳姑娘',
+    image: expect.stringMatching(/^data:image/),
+    recording: expect.stringMatching(/^data:audio/)
+  });
+  await dialog.locator('input[type="file"]').setInputFiles({
+    name: 'workspace.json',
+    mimeType: 'application/json',
+    buffer: Buffer.from(body)
+  });
+  await dialog.getByRole('button', { name: '確認還原', exact: true }).click();
+  await dialog.getByRole('button', { name: '關閉', exact: true }).click();
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready;
+  });
+  await page.waitForTimeout(600);
+  await context.setOffline(true);
+  await page.reload();
+  await page.getByRole('button', { name: '常用句子', exact: true }).click();
+  await page.getByRole('button', { name: '我嘅句子', exact: true }).click();
+  const saved = page.locator('.aac-phrase-card').filter({ hasText: '陳姑娘' });
+  await expect(saved.locator('img')).toHaveAttribute('src', /^data:image/);
+  await saved.getByRole('button', { name: '陳姑娘', exact: true }).click();
+  await expect(page.locator('.aac-message-word img')).toHaveAttribute(
+    'src',
+    /^data:image/
+  );
+  await expect
+    .poll(() =>
+      page.evaluate(() =>
+        window.testAudioEnded.some((url) => url.startsWith('data:audio/'))
+      )
+    )
+    .toBe(true);
+  expect(await page.evaluate(() => window.testSpoken)).toEqual([]);
+});
+
+test('quick responses preserve board and typing drafts, work from routines and remember the chosen phrases', async ({
+  page
+}) => {
+  await installVoices(page);
+  await open(page, 'en');
+  await page.locator('[data-word-id="water"]').click();
+  await page
+    .getByRole('button', { name: 'Quick responses', exact: true })
+    .click();
+  const dialog = page.getByRole('dialog');
+  await dialog
+    .getByRole('button', { name: 'Please wait while I speak.', exact: true })
+    .click();
+  await expect
+    .poll(() => page.evaluate(() => window.testSpoken.at(-1)?.text))
+    .toBe('Please wait while I speak.');
+  await dialog
+    .getByRole('button', { name: 'Back to my message', exact: true })
+    .click();
+  await expect(page.locator('.aac-message')).toContainText('water');
+  await page
+    .getByRole('button', { name: 'Type to speak', exact: true })
+    .click();
+  await page
+    .getByRole('textbox', { name: 'Type to speak', exact: true })
+    .fill('I have another question.');
+  await page
+    .getByRole('button', { name: 'Quick responses', exact: true })
+    .click();
+  await dialog.getByRole('button', { name: 'No thanks.', exact: true }).click();
+  await dialog
+    .getByRole('button', { name: 'Choose quick responses', exact: true })
+    .click();
+  await dialog
+    .getByRole('checkbox', { name: 'No thanks.', exact: true })
+    .uncheck();
+  await dialog.getByRole('checkbox', { name: 'Hello!', exact: true }).check();
+  await dialog
+    .getByRole('button', { name: 'Save changes', exact: true })
+    .click();
+  await expect(
+    dialog.getByRole('button', { name: 'Hello!', exact: true })
+  ).toBeVisible();
+  await dialog
+    .getByRole('button', { name: 'Back to my message', exact: true })
+    .click();
+  await expect(
+    page.getByRole('textbox', { name: 'Type to speak', exact: true })
+  ).toHaveValue('I have another question.');
+  await page
+    .getByRole('button', { name: 'Daily routine', exact: true })
+    .click();
+  await page
+    .getByRole('button', { name: 'Quick responses', exact: true })
+    .click();
+  await dialog.getByRole('button', { name: 'Hello!', exact: true }).click();
+  await expect
+    .poll(() => page.evaluate(() => window.testSpoken.at(-1)?.text))
+    .toBe('Hello!');
+  await dialog.getByRole('button', { name: 'Close', exact: true }).click();
+  await page.waitForTimeout(500);
+  await page.reload();
+  await page
+    .getByRole('button', { name: 'Quick responses', exact: true })
+    .click();
+  await expect(
+    dialog.getByRole('button', { name: 'Hello!', exact: true })
+  ).toBeVisible();
+  await expect(
+    dialog.getByRole('button', { name: 'No thanks.', exact: true })
+  ).toHaveCount(0);
+});
+
+test('personal words can skip photos and recordings, require only the current label, and missing translations never speak in the wrong language', async ({
+  page
+}) => {
+  await installVoices(page);
+  await open(page);
+  await page.getByRole('button', { name: '新增字詞', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await dialog.getByRole('button', { name: '下一步', exact: true }).click();
+  await dialog
+    .getByRole('textbox', { name: '廣東話', exact: true })
+    .fill('我隻貓');
+  await dialog.getByRole('button', { name: '下一步', exact: true }).click();
+  await dialog.getByRole('button', { name: '儲存', exact: true }).click();
+  await page.getByRole('button', { name: 'English', exact: true }).click();
+  const personal = page.locator('[data-word-id^="custom-"]');
+  await expect(personal).toContainText('Translation needed');
+  await personal.click();
+  expect(await page.evaluate(() => window.testSpoken)).toEqual([]);
+  await expect(page.locator('.aac-notice')).toContainText(
+    'no label in this language'
+  );
+  await page
+    .getByRole('button', { name: 'Personalize words', exact: true })
+    .first()
+    .click();
+  await personal.click();
+  await dialog
+    .getByRole('textbox', { name: 'English', exact: true })
+    .fill('My cat');
+  await dialog
+    .getByRole('button', { name: 'Save changes', exact: true })
+    .click();
+  await page.getByRole('button', { name: 'Done', exact: true }).click();
+  await personal.click();
+  await expect
+    .poll(() => page.evaluate(() => window.testSpoken.at(-1)))
+    .toMatchObject({ text: 'My cat', voice: 'test-en' });
+  await page.getByRole('button', { name: '廣東話', exact: true }).click();
+  await expect(personal).toContainText('我隻貓');
+  await page.getByRole('button', { name: '講出嚟', exact: true }).click();
+  await expect
+    .poll(() => page.evaluate(() => window.testSpoken.at(-1)))
+    .toMatchObject({ text: '我隻貓', voice: 'test-yue' });
+});
+
 test.describe('responsive MVP layouts', () => {
   // Layout checks do not need to download the offline pack in every viewport.
   test.use({ serviceWorkers: 'block' });
@@ -744,6 +1002,63 @@ test.describe('responsive MVP layouts', () => {
       ).toBeVisible();
       await dialog.getByRole('button', { name: 'Close', exact: true }).click();
       await page.getByRole('button', { name: 'Done', exact: true }).click();
+    }
+  });
+
+  test('personal-word actions and quick responses stay usable on short screens and tablets', async ({
+    page
+  }) => {
+    await installVoices(page);
+    await open(page, 'en');
+    const dialog = page.getByRole('dialog');
+    for (const [width, height] of [
+      [320, 568],
+      [390, 420],
+      [667, 375],
+      [768, 1024],
+      [1024, 768],
+      [1366, 768]
+    ]) {
+      await page.setViewportSize({ width, height });
+      await page
+        .getByRole('button', { name: 'Add a word', exact: true })
+        .click();
+      for (let step = 0; step < 3; step++) {
+        await expectLayoutToFit(page);
+        const actions = await dialog
+          .locator('.aac-editor-actions')
+          .boundingBox();
+        expect(actions.y).toBeGreaterThanOrEqual(0);
+        expect(actions.y + actions.height).toBeLessThanOrEqual(height);
+        const button = dialog.getByRole('button', {
+          name: step === 2 ? 'Save changes' : 'Next step',
+          exact: true
+        });
+        await expect(button).toBeVisible();
+        if (step === 1) {
+          await expect(
+            dialog.getByRole('textbox', { name: 'English', exact: true })
+          ).toBeFocused();
+          await dialog
+            .getByRole('textbox', { name: 'English', exact: true })
+            .fill('My cat');
+          await dialog.locator('summary').click();
+          await dialog
+            .getByRole('textbox', { name: '廣東話', exact: true })
+            .fill('我隻貓');
+        }
+        if (step < 2) await button.click();
+      }
+      await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
+      await page
+        .getByRole('button', { name: 'Quick responses', exact: true })
+        .click();
+      await expectLayoutToFit(page);
+      await dialog
+        .getByRole('button', { name: 'Choose quick responses', exact: true })
+        .click();
+      await expectLayoutToFit(page);
+      await dialog.getByRole('button', { name: 'Close', exact: true }).click();
     }
   });
 });

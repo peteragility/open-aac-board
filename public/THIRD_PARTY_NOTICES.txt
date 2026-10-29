@@ -6,7 +6,7 @@ Updated 29 October 2026. This distribution is an independent modification of Cbo
 
 Cboard source: https://github.com/cboard-org/cboard, imported from commit `074972386a790b5dcb83a77799f676f457042abe`. Copyright © 2017–2024 Assistive Technology LLC and Cboard contributors. Open AAC Board modifications © 2026 its contributors. The derivative code is distributed under GNU GPL version 3 only, without warranty. Retain the copyright, license and modification notices when redistributing it.
 
-Our modifications began on 29 October 2026: a device-storage-only distribution, disabled accounts/payments/analytics, Cantonese-default multilingual workspace, original vocabulary/pictograms, generic bundled speech, recording and backups, accessibility/navigation changes, responsive layouts, offline preparation and Hong Kong hosting. Git history records the individual changes. Dependencies and separate media below are not automatically relicensed under the GPL.
+Our modifications began on 29 October 2026: a device-storage-only distribution, disabled accounts/payments/analytics, Cantonese-default multilingual workspace, original vocabulary/pictograms, generic bundled speech, personal word creation with optional translations, quick responses, saved picture messages with media snapshots, recording and backups, accessibility/navigation changes, responsive layouts, offline preparation and Hong Kong hosting. Git history records the individual changes. Dependencies and separate media below are not automatically relicensed under the GPL.
 
 - Public source and history: https://github.com/peteragility/open-aac-board
 - Corresponding source for the deployed release: `/source/open-aac-board-source.tar.gz`

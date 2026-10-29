@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const paths = {
+  plus: 'M12 4v16M4 12h16',
   grid: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z',
   chat: 'M21 11a9 9 0 0 1-9 9H4l-3 3V11a10 10 0 0 1 20 0ZM6 9h10M6 13h7',
   type: 'M3 4h18M12 4v16M8 20h8',

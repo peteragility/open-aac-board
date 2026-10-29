@@ -24,6 +24,8 @@ import VoiceCheck from './VoiceCheck';
 import WorkspaceSettings from './WorkspaceSettings';
 import WordEditor from './WordEditor';
 import Routine from './Routine';
+import QuickResponses from './QuickResponses';
+import { workspaceWords, pictureSegments } from './vocabulary';
 import './workspace.css';
 
 const sections = [
@@ -38,7 +40,7 @@ export function Workspace({ workspace, dispatch }) {
     (operation, payload) => dispatch({ type: ACTION, operation, payload }),
     [dispatch]
   );
-  const { language, preferences } = workspace;
+  const { language, preferences, overrides, customWords } = workspace;
   const c = copy(language);
   const voices = useDeviceVoices();
   const { status: offlineStatus, retry: retryOffline } = useOfflineStatus();
@@ -57,6 +59,7 @@ export function Workspace({ workspace, dispatch }) {
   const [phraseTab, setPhraseTab] = useState('allPhrases');
   const [editing, setEditing] = useState(false);
   const [editWord, setEditWord] = useState(null);
+  const [addingWord, setAddingWord] = useState(false);
   const [modal, setModal] = useState(null);
   const [rotated, setRotated] = useState(false);
   const [speaking, setSpeaking] = useState(false);
@@ -69,18 +72,13 @@ export function Workspace({ workspace, dispatch }) {
   const scrollPositions = useRef({});
   const speechSequence = useRef(0);
   const words = useMemo(
-    () =>
-      catalog.words.map((word) => {
-        const override = workspace.overrides[word.id];
-        return {
-          ...word,
-          text: override?.[language] || word[language],
-          image: override?.image || word.symbol,
-          recording: override?.recordings?.[language]
-        };
-      }),
-    [workspace.overrides, language]
+    () => workspaceWords(catalog.words, { overrides, customWords }, language),
+    [overrides, customWords, language]
   );
+  const categories = [
+    ...catalog.categories,
+    { id: 'personal', icon: 'people', [language]: c.myWords }
+  ];
   const selected = tokens
     .map((id) => words.find((word) => word.id === id))
     .filter(Boolean);
@@ -96,17 +94,20 @@ export function Workspace({ workspace, dispatch }) {
   const visible = words.filter((word) =>
     query
       ? [word.yue, word.en, word.cmn, word.text].some((label) =>
-          label.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+          (label || '').toLocaleLowerCase().includes(query.toLocaleLowerCase())
         )
       : word.category === category
   );
   const segments =
-    section === 'typing' || phrase
+    section === 'typing'
       ? []
-      : selected.map((word) => ({
-          text: word.text,
-          recording: word.recording
-        }));
+      : phrase?.segments || (phrase ? [] : pictureSegments(selected));
+  const messagePictures =
+    section === 'typing' ? [] : phrase?.segments || (phrase ? [] : selected);
+  const missingTranslation =
+    section !== 'typing' &&
+    !phrase &&
+    selected.some((word) => !word.translated);
   const presetPhrases = catalog.phrases.filter(
     (p) => phraseTab !== 'favourite' || workspace.favourites.includes(p.id)
   );
@@ -127,6 +128,9 @@ export function Workspace({ workspace, dispatch }) {
     speechSequence.current++;
     speech.stop();
     setSpeaking(false);
+    setPhrase((old) =>
+      old?.language && old.language !== language ? null : old
+    );
   }, [language]);
   useEffect(() => {
     if (!scanning || !visible.length) return;
@@ -170,6 +174,10 @@ export function Workspace({ workspace, dispatch }) {
       setEditWord(word.id);
       return;
     }
+    if (!word.translated) {
+      setNotice(c.translationMissing);
+      return;
+    }
     if (tokens.length >= 30) return;
     if (undoDraft?.kind === 'board') setUndoDraft(null);
     setPhrase(null);
@@ -193,18 +201,33 @@ export function Workspace({ workspace, dispatch }) {
     if (undoDraft?.kind === 'board') setUndoDraft(null);
     setPhrase(item);
     setTokens([]);
-    say(item[language] || item.text);
+    say(item[language] || item.text, item.segments || []);
   }
   function savePhrase() {
     const message = text.trim();
-    if (!message || workspace.phrases.length >= 100) return;
-    if (!myPhrases.some((p) => p.text === message))
-      update('save-phrase', {
+    if (!message || missingTranslation || workspace.phrases.length >= 100)
+      return;
+    try {
+      const saved = {
         id: `phrase-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`,
         language,
-        text: message
-      });
-    setNotice(c.phraseSaved);
+        text: message,
+        ...(messagePictures.length
+          ? { segments: pictureSegments(messagePictures) }
+          : {})
+      };
+      if (
+        !myPhrases.some(
+          (item) =>
+            item.text === saved.text &&
+            JSON.stringify(item.segments) === JSON.stringify(saved.segments)
+        )
+      )
+        update('save-phrase', saved);
+      setNotice(c.phraseSaved);
+    } catch {
+      setNotice(c.workspaceFull);
+    }
   }
   function clear() {
     stop();
@@ -226,7 +249,9 @@ export function Workspace({ workspace, dispatch }) {
     }
     setUndoDraft(null);
   }
-  const editorWord = catalog.words.find((word) => word.id === editWord);
+  const editorWord =
+    catalog.words.find((word) => word.id === editWord) ||
+    (workspace.customWords || []).find((word) => word.id === editWord);
   const suggestions = catalog.phrases
     .filter(
       (item) =>
@@ -322,6 +347,19 @@ export function Workspace({ workspace, dispatch }) {
             {languageInfo(language).label} ·{' '}
             {voiceChecked ? c.listen : c.checkVoice}
           </button>
+          <button
+            className="aac-response-trigger"
+            aria-label={c.responses}
+            title={c.responses}
+            onClick={() => {
+              setScanning(false);
+              setNotice('');
+              setModal('responses');
+            }}
+          >
+            <Icon name="chat" />
+            <span>{c.responsesShort}</span>
+          </button>
           <span role="status" className="aac-offline-status">
             <button
               onClick={() => setModal('offline')}
@@ -383,15 +421,20 @@ export function Workspace({ workspace, dispatch }) {
                 />
               ) : (
                 <div className="aac-message" aria-live="polite">
-                  {phrase ? (
+                  {phrase && !phrase.segments ? (
                     <span className="aac-phrase-output">{text}</span>
-                  ) : selected.length ? (
-                    selected.map((word, index) => (
+                  ) : messagePictures.length ? (
+                    messagePictures.map((word, index) => (
                       <span
                         className="aac-message-word"
-                        key={`${word.id}-${index}`}
+                        key={index}
+                        lang={
+                          word.labelLanguage
+                            ? languageInfo(word.labelLanguage).html
+                            : undefined
+                        }
                       >
-                        <img src={word.image} alt="" />
+                        {word.image && <img src={word.image} alt="" />}
                         {word.text}
                       </span>
                     ))
@@ -405,6 +448,8 @@ export function Workspace({ workspace, dispatch }) {
                   {(!canUndo || text) && (
                     <button
                       className="aac-text-button"
+                      aria-label={c.partner}
+                      title={c.partner}
                       disabled={!text}
                       onClick={() => {
                         setRotated(false);
@@ -412,7 +457,7 @@ export function Workspace({ workspace, dispatch }) {
                       }}
                     >
                       <Icon name="expand" />
-                      {c.partner}
+                      <span className="aac-composer-label">{c.partner}</span>
                     </button>
                   )}
                   {canUndo && (
@@ -424,22 +469,24 @@ export function Workspace({ workspace, dispatch }) {
                       {c.undo}
                     </button>
                   )}
-                  {section === 'typing' && (
-                    <button
-                      className="aac-text-button"
-                      disabled={
-                        !typed.trim() || workspace.phrases.length >= 100
-                      }
-                      onClick={savePhrase}
-                    >
-                      <Icon name="star" />
-                      {c.savePhrase}
-                    </button>
-                  )}
+                  <button
+                    className="aac-text-button"
+                    aria-label={c.savePhrase}
+                    title={c.savePhrase}
+                    disabled={
+                      !text.trim() ||
+                      missingTranslation ||
+                      workspace.phrases.length >= 100
+                    }
+                    onClick={savePhrase}
+                  >
+                    <Icon name="star" />
+                    <span className="aac-composer-label">{c.savePhrase}</span>
+                  </button>
                 </div>
                 <button
                   className="aac-primary aac-speak"
-                  disabled={!text}
+                  disabled={!text || missingTranslation}
                   onClick={() => (speaking ? stop() : say(text, segments))}
                 >
                   <Icon name={speaking ? 'pause' : 'speaker'} />
@@ -451,14 +498,30 @@ export function Workspace({ workspace, dispatch }) {
         </div>
         <div className="aac-scroll-area" ref={scrollArea}>
           <h1 className="aac-sr-only">{c[section]}</h1>
-          {notice && (
+          {(notice || missingTranslation) && (
             <div className="aac-notice" role="status">
-              {notice}
+              {missingTranslation ? c.translationMissing : notice}
               <button
                 className="aac-text-button"
-                onClick={() => setModal('settings')}
+                onClick={() => {
+                  if (notice === c.phraseSaved) {
+                    switchSection('quick');
+                    setPhraseTab('saved');
+                  } else if (
+                    missingTranslation ||
+                    notice === c.translationMissing
+                  ) {
+                    setSection('board');
+                    setEditing(true);
+                    setNotice('');
+                  } else setModal('settings');
+                }}
               >
-                {c.settings}
+                {notice === c.phraseSaved
+                  ? c.saved
+                  : missingTranslation || notice === c.translationMissing
+                    ? c.edit
+                    : c.settings}
                 <Icon name="arrow" />
               </button>
             </div>
@@ -495,6 +558,19 @@ export function Workspace({ workspace, dispatch }) {
                     <span>{editing ? c.done : c.edit}</span>
                   </button>
                   <button
+                    className="aac-secondary aac-add-word"
+                    aria-label={c.addWord}
+                    title={c.addWord}
+                    disabled={(workspace.customWords || []).length >= 100}
+                    onClick={() => {
+                      setAddingWord(true);
+                      setScanning(false);
+                    }}
+                  >
+                    <Icon name="plus" />
+                    <span>{c.addWord}</span>
+                  </button>
+                  <button
                     className="aac-secondary aac-scan-button"
                     aria-label={scanning ? c.stopScan : c.scan}
                     title={scanning ? c.stopScan : c.scan}
@@ -515,7 +591,7 @@ export function Workspace({ workspace, dispatch }) {
                   role="group"
                   aria-label={c.board}
                 >
-                  {catalog.categories.map((cat) => (
+                  {categories.map((cat) => (
                     <button
                       key={cat.id}
                       aria-pressed={category === cat.id && !query}
@@ -538,9 +614,7 @@ export function Workspace({ workspace, dispatch }) {
                   <h2>
                     {query
                       ? c.allResults
-                      : catalog.categories.find((cat) => cat.id === category)[
-                          language
-                        ]}
+                      : categories.find((cat) => cat.id === category)[language]}
                     <span>{visible.length}</span>
                   </h2>
                 </div>
@@ -572,7 +646,17 @@ export function Workspace({ workspace, dispatch }) {
                     <span className="aac-word-picture">
                       <img src={word.image} alt="" draggable="false" />
                     </span>
-                    <span className="aac-word-label">{word.text}</span>
+                    <span
+                      className="aac-word-label"
+                      lang={languageInfo(word.labelLanguage).html}
+                    >
+                      {word.text}
+                    </span>
+                    {!word.translated && (
+                      <span className="aac-missing-label">
+                        {c.translationShort}
+                      </span>
+                    )}
                     {editing && (
                       <span className="aac-word-edit">
                         <Icon name="edit" />
@@ -589,7 +673,23 @@ export function Workspace({ workspace, dispatch }) {
                   </button>
                 ))}
               </div>
-              {!visible.length && <p className="aac-empty">{c.noResults}</p>}
+              {!visible.length && (
+                <div className="aac-empty">
+                  <p>
+                    {category === 'personal' && !query
+                      ? c.emptyMyWords
+                      : c.noResults}
+                  </p>
+                  <button
+                    className="aac-secondary"
+                    onClick={() => setAddingWord(true)}
+                    disabled={(workspace.customWords || []).length >= 100}
+                  >
+                    <Icon name="plus" />
+                    {c.addWord}
+                  </button>
+                </div>
+              )}
               <p className="aac-stability">
                 <Icon name="grid" />
                 {c.stable}
@@ -616,6 +716,19 @@ export function Workspace({ workspace, dispatch }) {
                     <article className="aac-phrase-card" key={item.id}>
                       <button onClick={() => activatePhrase(item)}>
                         {item.symbol && <img src={item.symbol} alt="" />}
+                        {item.segments && (
+                          <span
+                            className="aac-phrase-pictures"
+                            aria-hidden="true"
+                          >
+                            {item.segments
+                              .filter((segment) => segment.image)
+                              .slice(0, 4)
+                              .map((segment, index) => (
+                                <img src={segment.image} alt="" key={index} />
+                              ))}
+                          </span>
+                        )}
                         <span>{item[language] || item.text}</span>
                         <Icon name="speaker" />
                       </button>
@@ -684,6 +797,23 @@ export function Workspace({ workspace, dispatch }) {
           ))}
         </nav>
       </main>
+      {modal === 'responses' && (
+        <QuickResponses
+          c={c}
+          language={language}
+          phrases={catalog.phrases}
+          selected={workspace.quickResponses}
+          onSave={(ids) => update('quick-responses', ids)}
+          onSpeak={say}
+          speaking={speaking}
+          notice={notice}
+          onStop={stop}
+          onClose={() => {
+            stop();
+            setModal(null);
+          }}
+        />
+      )}
       {modal === 'voice' && (
         <VoiceCheck
           c={c}
@@ -757,14 +887,55 @@ export function Workspace({ workspace, dispatch }) {
           </div>
         </Modal>
       )}
-      {editorWord && (
+      {(editorWord || addingWord) && (
         <WordEditor
-          key={editorWord.id}
-          word={editorWord}
-          override={workspace.overrides[editorWord.id]}
+          key={addingWord ? 'new-word' : editorWord.id}
+          word={
+            addingWord
+              ? {
+                  yue: '',
+                  en: '',
+                  cmn: '',
+                  symbol: '/symbols/open-aac/friend.svg'
+                }
+              : editorWord
+          }
+          isNew={addingWord}
+          override={
+            addingWord || editorWord.id.startsWith('custom-')
+              ? undefined
+              : workspace.overrides[editorWord.id]
+          }
           language={language}
-          onClose={() => setEditWord(null)}
+          onClose={() => {
+            setEditWord(null);
+            setAddingWord(false);
+          }}
           onSave={(word) => {
+            if (addingWord || editorWord.id.startsWith('custom-')) {
+              const id = addingWord
+                ? `custom-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`
+                : editorWord.id;
+              const originalLanguage =
+                !addingWord && word[editorWord.language]?.trim()
+                  ? editorWord.language
+                  : language;
+              update('custom-word', {
+                ...word,
+                id,
+                language: originalLanguage
+              });
+              if (addingWord) {
+                setCategory('personal');
+                setQuery('');
+                setEditing(false);
+                if (scrollArea.current) scrollArea.current.scrollTop = 0;
+              }
+              setAddingWord(false);
+              setEditWord(null);
+              setNotice(c.wordSaved);
+              return;
+            }
             validateWorkspace({
               ...workspace,
               overrides: { ...workspace.overrides, [editorWord.id]: word }
@@ -772,6 +943,17 @@ export function Workspace({ workspace, dispatch }) {
             update('word', { id: editorWord.id, word });
             setEditWord(null);
           }}
+          onDelete={
+            editorWord?.id.startsWith('custom-')
+              ? () => {
+                  stop();
+                  update('delete-custom-word', editorWord.id);
+                  setTokens((old) => old.filter((id) => id !== editorWord.id));
+                  setUndoDraft(null);
+                  setEditWord(null);
+                }
+              : undefined
+          }
           onReset={() => {
             update('reset-word', editorWord.id);
             setEditWord(null);

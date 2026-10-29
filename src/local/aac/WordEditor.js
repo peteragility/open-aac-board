@@ -8,23 +8,31 @@ export default function WordEditor({
   word,
   override,
   language,
+  isNew = false,
+  onDelete,
   onSave,
   onReset,
   onClose
 }) {
   const c = copy(language);
   const [draft, setDraft] = useState({
-    yue: word.yue,
-    en: word.en,
-    cmn: word.cmn,
+    ...word,
     ...override,
-    recordings: { ...override?.recordings }
+    recordings: { ...word.recordings, ...override?.recordings }
   });
   const [recording, setRecording] = useState(false);
   const [error, setError] = useState('');
+  const [step, setStep] = useState(0);
+  const [confirmDelete, setConfirmDelete] = useState(false);
   const session = useRef(null);
+  const labelInput = useRef(null);
   const mounted = useRef(true);
-  const previewURL = draft.image || word.symbol;
+  const previewURL =
+    draft.image || word.symbol || '/symbols/open-aac/friend.svg';
+  const steps = [c.wordPhoto, c.wordLabel, c.wordVoice];
+  useEffect(() => {
+    if (isNew && step === 1) labelInput.current?.focus();
+  }, [isNew, step]);
   useEffect(
     () => () => {
       mounted.current = false;
@@ -44,10 +52,34 @@ export default function WordEditor({
       if (!file.type.startsWith('image/') || file.size > 2 * 1024 * 1024)
         throw new Error('invalid-picture');
       const image = await readLocalMedia(file);
-      if (mounted.current) setDraft((old) => ({ ...old, image }));
+      if (mounted.current) {
+        setDraft((old) => ({ ...old, image }));
+        setError('');
+      }
     } catch {
       setError(c.mediaError);
     }
+  }
+  function labelField(l) {
+    return (
+      <label className="aac-field" key={l.id}>
+        <span>
+          {l.label}
+          {l.id !== language && <small> · {c.optional}</small>}
+        </span>
+        <input
+          ref={l.id === language ? labelInput : undefined}
+          aria-label={l.label}
+          required={l.id === language}
+          maxLength={80}
+          value={draft[l.id] || ''}
+          onChange={(event) => {
+            setDraft({ ...draft, [l.id]: event.target.value });
+            setError('');
+          }}
+        />
+      </label>
+    );
   }
   async function record() {
     if (recording === 'recording') {
@@ -122,90 +154,178 @@ export default function WordEditor({
     }
   }
   return (
-    <Modal title={c.edit} closeLabel={c.close} onClose={onClose}>
+    <Modal
+      title={isNew ? c.addWord : c.edit}
+      closeLabel={c.close}
+      onClose={onClose}
+      className="aac-word-editor"
+    >
       <form
-        className="aac-settings-body"
+        className="aac-word-form"
         onSubmit={(event) => {
           event.preventDefault();
+          if (isNew && step < 2) {
+            setStep((old) => old + 1);
+            return;
+          }
           try {
             onSave(draft);
           } catch {
-            setError(c.mediaError);
+            setError(c.wordSaveError);
           }
         }}
       >
-        <div className="aac-editor-preview">
-          <img src={previewURL} alt="" />
-          <strong>{draft[language]}</strong>
-        </div>
-        {LANGUAGES.map((l) => (
-          <label className="aac-field" key={l.id}>
-            {l.label}
-            <input
-              required
-              maxLength={80}
-              value={draft[l.id]}
-              onChange={(e) => setDraft({ ...draft, [l.id]: e.target.value })}
-            />
-          </label>
-        ))}
-        <label className="aac-secondary aac-file-button">
-          {c.photo}
-          <input
-            type="file"
-            accept="image/png,image/jpeg,image/webp,image/gif"
-            onChange={photo}
-          />
-        </label>
-        <h3>
-          {c.voice} · {LANGUAGES.find((l) => l.id === language).label}
-        </h3>
-        <button
-          type="button"
-          disabled={recording === 'starting'}
-          className={`aac-secondary ${recording ? 'aac-recording' : ''}`}
-          onClick={record}
-        >
-          <Icon name="microphone" />
-          {recording ? c.stopRecord : c.record}
-        </button>
-        {recording && <p role="status">{c.recording}</p>}
-        {draft.recordings[language] && (
-          <div>
-            <p>{c.recordingReady}</p>
-            <audio controls src={draft.recordings[language]} />
-            <button
-              type="button"
-              className="aac-text-button"
-              onClick={() =>
-                setDraft({
-                  ...draft,
-                  recordings: { ...draft.recordings, [language]: '' }
-                })
-              }
-            >
-              {c.removeRecording}
-            </button>
+        <div className="aac-settings-body aac-editor-content">
+          {isNew && (
+            <ol className="aac-editor-steps" aria-label={c.addWord}>
+              {steps.map((label, index) => (
+                <li
+                  key={label}
+                  aria-current={step === index ? 'step' : undefined}
+                >
+                  <b>{index + 1}</b>
+                  {label}
+                </li>
+              ))}
+            </ol>
+          )}
+          <div className="aac-editor-preview">
+            <img src={previewURL} alt="" />
+            <strong>{draft[language]}</strong>
           </div>
-        )}
-        <p role="alert">{error}</p>
-        <div className="aac-button-row">
+          {(!isNew || step === 0) && (
+            <>
+              {isNew && <p>{c.photoOptional}</p>}
+              <label className="aac-secondary aac-file-button">
+                {c.photo}
+                <input
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp,image/gif"
+                  onChange={photo}
+                />
+              </label>
+            </>
+          )}
+          {(!isNew || step === 1) && (
+            <>
+              {isNew && <p className="aac-muted">{c.labelHelp}</p>}
+              {labelField(LANGUAGES.find((l) => l.id === language))}
+              {isNew ? (
+                <details className="aac-optional-translations">
+                  <summary>{c.addTranslations}</summary>
+                  {LANGUAGES.filter((l) => l.id !== language).map(labelField)}
+                </details>
+              ) : (
+                LANGUAGES.filter((l) => l.id !== language).map(labelField)
+              )}
+            </>
+          )}
+          {(!isNew || step === 2) && (
+            <>
+              <h3>
+                {c.voice} · {LANGUAGES.find((l) => l.id === language).label}
+              </h3>
+              <p className="aac-muted">{c.recordOptional}</p>
+              <button
+                type="button"
+                disabled={recording === 'starting'}
+                className={`aac-secondary ${recording ? 'aac-recording' : ''}`}
+                onClick={record}
+              >
+                <Icon name="microphone" />
+                {recording ? c.stopRecord : c.record}
+              </button>
+              {recording && <p role="status">{c.recording}</p>}
+              {draft.recordings[language] && (
+                <div>
+                  <p>{c.recordingReady}</p>
+                  <audio controls src={draft.recordings[language]} />
+                  <button
+                    type="button"
+                    className="aac-text-button"
+                    onClick={() =>
+                      setDraft({
+                        ...draft,
+                        recordings: { ...draft.recordings, [language]: '' }
+                      })
+                    }
+                  >
+                    {c.removeRecording}
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+          <p role="alert">{error}</p>
+          {override && (
+            <button className="aac-text-button" type="button" onClick={onReset}>
+              {c.resetWord}
+            </button>
+          )}
+          {onDelete && (
+            <div className="aac-delete-word">
+              {confirmDelete ? (
+                <>
+                  <p>{c.deleteWordConfirm}</p>
+                  <div className="aac-button-row">
+                    <button
+                      type="button"
+                      className="aac-secondary"
+                      disabled={Boolean(recording)}
+                      onClick={onDelete}
+                    >
+                      {c.deleteWord}
+                    </button>
+                    <button
+                      type="button"
+                      className="aac-text-button"
+                      onClick={() => setConfirmDelete(false)}
+                    >
+                      {c.cancel}
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <button
+                  type="button"
+                  disabled={Boolean(recording)}
+                  className="aac-text-button"
+                  onClick={() => setConfirmDelete(true)}
+                >
+                  {c.deleteWord}
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+        <div className="aac-button-row aac-editor-actions">
           <button
             className="aac-primary"
-            disabled={recording || LANGUAGES.some((l) => !draft[l.id].trim())}
+            disabled={
+              Boolean(recording) ||
+              ((!isNew || step > 0) && !draft[language]?.trim())
+            }
             type="submit"
           >
-            {c.save}
+            {isNew && step < 2 ? c.nextStep : c.save}
           </button>
+          {isNew && step > 0 && (
+            <button
+              type="button"
+              disabled={Boolean(recording)}
+              className="aac-secondary"
+              onClick={() => {
+                setStep((old) => old - 1);
+                setError('');
+              }}
+            >
+              {c.previousStep}
+            </button>
+          )}
           <button className="aac-secondary" type="button" onClick={onClose}>
             {c.cancel}
           </button>
         </div>
-        {override && (
-          <button className="aac-text-button" type="button" onClick={onReset}>
-            {c.resetWord}
-          </button>
-        )}
       </form>
     </Modal>
   );

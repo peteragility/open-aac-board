@@ -6,10 +6,12 @@ import {
   initialWorkspace,
   workspaceReducer,
   ACTION,
+  validateWorkspace,
   createWorkspaceBackup,
   parseWorkspaceBackup
 } from './aac/model.js';
 import { SpeechEngine } from './aac/speechEngine.js';
+import { workspaceWords, pictureSegments } from './aac/vocabulary.js';
 
 const catalog = JSON.parse(
   fs.readFileSync(new URL('./aac/catalog.json', import.meta.url))
@@ -249,4 +251,186 @@ test('every starter word and phrase has three labels, local artwork and three bu
       assert.ok(fs.statSync(file).size > 100, `${language}/${item.id}`);
     }
   }
+});
+
+test('version 1 workspaces migrate without losing existing edits, recordings or phrases', () => {
+  const { customWords, quickResponses, ...oldWorkspace } = initialWorkspace;
+  const restored = parseWorkspaceBackup(
+    JSON.stringify({
+      format: 'open-aac-workspace',
+      version: 1,
+      workspace: oldWorkspace
+    })
+  );
+  assert.deepEqual(restored.customWords, []);
+  assert.deepEqual(restored.quickResponses, [
+    'give-time',
+    'no-thanks',
+    'dont-understand',
+    'need-help'
+  ]);
+  assert.deepEqual(
+    parseWorkspaceBackup(createWorkspaceBackup(restored)),
+    restored
+  );
+  assert.equal(JSON.parse(createWorkspaceBackup(restored)).version, 2);
+});
+
+test('personal words have optional translations and never acquire an implicit different-language voice', () => {
+  const word = {
+    id: 'custom-nurse',
+    language: 'yue',
+    yue: '陳姑娘',
+    en: '',
+    cmn: '',
+    recordings: { yue: 'data:audio/webm;base64,YQ==' }
+  };
+  const state = workspaceReducer(initialWorkspace, {
+    type: ACTION,
+    operation: 'custom-word',
+    payload: word
+  });
+  assert.deepEqual(parseWorkspaceBackup(createWorkspaceBackup(state)), state);
+  const english = workspaceWords(catalog.words, state, 'en');
+  assert.deepEqual(
+    english.slice(0, catalog.words.length).map((entry) => entry.id),
+    catalog.words.map((entry) => entry.id)
+  );
+  assert.equal(english.at(-1).text, '陳姑娘');
+  assert.equal(english.at(-1).translated, false);
+  assert.equal(english.at(-1).labelLanguage, 'yue');
+  assert.equal(english.at(-1).recording, undefined);
+  assert.equal(
+    workspaceWords(catalog.words, state, 'yue').at(-1).recording,
+    word.recordings.yue
+  );
+});
+
+test('saved picture messages retain snapshot media after personal word edits and deletion', async () => {
+  const word = {
+    id: 'custom-nurse',
+    language: 'yue',
+    yue: '陳姑娘',
+    en: '',
+    cmn: '',
+    image: 'data:image/png;base64,YQ==',
+    recordings: { yue: 'data:audio/webm;base64,YQ==' }
+  };
+  let state = workspaceReducer(initialWorkspace, {
+    type: ACTION,
+    operation: 'custom-word',
+    payload: word
+  });
+  const words = workspaceWords(catalog.words, state, 'yue');
+  const selected = [words[0], words.at(-1)];
+  state = workspaceReducer(state, {
+    type: ACTION,
+    operation: 'save-phrase',
+    payload: {
+      id: 'phrase-picture',
+      language: 'yue',
+      text: '我陳姑娘',
+      segments: pictureSegments(selected)
+    }
+  });
+  state = workspaceReducer(state, {
+    type: ACTION,
+    operation: 'delete-custom-word',
+    payload: word.id
+  });
+  const restored = parseWorkspaceBackup(createWorkspaceBackup(state));
+  assert.deepEqual(restored.customWords, []);
+  assert.equal(restored.phrases[0].segments[1].image, word.image);
+  const { instance, audio, spoken } = engine(voices.slice(0, 2));
+  await instance.speak({ ...restored.phrases[0] });
+  assert.deepEqual(audio, ['/audio/yue/i.mp3', word.recordings.yue]);
+  assert.deepEqual(spoken, []);
+});
+
+test('imports reject unsafe personal media, duplicate IDs, invalid quick responses and inconsistent snapshots', () => {
+  const custom = {
+    id: 'custom-nurse',
+    language: 'yue',
+    yue: '陳姑娘',
+    en: '',
+    cmn: '',
+    recordings: {}
+  };
+  const phrase = {
+    id: 'phrase-one',
+    language: 'yue',
+    text: '水',
+    segments: [{ text: '水', image: '/symbols/mulberry/water.svg' }]
+  };
+  for (const patch of [
+    { customWords: [{ ...custom, id: 'water' }] },
+    { customWords: [custom, custom] },
+    { customWords: [{ ...custom, yue: '' }] },
+    {
+      customWords: [{ ...custom, image: 'https://tracking.invalid/image.png' }]
+    },
+    {
+      customWords: [
+        { ...custom, recordings: { yue: 'data:text/html;base64,YQ==' } }
+      ]
+    },
+    { quickResponses: [] },
+    { quickResponses: ['give-time', 'give-time'] },
+    { quickResponses: ['made-up'] },
+    { phrases: [{ ...phrase, text: 'a different message' }] },
+    { phrases: [phrase, phrase] },
+    {
+      phrases: [
+        {
+          ...phrase,
+          segments: [{ text: '水', image: '/symbols/../secret.svg' }]
+        }
+      ]
+    },
+    {
+      phrases: [
+        { ...phrase, segments: [{ text: '水', image: 'javascript:alert(1)' }] }
+      ]
+    },
+    {
+      phrases: [
+        {
+          ...phrase,
+          segments: [
+            { text: '水', recording: 'https://tracking.invalid/voice.mp3' }
+          ]
+        }
+      ]
+    }
+  ])
+    assert.throws(() => validateWorkspace({ ...initialWorkspace, ...patch }));
+  const large = {
+    ...phrase,
+    segments: Array.from({ length: 30 }, () => ({
+      text: '水',
+      image: 'data:image/png;base64,' + 'YQ=='.repeat(250000)
+    })),
+    text: '水'.repeat(30)
+  };
+  assert.throws(
+    () =>
+      workspaceReducer(initialWorkspace, {
+        type: ACTION,
+        operation: 'save-phrase',
+        payload: large
+      }),
+    /too large/
+  );
+});
+
+test('a missing optional label on an edited starter word does not silently revert to the old label', () => {
+  const state = {
+    ...initialWorkspace,
+    overrides: { water: { yue: '暖水', en: '', cmn: '', recordings: {} } }
+  };
+  const word = workspaceWords(catalog.words, state, 'en').find(
+    (entry) => entry.id === 'water'
+  );
+  assert.equal(word.translated, false);
+  assert.equal(word.text, '暖水');
 });

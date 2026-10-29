@@ -12,7 +12,21 @@ Reviewed 29 October 2026. These are observations from the products' own public p
 
 Monolith's site was read directly over HTTPS because the search browser could not retrieve it. Its site describes some AI features as beta. We do not equate a product's public claims with verified performance.
 
-## Cantonese comes first
+## Personalization release following the wider app review
+
+Additional references included [Heep Hong's 語你同行2](https://apps.apple.com/tw/app/語你同行2/id1638100316), [Hong Chi's 溝通易3.0](https://aac.hongchi.org.hk/?page_id=77), [Proloquo2Go](https://www.assistiveware.com/products/proloquo2go), [Avaz](https://www.avazapp.com/features/), [Pictalk](https://www.pictalk.org/en/pictalk/), [CoughDrop](https://www.coughdrop.com/) and [Speech Assistant](https://www.asoft.nl/). These are published-feature references, not hands-on certification or permission to copy their code, vocabulary sets, artwork or recordings.
+
+Delivered in this release:
+
+- Personal word creation in three steps with an optional picture/recording and optional translations beyond the selected language. Starter vocabulary stays unchanged; personal words have a separate category.
+- A quick-response panel reachable from every tab, with one to four user-selected included phrases. It speaks without changing picture or typing drafts. Existing bundled MP3s provide offline fallback; no speech API was added or invoked to generate more audio.
+- Save picture-built messages as well as typed phrases. Picture messages retain their own snapshots of labels, images and recordings, so deleting/changing a personal word does not change a saved message.
+- Strict translation handling: a missing label is visible, does not acquire a different-language recording, and cannot silently be spoken as if it were the selected language. Returning to a different language clears a language-specific saved phrase from the composer while keeping the stored phrase.
+- Version 2 workspace exports, version 1 import migration, bounded media validation, and visible editor actions on phone/tablet/laptop layouts. Backups include the new word and quick-response fields.
+
+Still on the roadmap: reviewed Hong Kong vocabulary packs, optional simpler fixed-position layouts, unified main/advanced backups, direct printing of the main workspace, Jyutping support, helper coaching, remote editing and visual photo scenes. Those features have not been labelled delivered by this pass. No proprietary vocabulary systems or competitor assets were imported.
+
+## Cantonese voice and vocabulary behavior
 
 - New and existing installations without workspace preferences start in Cantonese, using colloquial Cantonese words and Traditional Chinese labels. English and Mandarin are explicit choices, with their own written vocabulary and voices.
 - Cantonese device voices match `yue-*`, `zh-HK` or `zh-yue-*`. Mandarin matching excludes these. A Mandarin voice must never become an implicit Cantonese fallback.
@@ -34,7 +48,7 @@ The speech controller accepts injected platform adapters so the mobile apps can 
 
 ## Data and backup
 
-Workspace preferences, word edits, photos, per-language recordings, saved phrases and routines use the existing guarded Redux/IndexedDB persistence. A workspace backup exports and restores these together, with explicit confirmation before replacement. Imports enforce a schema, size limits and media-type checks. The workspace is limited to approximately 24 MB so its backups fit under the 32 MB import limit. Advanced Cboard boards retain their original separate import/export flow; installing this release does not replace existing boards.
+Workspace preferences, personal words, word edits, photos, per-language recordings, saved picture/text messages, quick responses and routines use the existing guarded Redux/IndexedDB persistence. A version 2 workspace backup exports and restores these together, with explicit confirmation before replacement; version 1 imports migrate to defaults. Imports enforce a schema, size limits and media-type checks, including picture-message snapshots. The workspace is limited to approximately 24 MB so its backups fit under the 32 MB import limit. Snapshot media counts toward this total. Advanced Cboard boards retain their original separate import/export flow; installing this release does not replace existing boards.
 
 ## Deferred features
 

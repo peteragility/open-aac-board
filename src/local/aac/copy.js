@@ -58,9 +58,9 @@ const strings = {
     '轻触一句，立即说出来。'
   ],
   emptySaved: [
-    '喺打字功能儲存你常用嘅句子。',
-    'Save your own phrases in Type to speak.',
-    '在打字功能保存你常用的句子。'
+    '用圖卡組句，或者打字，再按「儲存句子」。',
+    'Build a picture message or type, then choose Save phrase.',
+    '用图卡组句或打字，再按“保存句子”。'
   ],
   pin: ['收藏句子', 'Favourite phrase', '收藏句子'],
   unpin: ['取消收藏', 'Remove favourite', '取消收藏'],
@@ -177,9 +177,9 @@ const strings = {
   rate: ['語速', 'Speaking speed', '语速'],
   backup: ['備份同還原', 'Backup & restore', '备份与恢复'],
   backupHint: [
-    '呢個備份包含三語圖卡修改、個人錄音、收藏句子、流程同偏好。進階溝通板請使用下方嘅另一個備份功能。',
-    'This backup includes word edits, recordings, saved phrases, routines and preferences. Use the separate backup below for advanced boards.',
-    '此备份包含三语图卡修改、个人录音、收藏句子、流程和偏好。高级沟通板请使用下方的独立备份功能。'
+    '呢個備份包含個人字詞、圖卡修改、相片、錄音、圖片句子、即時回應、流程同偏好。進階溝通板請使用下方嘅另一個備份功能。',
+    'Includes personal words, edits, pictures, recordings, saved picture messages, quick responses, routines and preferences. Use the separate backup below for advanced boards.',
+    '包含个人词语、图卡修改、照片、录音、图片句子、即时回应、流程和偏好。高级沟通板请使用下方的独立备份功能。'
   ],
   export: ['匯出工作區備份', 'Export workspace backup', '导出工作区备份'],
   restore: ['還原工作區備份', 'Restore workspace backup', '恢复工作区备份'],
@@ -236,6 +236,76 @@ const strings = {
   local: ['儲存喺呢部裝置', 'Saved on this device', '保存在此设备'],
   online: ['下載準備中', 'Preparing downloads', '正在准备下载'],
   edit: ['修改圖卡', 'Personalize words', '修改图卡'],
+  myWords: ['我嘅字詞', 'My words', '我的词语'],
+  addWord: ['新增字詞', 'Add a word', '添加词语'],
+  wordPhoto: ['相片', 'Picture', '照片'],
+  wordLabel: ['字詞', 'Label', '词语'],
+  wordVoice: ['聲音', 'Voice', '声音'],
+  nextStep: ['下一步', 'Next step', '下一步'],
+  previousStep: ['上一步', 'Previous step', '上一步'],
+  optional: ['可稍後加', 'optional', '可稍后添加'],
+  addTranslations: [
+    '加其他語言（可稍後加）',
+    'Add translations (optional)',
+    '添加其他语言（可稍后添加）'
+  ],
+  photoOptional: [
+    '揀熟悉嘅相片，或者直接用預設圖示。',
+    'Choose a familiar photo, or keep the starter picture.',
+    '选择熟悉的照片，或使用默认图片。'
+  ],
+  labelHelp: [
+    '填寫而家用緊嘅語言就得，其他翻譯可以遲啲加。',
+    'Only the current language needs a label. Add translations later if you want.',
+    '只需填写当前语言，其他翻译可以稍后添加。'
+  ],
+  recordOptional: [
+    '可以錄低熟悉嘅聲音，離線都播到。冇錄音就用同一語言嘅裝置語音；裝置未安裝時會提示你。',
+    'A familiar recording works offline. Without one, speech needs a matching installed device voice; the app will tell you if it is missing.',
+    '熟悉的录音可以离线播放。没有录音时需要匹配的设备语音；未安装时会提示你。'
+  ],
+  wordSaved: ['已儲存圖卡。', 'Word saved.', '词语已保存。'],
+  emptyMyWords: [
+    '加屋企人、朋友、鍾意嘅食物，慢慢建立自己嘅字詞。',
+    'Add familiar people, favourite food and the words that matter to you.',
+    '添加熟悉的人、喜欢的食物和对你重要的词语。'
+  ],
+  translationMissing: [
+    '呢張圖卡未有而家語言嘅字詞。按「修改圖卡」加翻譯，或者揀返原本語言。',
+    'A selected word has no label in this language. Use Personalize words to add it, or switch back to its language.',
+    '有图卡尚未填写当前语言。请修改图卡添加翻译，或切回原来的语言。'
+  ],
+  translationShort: ['未加翻譯', 'Translation needed', '尚无翻译'],
+  wordSaveError: [
+    '未能儲存。請填寫而家語言嘅字詞，並檢查相片、錄音大小或工作區容量。',
+    'Could not save. Add a label for the current language and check media or workspace size.',
+    '无法保存。请填写当前语言，并检查媒体大小或工作区容量。'
+  ],
+  workspaceFull: [
+    '句子太長，或者工作區已滿。請先匯出備份，再刪除唔再需要嘅句子或縮細媒體。',
+    'The message is too long or the workspace is full. Back up first, then remove unused phrases or use smaller media.',
+    '句子太长或工作区已满。请先备份，再删除不用的句子或缩小媒体。'
+  ],
+  deleteWord: ['刪除個人字詞', 'Delete personal word', '删除个人词语'],
+  deleteWordConfirm: [
+    '刪除呢張個人圖卡？之前儲存嘅圖片句子同錄音仍然保留。',
+    'Delete this personal word? Previously saved picture messages and their recordings will stay.',
+    '删除这张个人图卡？之前保存的图片句子和录音会保留。'
+  ],
+  responses: ['即時回應', 'Quick responses', '即时回应'],
+  responsesShort: ['即答', 'Reply', '即答'],
+  responseHint: [
+    '輕觸即刻講。你未講完嘅句子會保留。',
+    'Tap to speak. Your unfinished message stays in place.',
+    '点击即可说出。尚未完成的句子会保留。'
+  ],
+  returnMessage: ['返去我嘅句子', 'Back to my message', '返回我的句子'],
+  chooseResponses: ['揀即時回應', 'Choose quick responses', '选择即时回应'],
+  responsePick: [
+    '揀一至四句，隨時可以再改。全部都有內置錄音。',
+    'Choose one to four phrases. Each has included audio, and you can change them anytime.',
+    '选择一至四句，都有内置录音，随时可以更改。'
+  ],
   done: ['完成', 'Done', '完成'],
   save: ['儲存', 'Save changes', '保存'],
   cancel: ['取消', 'Cancel', '取消'],
