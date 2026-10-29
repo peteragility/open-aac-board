@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "short_name": "Open AAC",
+  "name": "Open AAC Board",
+  "description": "Free communication boards, saved on your device.",
+  "icons": [
+    {
+      "src": "/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#17665c",
+  "background_color": "#f4f7f5"
+}
