@@ -168,16 +168,14 @@ test('personal pictures and microphone recordings survive workspace export and r
   await dialog.getByLabel('廣東話', { exact: true }).fill('暖水');
   await dialog.getByLabel('English', { exact: true }).fill('warm water');
   await dialog.getByLabel('普通话', { exact: true }).fill('温水');
-  await dialog
-    .locator('input[type="file"]')
-    .setInputFiles({
-      name: 'water.png',
-      mimeType: 'image/png',
-      buffer: Buffer.from(
-        'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aNd8AAAAASUVORK5CYII=',
-        'base64'
-      )
-    });
+  await dialog.locator('input[type="file"]').setInputFiles({
+    name: 'water.png',
+    mimeType: 'image/png',
+    buffer: Buffer.from(
+      'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aNd8AAAAASUVORK5CYII=',
+      'base64'
+    )
+  });
   await dialog
     .getByRole('button', { name: 'Record your voice', exact: true })
     .click();
@@ -288,6 +286,13 @@ test('quick phrases, saved typing, partner view, daily routine and switch scanni
   );
   await page.getByRole('button', { name: '1 min', exact: true }).click();
   await page.getByRole('button', { name: 'Resume', exact: true }).click();
+  await expect(
+    page.getByRole('button', { name: 'Pause', exact: true })
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Word board', exact: true }).click();
+  await page
+    .getByRole('button', { name: 'Daily routine', exact: true })
+    .click();
   await expect(
     page.getByRole('button', { name: 'Pause', exact: true })
   ).toBeVisible();

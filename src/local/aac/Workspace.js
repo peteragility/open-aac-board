@@ -602,7 +602,7 @@ export function Workspace({ workspace, dispatch }) {
               ))}
             </section>
           )}
-          {section === 'routine' && (
+          <div hidden={section !== 'routine'}>
             <Routine
               workspace={workspace}
               update={update}
@@ -610,7 +610,7 @@ export function Workspace({ workspace, dispatch }) {
               c={c}
               say={say}
             />
-          )}
+          </div>
         </div>
         <nav className="aac-mobile-nav" aria-label={c.brand}>
           {sections.map(([id, icon]) => (
