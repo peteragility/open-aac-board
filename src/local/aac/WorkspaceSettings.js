@@ -10,7 +10,8 @@ export default function WorkspaceSettings({
   update,
   voices,
   onClose,
-  tryVoice
+  tryVoice,
+  onGuide
 }) {
   const c = copy(workspace.language);
   const [pending, setPending] = useState(null);
@@ -181,6 +182,10 @@ export default function WorkspaceSettings({
           <p role="status">{message}</p>
         </section>
         <section className="aac-settings-links">
+          <button className="aac-secondary" onClick={onGuide}>
+            {c.guideTitle}
+            <Icon name="arrow" />
+          </button>
           <Link to="/boards" onClick={onClose}>
             {c.advanced}
             <Icon name="arrow" />

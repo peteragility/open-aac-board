@@ -92,6 +92,51 @@ const strings = {
   rotate: ['轉向對方', 'Rotate for partner', '转向对方'],
   close: ['關閉', 'Close', '关闭'],
   settings: ['偏好設定', 'Preferences', '偏好设置'],
+  tools: ['工具', 'Tools', '工具'],
+  addWordShort: ['加字詞', 'Add word', '加词语'],
+  partnerShort: ['俾人睇', 'Show', '展示'],
+  saveShort: ['儲存', 'Save', '保存'],
+  moreCategories: ['更多分類', 'More categories', '更多分类'],
+  previousCategories: ['之前嘅分類', 'Previous categories', '之前的分类'],
+  showScanControl: [
+    '保留掃描按鈕喺工具列',
+    'Keep scanning on the toolbar',
+    '在工具栏保留扫描按钮'
+  ],
+  editingHelp: [
+    '揀一張圖卡修改，改完按「完成」。',
+    'Choose a picture to personalize, then choose Done.',
+    '选择图卡修改，完成后按“完成”。'
+  ],
+  phraseDeleted: ['已刪除句子。', 'Phrase deleted.', '已删除句子。'],
+  undoDelete: ['復原刪除', 'Undo deletion', '撤销删除'],
+  guideTitle: ['快速入門', 'Quick guide', '快速入门'],
+  guideIntro: [
+    '用半分鐘試吓，隨時可以跳過。',
+    'Take a short tour. You can skip any time.',
+    '花半分钟试试，随时可以跳过。'
+  ],
+  guideVoice: ['聽吓聲音', 'Hear the voice', '听听声音'],
+  guidePictures: ['試吓組句', 'Try pictures', '试试组句'],
+  guidePersonal: ['加自己字詞', 'Make it yours', '添加个人词语'],
+  guidePictureHelp: [
+    '試吓按「我」、「想」、「水」，再按「講出嚟」。練習唔會改動你原本嘅句子。',
+    'Try I, want, water, then Speak. This practice keeps your own message safe.',
+    '试着按“我”“想”“水”，再按“说出来”。练习不会改动原来的句子。'
+  ],
+  guidePersonalHelp: [
+    '可以加熟悉嘅人或者常用物品。相片同錄音都可以遲啲先加，只填而家用嘅語言就得。',
+    'Add a familiar person or something you use. Photos and recordings are optional; only your current language needs a label.',
+    '可以添加熟悉的人或常用物品。照片和录音可稍后再加，只填写当前语言即可。'
+  ],
+  guideReplayHelp: [
+    '隨時喺「工具」或者「偏好設定」再睇快速入門。',
+    'Open this guide again from Tools or Preferences.',
+    '随时在“工具”或“偏好设置”再次打开快速入门。'
+  ],
+  guideFinish: ['返去溝通板', 'Return to my board', '返回沟通板'],
+  guideSkip: ['跳過，繼續用', 'Skip, keep communicating', '跳过，继续使用'],
+  voiceConfirmed: ['已確認聲音', 'Voice confirmed', '已确认声音'],
   voice: ['語音', 'Voice', '语音'],
   language: ['說話語言', 'Speaking language', '说话语言'],
   deviceVoice: ['裝置語音', 'Device voice', '设备语音'],

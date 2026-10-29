@@ -25,6 +25,7 @@ export const initialWorkspace = {
     contrast: false,
     largeText: false,
     speakOnTap: true,
+    showScanControl: false,
     haptics: false,
     scanDelay: 2,
     rate: 1
@@ -160,6 +161,8 @@ export function validateWorkspace(value) {
   for (const field of ['contrast', 'largeText', 'speakOnTap', 'haptics'])
     if (typeof p[field] !== 'boolean')
       throw new Error('Invalid accessibility setting.');
+  if (p.showScanControl !== undefined && typeof p.showScanControl !== 'boolean')
+    throw new Error('Invalid scanning preference.');
   const voices = {};
   const voiceChecks = value.voiceChecks ?? [];
   if (
@@ -240,6 +243,7 @@ export function validateWorkspace(value) {
       contrast: p.contrast,
       largeText: p.largeText,
       speakOnTap: p.speakOnTap,
+      showScanControl: p.showScanControl ?? false,
       haptics: p.haptics,
       scanDelay: p.scanDelay,
       rate: p.rate
@@ -316,6 +320,23 @@ export function workspaceReducer(state = initialWorkspace, action) {
         ...state,
         phrases: state.phrases.filter((p) => p.id !== payload)
       };
+    case 'restore-phrase': {
+      if (state.phrases.some((phrase) => phrase.id === payload.phrase?.id))
+        return state;
+      if (
+        state.phrases.length >= 100 ||
+        !Number.isInteger(payload.index) ||
+        payload.index < 0
+      )
+        throw new Error('Cannot restore this phrase.');
+      const phrases = [...state.phrases];
+      phrases.splice(
+        Math.min(payload.index, phrases.length),
+        0,
+        payload.phrase
+      );
+      return validateWorkspace({ ...state, phrases });
+    }
     case 'favourite':
       return {
         ...state,

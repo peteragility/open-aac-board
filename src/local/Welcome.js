@@ -4,6 +4,7 @@ import { finishFirstVisit } from '../components/App/App.actions';
 import './local.css';
 import { copy } from './aac/copy';
 import { ACTION } from './aac/model';
+import { COMMUNICATION_ACTION } from './aac/communication';
 import { LANGUAGES, languageInfo } from './aac/languages';
 import catalog from './aac/catalog.json';
 import Helmet from 'react-helmet';
@@ -11,7 +12,8 @@ import Helmet from 'react-helmet';
 export function Welcome({
   finishFirstVisit,
   language = 'yue',
-  changeLanguage
+  changeLanguage,
+  requestGuide
 }) {
   const c = copy(language);
   const tr = (yue, en, cmn) =>
@@ -48,6 +50,15 @@ export function Welcome({
           <p className="local-intro">{c.welcomeIntro}</p>
           <button className="local-primary" onClick={finishFirstVisit}>
             {c.start} <span aria-hidden="true">→</span>
+          </button>
+          <button
+            className="local-guide-button"
+            onClick={() => {
+              requestGuide();
+              finishFirstVisit();
+            }}
+          >
+            {c.guideTitle} <span aria-hidden="true">→</span>
           </button>
           <p className="local-caption">{c.noAccount}</p>
         </section>
@@ -132,6 +143,10 @@ export function Welcome({
 }
 export default connect((state) => ({ language: state.workspace.language }), {
   finishFirstVisit,
+  requestGuide: () => ({
+    type: COMMUNICATION_ACTION,
+    payload: { guideRequested: true }
+  }),
   changeLanguage: (payload) => ({
     type: ACTION,
     operation: 'language',

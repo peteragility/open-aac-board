@@ -20,6 +20,10 @@ import notificationsReducer from './components/Notifications/Notifications.reduc
 import subscriptionProviderReducer from './providers/SubscriptionProvider/SubscriptionProvider.reducer';
 import { DEFAULT_BOARDS } from '../src/helpers';
 import { workspaceReducer } from './local/aac/model';
+import {
+  communicationReducer,
+  recoverCommunication
+} from './local/aac/communication';
 
 localForage.config({
   name: 'open-aac-board',
@@ -147,7 +151,12 @@ const config = {
   blacklist: ['language'],
   version: 1,
   migrate: createMigrate(boardMigrations, { debug: false }),
-  transforms: [boardSyncTransform],
+  transforms: [
+    boardSyncTransform,
+    createTransform(null, recoverCommunication, {
+      whitelist: ['communication']
+    })
+  ],
   writeFailHandler: () => window.dispatchEvent(new Event('aac-storage-error'))
 };
 
@@ -161,6 +170,7 @@ export default function createReducer() {
   return persistCombineReducers(config, {
     app: appReducer,
     workspace: workspaceReducer,
+    communication: communicationReducer,
     language: persistReducer(languagePersistConfig, languageProviderReducer),
     speech: speechProviderReducer,
     board: boardReducer,

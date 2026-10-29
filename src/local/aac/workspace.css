@@ -439,13 +439,117 @@
   flex-shrink: 0;
 }
 .aac-board-tools {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
   gap: 12px;
   margin: 0 auto 16px;
   max-width: 1400px;
 }
 .aac-board-tools > button {
   flex-shrink: 0;
+}
+.aac-board-tools .aac-scan-button {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+.aac-category-strip {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  max-width: 1400px;
+  margin: 0 auto 16px;
+  min-width: 0;
+  width: 100%;
+}
+.aac-category-strip .aac-categories {
+  flex: 1;
+  min-width: 0;
+  width: 0;
+  margin: 0;
+}
+.aac-category-arrows {
+  display: flex;
+  flex-shrink: 0;
+  padding-top: 3px;
+}
+.aac-category-arrows button {
+  border: 1px solid var(--border);
+  background: #fff;
+}
+.aac-arrow-back {
+  transform: rotate(180deg);
+}
+.aac-tools-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 20px;
+}
+.aac-tools-panel > button {
+  justify-content: flex-start;
+}
+.aac-tools-panel .aac-toggle {
+  margin: 0;
+}
+.aac-guide-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.aac-guide-dialog > .aac-dialog-head,
+.aac-guide-actions {
+  flex-shrink: 0;
+}
+.aac-guide-content {
+  overflow-y: auto;
+  min-height: 0;
+}
+.aac-guide-content p {
+  line-height: 1.6;
+}
+.aac-guide-content section {
+  border: 0;
+  padding-top: 0;
+}
+.aac-guide-actions {
+  padding: 12px 18px;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+.aac-guide-steps li {
+  font-size: 12px;
+}
+.aac-guide-words {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.aac-guide-words .aac-word {
+  min-height: 120px;
+}
+.aac-guide-words .aac-word-picture {
+  width: 64px;
+  height: 64px;
+}
+.aac-guide-message {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 12px 0;
+  padding: 12px;
+  min-height: 48px;
+  overflow-wrap: anywhere;
+}
+.aac-routine-picture .aac-missing-label {
+  display: block;
+}
+@media (min-width: 1201px) {
+  .aac-board-tools.has-scan-control {
+    grid-template-columns: minmax(0, 1fr) auto auto auto;
+  }
+  .aac-board-tools .aac-scan-button {
+    grid-column: auto;
+  }
 }
 .aac-missing-label {
   color: #725323;
@@ -1535,7 +1639,8 @@
 }
 @media (max-width: 767px), (max-height: 550px) and (max-width: 1000px) {
   .aac-composer-label {
-    display: none;
+    display: inline;
+    font-size: 11px;
   }
   .aac-response-trigger {
     flex-shrink: 0;
@@ -1668,15 +1773,22 @@
     width: 18px;
   }
   .aac-board-tools {
-    gap: 8px;
+    gap: 6px;
     margin-bottom: 8px;
   }
   .aac-board-tools .aac-secondary {
-    padding: 8px;
+    padding: 8px 6px;
     min-width: 44px;
+    gap: 4px;
   }
   .aac-board-tools .aac-secondary span {
-    display: none;
+    display: inline;
+  }
+  .aac-board-tools .aac-secondary svg {
+    width: 15px;
+  }
+  .aac-board-tools .aac-scan-button span {
+    display: inline;
   }
   .aac-search {
     padding: 0 11px;
@@ -1689,7 +1801,13 @@
     gap: 6px;
     margin-bottom: 8px;
     padding-bottom: 6px;
-    margin-right: -16px;
+    margin-right: 0;
+  }
+  .aac-category-strip {
+    margin-bottom: 8px;
+  }
+  .aac-category-arrows {
+    padding-top: 3px;
   }
   .aac-categories button {
     font-size: 12px;
@@ -1698,7 +1816,7 @@
     min-height: 44px;
   }
   .aac-categories button:last-child {
-    margin-right: 16px;
+    margin-right: 0;
   }
   .aac-categories svg {
     width: 14px;
@@ -2102,10 +2220,10 @@
   }
   .aac-board-controls {
     display: grid;
-    grid-template-columns: minmax(230px, 0.8fr) minmax(0, 1fr);
+    grid-template-columns: minmax(300px, 1fr) minmax(0, 1fr);
     align-items: start;
     gap: 12px;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
   .aac-board-tools {
     width: 100%;
@@ -2120,7 +2238,7 @@
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
   .aac-word {
-    padding-top: 8px;
+    padding-top: 6px;
     padding-bottom: 6px;
     gap: 5px;
   }
@@ -2130,4 +2248,56 @@
   .density-compact .aac-word-grid {
     grid-template-columns: repeat(8, minmax(0, 1fr));
   }
+}
+@media (max-height: 550px) {
+  .aac-guide-content > .aac-muted {
+    display: none;
+  }
+  .aac-guide-steps {
+    margin: 8px 0;
+  }
+  .aac-guide-steps li {
+    flex-direction: row;
+    justify-content: center;
+    font-size: 11px;
+  }
+  .aac-guide-content h3 {
+    margin: 4px 0;
+    font-size: 13px;
+  }
+  .aac-guide-content p {
+    margin: 6px 0;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .aac-guide-content .aac-guide-words .aac-word {
+    min-height: 90px;
+    padding: 6px;
+    gap: 3px;
+  }
+  .aac-guide-content .aac-guide-words .aac-word-picture {
+    width: 48px;
+    height: 48px;
+    padding: 5px;
+  }
+  .aac-guide-content .aac-guide-words .aac-word-label {
+    font-size: 15px;
+  }
+  .aac-guide-actions {
+    padding: 8px 12px;
+    gap: 6px;
+  }
+}
+.density-large .aac-guide-words {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.density-large .aac-guide-content .aac-guide-words .aac-word {
+  min-height: 155px;
+}
+.density-large .aac-guide-content .aac-guide-words .aac-word-picture {
+  width: 90px;
+  height: 90px;
+}
+.aac-large-text .aac-guide-content .aac-guide-words .aac-word-label {
+  font-size: 23px;
 }

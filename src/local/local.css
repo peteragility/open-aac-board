@@ -300,3 +300,15 @@
     height: 50px;
   }
 }
+.local-guide-button {
+  display: block;
+  margin-top: 12px;
+  min-height: 44px;
+  border: 1px solid #cbdccf;
+  background: #f5f8f3;
+  color: #176d60;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font: inherit;
+}

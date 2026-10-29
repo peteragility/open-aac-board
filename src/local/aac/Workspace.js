@@ -25,6 +25,9 @@ import WorkspaceSettings from './WorkspaceSettings';
 import WordEditor from './WordEditor';
 import Routine from './Routine';
 import QuickResponses from './QuickResponses';
+import QuickGuide from './QuickGuide';
+import CategoryTabs from './CategoryTabs';
+import { COMMUNICATION_ACTION, initialCommunication } from './communication';
 import { workspaceWords, pictureSegments } from './vocabulary';
 import './workspace.css';
 
@@ -35,7 +38,11 @@ const sections = [
   ['routine', 'plan']
 ];
 
-export function Workspace({ workspace, dispatch }) {
+export function Workspace({
+  workspace,
+  communication = initialCommunication,
+  dispatch
+}) {
   const update = useCallback(
     (operation, payload) => dispatch({ type: ACTION, operation, payload }),
     [dispatch]
@@ -50,21 +57,50 @@ export function Workspace({ workspace, dispatch }) {
     language,
     workspace.voices[language]
   );
-  const [section, setSection] = useState('board');
-  const [category, setCategory] = useState('core');
+  const { section, category, tokens, typed } = communication;
+  const phrase =
+    communication.phrase?.language === language
+      ? workspace.phrases.find(
+          (item) =>
+            item.id === communication.phrase.id && item.language === language
+        ) ||
+        catalog.phrases.find((item) => item.id === communication.phrase.id) ||
+        communication.phrase
+      : null;
+  const changeDraft = useCallback(
+    (payload) => dispatch({ type: COMMUNICATION_ACTION, payload }),
+    [dispatch]
+  );
+  const setSection = (value) => changeDraft({ section: value });
+  const setCategory = (value) => changeDraft({ category: value });
+  const setTokens = (value) =>
+    changeDraft({
+      tokens: typeof value === 'function' ? value(tokens) : value
+    });
+  const setTyped = (value) =>
+    changeDraft({ typed: typeof value === 'function' ? value(typed) : value });
+  const setPhrase = (value) => {
+    const item = typeof value === 'function' ? value(phrase) : value;
+    changeDraft({
+      phrase: item
+        ? { id: item.id, language, text: item[language] || item.text }
+        : null
+    });
+  };
   const [query, setQuery] = useState('');
-  const [tokens, setTokens] = useState([]);
-  const [phrase, setPhrase] = useState(null);
-  const [typed, setTyped] = useState('');
   const [phraseTab, setPhraseTab] = useState('allPhrases');
   const [editing, setEditing] = useState(false);
   const [editWord, setEditWord] = useState(null);
   const [addingWord, setAddingWord] = useState(false);
-  const [modal, setModal] = useState(null);
+  const [modal, setModal] = useState(
+    communication.guideRequested ? 'guide' : null
+  );
   const [rotated, setRotated] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [notice, setNotice] = useState('');
   const [undoDraft, setUndoDraft] = useState(null);
+  const [deletedPhrase, setDeletedPhrase] = useState(null);
+  const [translationWord, setTranslationWord] = useState(null);
   const [scanning, setScanning] = useState(false);
   const [scanIndex, setScanIndex] = useState(0);
   const scanGrid = useRef();
@@ -76,8 +112,9 @@ export function Workspace({ workspace, dispatch }) {
     [overrides, customWords, language]
   );
   const categories = [
-    ...catalog.categories,
-    { id: 'personal', icon: 'people', [language]: c.myWords }
+    catalog.categories[0],
+    { id: 'personal', icon: 'people', [language]: c.myWords },
+    ...catalog.categories.slice(1)
   ];
   const selected = tokens
     .map((id) => words.find((word) => word.id === id))
@@ -124,13 +161,11 @@ export function Workspace({ workspace, dispatch }) {
   useEffect(() => {
     setScanning(false);
     setNotice('');
+    setTranslationWord(null);
     setUndoDraft(null);
     speechSequence.current++;
     speech.stop();
     setSpeaking(false);
-    setPhrase((old) =>
-      old?.language && old.language !== language ? null : old
-    );
   }, [language]);
   useEffect(() => {
     if (!scanning || !visible.length) return;
@@ -175,7 +210,7 @@ export function Workspace({ workspace, dispatch }) {
       return;
     }
     if (!word.translated) {
-      setNotice(c.translationMissing);
+      missingWord(word);
       return;
     }
     if (tokens.length >= 30) return;
@@ -196,6 +231,40 @@ export function Workspace({ workspace, dispatch }) {
     setScanning(false);
     setEditing(false);
     setNotice('');
+  }
+  function missingWord(word) {
+    stop();
+    setTranslationWord(word.id);
+    setNotice(c.translationMissing);
+  }
+  function toggleScan() {
+    setModal(null);
+    setEditing(false);
+    setScanIndex(0);
+    setScanning(!scanning);
+    if (!scanning) requestAnimationFrame(() => scanGrid.current?.focus());
+  }
+  function finishGuide() {
+    stop();
+    changeDraft({ guideRequested: false });
+    setModal(null);
+  }
+  function deletePhrase(item) {
+    setNotice('');
+    setDeletedPhrase({
+      phrase: item,
+      index: workspace.phrases.findIndex((p) => p.id === item.id)
+    });
+    update('delete-phrase', item.id);
+  }
+  function undoDelete() {
+    try {
+      update('restore-phrase', deletedPhrase);
+      setDeletedPhrase(null);
+      setNotice('');
+    } catch {
+      setNotice(c.workspaceFull);
+    }
   }
   function activatePhrase(item) {
     if (undoDraft?.kind === 'board') setUndoDraft(null);
@@ -457,7 +526,9 @@ export function Workspace({ workspace, dispatch }) {
                       }}
                     >
                       <Icon name="expand" />
-                      <span className="aac-composer-label">{c.partner}</span>
+                      <span className="aac-composer-label">
+                        {c.partnerShort}
+                      </span>
                     </button>
                   )}
                   {canUndo && (
@@ -481,7 +552,7 @@ export function Workspace({ workspace, dispatch }) {
                     onClick={savePhrase}
                   >
                     <Icon name="star" />
-                    <span className="aac-composer-label">{c.savePhrase}</span>
+                    <span className="aac-composer-label">{c.saveShort}</span>
                   </button>
                 </div>
                 <button
@@ -498,6 +569,14 @@ export function Workspace({ workspace, dispatch }) {
         </div>
         <div className="aac-scroll-area" ref={scrollArea}>
           <h1 className="aac-sr-only">{c[section]}</h1>
+          {deletedPhrase && (
+            <div className="aac-notice aac-deletion-notice" role="status">
+              <span>{c.phraseDeleted}</span>
+              <button className="aac-text-button" onClick={undoDelete}>
+                {c.undoDelete}
+              </button>
+            </div>
+          )}
           {(notice || missingTranslation) && (
             <div className="aac-notice" role="status">
               {missingTranslation ? c.translationMissing : notice}
@@ -511,8 +590,10 @@ export function Workspace({ workspace, dispatch }) {
                     missingTranslation ||
                     notice === c.translationMissing
                   ) {
-                    setSection('board');
-                    setEditing(true);
+                    const word =
+                      translationWord ||
+                      selected.find((item) => !item.translated)?.id;
+                    if (word) setEditWord(word);
                     setNotice('');
                   } else setModal('settings');
                 }}
@@ -529,7 +610,9 @@ export function Workspace({ workspace, dispatch }) {
           {section === 'board' && (
             <>
               <div className="aac-board-controls">
-                <div className="aac-board-tools">
+                <div
+                  className={`aac-board-tools ${preferences.showScanControl || scanning ? 'has-scan-control' : ''}`}
+                >
                   <label className="aac-search">
                     <Icon name="search" />
                     <input
@@ -546,18 +629,6 @@ export function Workspace({ workspace, dispatch }) {
                     />
                   </label>
                   <button
-                    className={`aac-secondary ${editing ? 'is-active' : ''}`}
-                    aria-pressed={editing}
-                    aria-label={editing ? c.done : c.edit}
-                    onClick={() => {
-                      setEditing(!editing);
-                      setScanning(false);
-                    }}
-                  >
-                    <Icon name={editing ? 'check' : 'edit'} />
-                    <span>{editing ? c.done : c.edit}</span>
-                  </button>
-                  <button
                     className="aac-secondary aac-add-word"
                     aria-label={c.addWord}
                     title={c.addWord}
@@ -568,48 +639,46 @@ export function Workspace({ workspace, dispatch }) {
                     }}
                   >
                     <Icon name="plus" />
-                    <span>{c.addWord}</span>
+                    <span>{c.addWordShort}</span>
                   </button>
                   <button
-                    className="aac-secondary aac-scan-button"
-                    aria-label={scanning ? c.stopScan : c.scan}
-                    title={scanning ? c.stopScan : c.scan}
-                    aria-pressed={scanning}
-                    onClick={() => {
-                      setEditing(false);
-                      setScanIndex(0);
-                      setScanning(!scanning);
-                      scanGrid.current?.focus();
-                    }}
+                    className={`aac-secondary ${editing ? 'is-active' : ''}`}
+                    aria-label={editing ? c.done : c.tools}
+                    aria-haspopup={editing ? undefined : 'dialog'}
+                    onClick={() =>
+                      editing ? setEditing(false) : setModal('tools')
+                    }
                   >
-                    <Icon name={scanning ? 'pause' : 'play'} />
-                    <span>{scanning ? c.stopScan : c.scan}</span>
+                    <Icon name={editing ? 'check' : 'settings'} />
+                    <span>{editing ? c.done : c.tools}</span>
                   </button>
-                </div>
-                <div
-                  className="aac-categories"
-                  role="group"
-                  aria-label={c.board}
-                >
-                  {categories.map((cat) => (
+                  {(preferences.showScanControl || scanning) && (
                     <button
-                      key={cat.id}
-                      aria-pressed={category === cat.id && !query}
-                      className={
-                        category === cat.id && !query ? 'is-active' : ''
-                      }
-                      onClick={() => {
-                        setCategory(cat.id);
-                        setQuery('');
-                        setScanning(false);
-                        setScanIndex(0);
-                      }}
+                      className="aac-secondary aac-scan-button"
+                      aria-label={scanning ? c.stopScan : c.scan}
+                      title={scanning ? c.stopScan : c.scan}
+                      aria-pressed={scanning}
+                      onClick={toggleScan}
                     >
-                      <Icon name={cat.icon} />
-                      {cat[language]}
+                      <Icon name={scanning ? 'pause' : 'play'} />
+                      <span>{scanning ? c.stopScan : c.scan}</span>
                     </button>
-                  ))}
+                  )}
                 </div>
+                <CategoryTabs
+                  categories={categories}
+                  language={language}
+                  category={category}
+                  query={query}
+                  c={c}
+                  onSelect={(id) => {
+                    setCategory(id);
+                    setQuery('');
+                    setScanning(false);
+                    setScanIndex(0);
+                    if (scrollArea.current) scrollArea.current.scrollTop = 0;
+                  }}
+                />
                 <div className="aac-section-row aac-grid-heading">
                   <h2>
                     {query
@@ -619,6 +688,11 @@ export function Workspace({ workspace, dispatch }) {
                   </h2>
                 </div>
               </div>
+              {editing && (
+                <p className="aac-scan-hint" role="status">
+                  {c.editingHelp}
+                </p>
+              )}
               {scanning && <p className="aac-scan-hint">{c.scanHint}</p>}
               <div
                 className="aac-word-grid"
@@ -736,7 +810,7 @@ export function Workspace({ workspace, dispatch }) {
                         <button
                           className="aac-icon-button"
                           aria-label={`${c.delete}: ${item.text}`}
-                          onClick={() => update('delete-phrase', item.id)}
+                          onClick={() => deletePhrase(item)}
                         >
                           <Icon name="trash" />
                         </button>
@@ -780,6 +854,7 @@ export function Workspace({ workspace, dispatch }) {
               words={words}
               c={c}
               say={say}
+              onMissingTranslation={missingWord}
             />
           </div>
         </div>
@@ -797,6 +872,74 @@ export function Workspace({ workspace, dispatch }) {
           ))}
         </nav>
       </main>
+      {modal === 'tools' && (
+        <Modal
+          title={c.tools}
+          closeLabel={c.close}
+          onClose={() => setModal(null)}
+        >
+          <div className="aac-settings-body aac-tools-panel">
+            <button
+              className="aac-secondary"
+              onClick={() => {
+                setModal(null);
+                setEditing(true);
+                setScanning(false);
+              }}
+            >
+              <Icon name="edit" />
+              {c.edit}
+            </button>
+            <button className="aac-secondary" onClick={toggleScan}>
+              <Icon name={scanning ? 'pause' : 'play'} />
+              {scanning ? c.stopScan : c.scan}
+            </button>
+            <label className="aac-toggle">
+              <span>{c.showScanControl}</span>
+              <input
+                type="checkbox"
+                checked={Boolean(preferences.showScanControl)}
+                onChange={(event) =>
+                  update('preferences', {
+                    showScanControl: event.target.checked
+                  })
+                }
+              />
+            </label>
+            <button
+              className="aac-secondary"
+              onClick={() => {
+                setNotice('');
+                setModal('guide');
+              }}
+            >
+              {c.guideTitle}
+              <Icon name="arrow" />
+            </button>
+          </div>
+        </Modal>
+      )}
+      {modal === 'guide' && (
+        <QuickGuide
+          c={c}
+          language={language}
+          words={['i', 'want', 'water'].map((id) =>
+            catalog.words.find((word) => word.id === id)
+          )}
+          sample={catalog.phrases[0][language]}
+          onSpeak={say}
+          onStop={stop}
+          notice={notice}
+          voiceChecked={voiceChecked}
+          onVoiceConfirmed={() => update('voice-check', language)}
+          onClose={finishGuide}
+          onAddWord={() => {
+            finishGuide();
+            setSection('board');
+            setAddingWord(true);
+          }}
+        />
+      )}
       {modal === 'responses' && (
         <QuickResponses
           c={c}
@@ -852,10 +995,22 @@ export function Workspace({ workspace, dispatch }) {
       {modal === 'settings' && (
         <WorkspaceSettings
           workspace={workspace}
-          update={update}
+          update={(operation, payload) => {
+            if (operation === 'restore') {
+              stop();
+              setDeletedPhrase(null);
+              setUndoDraft(null);
+            }
+            update(operation, payload);
+          }}
           voices={voices}
           onClose={() => setModal(null)}
           tryVoice={() => say(catalog.phrases[0][language])}
+          onGuide={() => {
+            stop();
+            setNotice('');
+            setModal('guide');
+          }}
         />
       )}
       {modal === 'partner' && (
@@ -964,4 +1119,7 @@ export function Workspace({ workspace, dispatch }) {
   );
 }
 
-export default connect((state) => ({ workspace: state.workspace }))(Workspace);
+export default connect((state) => ({
+  workspace: state.workspace,
+  communication: state.communication
+}))(Workspace);

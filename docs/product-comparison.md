@@ -26,6 +26,14 @@ Delivered in this release:
 
 Still on the roadmap: reviewed Hong Kong vocabulary packs, optional simpler fixed-position layouts, unified main/advanced backups, direct printing of the main workspace, Jyutping support, helper coaching, remote editing and visual photo scenes. Those features have not been labelled delivered by this pass. No proprietary vocabulary systems or competitor assets were imported.
 
+## Follow-up usability release
+
+The live review found icon-only phone actions, personal vocabulary beyond the initial category strip, drafts lost on reload and immediate saved-phrase deletion. It also reproduced a Cantonese-only routine label being dispatched to a Mandarin voice after a language switch. This release addresses those flows with visible short labels, a labelled Tools dialog, My words beside the core category, category scroll arrows, bounded device-local draft recovery, Undo deletion and consistent translation checks in routines. Missing routine labels open the affected word directly for translation.
+
+An optional three-step guide is reachable from the welcome screen, Tools and Preferences. It requires completed playback before voice confirmation, lets the user practice without replacing their message and offers personal-word creation. It can be skipped or reopened. It does not reduce available vocabulary or automatically change core word positions. These choices follow [W3C's visible-label guidance](https://www.w3.org/WAI/WCAG2/supplemental/patterns/o4p06-clear-labels/) and the distinction between access needs and vocabulary availability in [AssistiveWare's grid-size guidance](https://www.assistiveware.com/learn-aac/choosing-a-grid-size).
+
+Drafts are a separate validated record in the existing guarded device persistence. They retain only the latest picture/phrase and typing drafts, without conversation history or media duplication, and never trigger speech when resumed. Workspace restore clears them; workspace exports continue to include saved phrases and media, without unfinished drafts. Phrase deletion Undo retains the most recent removed phrase in memory until another deletion or reload; restoring validates schema, media and storage limits. No new runtime API, dependency or audio generation is required.
+
 ## Cantonese voice and vocabulary behavior
 
 - New and existing installations without workspace preferences start in Cantonese, using colloquial Cantonese words and Traditional Chinese labels. English and Mandarin are explicit choices, with their own written vocabulary and voices.

@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Icon, Modal } from './UI';
+import { languageInfo } from './languages';
 
-export default function Routine({ workspace, update, words, c, say }) {
+export default function Routine({
+  workspace,
+  update,
+  words,
+  c,
+  say,
+  onMissingTranslation
+}) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState([]);
   const [remaining, setRemaining] = useState(180);
@@ -69,13 +77,22 @@ export default function Routine({ workspace, update, words, c, say }) {
               <button
                 className="aac-routine-picture"
                 onClick={() =>
-                  say(word.text, [
-                    { text: word.text, recording: word.recording }
-                  ])
+                  word.translated
+                    ? say(word.text, [
+                        { text: word.text, recording: word.recording }
+                      ])
+                    : onMissingTranslation(word)
                 }
               >
                 <img src={word.image} alt="" />
-                <strong>{word.text}</strong>
+                <strong lang={languageInfo(word.labelLanguage).html}>
+                  {word.text}
+                </strong>
+                {!word.translated && (
+                  <span className="aac-missing-label">
+                    {c.translationShort}
+                  </span>
+                )}
               </button>
               <button
                 className="aac-step-check"
@@ -173,7 +190,14 @@ export default function Routine({ workspace, update, words, c, say }) {
                   }
                 >
                   <img src={word.image} alt="" />
-                  {word.text}
+                  <span lang={languageInfo(word.labelLanguage).html}>
+                    {word.text}
+                  </span>
+                  {!word.translated && (
+                    <span className="aac-missing-label">
+                      {c.translationShort}
+                    </span>
+                  )}
                   {draft.includes(word.id) && (
                     <b>{draft.indexOf(word.id) + 1}</b>
                   )}
