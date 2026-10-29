@@ -24,6 +24,8 @@ const strings = {
   speak: ['講出嚟', 'Speak', '说出来'],
   stop: ['停止朗讀', 'Stop speaking', '停止朗读'],
   clear: ['清除', 'Clear', '清除'],
+  undo: ['復原', 'Undo', '撤销'],
+  backShort: ['刪一字', 'Back', '删一字'],
   backspace: ['刪除上一個字', 'Remove last word', '删除上一个词'],
   search: [
     '搵字詞，例如：水、開心⋯⋯',
@@ -110,6 +112,40 @@ const strings = {
     '使用匹配的设备语音'
   ],
   testVoice: ['試聽語音', 'Try the voice', '试听语音'],
+  listen: ['試聽', 'Listen', '试听'],
+  checkVoice: ['試吓聲音', 'Check voice', '检查语音'],
+  voiceCheckIntro: [
+    '輕觸下面嘅按鈕，聽吓係咪你想用嘅語言同聲音。',
+    'Tap below to check that you hear the language and voice you want.',
+    '点击下方按钮，确认听到的是你想用的语言和声音。'
+  ],
+  voicePlaying: ['朗讀中⋯⋯', 'Playing…', '正在朗读……'],
+  voiceCheckQuestion: [
+    '聽到呢句說話，而且語言正確嗎？',
+    'Did you hear the phrase in the right language?',
+    '听到这句话，而且语言正确吗？'
+  ],
+  voiceCheckHint: [
+    '確認後會記住你嘅選擇。隨時可以再試聽。',
+    'Your confirmation is remembered. You can test again anytime.',
+    '确认后会记住你的选择。随时可以再次试听。'
+  ],
+  voiceHeard: ['聽到，語言正確', 'Yes, that sounds right', '听到了，语言正确'],
+  voiceNotHeard: [
+    '聽唔到／語言唔啱',
+    'No sound / wrong language',
+    '没声音／语言不对'
+  ],
+  voiceLater: [
+    '遲啲再試，繼續用',
+    'Try later, keep communicating',
+    '稍后再试，继续使用'
+  ],
+  volumeHelp: [
+    '先調高媒體音量，檢查藍牙耳機或喇叭。亦可以喺偏好設定揀另一把合適語音；自訂圖卡可以用自己嘅錄音。',
+    'Turn up media volume and check Bluetooth headphones or speakers. In Preferences, try another matching voice; custom words can use your own recordings.',
+    '请调高媒体音量，检查蓝牙耳机或音箱。也可以在偏好设置选择其他匹配语音；自定义图卡可使用自己的录音。'
+  ],
   noVoice: [
     '未搵到呢種語言嘅裝置語音。內置圖卡及句子仍然可以發聲；自訂文字需要先安裝合適語音，或錄低你嘅聲音。',
     'No matching device voice. Included words and phrases still speak. For custom text, install the matching voice or record your own.',
@@ -171,6 +207,27 @@ const strings = {
   ],
   about: ['關於及授權', 'About & licenses', '关于与许可'],
   offline: ['離線準備完成', 'Ready to reopen offline', '离线准备完成'],
+  offline_ready: ['可離線使用', 'Offline ready', '可离线使用'],
+  offline_preparing: ['下載中⋯⋯', 'Downloading…', '下载中……'],
+  offline_paused: ['連線後再下載', 'Connect to finish', '联网后继续下载'],
+  offline_unavailable: ['離線未準備好', 'Offline not ready', '离线尚未就绪'],
+  offlineDetails: ['離線使用', 'Offline use', '离线使用'],
+  offlineReadyHelp: [
+    '圖卡同內置錄音已下載完成，可以離線重新開啟。',
+    'Pictures and included audio are downloaded, so you can reopen the app offline.',
+    '图卡和内置录音已下载完成，可以离线重新打开。'
+  ],
+  offlineDownloadHelp: [
+    '首次下載約 85 MB。請保持連線同開住此頁，完成後會顯示「可離線使用」。如果未能完成，可以重新檢查。',
+    'The first download is about 85 MB. Keep this page open and connected until it says “Offline ready”. If it cannot finish, try checking again.',
+    '首次下载约 85 MB。请保持联网并打开此页，完成后会显示“可离线使用”。如果无法完成，可以重新检查。'
+  ],
+  offlineVoiceHelp: [
+    '內置圖卡錄音可以離線播。自訂文字用嘅裝置語音可能需要網絡；出門前可以開飛行模式試吓。',
+    'Included recordings work offline. Device voices for custom text may need a connection; try airplane mode before relying on them.',
+    '内置图卡录音可离线播放。自定义文字使用的设备语音可能需要网络；出门前可用飞行模式测试。'
+  ],
+  retryOffline: ['重新檢查', 'Check again', '重新检查'],
   downloading: [
     '首次下載緊，完成後可離線開啟',
     'Preparing offline files…',

@@ -164,6 +164,7 @@ test('workspace imports reject malformed preferences, active media, oversized te
   const wrap = (workspace) =>
     JSON.stringify({ format: 'open-aac-workspace', version: 1, workspace });
   for (const patch of [
+    { voiceChecks: ['invalid'] },
     { language: 'invalid' },
     { preferences: { ...initialWorkspace.preferences, scanDelay: 0 } },
     {
@@ -193,6 +194,42 @@ test('workspace imports reject malformed preferences, active media, oversized te
       parseWorkspaceBackup(wrap({ ...initialWorkspace, ...patch }))
     );
   assert.throws(() => parseWorkspaceBackup('{"__proto__":{}}'));
+});
+
+test('voice confirmations migrate old backups and reset when the selected voice changes', () => {
+  const { voiceChecks, ...oldWorkspace } = initialWorkspace;
+  const migrated = parseWorkspaceBackup(
+    JSON.stringify({
+      format: 'open-aac-workspace',
+      version: 1,
+      workspace: oldWorkspace
+    })
+  );
+  assert.deepEqual(migrated.voiceChecks, []);
+  const confirmed = workspaceReducer(migrated, {
+    type: ACTION,
+    operation: 'voice-check',
+    payload: 'yue'
+  });
+  assert.deepEqual(confirmed.voiceChecks, ['yue']);
+  assert.deepEqual(
+    parseWorkspaceBackup(createWorkspaceBackup(confirmed)).voiceChecks,
+    ['yue']
+  );
+  const changed = workspaceReducer(confirmed, {
+    type: ACTION,
+    operation: 'voice',
+    payload: 'another-voice'
+  });
+  assert.deepEqual(changed.voiceChecks, []);
+  assert.deepEqual(
+    workspaceReducer(confirmed, {
+      type: ACTION,
+      operation: 'restore',
+      payload: confirmed
+    }).voiceChecks,
+    []
+  );
 });
 
 test('every starter word and phrase has three labels, local artwork and three bundled MP3s', () => {

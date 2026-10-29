@@ -57,6 +57,8 @@ function registerValidSW(
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         installingWorker.onstatechange = () => {
+          if (installingWorker.state === 'redundant')
+            window.dispatchEvent(new Event('aac-offline-error'));
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
               // At this point, the old content will have been purged and
@@ -77,6 +79,7 @@ function registerValidSW(
       };
     })
     .catch((error) => {
+      window.dispatchEvent(new Event('aac-offline-error'));
       console.error('Error during service worker registration:', error);
     });
 }

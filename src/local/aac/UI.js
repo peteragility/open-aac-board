@@ -117,16 +117,71 @@ export function useDeviceVoices() {
   return voices;
 }
 
-export function useOfflineReady() {
-  const [ready, setReady] = useState(false);
+export function useOfflineStatus() {
+  const [status, setStatus] = useState('preparing');
+  const refresh = useRef(() => {});
+  const failed = useRef(false);
   useEffect(() => {
     let active = true;
-    navigator.serviceWorker?.ready.then(() => {
-      if (active) setReady(true);
-    });
+    const started = Date.now();
+    const serviceWorker = navigator.serviceWorker;
+    if (!serviceWorker || process.env.NODE_ENV !== 'production') {
+      setStatus('unavailable');
+      return;
+    }
+    async function check() {
+      try {
+        const registration = await serviceWorker.getRegistration();
+        if (!active) return;
+        if (registration?.active?.state === 'activated') setStatus('ready');
+        else if (!navigator.onLine) setStatus('paused');
+        else if (registration?.installing || registration?.waiting)
+          setStatus('preparing');
+        else if (failed.current || Date.now() - started > 10000)
+          setStatus('unavailable');
+        else setStatus('preparing');
+      } catch {
+        if (active) setStatus('unavailable');
+      }
+    }
+    function onFailure() {
+      failed.current = true;
+      check();
+    }
+    refresh.current = check;
+    check();
+    serviceWorker.ready.then(check);
+    serviceWorker.addEventListener('controllerchange', check);
+    window.addEventListener('online', check);
+    window.addEventListener('offline', check);
+    window.addEventListener('aac-offline-error', onFailure);
+    const interval = setInterval(check, 3000);
     return () => {
       active = false;
+      clearInterval(interval);
+      serviceWorker.removeEventListener('controllerchange', check);
+      window.removeEventListener('online', check);
+      window.removeEventListener('offline', check);
+      window.removeEventListener('aac-offline-error', onFailure);
+      refresh.current = () => {};
     };
   }, []);
-  return ready;
+  async function retry() {
+    if (!navigator.serviceWorker || process.env.NODE_ENV !== 'production')
+      return;
+    failed.current = false;
+    setStatus(navigator.onLine ? 'preparing' : 'paused');
+    try {
+      const registration = await navigator.serviceWorker.getRegistration();
+      if (registration) await registration.update();
+      else
+        await navigator.serviceWorker.register(
+          `${process.env.PUBLIC_URL}/service-worker.js`
+        );
+    } catch {
+      failed.current = true;
+    }
+    refresh.current();
+  }
+  return { status, retry };
 }

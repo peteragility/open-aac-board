@@ -1,6 +1,7 @@
 import React, {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState
@@ -18,7 +19,8 @@ import {
 } from './languages';
 import { copy } from './copy';
 import { speech } from './speech';
-import { Icon, Modal, useDeviceVoices, useOfflineReady } from './UI';
+import { Icon, Modal, useDeviceVoices, useOfflineStatus } from './UI';
+import VoiceCheck from './VoiceCheck';
 import WorkspaceSettings from './WorkspaceSettings';
 import WordEditor from './WordEditor';
 import Routine from './Routine';
@@ -39,7 +41,8 @@ export function Workspace({ workspace, dispatch }) {
   const { language, preferences } = workspace;
   const c = copy(language);
   const voices = useDeviceVoices();
-  const offlineReady = useOfflineReady();
+  const { status: offlineStatus, retry: retryOffline } = useOfflineStatus();
+  const offlineReady = offlineStatus === 'ready';
   const matchingVoice = selectVoice(
     voices,
     language,
@@ -58,9 +61,12 @@ export function Workspace({ workspace, dispatch }) {
   const [rotated, setRotated] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [notice, setNotice] = useState('');
+  const [undoDraft, setUndoDraft] = useState(null);
   const [scanning, setScanning] = useState(false);
   const [scanIndex, setScanIndex] = useState(0);
   const scanGrid = useRef();
+  const scrollArea = useRef();
+  const scrollPositions = useRef({});
   const speechSequence = useRef(0);
   const words = useMemo(
     () =>
@@ -105,10 +111,19 @@ export function Workspace({ workspace, dispatch }) {
     (p) => phraseTab !== 'favourite' || workspace.favourites.includes(p.id)
   );
   const myPhrases = workspace.phrases.filter((p) => p.language === language);
+  const draftKind = section === 'typing' ? 'typing' : 'board';
+  const canUndo = undoDraft?.kind === draftKind;
+  const offlineLabel = c[`offline_${offlineStatus}`];
+  const voiceChecked = workspace.voiceChecks?.includes(language);
+  useLayoutEffect(() => {
+    if (scrollArea.current)
+      scrollArea.current.scrollTop = scrollPositions.current[section] || 0;
+  }, [section]);
   useEffect(() => () => speech.stop(), []);
   useEffect(() => {
     setScanning(false);
     setNotice('');
+    setUndoDraft(null);
     speechSequence.current++;
     speech.stop();
     setSpeaking(false);
@@ -139,11 +154,13 @@ export function Workspace({ workspace, dispatch }) {
         preferredURI: workspace.voices[language],
         rate: preferences.rate
       });
+      return sequence === speechSequence.current;
     } catch (error) {
       if (sequence === speechSequence.current)
         setNotice(
           error.message === 'missing-voice' ? c.noVoice : c.speechError
         );
+      return false;
     } finally {
       if (sequence === speechSequence.current) setSpeaking(false);
     }
@@ -154,6 +171,7 @@ export function Workspace({ workspace, dispatch }) {
       return;
     }
     if (tokens.length >= 30) return;
+    if (undoDraft?.kind === 'board') setUndoDraft(null);
     setPhrase(null);
     setTokens((old) => [...old, word.id]);
     if (preferences.haptics) navigator.vibrate?.(35);
@@ -161,12 +179,18 @@ export function Workspace({ workspace, dispatch }) {
       say(word.text, [{ text: word.text, recording: word.recording }]);
   }
   function switchSection(next) {
+    if (next === section) {
+      scrollArea.current.scrollTop = 0;
+      return;
+    }
+    scrollPositions.current[section] = scrollArea.current.scrollTop;
     setSection(next);
     setScanning(false);
     setEditing(false);
     setNotice('');
   }
   function activatePhrase(item) {
+    if (undoDraft?.kind === 'board') setUndoDraft(null);
     setPhrase(item);
     setTokens([]);
     say(item[language] || item.text);
@@ -184,9 +208,23 @@ export function Workspace({ workspace, dispatch }) {
   }
   function clear() {
     stop();
-    setTokens([]);
-    setPhrase(null);
-    if (section === 'typing') setTyped('');
+    setNotice('');
+    setUndoDraft({ kind: draftKind, tokens: [...tokens], phrase, typed });
+    if (draftKind === 'typing') setTyped('');
+    else {
+      setTokens([]);
+      setPhrase(null);
+    }
+  }
+  function undoClear() {
+    if (!canUndo) return;
+    stop();
+    if (draftKind === 'typing') setTyped(undoDraft.typed);
+    else {
+      setTokens(undoDraft.tokens);
+      setPhrase(undoDraft.phrase);
+    }
+    setUndoDraft(null);
   }
   const editorWord = catalog.words.find((word) => word.id === editWord);
   const suggestions = catalog.phrases
@@ -230,10 +268,6 @@ export function Workspace({ workspace, dispatch }) {
           ))}
         </nav>
         <div className="aac-sidebar-footer">
-          <div className="aac-offline">
-            <Icon name={offlineReady ? 'shield' : 'download'} />
-            <span>{offlineReady ? c.offline : c.downloading}</span>
-          </div>
           <button onClick={() => setModal('settings')}>
             <Icon name="settings" />
             {c.settings}
@@ -278,36 +312,32 @@ export function Workspace({ workspace, dispatch }) {
             <Icon name="settings" />
           </button>
         </header>
-        <div className="aac-scroll-area">
-          <div className="aac-page-heading">
-            <div>
-              <p className="aac-eyebrow">
-                {section === 'board'
-                  ? 'YOUR WORDS, YOUR WAY'
-                  : 'OPEN AAC BOARD'}
-              </p>
-              <h1>{section === 'board' ? c.title : c[section]}</h1>
-              <p>
-                {section === 'board'
-                  ? c.subtitle
-                  : section === 'quick'
-                    ? c.quickHint
-                    : section === 'typing'
-                      ? c.typeHint
-                      : c.routineHint}
-              </p>
-            </div>
+        <div className="aac-readiness-bar">
+          <button
+            className={`aac-readiness-voice ${voiceChecked ? '' : 'needs-check'}`}
+            onClick={() => setModal('voice')}
+            aria-label={`${languageInfo(language).label} · ${c.testVoice}`}
+          >
+            <Icon name="speaker" />
+            {languageInfo(language).label} ·{' '}
+            {voiceChecked ? c.listen : c.checkVoice}
+          </button>
+          <span role="status" className="aac-offline-status">
             <button
-              className="aac-voice-pill"
-              onClick={() => setModal('settings')}
+              onClick={() => setModal('offline')}
+              aria-label={`${c.offlineDetails}: ${offlineLabel}`}
             >
-              <Icon name="speaker" />
-              <span>{matchingVoice ? c.deviceReady : c.bundled}</span>
-              <span className="aac-status-dot" />
+              <Icon name={offlineReady ? 'shield' : 'download'} />
+              {offlineLabel}
             </button>
-          </div>
+          </span>
+        </div>
+        <div className="aac-communication-panel">
           {section !== 'routine' && (
-            <section className="aac-composer" aria-label={c.message}>
+            <section
+              className={`aac-composer ${section === 'typing' ? 'is-typing' : ''}`}
+              aria-label={c.message}
+            >
               <div className="aac-composer-top">
                 <span>{c.message}</span>
                 <div>
@@ -325,6 +355,7 @@ export function Workspace({ workspace, dispatch }) {
                     }}
                   >
                     <Icon name="back" />
+                    <span>{c.backShort}</span>
                   </button>
                   <button
                     className="aac-icon-button"
@@ -333,6 +364,7 @@ export function Workspace({ workspace, dispatch }) {
                     onClick={clear}
                   >
                     <Icon name="trash" />
+                    <span>{c.clear}</span>
                   </button>
                 </div>
               </div>
@@ -346,6 +378,7 @@ export function Workspace({ workspace, dispatch }) {
                   onChange={(event) => {
                     setTyped(event.target.value);
                     setNotice('');
+                    if (undoDraft?.kind === 'typing') setUndoDraft(null);
                   }}
                 />
               ) : (
@@ -369,17 +402,28 @@ export function Workspace({ workspace, dispatch }) {
               )}
               <div className="aac-composer-bottom">
                 <div>
-                  <button
-                    className="aac-text-button"
-                    disabled={!text}
-                    onClick={() => {
-                      setRotated(false);
-                      setModal('partner');
-                    }}
-                  >
-                    <Icon name="expand" />
-                    {c.partner}
-                  </button>
+                  {(!canUndo || text) && (
+                    <button
+                      className="aac-text-button"
+                      disabled={!text}
+                      onClick={() => {
+                        setRotated(false);
+                        setModal('partner');
+                      }}
+                    >
+                      <Icon name="expand" />
+                      {c.partner}
+                    </button>
+                  )}
+                  {canUndo && (
+                    <button
+                      className="aac-text-button aac-undo"
+                      onClick={undoClear}
+                    >
+                      <Icon name="refresh" />
+                      {c.undo}
+                    </button>
+                  )}
                   {section === 'typing' && (
                     <button
                       className="aac-text-button"
@@ -404,6 +448,9 @@ export function Workspace({ workspace, dispatch }) {
               </div>
             </section>
           )}
+        </div>
+        <div className="aac-scroll-area" ref={scrollArea}>
+          <h1 className="aac-sr-only">{c[section]}</h1>
           {notice && (
             <div className="aac-notice" role="status">
               {notice}
@@ -437,6 +484,7 @@ export function Workspace({ workspace, dispatch }) {
                 <button
                   className={`aac-secondary ${editing ? 'is-active' : ''}`}
                   aria-pressed={editing}
+                  aria-label={editing ? c.done : c.edit}
                   onClick={() => {
                     setEditing(!editing);
                     setScanning(false);
@@ -626,6 +674,41 @@ export function Workspace({ workspace, dispatch }) {
           ))}
         </nav>
       </main>
+      {modal === 'voice' && (
+        <VoiceCheck
+          c={c}
+          language={language}
+          voice={matchingVoice}
+          phrase={catalog.phrases[0][language]}
+          tryVoice={() => say(catalog.phrases[0][language])}
+          onClose={() => {
+            stop();
+            setModal(null);
+          }}
+          onConfirmed={() => {
+            update('voice-check', language);
+            setModal(null);
+          }}
+        />
+      )}
+      {modal === 'offline' && (
+        <Modal
+          title={c.offlineDetails}
+          closeLabel={c.close}
+          onClose={() => setModal(null)}
+        >
+          <div className="aac-settings-body">
+            <h3 role="status">{offlineLabel}</h3>
+            <p>{offlineReady ? c.offlineReadyHelp : c.offlineDownloadHelp}</p>
+            <p className="aac-muted">{c.offlineVoiceHelp}</p>
+            {!offlineReady && (
+              <button className="aac-secondary" onClick={retryOffline}>
+                {c.retryOffline}
+              </button>
+            )}
+          </div>
+        </Modal>
+      )}
       {modal === 'settings' && (
         <WorkspaceSettings
           workspace={workspace}

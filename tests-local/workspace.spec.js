@@ -106,6 +106,7 @@ test('Cantonese works with real included MP3 playback when only Mandarin and Eng
   await page.evaluate(async () => {
     await navigator.serviceWorker.ready;
   });
+  await expect(page.locator('.aac-offline-status')).toContainText('可離線使用');
   await page.reload();
   await expect(page.locator('[data-word-id="water"]')).toBeVisible();
   await context.setOffline(true);
@@ -348,4 +349,246 @@ test('phone and iPad portrait/landscape retain core word positions without horiz
     expect(first.width).toBeGreaterThanOrEqual(90);
     expect(first.height).toBeGreaterThanOrEqual(110);
   }
+});
+
+test('compact phone and tablet boards show more words and keep speech controls clear of the grid', async ({
+  page
+}) => {
+  await installVoices(page);
+  await open(page);
+  for (const [width, height, minimumWords] of [
+    [390, 844, 6],
+    [1024, 768, 8]
+  ]) {
+    await page.setViewportSize({ width, height });
+    await page.locator('.aac-scroll-area').evaluate((el) => {
+      el.scrollTop = 0;
+    });
+    const layout = await page.evaluate(() => {
+      const scroll = document
+        .querySelector('.aac-scroll-area')
+        .getBoundingClientRect();
+      const composer = document
+        .querySelector('.aac-composer')
+        .getBoundingClientRect();
+      return {
+        words: [...document.querySelectorAll('.aac-word')].filter((el) => {
+          const box = el.getBoundingClientRect();
+          return box.top >= scroll.top && box.bottom <= scroll.bottom;
+        }).length,
+        noOverlap: composer.bottom <= scroll.top,
+        controls: [
+          ...document.querySelectorAll(
+            '.aac-language-picker button, .aac-composer button, .aac-readiness-bar button'
+          )
+        ].map((el) => {
+          const box = el.getBoundingClientRect();
+          return { width: box.width, height: box.height };
+        })
+      };
+    });
+    expect(layout.words).toBeGreaterThanOrEqual(minimumWords);
+    expect(layout.noOverlap).toBe(true);
+    for (const control of layout.controls) {
+      expect(control.width).toBeGreaterThanOrEqual(44);
+      expect(control.height).toBeGreaterThanOrEqual(44);
+    }
+    await expect(page.locator('.aac-offline-status')).toBeVisible();
+    await page.locator('.aac-scroll-area').evaluate((el) => {
+      el.scrollTop = el.scrollHeight;
+    });
+    const bottom = await page.locator('.aac-composer').boundingBox();
+    const area = await page.locator('.aac-scroll-area').boundingBox();
+    expect(bottom.y + bottom.height).toBeLessThanOrEqual(area.y);
+  }
+});
+
+test('tabs have independent scroll positions and tapping the active tab returns to the top', async ({
+  page
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await installVoices(page);
+  await open(page, 'en');
+  const scroll = page.locator('.aac-scroll-area');
+  await scroll.evaluate((el) => {
+    el.scrollTop = 250;
+  });
+  await page
+    .getByRole('button', { name: 'Quick phrases', exact: true })
+    .click();
+  expect(await scroll.evaluate((el) => el.scrollTop)).toBe(0);
+  await scroll.evaluate((el) => {
+    el.scrollTop = 120;
+  });
+  await page.getByRole('button', { name: 'Word board', exact: true }).click();
+  expect(await scroll.evaluate((el) => el.scrollTop)).toBe(250);
+  await page
+    .getByRole('button', { name: 'Quick phrases', exact: true })
+    .click();
+  expect(await scroll.evaluate((el) => el.scrollTop)).toBe(120);
+  await page
+    .getByRole('button', { name: 'Quick phrases', exact: true })
+    .click();
+  expect(await scroll.evaluate((el) => el.scrollTop)).toBe(0);
+});
+
+test('speech and navigation stay in reach with reduced typing height and landscape', async ({
+  page
+}) => {
+  await page.setViewportSize({ width: 390, height: 420 });
+  await installVoices(page);
+  await open(page, 'en');
+  await page
+    .getByRole('button', { name: 'Type to speak', exact: true })
+    .click();
+  for (const selector of ['.aac-type-input', '.aac-speak', '.aac-mobile-nav']) {
+    const box = await page.locator(selector).boundingBox();
+    expect(box.y).toBeGreaterThanOrEqual(0);
+    expect(box.y + box.height).toBeLessThanOrEqual(420);
+  }
+  await page.setViewportSize({ width: 844, height: 390 });
+  await page.getByRole('button', { name: 'Word board', exact: true }).click();
+  await page.locator('.aac-word').last().scrollIntoViewIfNeeded();
+  const lastWord = await page.locator('.aac-word').last().boundingBox();
+  const area = await page.locator('.aac-scroll-area').boundingBox();
+  expect(lastWord.y).toBeGreaterThanOrEqual(area.y);
+  expect(lastWord.y + lastWord.height).toBeLessThanOrEqual(
+    area.y + area.height
+  );
+});
+
+test('Undo restores words, typed messages and phrases without speaking or losing another draft', async ({
+  page
+}) => {
+  await installVoices(page);
+  await open(page, 'en');
+  await page.locator('[data-word-id="water"]').click();
+  await page.getByRole('button', { name: 'Clear', exact: true }).click();
+  const spoken = await page.evaluate(() => window.testSpoken.length);
+  await page.getByRole('button', { name: 'Undo', exact: true }).click();
+  await expect(page.locator('.aac-message')).toContainText('water');
+  expect(await page.evaluate(() => window.testSpoken.length)).toBe(spoken);
+  await page
+    .getByRole('button', { name: 'Type to speak', exact: true })
+    .click();
+  await page
+    .getByRole('textbox', { name: 'Type to speak', exact: true })
+    .fill('Please give me time.');
+  await page.getByRole('button', { name: 'Clear', exact: true }).click();
+  await page.getByRole('button', { name: 'Undo', exact: true }).click();
+  await expect(
+    page.getByRole('textbox', { name: 'Type to speak', exact: true })
+  ).toHaveValue('Please give me time.');
+  await page.getByRole('button', { name: 'Word board', exact: true }).click();
+  await expect(page.locator('.aac-message')).toContainText('water');
+  await page
+    .getByRole('button', { name: 'Quick phrases', exact: true })
+    .click();
+  await page
+    .getByRole('button', { name: 'Please help me.', exact: true })
+    .click();
+  await page.getByRole('button', { name: 'Clear', exact: true }).click();
+  await page.getByRole('button', { name: 'Undo', exact: true }).click();
+  await expect(page.locator('.aac-message')).toContainText('Please help me.');
+  await page.getByRole('button', { name: 'Clear', exact: true }).click();
+  await page.getByRole('button', { name: '廣東話', exact: true }).click();
+  await expect(
+    page.getByRole('button', { name: '復原', exact: true })
+  ).toHaveCount(0);
+});
+
+test('Cantonese voice check requires playback and user confirmation, and remembers it', async ({
+  page
+}) => {
+  await installVoices(page);
+  await open(page);
+  const check = page.locator('.aac-readiness-voice');
+  await expect(check).toContainText('試吓聲音');
+  await check.click();
+  await expect(
+    page.getByRole('button', { name: '聽到，語言正確', exact: true })
+  ).toBeDisabled();
+  await page.getByRole('button', { name: '試聽語音', exact: true }).click();
+  await expect
+    .poll(() => page.evaluate(() => window.testSpoken.at(-1)?.voice))
+    .toBe('test-yue');
+  await page
+    .getByRole('button', { name: '聽到，語言正確', exact: true })
+    .click();
+  await expect(check).toContainText('試聽');
+  await page.waitForTimeout(500);
+  await page.reload();
+  await expect(check).toContainText('試聽');
+  await check.click();
+  await page
+    .getByRole('button', { name: '聽唔到／語言唔啱', exact: true })
+    .click();
+  await expect(page.getByRole('dialog')).toContainText('先調高媒體音量');
+  await page
+    .getByRole('button', { name: '遲啲再試，繼續用', exact: true })
+    .click();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await page.getByRole('button', { name: 'English', exact: true }).click();
+  await expect(check).toContainText('Check voice');
+});
+
+test('offline status distinguishes download, lost connection, failure and a completed cache', async ({
+  page
+}) => {
+  await page.addInitScript(() => {
+    let online = true;
+    let ready;
+    const registration = {
+      active: null,
+      installing: { state: 'installing' },
+      update: async () => {
+        registration.installing = { state: 'installing' };
+      }
+    };
+    const worker = Object.assign(new EventTarget(), {
+      ready: new Promise((resolve) => {
+        ready = resolve;
+      }),
+      getRegistration: async () => registration,
+      register: async () => registration
+    });
+    Object.defineProperty(navigator, 'serviceWorker', {
+      configurable: true,
+      value: worker
+    });
+    Object.defineProperty(navigator, 'onLine', {
+      configurable: true,
+      get: () => online
+    });
+    window.changeOfflineFixture = (state) => {
+      online = state !== 'paused';
+      if (state === 'unavailable') {
+        registration.installing = null;
+        window.dispatchEvent(new Event('aac-offline-error'));
+      } else if (state === 'ready') {
+        registration.active = { state: 'activated' };
+        registration.installing = null;
+        ready(registration);
+        worker.dispatchEvent(new Event('controllerchange'));
+      }
+      window.dispatchEvent(new Event(online ? 'online' : 'offline'));
+    };
+  });
+  await installVoices(page);
+  await open(page);
+  const status = page.locator('.aac-offline-status');
+  await expect(status).toContainText('下載中');
+  await page.evaluate(() => window.changeOfflineFixture('paused'));
+  await expect(status).toContainText('連線後再下載');
+  await page.evaluate(() => window.changeOfflineFixture('unavailable'));
+  await expect(status).toContainText('離線未準備好');
+  await status.getByRole('button').click();
+  await expect(page.getByRole('dialog')).toContainText('85 MB');
+  await page.getByRole('button', { name: '重新檢查', exact: true }).click();
+  await expect(status).toContainText('下載中');
+  await page.evaluate(() => window.changeOfflineFixture('ready'));
+  await expect(status).toContainText('可離線使用');
+  await expect(page.getByRole('dialog')).toContainText(
+    '圖卡同內置錄音已下載完成'
+  );
 });

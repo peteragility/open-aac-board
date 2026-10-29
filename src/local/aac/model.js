@@ -15,6 +15,7 @@ export const initialWorkspace = {
     rate: 1
   },
   voices: { yue: '', en: '', cmn: '' },
+  voiceChecks: [],
   overrides: {},
   phrases: [],
   favourites: ['need-water', 'need-help', 'give-time'],
@@ -50,6 +51,12 @@ export function validateWorkspace(value) {
     if (typeof p[field] !== 'boolean')
       throw new Error('Invalid accessibility setting.');
   const voices = {};
+  const voiceChecks = value.voiceChecks ?? [];
+  if (
+    !Array.isArray(voiceChecks) ||
+    voiceChecks.some((id) => !validLanguage(id))
+  )
+    throw new Error('Invalid voice checks.');
   for (const l of LANGUAGES) {
     const uri = value.voices?.[l.id];
     if (typeof uri !== 'string' || uri.length > 1000)
@@ -128,6 +135,7 @@ export function validateWorkspace(value) {
       rate: p.rate
     },
     voices,
+    voiceChecks: [...new Set(voiceChecks)],
     overrides,
     phrases: value.phrases.map(({ id, language, text }) => ({
       id,
@@ -151,8 +159,18 @@ export function workspaceReducer(state = initialWorkspace, action) {
     case 'voice':
       return {
         ...state,
-        voices: { ...state.voices, [state.language]: payload }
+        voices: { ...state.voices, [state.language]: payload },
+        voiceChecks: (state.voiceChecks || []).filter(
+          (id) => id !== state.language
+        )
       };
+    case 'voice-check':
+      return validLanguage(payload)
+        ? {
+            ...state,
+            voiceChecks: [...new Set([...(state.voiceChecks || []), payload])]
+          }
+        : state;
     case 'word':
       return {
         ...state,
@@ -191,7 +209,8 @@ export function workspaceReducer(state = initialWorkspace, action) {
     case 'reset-routine':
       return { ...state, routineDone: [] };
     case 'restore':
-      return validateWorkspace(payload);
+      // A backup can come from another device with different installed voices.
+      return { ...validateWorkspace(payload), voiceChecks: [] };
     default:
       return state;
   }

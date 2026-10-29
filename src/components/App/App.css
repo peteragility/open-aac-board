@@ -2,6 +2,13 @@
   height: 100%;
 }
 
+/* Keep status/update actions clear of the phone communication navigation. */
+@media (max-width: 767px), (max-height: 550px) and (max-width: 1000px) {
+  .App .MuiSnackbar-anchorOriginBottomCenter {
+    bottom: calc(96px + env(safe-area-inset-bottom));
+  }
+}
+
 .Cboard__FontSize__Standard {
   font-size: 14px;
 }
