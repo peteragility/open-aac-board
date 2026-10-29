@@ -17,6 +17,8 @@
   font-size: 15px;
   line-height: 1.6;
   overflow: hidden;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 .aac-workspace button,
 .aac-workspace input,
@@ -442,6 +444,10 @@
   margin: 0 auto 16px;
   max-width: 1400px;
 }
+.aac-scan-button[aria-pressed='true'] {
+  background: #e7f2eb;
+  border-color: #1a6c5d;
+}
 .aac-search {
   display: flex;
   align-items: center;
@@ -536,13 +542,6 @@
   border-radius: 5px;
   font-size: 10px;
   padding: 1px 6px;
-}
-.aac-grid-heading > .aac-text-button {
-  font-size: 11px !important;
-  min-height: 34px;
-}
-.aac-grid-heading > .aac-text-button svg {
-  width: 14px;
 }
 .aac-word-grid {
   display: grid;
@@ -912,6 +911,13 @@
   width: 55px;
   height: 55px;
   object-fit: contain;
+  flex-shrink: 0;
+}
+.aac-routine-picture strong,
+.aac-editor-preview strong {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 .aac-step-check {
   border: 1px solid #d4dfd0;
@@ -921,8 +927,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 39px;
-  min-height: 39px;
+  min-width: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
 }
 .aac-step-check[aria-pressed='true'] {
   background: #336e4e;
@@ -985,7 +992,7 @@
   background: #fff;
   color: #6f8466;
   padding: 8px 11px;
-  min-height: 42px;
+  min-height: 44px;
   white-space: nowrap;
   font-size: 12px;
 }
@@ -1069,6 +1076,8 @@
   border-radius: 9px;
   color: #27473b;
   background: #fff;
+  font-size: 16px;
+  min-width: 0;
 }
 .aac-toggle {
   display: flex;
@@ -1404,11 +1413,11 @@
     width: 100%;
   }
   .aac-topbar {
-    padding: 12px 16px;
+    padding: 8px 16px;
     gap: 8px;
     justify-content: space-between;
     min-height: 67px;
-    padding-top: max(12px, env(safe-area-inset-top));
+    padding-top: max(8px, env(safe-area-inset-top));
   }
   .aac-mobile-brand {
     display: flex !important;
@@ -1520,7 +1529,7 @@
   }
   .aac-board-tools {
     gap: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
   .aac-board-tools .aac-secondary {
     padding: 8px;
@@ -1533,12 +1542,12 @@
     padding: 0 11px;
   }
   .aac-search input {
-    font-size: 12px;
+    font-size: 16px;
     min-height: 44px;
   }
   .aac-categories {
     gap: 6px;
-    margin-bottom: 13px;
+    margin-bottom: 8px;
     padding-bottom: 6px;
     margin-right: -16px;
   }
@@ -1558,11 +1567,14 @@
   .aac-section-row h2 {
     font-size: 14px;
   }
-  .aac-grid-heading > .aac-text-button {
-    font-size: 10px !important;
-  }
   .aac-grid-heading {
-    margin-bottom: 10px;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
   .aac-word-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1726,7 +1738,7 @@
   }
 }
 
-@media (orientation: landscape) and (max-height: 550px) and (min-width: 700px) {
+@media (orientation: landscape) and (max-height: 550px) and (min-width: 600px) {
   .aac-composer:not(.is-typing) {
     grid-template-columns: minmax(0, 1fr) 96px auto;
     align-items: center;
@@ -1798,18 +1810,6 @@
   }
 }
 
-@media (orientation: landscape) and (max-height: 550px) and (min-width: 768px) and (max-width: 1000px) {
-  .aac-word-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-  .density-large .aac-word-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-  .density-compact .aac-word-grid {
-    grid-template-columns: repeat(8, minmax(0, 1fr));
-  }
-}
-
 .aac-sr-only,
 .aac-composer-top > span {
   position: absolute;
@@ -1875,7 +1875,6 @@
 .aac-composer.is-typing .aac-composer-top {
   align-self: start;
 }
-.aac-grid-heading > .aac-text-button,
 .aac-categories button {
   min-height: 44px;
 }
@@ -1893,5 +1892,77 @@
   }
   .aac-communication-panel {
     padding: 8px 16px 0;
+  }
+}
+
+/* Give short phone screens a full row of words without shrinking touch targets. */
+@media (orientation: landscape) and (max-height: 550px) and (min-width: 600px) and (max-width: 1000px) {
+  .aac-main {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+  }
+  .aac-topbar {
+    grid-column: 1;
+    grid-row: 1;
+    padding-top: max(4px, env(safe-area-inset-top));
+    padding-bottom: 4px;
+    padding-right: 8px;
+  }
+  .aac-mobile-brand strong {
+    display: none;
+  }
+  .aac-readiness-bar {
+    grid-column: 2;
+    grid-row: 1;
+    padding-left: 8px;
+  }
+  .aac-readiness-bar button {
+    font-size: 11px;
+  }
+  .aac-communication-panel {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .aac-scroll-area {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    padding-top: 8px;
+  }
+  .aac-mobile-nav {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    padding-top: 4px;
+    padding-bottom: max(4px, env(safe-area-inset-bottom));
+  }
+  .aac-board-controls {
+    display: grid;
+    grid-template-columns: minmax(230px, 0.8fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .aac-board-tools {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .aac-categories {
+    width: 100%;
+    margin: 0;
+    padding: 1px 0;
+  }
+  .aac-word-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .aac-word {
+    padding-top: 8px;
+    padding-bottom: 6px;
+    gap: 5px;
+  }
+  .density-large .aac-word-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .density-compact .aac-word-grid {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
   }
 }

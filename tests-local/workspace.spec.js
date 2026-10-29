@@ -592,3 +592,158 @@ test('offline status distinguishes download, lost connection, failure and a comp
     '圖卡同內置錄音已下載完成'
   );
 });
+
+test.describe('responsive MVP layouts', () => {
+  // Layout checks do not need to download the offline pack in every viewport.
+  test.use({ serviceWorkers: 'block' });
+
+  async function expectLayoutToFit(page) {
+    const problems = await page.evaluate(() => {
+      const issues = [];
+      if (document.documentElement.scrollWidth > innerWidth)
+        issues.push('page overflows horizontally');
+      for (const el of document.querySelectorAll(
+        '.aac-topbar button, .aac-readiness-bar button, .aac-composer button, .aac-mobile-nav button'
+      )) {
+        if (!el.getClientRects().length) continue;
+        const box = el.getBoundingClientRect();
+        if (
+          box.x < 0 ||
+          box.y < 0 ||
+          box.right > innerWidth + 1 ||
+          box.bottom > innerHeight + 1
+        )
+          issues.push(`control outside viewport: ${el.textContent}`);
+        if (box.width < 44 || box.height < 44)
+          issues.push(`small touch target: ${el.textContent}`);
+      }
+      for (const el of document.querySelectorAll(
+        '.aac-composer, .aac-dialog, .aac-routine-step, .aac-timer'
+      )) {
+        if (el.getClientRects().length && el.scrollWidth > el.clientWidth + 2)
+          issues.push(`content clipped: ${el.className}`);
+      }
+      return issues;
+    });
+    expect(problems).toEqual([]);
+  }
+
+  test('twelve phone, tablet and laptop sizes show complete words in all three languages', async ({
+    page
+  }) => {
+    await installVoices(page);
+    await open(page);
+    const wordIds = await page
+      .locator('[data-word-id]')
+      .evaluateAll((nodes) => nodes.map((n) => n.dataset.wordId));
+    for (const [width, height, minimumWords] of [
+      [320, 568, 3],
+      [360, 640, 3],
+      [390, 844, 6],
+      [430, 932, 9],
+      [667, 375, 6],
+      [844, 390, 6],
+      [768, 1024, 12],
+      [820, 1180, 16],
+      [1024, 768, 8],
+      [1180, 820, 8],
+      [1366, 768, 12],
+      [1440, 900, 18]
+    ]) {
+      await page.setViewportSize({ width, height });
+      for (const language of ['廣東話', '普通话', 'English']) {
+        await page.getByRole('button', { name: language, exact: true }).click();
+        await page.locator('.aac-scroll-area').evaluate((el) => {
+          el.scrollTop = 0;
+        });
+        await expectLayoutToFit(page);
+        const visibleWords = await page.evaluate(() => {
+          const area = document
+            .querySelector('.aac-scroll-area')
+            .getBoundingClientRect();
+          return [...document.querySelectorAll('.aac-word')].filter((el) => {
+            const box = el.getBoundingClientRect();
+            return box.top >= area.top && box.bottom <= area.bottom;
+          }).length;
+        });
+        expect(
+          visibleWords,
+          `${width}×${height}, ${language}`
+        ).toBeGreaterThanOrEqual(minimumWords);
+        expect(
+          await page
+            .locator('[data-word-id]')
+            .evaluateAll((nodes) => nodes.map((n) => n.dataset.wordId))
+        ).toEqual(wordIds);
+      }
+    }
+  });
+
+  test('typing, phrases, routines, larger text and dialogs fit small phones through laptops', async ({
+    page
+  }) => {
+    await installVoices(page);
+    await open(page, 'en');
+    for (const [width, height] of [
+      [320, 568],
+      [667, 375],
+      [768, 1024],
+      [1024, 768],
+      [1366, 768]
+    ]) {
+      await page.setViewportSize({ width, height });
+      for (const section of [
+        'Quick phrases',
+        'Type to speak',
+        'Daily routine'
+      ]) {
+        await page.getByRole('button', { name: section, exact: true }).click();
+        await expectLayoutToFit(page);
+      }
+      await page
+        .getByRole('button', { name: 'Preferences', exact: true })
+        .click();
+      const dialog = page.getByRole('dialog');
+      await expectLayoutToFit(page);
+      await page
+        .getByRole('checkbox', { name: 'Larger text', exact: true })
+        .check();
+      await page
+        .getByRole('combobox', { name: 'Picture size', exact: true })
+        .selectOption('large');
+      await dialog.getByRole('button', { name: 'Close', exact: true }).click();
+      await page
+        .getByRole('button', { name: 'Word board', exact: true })
+        .click();
+      await expectLayoutToFit(page);
+      const lastWord = page.locator('[data-word-id]').last();
+      await lastWord.scrollIntoViewIfNeeded();
+      const area = await page.locator('.aac-scroll-area').boundingBox();
+      const word = await lastWord.boundingBox();
+      expect(word.y).toBeGreaterThanOrEqual(area.y);
+      expect(word.y + word.height).toBeLessThanOrEqual(area.y + area.height);
+      await page
+        .getByRole('button', { name: 'Personalize words', exact: true })
+        .click();
+      await page.locator('[data-word-id="water"]').click();
+      await dialog
+        .getByRole('textbox', { name: 'English', exact: true })
+        .fill('PersonalPictureLabel'.repeat(4));
+      await expectLayoutToFit(page);
+      const fields = await dialog
+        .locator('input:not([type="file"])')
+        .evaluateAll((nodes) =>
+          nodes.map((n) => parseFloat(getComputedStyle(n).fontSize))
+        );
+      expect(fields.every((size) => size >= 16)).toBe(true);
+      await dialog
+        .getByRole('button', { name: 'Save changes', exact: true })
+        .scrollIntoViewIfNeeded();
+      await expect(
+        dialog.getByRole('button', { name: 'Close', exact: true })
+      ).toBeVisible();
+      await dialog.getByRole('button', { name: 'Close', exact: true }).click();
+      await page.getByRole('button', { name: 'Done', exact: true }).click();
+    }
+  });
+});

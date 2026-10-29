@@ -465,75 +465,85 @@ export function Workspace({ workspace, dispatch }) {
           )}
           {section === 'board' && (
             <>
-              <div className="aac-board-tools">
-                <label className="aac-search">
-                  <Icon name="search" />
-                  <input
-                    aria-label={c.searchLabel}
-                    type="search"
-                    placeholder={c.search}
-                    maxLength={80}
-                    value={query}
-                    onChange={(e) => {
-                      setQuery(e.target.value);
-                      setScanning(false);
-                      setScanIndex(0);
-                    }}
-                  />
-                </label>
-                <button
-                  className={`aac-secondary ${editing ? 'is-active' : ''}`}
-                  aria-pressed={editing}
-                  aria-label={editing ? c.done : c.edit}
-                  onClick={() => {
-                    setEditing(!editing);
-                    setScanning(false);
-                  }}
-                >
-                  <Icon name={editing ? 'check' : 'edit'} />
-                  <span>{editing ? c.done : c.edit}</span>
-                </button>
-              </div>
-              <div className="aac-categories" role="group" aria-label={c.board}>
-                {catalog.categories.map((cat) => (
+              <div className="aac-board-controls">
+                <div className="aac-board-tools">
+                  <label className="aac-search">
+                    <Icon name="search" />
+                    <input
+                      aria-label={c.searchLabel}
+                      type="search"
+                      placeholder={c.search}
+                      maxLength={80}
+                      value={query}
+                      onChange={(e) => {
+                        setQuery(e.target.value);
+                        setScanning(false);
+                        setScanIndex(0);
+                      }}
+                    />
+                  </label>
                   <button
-                    key={cat.id}
-                    aria-pressed={category === cat.id && !query}
-                    className={category === cat.id && !query ? 'is-active' : ''}
+                    className={`aac-secondary ${editing ? 'is-active' : ''}`}
+                    aria-pressed={editing}
+                    aria-label={editing ? c.done : c.edit}
                     onClick={() => {
-                      setCategory(cat.id);
-                      setQuery('');
+                      setEditing(!editing);
                       setScanning(false);
-                      setScanIndex(0);
                     }}
                   >
-                    <Icon name={cat.icon} />
-                    {cat[language]}
+                    <Icon name={editing ? 'check' : 'edit'} />
+                    <span>{editing ? c.done : c.edit}</span>
                   </button>
-                ))}
-              </div>
-              <div className="aac-section-row aac-grid-heading">
-                <h2>
-                  {query
-                    ? c.allResults
-                    : catalog.categories.find((cat) => cat.id === category)[
-                        language
-                      ]}
-                  <span>{visible.length}</span>
-                </h2>
-                <button
-                  className="aac-text-button"
-                  aria-pressed={scanning}
-                  onClick={() => {
-                    setEditing(false);
-                    setScanIndex(0);
-                    setScanning(!scanning);
-                    scanGrid.current?.focus();
-                  }}
+                  <button
+                    className="aac-secondary aac-scan-button"
+                    aria-label={scanning ? c.stopScan : c.scan}
+                    title={scanning ? c.stopScan : c.scan}
+                    aria-pressed={scanning}
+                    onClick={() => {
+                      setEditing(false);
+                      setScanIndex(0);
+                      setScanning(!scanning);
+                      scanGrid.current?.focus();
+                    }}
+                  >
+                    <Icon name={scanning ? 'pause' : 'play'} />
+                    <span>{scanning ? c.stopScan : c.scan}</span>
+                  </button>
+                </div>
+                <div
+                  className="aac-categories"
+                  role="group"
+                  aria-label={c.board}
                 >
-                  <Icon name={scanning ? 'pause' : 'play'} />
-                  {scanning ? c.stopScan : c.scan}
-                </button>
+                  {catalog.categories.map((cat) => (
+                    <button
+                      key={cat.id}
+                      aria-pressed={category === cat.id && !query}
+                      className={
+                        category === cat.id && !query ? 'is-active' : ''
+                      }
+                      onClick={() => {
+                        setCategory(cat.id);
+                        setQuery('');
+                        setScanning(false);
+                        setScanIndex(0);
+                      }}
+                    >
+                      <Icon name={cat.icon} />
+                      {cat[language]}
+                    </button>
+                  ))}
+                </div>
+                <div className="aac-section-row aac-grid-heading">
+                  <h2>
+                    {query
+                      ? c.allResults
+                      : catalog.categories.find((cat) => cat.id === category)[
+                          language
+                        ]}
+                    <span>{visible.length}</span>
+                  </h2>
+                </div>
               </div>
               {scanning && <p className="aac-scan-hint">{c.scanHint}</p>}
               <div

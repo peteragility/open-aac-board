@@ -6,7 +6,7 @@ The web app is the current mockup and MVP for validating communication workflows
 
 The main workspace defaults to Cantonese, with explicit English and Mandarin choices. It provides a fixed-order core word board, multilingual vocabulary search, quick phrases and favourites, saved personal phrases, type-to-speak, a large rotatable partner display, editable visual routines and a break timer. Words can have custom photos, labels in all three languages, and personal recordings per language. Picture scanning uses Space/Enter, with adjustable timing.
 
-The workspace adapts to phones and tablets in portrait and landscape, includes safe-area handling and install icons, and offers picture-size, larger-text, high-contrast and optional haptic preferences. The retained Cboard editor and its existing boards remain available under Preferences → Advanced boards & editor. Account screens, subscriptions, analytics, payments and backend connections remain disabled.
+The workspace adapts to laptops, phones and tablets in portrait and landscape, includes safe-area handling and install icons, and offers picture-size, larger-text, high-contrast and optional haptic preferences. Short landscape screens share a header row and use a single-row board toolbar to leave room for complete word cards. Small phones keep the selected category visible without repeating its heading. The retained Cboard editor and its existing boards remain available under Preferences → Advanced boards & editor. Account screens, subscriptions, analytics, payments and backend connections remain disabled.
 
 The compact communication bar stays above the scrolling word grid. Each tab remembers its own scroll position; tapping the active tab returns to the top. Clear offers Undo for word-built messages, whole phrases and typed text. Language and message controls have larger touch targets. A visible voice check lets users hear a sample and confirm each language, while the offline indicator distinguishes downloading, ready, connection needed and not ready. Existing workspace backups remain supported.
 
@@ -30,6 +30,8 @@ npm run test:web
 ```
 
 The web tests use an already installed Chrome. Set `AAC_CHROME_PATH` if necessary. No cloud account or API key is needed to run the app. Dependencies were not added for this workspace.
+
+Responsive checks cover 12 viewport sizes from 320×568 phones through 1440×900 laptops, including 667×375 and 844×390 phone landscape, and iPad portrait/landscape. They check complete visible word cards in all three languages, stable vocabulary order, 44px primary touch targets, larger text, typing, routines and scrollable editing/settings dialogs. These are browser viewport checks; Safari, real keyboards, device safe areas and VoiceOver/TalkBack still require physical-device testing.
 
 ## Web MVP hosting — AWS Hong Kong
 
