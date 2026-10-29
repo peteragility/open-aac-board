@@ -583,7 +583,7 @@ test('offline status distinguishes download, lost connection, failure and a comp
   await page.evaluate(() => window.changeOfflineFixture('unavailable'));
   await expect(status).toContainText('離線未準備好');
   await status.getByRole('button').click();
-  await expect(page.getByRole('dialog')).toContainText('85 MB');
+  await expect(page.getByRole('dialog')).toContainText('90 MB');
   await page.getByRole('button', { name: '重新檢查', exact: true }).click();
   await expect(status).toContainText('下載中');
   await page.evaluate(() => window.changeOfflineFixture('ready'));

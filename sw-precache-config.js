@@ -24,6 +24,9 @@ module.exports = {
   staticFileGlobs: [
     'build/*.html',
     'build/manifest.json',
+    'build/LICENSE.txt',
+    'build/THIRD_PARTY_NOTICES.txt',
+    'build/licenses/**/*',
     'build/app-icon.svg',
     'build/app-icon-*.png',
     'build/audio/**/*.mp3',

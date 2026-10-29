@@ -88,6 +88,70 @@ test('start, speak, persist, and reopen offline without third-party services', a
   expect(remoteRequests).toEqual([]);
 });
 
+test('credits expose the public source and original notices, also offline', async ({
+  page,
+  context
+}) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'English', exact: true }).click();
+  await page
+    .getByRole('button', { name: /Open my communication board/ })
+    .click();
+  await page.goto('/settings/about');
+  await expect(
+    page.getByRole('link', {
+      name: 'Public source repository and change history'
+    })
+  ).toHaveAttribute('href', 'https://github.com/peteragility/open-aac-board');
+  await expect(
+    page.getByRole('link', { name: 'Download the corresponding source code' })
+  ).toHaveAttribute(
+    'href',
+    /^\/source\/(?:[a-f0-9]{40}\/)?open-aac-board-source\.tar\.gz$/
+  );
+  await expect(
+    page.getByRole('link', {
+      name: 'Full third-party credits and license notices'
+    })
+  ).toHaveAttribute('href', '/THIRD_PARTY_NOTICES.txt');
+  await expect(page.getByText(/working project name/)).toBeVisible();
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready;
+  });
+  // Activation can finish before this document is controlled. Reopen the app,
+  // as a user does when returning offline, before checking cached notices.
+  await page.reload();
+  await expect
+    .poll(() =>
+      page.evaluate(() => Boolean(navigator.serviceWorker.controller))
+    )
+    .toBe(true);
+  await context.setOffline(true);
+  const notices = await page.evaluate(async () => {
+    const files = [
+      '/LICENSE.txt',
+      '/THIRD_PARTY_NOTICES.txt',
+      '/licenses/dependency-notices.txt',
+      '/licenses/dependencies.json',
+      '/licenses/assets.json',
+      '/licenses/upstream/CC-BY-NC-SA-4.0.txt'
+    ];
+    return Promise.all(
+      files.map(async (url) => {
+        const response = await fetch(url);
+        return { url, status: response.status, text: await response.text() };
+      })
+    );
+  });
+  for (const notice of notices) expect(notice.status, notice.url).toBe(200);
+  expect(notices[0].text).toContain('GNU GENERAL PUBLIC LICENSE');
+  expect(notices[1].text).toContain('Sergio Palao');
+  expect(notices[2].text).toContain('Copyright');
+  expect(JSON.parse(notices[3].text).packageCount).toBeGreaterThan(2000);
+  expect(JSON.parse(notices[4].text).assetCount).toBeGreaterThan(3900);
+  expect(notices[5].text).toContain('NonCommercial');
+});
+
 test('restore an embedded recording and export a matching backup', async ({
   page
 }) => {

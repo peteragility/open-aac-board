@@ -218,9 +218,9 @@ const strings = {
     '图卡和内置录音已下载完成，可以离线重新打开。'
   ],
   offlineDownloadHelp: [
-    '首次下載約 85 MB。請保持連線同開住此頁，完成後會顯示「可離線使用」。如果未能完成，可以重新檢查。',
-    'The first download is about 85 MB. Keep this page open and connected until it says “Offline ready”. If it cannot finish, try checking again.',
-    '首次下载约 85 MB。请保持联网并打开此页，完成后会显示“可离线使用”。如果无法完成，可以重新检查。'
+    '首次下載約 90 MB。請保持連線同開住此頁，完成後會顯示「可離線使用」。如果未能完成，可以重新檢查。',
+    'The first download is about 90 MB. Keep this page open and connected until it says “Offline ready”. If it cannot finish, try checking again.',
+    '首次下载约 90 MB。请保持联网并打开此页，完成后会显示“可离线使用”。如果无法完成，可以重新检查。'
   ],
   offlineVoiceHelp: [
     '內置圖卡錄音可以離線播。自訂文字用嘅裝置語音可能需要網絡；出門前可以開飛行模式試吓。',

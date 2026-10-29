@@ -1,0 +1,773 @@
+[
+  {
+    "name": "@aws-sdk/credential-provider-http",
+    "version": "3.972.70",
+    "status": "published-git-commit-unavailable",
+    "repository": "aws/aws-sdk-js-v3"
+  },
+  {
+    "name": "@aws-sdk/credential-provider-login",
+    "version": "3.972.75",
+    "status": "published-git-commit-unavailable",
+    "repository": "aws/aws-sdk-js-v3"
+  },
+  {
+    "name": "@aws-sdk/nested-clients",
+    "version": "3.997.42",
+    "status": "published-git-commit-unavailable",
+    "repository": "aws/aws-sdk-js-v3"
+  },
+  {
+    "name": "@foliojs-fork/fontkit",
+    "version": "1.9.2",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "foliojs-fork/fontkit",
+    "publishedGitHead": "1586124d6b82615d675336278fbd840734ea5f04"
+  },
+  {
+    "name": "@google-cloud/resource-manager",
+    "version": "6.3.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "googleapis/google-cloud-node"
+  },
+  {
+    "name": "@icons/material",
+    "version": "0.2.4",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "at-icons/material",
+    "publishedGitHead": "47a3170f27d1c1061e69b1b68f7dfd8d4d7845f3"
+  },
+  {
+    "name": "@material-ui/types",
+    "version": "5.1.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "mui-org/material-ui"
+  },
+  {
+    "name": "@mediapipe/tasks-vision",
+    "version": "0.10.14",
+    "status": "repository-unavailable"
+  },
+  {
+    "name": "@open-draft/until",
+    "version": "1.0.3",
+    "status": "published-git-commit-unavailable",
+    "repository": "open-draft/until"
+  },
+  {
+    "name": "@pnpm/config.env-replace",
+    "version": "1.1.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "pnpm/components"
+  },
+  {
+    "name": "@pnpm/network.ca-file",
+    "version": "1.0.2",
+    "status": "published-git-commit-unavailable",
+    "repository": "pnpm/components"
+  },
+  {
+    "name": "@redux-beacon/google-analytics-gtag",
+    "version": "1.1.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "rangle/redux-beacon"
+  },
+  {
+    "name": "@redux-beacon/offline-web",
+    "version": "1.0.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "rangle/redux-beacon"
+  },
+  {
+    "name": "@simple-git/args-pathspec",
+    "version": "1.0.3",
+    "status": "captured",
+    "file": "3a31277abe4e0a30eb17dad52addace2fd73580fd9d79d40590e69785fdf71d5.txt",
+    "source": "https://raw.githubusercontent.com/steveukx/git-js/01bb7ceae698831e9abd9310f7d61484970ab53c/LICENSE",
+    "publishedGitHead": "01bb7ceae698831e9abd9310f7d61484970ab53c",
+    "npmMetadata": "https://registry.npmjs.org/%40simple-git%2Fargs-pathspec/1.0.3",
+    "license": "MIT",
+    "retrieved": "2026-10-29"
+  },
+  {
+    "name": "@simple-git/argv-parser",
+    "version": "1.1.1",
+    "status": "captured",
+    "file": "3a31277abe4e0a30eb17dad52addace2fd73580fd9d79d40590e69785fdf71d5.txt",
+    "source": "https://raw.githubusercontent.com/steveukx/git-js/0e485f7706f61e7b1f8dba7b0d82448d23bc4b53/LICENSE",
+    "publishedGitHead": "0e485f7706f61e7b1f8dba7b0d82448d23bc4b53",
+    "npmMetadata": "https://registry.npmjs.org/%40simple-git%2Fargv-parser/1.1.1",
+    "license": "MIT",
+    "retrieved": "2026-10-29"
+  },
+  {
+    "name": "@tootallnate/once",
+    "version": "1.1.2",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "TooTallNate/once",
+    "publishedGitHead": "3948afcb5803013e184861943e0018e37830fcfe"
+  },
+  {
+    "name": "@types/json5",
+    "version": "0.0.29",
+    "status": "repository-unavailable"
+  },
+  {
+    "name": "agent-base",
+    "version": "5.1.1",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "TooTallNate/node-agent-base",
+    "publishedGitHead": "dc309f8a5dbfc9cbc7a860118324759f7ab0818c"
+  },
+  {
+    "name": "agent-base",
+    "version": "6.0.2",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "TooTallNate/node-agent-base",
+    "publishedGitHead": "c4b8ea2e1a11bae023bb09b708050a50418204e9"
+  },
+  {
+    "name": "asn1.js",
+    "version": "4.10.1",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "indutny/asn1.js",
+    "publishedGitHead": "91e2bd0c36ba3cb5b50a4f97e5760757cd80e0dc"
+  },
+  {
+    "name": "babel-runtime",
+    "version": "6.26.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "babel/babel"
+  },
+  {
+    "name": "bent",
+    "version": "7.3.12",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "mikeal/bent",
+    "publishedGitHead": "b82461d3e24d4c9b19e51575fc8243bbcf862be0"
+  },
+  {
+    "name": "binary",
+    "version": "0.3.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "substack/node-binary"
+  },
+  {
+    "name": "boolbase",
+    "version": "1.0.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "fb55/boolbase"
+  },
+  {
+    "name": "brorand",
+    "version": "1.1.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "indutny/brorand",
+    "publishedGitHead": "ddc4f9344287769d7e2c2ea987d26bbeec5456b4"
+  },
+  {
+    "name": "brotli",
+    "version": "1.3.3",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "devongovett/brotli.js",
+    "publishedGitHead": "e36051345f6d27a56e5f39ea70d2f789b8574046"
+  },
+  {
+    "name": "browserstack-local",
+    "version": "1.5.13",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "browserstack/browserstack-local-nodejs",
+    "publishedGitHead": "fa2dcbc8ca0615fb923871e43197d598db44b01a"
+  },
+  {
+    "name": "bser",
+    "version": "2.1.1",
+    "status": "published-git-commit-unavailable",
+    "repository": "facebook/watchman"
+  },
+  {
+    "name": "buffers",
+    "version": "0.1.1",
+    "status": "published-git-commit-unavailable",
+    "repository": "substack/node-buffers"
+  },
+  {
+    "name": "bytesish",
+    "version": "0.4.4",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "mikeal/bytesish",
+    "publishedGitHead": "dcc5617656555e498319fa32f6f2cf7004c24a85"
+  },
+  {
+    "name": "cacheable-request",
+    "version": "10.2.14",
+    "status": "published-git-commit-unavailable",
+    "repository": "jaredwray/cacheable"
+  },
+  {
+    "name": "chainsaw",
+    "version": "0.1.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "substack/node-chainsaw"
+  },
+  {
+    "name": "constants-browserify",
+    "version": "1.0.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "juliangruber/constants-browserify",
+    "publishedGitHead": "e0ee990c75f3a0b3275e6bb2e3ff4d5d169d1b9d"
+  },
+  {
+    "name": "cookie-signature",
+    "version": "1.0.7",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "visionmedia/node-cookie-signature",
+    "publishedGitHead": "432ea0c14fbdd8d24354820faff2c6f6d2426757"
+  },
+  {
+    "name": "data-uri-to-buffer",
+    "version": "4.0.1",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "TooTallNate/node-data-uri-to-buffer",
+    "publishedGitHead": "85cd8c854aefbf1bb636789d80364cfac8ea1583"
+  },
+  {
+    "name": "degenerator",
+    "version": "5.0.1",
+    "status": "published-git-commit-unavailable",
+    "repository": "TooTallNate/proxy-agents"
+  },
+  {
+    "name": "des.js",
+    "version": "1.1.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "indutny/des.js",
+    "publishedGitHead": "78b64c2ead71740e99a42124274b84f8a41abbdf"
+  },
+  {
+    "name": "dfa",
+    "version": "1.2.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "devongovett/dfa",
+    "publishedGitHead": "3f5e603e5082caedabefefdf53e8a6ca3111e966"
+  },
+  {
+    "name": "dlv",
+    "version": "1.1.3",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "developit/dlv",
+    "publishedGitHead": "e636db817a96e4ca4710b407163fb992748b3b80"
+  },
+  {
+    "name": "eastasianwidth",
+    "version": "0.2.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "komagata/eastasianwidth",
+    "publishedGitHead": "b89f04d44dc786885615e94cd6e2ba1ef7866fa4"
+  },
+  {
+    "name": "elliptic",
+    "version": "6.6.1",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "indutny/elliptic",
+    "publishedGitHead": "9b77436a59cc35eccf4ffb848259c8762a492ee7"
+  },
+  {
+    "name": "esrecurse",
+    "version": "4.3.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "estools/esrecurse",
+    "publishedGitHead": "8ceb63797813d9ac69572a671b95cf58ffdf35b6"
+  },
+  {
+    "name": "estree-walker",
+    "version": "1.0.1",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "Rich-Harris/estree-walker",
+    "publishedGitHead": "b52908c0fd79c45a9e7796e4c669acfa33dfd875"
+  },
+  {
+    "name": "fb-watchman",
+    "version": "2.0.2",
+    "status": "published-git-commit-unavailable",
+    "repository": "facebook/watchman"
+  },
+  {
+    "name": "filelist",
+    "version": "1.0.6",
+    "status": "published-git-commit-unavailable",
+    "repository": "mde/filelist"
+  },
+  {
+    "name": "get-stdin",
+    "version": "4.0.1",
+    "status": "captured",
+    "file": "6fb9754611c20f6649f68805e8c990e83261f29316e29de9e6cedae607b8634c.txt",
+    "source": "https://raw.githubusercontent.com/sindresorhus/get-stdin/65c744975229b25d6cc5c7546f49b6ad9099553f/license",
+    "publishedGitHead": "65c744975229b25d6cc5c7546f49b6ad9099553f",
+    "npmMetadata": "https://registry.npmjs.org/get-stdin/4.0.1",
+    "license": "MIT",
+    "retrieved": "2026-10-29"
+  },
+  {
+    "name": "git-repo-info",
+    "version": "2.1.1",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "rwjblue/git-repo-info",
+    "publishedGitHead": "0ad56e550198a4e93fc53132dd3749a28ba6b0e7"
+  },
+  {
+    "name": "glob-to-regexp",
+    "version": "0.4.1",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "fitzgen/glob-to-regexp",
+    "publishedGitHead": "2abf65a834259c6504ed3b80e85f893f8cd99127"
+  },
+  {
+    "name": "google-gax",
+    "version": "5.0.8",
+    "status": "captured",
+    "file": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30.txt",
+    "source": "https://raw.githubusercontent.com/googleapis/google-cloud-node/6b9fd1af346a20479615704d40435f6ae0ecfba6/LICENSE",
+    "publishedGitHead": "6b9fd1af346a20479615704d40435f6ae0ecfba6",
+    "npmMetadata": "https://registry.npmjs.org/google-gax/5.0.8",
+    "license": "Apache-2.0",
+    "retrieved": "2026-10-29"
+  },
+  {
+    "name": "gud",
+    "version": "1.0.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "jamiebuilds/global-unique-id",
+    "publishedGitHead": "51f5b138b22c1af5db764289805d38847691dc79"
+  },
+  {
+    "name": "handle-thing",
+    "version": "2.0.1",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "indutny/handle-thing",
+    "publishedGitHead": "cc8c5c99189a9edfb7a3456eb97573c3741b79ec"
+  },
+  {
+    "name": "harmony-reflect",
+    "version": "1.6.2",
+    "status": "repository-unavailable"
+  },
+  {
+    "name": "hash.js",
+    "version": "1.1.7",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "indutny/hash.js",
+    "publishedGitHead": "fcd35edcc4e30145be4b7a737477ad54e83afc25"
+  },
+  {
+    "name": "headers-utils",
+    "version": "1.2.5",
+    "status": "published-git-commit-unavailable",
+    "repository": "mswjs/headers-utils"
+  },
+  {
+    "name": "hmac-drbg",
+    "version": "1.0.1",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "indutny/hmac-drbg",
+    "publishedGitHead": "2592375270a7a689d3752a6ba7235a47eb234d15"
+  },
+  {
+    "name": "hpack.js",
+    "version": "2.1.6",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "indutny/hpack.js",
+    "publishedGitHead": "c23a03a4ef7fed112e57998911d7ae8df8925616"
+  },
+  {
+    "name": "http-deceiver",
+    "version": "1.2.7",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "indutny/http-deceiver",
+    "publishedGitHead": "8ace40ad41c0e1cfb0d2f130fcf60b63fcb3ecf1"
+  },
+  {
+    "name": "http-proxy-agent",
+    "version": "4.0.1",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "TooTallNate/node-http-proxy-agent",
+    "publishedGitHead": "d41fd2093cc0ef2314fd5a6fd42a5eb36d728c08"
+  },
+  {
+    "name": "https-proxy-agent",
+    "version": "4.0.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "TooTallNate/node-https-proxy-agent",
+    "publishedGitHead": "176d4b4fb20e229cf6cd1008f06bf97833fd725f"
+  },
+  {
+    "name": "https-proxy-agent",
+    "version": "5.0.1",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "TooTallNate/node-https-proxy-agent",
+    "publishedGitHead": "d0d80cc0482f20495aa8595f802e1a9f3b1b3409"
+  },
+  {
+    "name": "imurmurhash",
+    "version": "0.1.4",
+    "status": "published-git-commit-unavailable",
+    "repository": "jensyt/imurmurhash-js"
+  },
+  {
+    "name": "is-in-browser",
+    "version": "1.1.3",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "tuxsudo/is-in-browser",
+    "publishedGitHead": "653d0586c8d40db93262536ec60a4d2d50f3d78d"
+  },
+  {
+    "name": "is-module",
+    "version": "1.0.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "component/is-module"
+  },
+  {
+    "name": "is-npm",
+    "version": "1.0.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "sindresorhus/is-npm"
+  },
+  {
+    "name": "is-regexp",
+    "version": "1.0.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "sindresorhus/is-regexp"
+  },
+  {
+    "name": "is-running",
+    "version": "2.1.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "nisaacson/is-running",
+    "publishedGitHead": "e8487ba5532434a453a85c0d2a1eea6785a9460c"
+  },
+  {
+    "name": "isarray",
+    "version": "0.0.1",
+    "status": "published-git-commit-unavailable",
+    "repository": "juliangruber/isarray"
+  },
+  {
+    "name": "isarray",
+    "version": "1.0.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "juliangruber/isarray",
+    "publishedGitHead": "2a23a281f369e9ae06394c0fb4d2381355a6ba33"
+  },
+  {
+    "name": "jake",
+    "version": "10.9.4",
+    "status": "published-git-commit-unavailable",
+    "repository": "jakejs/jake"
+  },
+  {
+    "name": "javascript-natural-sort",
+    "version": "0.7.1",
+    "status": "published-git-commit-unavailable",
+    "repository": "Bill4Time/javascript-natural-sort"
+  },
+  {
+    "name": "jest-mock-axios",
+    "version": "3.2.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "knee-cola/jest-mock-axios",
+    "publishedGitHead": "20d9365bd0eb97bc0f10c129a8327b7199a451b3"
+  },
+  {
+    "name": "jest-pnp-resolver",
+    "version": "1.2.3",
+    "status": "published-git-commit-unavailable",
+    "repository": "arcanis/jest-pnp-resolver"
+  },
+  {
+    "name": "jsonp",
+    "version": "0.2.1",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "LearnBoost/jsonp",
+    "publishedGitHead": "790398945dc391ad2f06b365193a040a3dc01977"
+  },
+  {
+    "name": "keyv",
+    "version": "4.5.4",
+    "status": "published-git-commit-unavailable",
+    "repository": "jaredwray/keyv"
+  },
+  {
+    "name": "language-subtag-registry",
+    "version": "0.3.23",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "mattcg/language-subtag-registry",
+    "publishedGitHead": "1e7d67e7f9646f47f0766a04b08522f7df59e932"
+  },
+  {
+    "name": "language-tags",
+    "version": "1.0.9",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "mattcg/language-tags",
+    "publishedGitHead": "ea5aa61e53ced2a18e35783ff00bb2a533f6c77d"
+  },
+  {
+    "name": "miller-rabin",
+    "version": "4.0.1",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "indutny/miller-rabin",
+    "publishedGitHead": "bda17a34d3b33a84a0dbb120ff7f662adea05c01"
+  },
+  {
+    "name": "minimalistic-crypto-utils",
+    "version": "1.0.1",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "indutny/minimalistic-crypto-utils",
+    "publishedGitHead": "f4f2b13a3ac78d8ee6991994bae89ec93304d225"
+  },
+  {
+    "name": "monkeypatch",
+    "version": "1.0.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "robertklep/node-monkeypatch",
+    "publishedGitHead": "91add32e776bcd742616d9991d41c775bb7a7daf"
+  },
+  {
+    "name": "natural-compare",
+    "version": "1.4.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "litejs/natural-compare-lite",
+    "publishedGitHead": "eec83eee67cfac84d6db30cdd65363f155673770"
+  },
+  {
+    "name": "natural-compare-lite",
+    "version": "1.4.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "litejs/natural-compare-lite",
+    "publishedGitHead": "eec83eee67cfac84d6db30cdd65363f155673770"
+  },
+  {
+    "name": "netmask",
+    "version": "2.0.2",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "rs/node-netmask",
+    "publishedGitHead": "cfc331d64edcb5d09237d8e0f407370d6af6d235"
+  },
+  {
+    "name": "node-request-interceptor",
+    "version": "0.6.3",
+    "status": "published-git-commit-unavailable",
+    "repository": "mswjs/node-request-interceptor"
+  },
+  {
+    "name": "png-js",
+    "version": "1.0.0",
+    "status": "captured",
+    "file": "bdb26a2ec815931ed6a38f3416362566204ee85ecdef96702b636402da4c75c3.txt",
+    "source": "https://raw.githubusercontent.com/devongovett/png.js/977b857a11676c1e720e79ed8d9178a005a9abd6/LICENSE",
+    "publishedGitHead": "977b857a11676c1e720e79ed8d9178a005a9abd6",
+    "npmMetadata": "https://registry.npmjs.org/png-js/1.0.0",
+    "license": null,
+    "retrieved": "2026-10-29"
+  },
+  {
+    "name": "popper.js",
+    "version": "1.16.1",
+    "status": "published-git-commit-unavailable",
+    "repository": "FezVrasta/popper.js"
+  },
+  {
+    "name": "popper.js",
+    "version": "1.16.1-lts",
+    "status": "published-git-commit-unavailable",
+    "repository": "FezVrasta/popper.js"
+  },
+  {
+    "name": "protoc-gen-ts",
+    "version": "0.8.7",
+    "status": "captured",
+    "file": "c5588b12708b9d57c5e1122cd55c60aa742fde14327139d5d6f60f1c3ddb9e7b.txt",
+    "source": "https://raw.githubusercontent.com/thesayyn/protoc-gen-ts/a5c306a0d1d864ce5bc1887dfef078d76c0efcc0/LICENSE",
+    "publishedGitHead": "a5c306a0d1d864ce5bc1887dfef078d76c0efcc0",
+    "npmMetadata": "https://registry.npmjs.org/protoc-gen-ts/0.8.7",
+    "license": "MIT",
+    "retrieved": "2026-10-29"
+  },
+  {
+    "name": "railroad-diagrams",
+    "version": "1.0.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "tabatkins/railroad-diagrams",
+    "publishedGitHead": "c20d5f11a1350e0b0e5818937e5b1c419adc8d94"
+  },
+  {
+    "name": "react-themeable",
+    "version": "1.1.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "markdalgleish/react-themeable",
+    "publishedGitHead": "0f15ce521684303b00e749148c5947a03093c522"
+  },
+  {
+    "name": "realistic-structured-clone",
+    "version": "3.0.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "dumbmatter/realistic-structured-clone",
+    "publishedGitHead": "9306690324fa70c344d0d899be44615f7de3245a"
+  },
+  {
+    "name": "redux-beacon",
+    "version": "2.1.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "rangle/redux-beacon"
+  },
+  {
+    "name": "regenerator-runtime",
+    "version": "0.11.1",
+    "status": "published-git-commit-unavailable",
+    "repository": "facebook/regenerator"
+  },
+  {
+    "name": "remark-parse",
+    "version": "9.0.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "remarkjs/remark"
+  },
+  {
+    "name": "saxes",
+    "version": "5.0.1",
+    "status": "published-git-commit-unavailable",
+    "repository": "lddubeau/saxes"
+  },
+  {
+    "name": "select-hose",
+    "version": "2.0.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "indutny/select-hose",
+    "publishedGitHead": "ee7caf9d58e519b736197c65c1b07f5e3d2715b4"
+  },
+  {
+    "name": "sift",
+    "version": "17.1.3",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "crcn/sift.js",
+    "publishedGitHead": "8a9a4995d4a2a653bf9b68a7a2d72e02f05dfe03"
+  },
+  {
+    "name": "simple-git",
+    "version": "3.36.0",
+    "status": "captured",
+    "file": "3a31277abe4e0a30eb17dad52addace2fd73580fd9d79d40590e69785fdf71d5.txt",
+    "source": "https://raw.githubusercontent.com/steveukx/git-js/01bb7ceae698831e9abd9310f7d61484970ab53c/LICENSE",
+    "publishedGitHead": "01bb7ceae698831e9abd9310f7d61484970ab53c",
+    "npmMetadata": "https://registry.npmjs.org/simple-git/3.36.0",
+    "license": "MIT",
+    "retrieved": "2026-10-29"
+  },
+  {
+    "name": "size-sensor",
+    "version": "1.0.3",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "hustcc/size-sensor",
+    "publishedGitHead": "b9be27ef358a32546110c011bc2fa587e23ec62e"
+  },
+  {
+    "name": "spdx-exceptions",
+    "version": "2.5.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "kemitchell/spdx-exceptions.json",
+    "publishedGitHead": "3aa64bec339abc6a3eca00c3436aaa7e154b8799"
+  },
+  {
+    "name": "spdx-license-ids",
+    "version": "3.0.23",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "jslicense/spdx-license-ids",
+    "publishedGitHead": "a2a975daf48bbc2afdc8e7c304405b44c656fd53"
+  },
+  {
+    "name": "spdy",
+    "version": "4.0.2",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "indutny/node-spdy",
+    "publishedGitHead": "661b14a8db40a76a9a4842fc12ca8908f989cfd9"
+  },
+  {
+    "name": "spdy-transport",
+    "version": "3.0.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "spdy-http2/spdy-transport",
+    "publishedGitHead": "f177937e614db6b53bebb10976e4055ecbfc767f"
+  },
+  {
+    "name": "stable",
+    "version": "0.1.8",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "Two-Screen/stable",
+    "publishedGitHead": "2d20475dc7646b4b5427a956182c5f274f2b6551"
+  },
+  {
+    "name": "stream-buffers",
+    "version": "3.0.3",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "samcday/node-stream-buffer",
+    "publishedGitHead": "8e2925c2ab334eb7831db4a63b404b7f260ccc23"
+  },
+  {
+    "name": "stream-events",
+    "version": "1.0.5",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "stephenplusplus/stream-events",
+    "publishedGitHead": "b53b9533cbccbad8dd50633ab95b6f3fe4e6258e"
+  },
+  {
+    "name": "strict-event-emitter",
+    "version": "0.1.0",
+    "status": "published-git-commit-unavailable",
+    "repository": "open-draft/strict-event-emitter"
+  },
+  {
+    "name": "stubs",
+    "version": "3.0.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "stephenplusplus/stubs",
+    "publishedGitHead": "2d41d3ae487d3bb0b8c7511d254783eaad862d8f"
+  },
+  {
+    "name": "svg-parser",
+    "version": "2.0.4",
+    "status": "published-git-commit-unavailable",
+    "repository": "Rich-Harris/svg-parser"
+  },
+  {
+    "name": "tr46",
+    "version": "0.0.3",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "Sebmaster/tr46.js",
+    "publishedGitHead": "a8009f9ce80ff5dbe71dd71e203afe4e4c878d28"
+  },
+  {
+    "name": "type-fest",
+    "version": "2.19.0",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "sindresorhus/type-fest",
+    "publishedGitHead": "d07df21f8b79e35ad8411cb9ceb8b5cb8f40f9d4"
+  },
+  {
+    "name": "typed-function",
+    "version": "2.1.0",
+    "status": "captured",
+    "file": "f2ca6ecc6075c900578cf297ed0d45d5e0f715f7f70f94d51287a756013d2aec.txt",
+    "source": "https://raw.githubusercontent.com/josdejong/typed-function/25591d8f5cacd40e3becb920a84b6e415e4744d1/LICENSE",
+    "publishedGitHead": "25591d8f5cacd40e3becb920a84b6e415e4744d1",
+    "npmMetadata": "https://registry.npmjs.org/typed-function/2.1.0",
+    "license": null,
+    "retrieved": "2026-10-29"
+  },
+  {
+    "name": "wbuf",
+    "version": "1.7.3",
+    "status": "license-not-retrieved-at-published-commit",
+    "repository": "indutny/wbuf",
+    "publishedGitHead": "75620cb7166688045eb773b2c0a6d49f1c625d5f"
+  }
+]

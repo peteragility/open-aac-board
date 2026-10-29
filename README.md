@@ -2,6 +2,8 @@
 
 Free communication boards, saved on your device. An independent GPLv3 derivative of [Cboard](https://github.com/cboard-org/cboard), starting from frontend commit `074972386a790b5dcb83a77799f676f457042abe`.
 
+Offered free of charge for noncommercial NGO and community use. This is the project's distribution direction, not an added restriction on GPL-covered code; artwork retains its separate license terms. The English/Chinese app names are working names pending name clearance.
+
 The web app is the current mockup and MVP for validating communication workflows and layouts. The production targets are installed iOS/iPadOS apps for iPhone and iPad, and Android apps for phones and tablets.
 
 The main workspace defaults to Cantonese, with explicit English and Mandarin choices. It provides a fixed-order core word board, multilingual vocabulary search, quick phrases and favourites, saved personal phrases, type-to-speak, a large rotatable partner display, editable visual routines and a break timer. Words can have custom photos, labels in all three languages, and personal recordings per language. Picture scanning uses Space/Enter, with adjustable timing.
@@ -45,9 +47,9 @@ After authenticating the intended AWS profile, installing dependencies, and comm
 AWS_PROFILE=default npm run deploy:aws
 ```
 
-The script publishes the corresponding source archive alongside every release, even while the development GitHub repository is private. No AWS keys belong in the app or repository. Deployment creates billable S3/CloudFront resources; no always-on server or database is provisioned. The bucket is retained if the stack is deleted, to avoid accidental loss of releases.
+The [GitHub repository](https://github.com/peteragility/open-aac-board) is public. The script also publishes the corresponding source archive alongside every release and `/source/release.json` with its commit and archive SHA-256. Production About links use retained `/source/<commit>/` paths so cached older app versions keep a matching source download. No AWS keys belong in the app or repository. Deployment creates billable S3/CloudFront resources; no always-on server or database is provisioned. The bucket is retained if the stack is deleted, to avoid accidental loss of releases.
 
-The script runs the production build and tests before provisioning or uploading. Initial offline preparation currently caches approximately 85 MB of app files, symbols and bundled audio; allow this download to finish on a suitable connection. Downloads are limited to 16 at once, with bounded retries, to avoid launching thousands of simultaneous requests on phones. The build fails if the inherited service-worker generator changes its expected install code.
+The script runs the production build and tests before provisioning or uploading. Initial offline preparation currently caches approximately 90 MB of app files, symbols and bundled audio; allow this download to finish on a suitable connection. Downloads are limited to 16 at once, with bounded retries, to avoid launching thousands of simultaneous requests on phones. The build fails if the inherited service-worker generator changes its expected install code.
 
 ## Inherited dependency maintenance
 
@@ -82,6 +84,8 @@ Validate each phase with intended users and their communication partners; refine
 
 Cboard’s existing Cordova integrations are preserved as reference. Mobile projects and store releases are future work; this web MVP does not configure or verify them.
 
+The [licensing and name review](docs/licensing-review.md) records the preliminary name check and unresolved iOS GPL/App Store distribution questions. Complete the actual package's licensing review before choosing an App Store delivery route. Free pricing, NGO use and a public repository do not by themselves clear native distribution.
+
 ## Data and recovery
 
 Personal boards, uploaded media and recordings live in browser storage. Preferences → Export workspace backup includes workspace word edits, recordings, photos, saved phrases, favourites, routines and accessibility settings. Restore validates the file and asks before replacing the current workspace. Advanced Cboard boards retain their separate import/export flow under Advanced board backups. Export both when using both workspaces.
@@ -95,3 +99,7 @@ Code: GPL-3.0-only; see [LICENSE.txt](LICENSE.txt). Copyright © 2017–2024 Ass
 Mulberry Symbols by Steve Lee: CC BY-SA 4.0. Bundled ARASAAC symbols by Sergio Palao / Government of Aragon: CC BY-NC-SA 4.0. Asset licenses remain separate from the code license. Retain their attribution and noncommercial/share-alike restrictions when distributing symbols and boards. No advertising or subscriptions are included here.
 
 Original pictograms in `public/symbols/open-aac/` and the three-language starter catalog are part of this GPLv3 project. The generic bundled speech clips were synthesized for this app; no voices or content were copied from the reference products.
+
+See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the dated modification notice, separate font/icon/codec/media credits and license texts. About links to these notices and the generated package/asset inventories, which are also available offline. The inventory records missing evidence explicitly; it is not a blanket legal clearance.
+
+After `npm ci`, run `npm run licenses:generate` when the lockfile, installed dependency notices, public assets or maintained notices change. Commit the generated `public/licenses/` files and `public/THIRD_PARTY_NOTICES.txt`. Deployment runs `npm run licenses:check` and fails if those files no longer match the locked install. Supplemental upstream license texts retain their source URLs and published-version commit evidence. No dependency additions or version changes are required for this workflow.

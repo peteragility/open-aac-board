@@ -18,11 +18,14 @@ if [[ ! -d node_modules ]]; then
   echo 'Dependencies are missing. Run npm ci first.' >&2
   exit 1
 fi
+npm run licenses:check
 npm run test:local
+export REACT_APP_BUILD_COMMIT="$(git rev-parse HEAD)"
 GENERATE_SOURCEMAP=false npm run build
 npm run test:web
 mkdir -p build/source
 git archive --format=tar.gz --prefix=open-aac-board/ HEAD > build/source/open-aac-board-source.tar.gz
+node scripts/write-source-manifest.cjs
 cp LICENSE.txt build/LICENSE.txt
 aws cloudformation validate-template --template-body file://infrastructure/hosting.json --region "$AAC_REGION" >/dev/null
 aws cloudformation deploy --template-file infrastructure/hosting.json --stack-name "$AAC_STACK" --region "$AAC_REGION" --no-fail-on-empty-changeset --tags Project=open-aac-board
