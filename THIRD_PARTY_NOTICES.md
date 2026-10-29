@@ -1,12 +1,14 @@
 # Third-party notices — 粵語說話 · Open AAC Board
 
-Updated 29 October 2026. This distribution is an independent modification of Cboard. It is offered free of charge for noncommercial NGO and community use, without advertisements or subscriptions. That project direction does not add a noncommercial restriction to GPL-covered code: recipients retain the rights granted by the GPL. Separately licensed artwork keeps its own terms.
+Updated 30 October 2026. This distribution is an independent modification of Cboard. It is offered free of charge for noncommercial NGO and community use, without advertisements or subscriptions. That project direction does not add a noncommercial restriction to GPL-covered code: recipients retain the rights granted by the GPL. Separately licensed artwork keeps its own terms.
 
 ## Code and modifications
 
 Cboard source: https://github.com/cboard-org/cboard, imported from commit `074972386a790b5dcb83a77799f676f457042abe`. Copyright © 2017–2024 Assistive Technology LLC and Cboard contributors. Open AAC Board modifications © 2026 its contributors. The derivative code is distributed under GNU GPL version 3 only, without warranty. Retain the copyright, license and modification notices when redistributing it.
 
 Our modifications began on 29 October 2026: a device-storage-only distribution, disabled accounts/payments/analytics, Cantonese-default multilingual workspace, original vocabulary/pictograms, generic bundled speech, personal word creation with optional translations, quick responses, saved picture messages with media snapshots, recording and backups, resumable communication drafts, phrase deletion recovery, an optional guide, accessibility/navigation changes, responsive layouts, offline preparation and Hong Kong hosting. Git history records the individual changes. Dependencies and separate media below are not automatically relicensed under the GPL.
+
+The 30 October 2026 picture-browsing addition introduces visual category navigation, shared vocabulary references, fixed user-selected picture slots and selection feedback. `public/symbols/open-aac/not-want.svg` is a new original GPL-3.0-only drawing by Open AAC Board contributors, distinct from the inherited Mulberry “no” drawing. No competitor artwork or additional synthesized speech was used for this addition.
 
 - Public source and history: https://github.com/peteragility/open-aac-board
 - Corresponding source for the deployed release: `/source/open-aac-board-source.tar.gz`

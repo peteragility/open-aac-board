@@ -6,6 +6,7 @@ export const COMMUNICATION_ACTION = 'open-aac/communication';
 export const initialCommunication = {
   section: 'board',
   category: 'core',
+  pictureGroup: null,
   tokens: [],
   phrase: null,
   typed: '',
@@ -24,6 +25,16 @@ export function validateCommunication(value) {
     !['core', 'personal', 'food', 'feelings', 'people', 'places'].includes(
       value.category
     ) ||
+    (value.pictureGroup != null &&
+      ![
+        'core',
+        'personal',
+        'food',
+        'feelings',
+        'people',
+        'places',
+        'activities'
+      ].includes(value.pictureGroup)) ||
     !Array.isArray(value.tokens) ||
     value.tokens.length > 30 ||
     !value.tokens.every(safeID) ||
@@ -49,6 +60,7 @@ export function validateCommunication(value) {
   return {
     section: value.section,
     category: value.category,
+    pictureGroup: value.pictureGroup ?? null,
     tokens: [...value.tokens],
     phrase,
     typed: value.typed,

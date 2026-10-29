@@ -27,9 +27,14 @@ import Routine from './Routine';
 import QuickResponses from './QuickResponses';
 import QuickGuide from './QuickGuide';
 import CategoryTabs from './CategoryTabs';
+import PictureBrowser from './PictureBrowser';
+import PictureCard from './PictureCard';
+import PinnedWordEditor from './PinnedWordEditor';
+import { wordsInGroup, DEFAULT_PINNED_WORDS } from './pictureGroups';
 import { COMMUNICATION_ACTION, initialCommunication } from './communication';
 import { workspaceWords, pictureSegments } from './vocabulary';
 import './workspace.css';
+import './pictures.css';
 
 const sections = [
   ['board', 'grid'],
@@ -88,6 +93,11 @@ export function Workspace({
     });
   };
   const [query, setQuery] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
+  const [pinSlot, setPinSlot] = useState(0);
+  const [lastPicked, setLastPicked] = useState(null);
+  const pictureBrowsing = Boolean(preferences.pictureBrowsing);
+  const pictureGroup = communication.pictureGroup || null;
   const [phraseTab, setPhraseTab] = useState('allPhrases');
   const [editing, setEditing] = useState(false);
   const [editWord, setEditWord] = useState(null);
@@ -128,13 +138,17 @@ export function Workspace({
             selected.map((word) => word.text),
             language
           );
-  const visible = words.filter((word) =>
-    query
-      ? [word.yue, word.en, word.cmn, word.text].some((label) =>
-          (label || '').toLocaleLowerCase().includes(query.toLocaleLowerCase())
+  const visible = pictureBrowsing
+    ? wordsInGroup(words, pictureGroup)
+    : query
+      ? words.filter((word) =>
+          [word.yue, word.en, word.cmn, word.text].some((label) =>
+            (label || '')
+              .toLocaleLowerCase()
+              .includes(query.toLocaleLowerCase())
+          )
         )
-      : word.category === category
-  );
+      : wordsInGroup(words, category);
   const segments =
     section === 'typing'
       ? []
@@ -158,6 +172,11 @@ export function Workspace({
       scrollArea.current.scrollTop = scrollPositions.current[section] || 0;
   }, [section]);
   useEffect(() => () => speech.stop(), []);
+  useEffect(() => {
+    if (!lastPicked) return;
+    const timer = setTimeout(() => setLastPicked(null), 850);
+    return () => clearTimeout(timer);
+  }, [lastPicked]);
   useEffect(() => {
     setScanning(false);
     setNotice('');
@@ -217,6 +236,7 @@ export function Workspace({
     if (undoDraft?.kind === 'board') setUndoDraft(null);
     setPhrase(null);
     setTokens((old) => [...old, word.id]);
+    setLastPicked({ id: word.id, time: Date.now() });
     if (preferences.haptics) navigator.vibrate?.(35);
     if (preferences.speakOnTap)
       say(word.text, [{ text: word.text, recording: word.recording }]);
@@ -237,7 +257,38 @@ export function Workspace({
     setTranslationWord(word.id);
     setNotice(c.translationMissing);
   }
+  function selectPictureGroup(group) {
+    changeDraft({ pictureGroup: group });
+    setScanning(false);
+    setScanIndex(0);
+    setNotice('');
+    if (scrollArea.current) scrollArea.current.scrollTop = 0;
+  }
+  function switchPictureView() {
+    stop();
+    setScanning(false);
+    setEditing(false);
+    setQuery('');
+    setShowSearch(false);
+    update('preferences', { pictureBrowsing: !pictureBrowsing });
+    if (!pictureBrowsing) changeDraft({ pictureGroup: null });
+    if (scrollArea.current) scrollArea.current.scrollTop = 0;
+  }
+  function openPins(index) {
+    setPinSlot(Number.isInteger(index) ? index : 0);
+    setScanning(false);
+    setModal('pins');
+  }
+  function scanKey(event) {
+    if (event.key === 'Escape') setScanning(false);
+    if (scanning && [' ', 'Enter'].includes(event.key)) {
+      event.preventDefault();
+      const word = visible[scanIndex % visible.length];
+      if (word) selectWord(word);
+    }
+  }
   function toggleScan() {
+    if (pictureBrowsing && !pictureGroup) changeDraft({ pictureGroup: 'core' });
     setModal(null);
     setEditing(false);
     setScanIndex(0);
@@ -331,7 +382,7 @@ export function Workspace({
 
   return (
     <div
-      className={`aac-workspace density-${preferences.density} ${preferences.contrast ? 'aac-high-contrast' : ''} ${preferences.largeText ? 'aac-large-text' : ''}`}
+      className={`aac-workspace density-${preferences.density} ${pictureBrowsing ? 'is-picture-browsing' : ''} ${preferences.contrast ? 'aac-high-contrast' : ''} ${preferences.largeText ? 'aac-large-text' : ''}`}
       lang={languageInfo(language).html}
     >
       <Helmet>
@@ -613,21 +664,52 @@ export function Workspace({
                 <div
                   className={`aac-board-tools ${preferences.showScanControl || scanning ? 'has-scan-control' : ''}`}
                 >
-                  <label className="aac-search">
-                    <Icon name="search" />
-                    <input
-                      aria-label={c.searchLabel}
-                      type="search"
-                      placeholder={c.search}
-                      maxLength={80}
-                      value={query}
-                      onChange={(e) => {
-                        setQuery(e.target.value);
-                        setScanning(false);
-                        setScanIndex(0);
-                      }}
-                    />
-                  </label>
+                  <div className="aac-discovery-tools">
+                    {!showSearch || pictureBrowsing ? (
+                      <button
+                        className="aac-secondary aac-browse-toggle"
+                        aria-label={
+                          pictureBrowsing ? c.wordBoardView : c.browsePictures
+                        }
+                        onClick={switchPictureView}
+                      >
+                        <Icon name={pictureBrowsing ? 'grid' : 'pictures'} />
+                        <span>
+                          {pictureBrowsing ? c.wordBoardShort : c.browseShort}
+                        </span>
+                      </button>
+                    ) : (
+                      <label className="aac-search">
+                        <Icon name="search" />
+                        <input
+                          aria-label={c.searchLabel}
+                          type="search"
+                          autoFocus
+                          placeholder={c.search}
+                          maxLength={80}
+                          value={query}
+                          onChange={(e) => {
+                            setQuery(e.target.value);
+                            setScanning(false);
+                            setScanIndex(0);
+                          }}
+                        />
+                      </label>
+                    )}
+                    {!pictureBrowsing && (
+                      <button
+                        className="aac-icon-button"
+                        aria-label={showSearch ? c.close : c.searchLabel}
+                        aria-expanded={showSearch}
+                        onClick={() => {
+                          setShowSearch(!showSearch);
+                          setQuery('');
+                        }}
+                      >
+                        <Icon name={showSearch ? 'close' : 'search'} />
+                      </button>
+                    )}
+                  </div>
                   <button
                     className="aac-secondary aac-add-word"
                     aria-label={c.addWord}
@@ -665,28 +747,35 @@ export function Workspace({
                     </button>
                   )}
                 </div>
-                <CategoryTabs
-                  categories={categories}
-                  language={language}
-                  category={category}
-                  query={query}
-                  c={c}
-                  onSelect={(id) => {
-                    setCategory(id);
-                    setQuery('');
-                    setScanning(false);
-                    setScanIndex(0);
-                    if (scrollArea.current) scrollArea.current.scrollTop = 0;
-                  }}
-                />
-                <div className="aac-section-row aac-grid-heading">
-                  <h2>
-                    {query
-                      ? c.allResults
-                      : categories.find((cat) => cat.id === category)[language]}
-                    <span>{visible.length}</span>
-                  </h2>
-                </div>
+                {!pictureBrowsing && (
+                  <>
+                    <CategoryTabs
+                      categories={categories}
+                      language={language}
+                      category={category}
+                      query={query}
+                      c={c}
+                      onSelect={(id) => {
+                        setCategory(id);
+                        setQuery('');
+                        setScanning(false);
+                        setScanIndex(0);
+                        if (scrollArea.current)
+                          scrollArea.current.scrollTop = 0;
+                      }}
+                    />
+                    <div className="aac-section-row aac-grid-heading">
+                      <h2>
+                        {query
+                          ? c.allResults
+                          : categories.find((cat) => cat.id === category)[
+                              language
+                            ]}
+                        <span>{visible.length}</span>
+                      </h2>
+                    </div>
+                  </>
+                )}
               </div>
               {editing && (
                 <p className="aac-scan-hint" role="status">
@@ -694,60 +783,52 @@ export function Workspace({
                 </p>
               )}
               {scanning && <p className="aac-scan-hint">{c.scanHint}</p>}
-              <div
-                className="aac-word-grid"
-                ref={scanGrid}
-                tabIndex={scanning ? 0 : -1}
-                role="group"
-                aria-label={c.board}
-                onKeyDown={(event) => {
-                  if (event.key === 'Escape') setScanning(false);
-                  if (scanning && [' ', 'Enter'].includes(event.key)) {
-                    event.preventDefault();
-                    const word = visible[scanIndex % visible.length];
-                    if (word) selectWord(word);
-                  }
-                }}
-              >
-                {visible.map((word, index) => (
-                  <button
-                    className={`aac-word tone-${word.tone} ${scanning && scanIndex === index ? 'aac-scan-focus' : ''} ${editing ? 'is-editing' : ''}`}
-                    key={word.id}
-                    data-word-id={word.id}
-                    disabled={!editing && tokens.length >= 30}
-                    onClick={() => selectWord(word)}
-                  >
-                    <span className="aac-word-picture">
-                      <img src={word.image} alt="" draggable="false" />
-                    </span>
-                    <span
-                      className="aac-word-label"
-                      lang={languageInfo(word.labelLanguage).html}
-                    >
-                      {word.text}
-                    </span>
-                    {!word.translated && (
-                      <span className="aac-missing-label">
-                        {c.translationShort}
-                      </span>
-                    )}
-                    {editing && (
-                      <span className="aac-word-edit">
-                        <Icon name="edit" />
-                      </span>
-                    )}
-                    {word.recording && (
-                      <span
-                        className="aac-recording-badge"
-                        aria-label={c.recordingReady}
-                      >
-                        <Icon name="microphone" />
-                      </span>
-                    )}
-                  </button>
-                ))}
-              </div>
-              {!visible.length && (
+              {pictureBrowsing ? (
+                <PictureBrowser
+                  words={words}
+                  group={pictureGroup}
+                  onGroup={selectPictureGroup}
+                  slots={workspace.pinnedWords || DEFAULT_PINNED_WORDS}
+                  onPins={openPins}
+                  onSelect={selectWord}
+                  onAdd={() => setAddingWord(true)}
+                  c={c}
+                  editing={editing}
+                  disabled={!editing && tokens.length >= 30}
+                  highlighted={lastPicked?.id}
+                  scanning={scanning}
+                  scanIndex={scanIndex}
+                  scanGrid={scanGrid}
+                  onScanKey={scanKey}
+                />
+              ) : (
+                <div
+                  className="aac-word-grid"
+                  ref={scanGrid}
+                  tabIndex={scanning ? 0 : -1}
+                  role="group"
+                  aria-label={c.board}
+                  onKeyDown={scanKey}
+                >
+                  {visible.map((word, index) => (
+                    <PictureCard
+                      key={word.id}
+                      word={word}
+                      c={c}
+                      disabled={!editing && tokens.length >= 30}
+                      editing={editing}
+                      onSelect={selectWord}
+                      highlighted={lastPicked?.id === word.id}
+                      attributes={
+                        scanning && scanIndex === index
+                          ? { 'data-scan-focus': true }
+                          : {}
+                      }
+                    />
+                  ))}
+                </div>
+              )}
+              {!pictureBrowsing && !visible.length && (
                 <div className="aac-empty">
                   <p>
                     {category === 'personal' && !query
@@ -764,10 +845,12 @@ export function Workspace({
                   </button>
                 </div>
               )}
-              <p className="aac-stability">
-                <Icon name="grid" />
-                {c.stable}
-              </p>
+              {!pictureBrowsing && (
+                <p className="aac-stability">
+                  <Icon name="grid" />
+                  {c.stable}
+                </p>
+              )}
             </>
           )}
           {section === 'quick' && (
@@ -872,6 +955,19 @@ export function Workspace({
           ))}
         </nav>
       </main>
+      {modal === 'pins' && (
+        <PinnedWordEditor
+          words={words}
+          slots={workspace.pinnedWords || DEFAULT_PINNED_WORDS}
+          initialSlot={pinSlot}
+          c={c}
+          onClose={() => setModal(null)}
+          onSave={(slots) => {
+            update('pinned-words', slots);
+            setModal(null);
+          }}
+        />
+      )}
       {modal === 'tools' && (
         <Modal
           title={c.tools}
@@ -879,6 +975,10 @@ export function Workspace({
           onClose={() => setModal(null)}
         >
           <div className="aac-settings-body aac-tools-panel">
+            <button className="aac-secondary" onClick={() => openPins()}>
+              <Icon name="star" />
+              {c.choosePins}
+            </button>
             <button
               className="aac-secondary"
               onClick={() => {
@@ -1082,6 +1182,7 @@ export function Workspace({
               });
               if (addingWord) {
                 setCategory('personal');
+                if (pictureBrowsing) selectPictureGroup('personal');
                 setQuery('');
                 setEditing(false);
                 if (scrollArea.current) scrollArea.current.scrollTop = 0;

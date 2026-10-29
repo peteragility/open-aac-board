@@ -1,6 +1,7 @@
 import { DEFAULT_LANGUAGE, LANGUAGES } from './languages.js';
 import { validateLocalMediaURL } from '../media.js';
 import { parseBoardJSON } from '../importValidation.js';
+import { DEFAULT_PINNED_WORDS } from './pictureGroups.js';
 
 export const ACTION = 'open-aac/workspace';
 export const RESPONSE_IDS = [
@@ -26,6 +27,7 @@ export const initialWorkspace = {
     largeText: false,
     speakOnTap: true,
     showScanControl: false,
+    pictureBrowsing: false,
     haptics: false,
     scanDelay: 2,
     rate: 1
@@ -35,6 +37,7 @@ export const initialWorkspace = {
   overrides: {},
   customWords: [],
   quickResponses: DEFAULT_RESPONSES,
+  pinnedWords: DEFAULT_PINNED_WORDS,
   phrases: [],
   favourites: ['need-water', 'need-help', 'give-time'],
   routine: ['brush', 'eat', 'school', 'home'],
@@ -163,6 +166,17 @@ export function validateWorkspace(value) {
       throw new Error('Invalid accessibility setting.');
   if (p.showScanControl !== undefined && typeof p.showScanControl !== 'boolean')
     throw new Error('Invalid scanning preference.');
+  if (p.pictureBrowsing !== undefined && typeof p.pictureBrowsing !== 'boolean')
+    throw new Error('Invalid picture browsing preference.');
+  const pinnedWords = value.pinnedWords ?? DEFAULT_PINNED_WORDS;
+  if (
+    !Array.isArray(pinnedWords) ||
+    pinnedWords.length !== 6 ||
+    pinnedWords.some((id) => id !== null && !safeID(id)) ||
+    new Set(pinnedWords.filter(Boolean)).size !==
+      pinnedWords.filter(Boolean).length
+  )
+    throw new Error('Invalid pinned words.');
   const voices = {};
   const voiceChecks = value.voiceChecks ?? [];
   if (
@@ -244,6 +258,7 @@ export function validateWorkspace(value) {
       largeText: p.largeText,
       speakOnTap: p.speakOnTap,
       showScanControl: p.showScanControl ?? false,
+      pictureBrowsing: p.pictureBrowsing ?? false,
       haptics: p.haptics,
       scanDelay: p.scanDelay,
       rate: p.rate
@@ -253,6 +268,7 @@ export function validateWorkspace(value) {
     overrides,
     customWords: personal,
     quickResponses: [...quickResponses],
+    pinnedWords: [...pinnedWords],
     phrases: value.phrases.map(validatePhrase),
     favourites: [...new Set(value.favourites)],
     routine: [...value.routine],
@@ -303,6 +319,9 @@ export function workspaceReducer(state = initialWorkspace, action) {
     case 'delete-custom-word':
       return {
         ...state,
+        pinnedWords: (state.pinnedWords || DEFAULT_PINNED_WORDS).map((id) =>
+          id === payload ? null : id
+        ),
         customWords: (state.customWords || []).filter(
           (word) => word.id !== payload
         ),
@@ -311,6 +330,8 @@ export function workspaceReducer(state = initialWorkspace, action) {
       };
     case 'quick-responses':
       return validateWorkspace({ ...state, quickResponses: payload });
+    case 'pinned-words':
+      return validateWorkspace({ ...state, pinnedWords: payload });
     case 'save-phrase':
       return state.phrases.length >= 100
         ? state

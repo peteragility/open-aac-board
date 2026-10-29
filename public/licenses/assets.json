@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "scope": "Files under public/ excluding generated notices and the GPL text. Bundled npm assets, including fonts, are documented separately in dependencies.json and THIRD_PARTY_NOTICES.md.",
-  "assetCount": 3957,
+  "assetCount": 3958,
   "assets": [
     {
       "path": "/_redirects",
@@ -27629,6 +27629,13 @@
       "path": "/symbols/open-aac/like.svg",
       "bytes": 242,
       "sha256": "badc15b34b6108b45ba579dad1e41f10445df70a93de8962149c0b99b49e7272",
+      "license": "GPL-3.0-only",
+      "provenance": "Open AAC Board contributors, 2026"
+    },
+    {
+      "path": "/symbols/open-aac/not-want.svg",
+      "bytes": 645,
+      "sha256": "751a774cf3c3d7dcbbb45ea35f83c2639df12a7fdef0bcbf1953f0a283b2a3e6",
       "license": "GPL-3.0-only",
       "provenance": "Open AAC Board contributors, 2026"
     },

@@ -1,0 +1,9 @@
+<!-- Original Open AAC Board pictogram, 2026-10-30. GPL-3.0-only. A person turns away and raises an open hand. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <g stroke="#254b46" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 88V65c0-14 9-23 22-23s21 9 21 23v23" fill="#badbd5"/>
+    <path d="M43 24c0-11-6-17-15-17S11 14 11 24v8l-5 5h9c2 7 7 10 14 10 9 0 14-9 14-23Z" fill="#e6b58b"/>
+    <path d="M16 23h1" fill="none"/>
+    <path d="M45 77 59 64V43c0-5 7-5 7 0V22c0-5 7-5 7 0v16-21c0-5 7-5 7 0v21-15c0-5 7-5 7 0v20-7c0-5 6-5 6 0v23c0 12-8 20-18 20L54 89" fill="#e6b58b"/>
+  </g>
+</svg>

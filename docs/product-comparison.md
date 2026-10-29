@@ -34,6 +34,16 @@ An optional three-step guide is reachable from the welcome screen, Tools and Pre
 
 Drafts are a separate validated record in the existing guarded device persistence. They retain only the latest picture/phrase and typing drafts, without conversation history or media duplication, and never trigger speech when resumed. Workspace restore clears them; workspace exports continue to include saved phrases and media, without unfinished drafts. Phrase deletion Undo retains the most recent removed phrase in memory until another deletion or reload; restoring validates schema, media and storage limits. No new runtime API, dependency or audio generation is required.
 
+## Picture-led browsing release — 30 October 2026
+
+The approved design adds six picture groups rather than requiring typed search or reading category names alone. Each folder previews three actual card images, including personal photos when present. Folders use a collage and navigation arrow; speaking cards use one large picture and a brief selection check. Opening a folder never speaks or adds a word. Yes/no/help/stop remain available within each group, with explicit Back and core-word controls.
+
+Food, feelings, people and places retain their existing vocabulary order and append related core words. Activities uses a fixed list, and My words shows personal cards. Every route references the same word object: an edited label, photo or language-specific recording is shared rather than copied. The original 24 core words retain their order. The original word-board view remains available, and text search sits behind its magnifying-glass control.
+
+Six manually assigned pinned slots retain empty holes on removal and survive backup/restore; deleting a personal word clears only its own slot. They do not learn or reorder themselves. The view choice is an optional preference in version 2 backups, and older version 1/2 files receive defaults. Current picture-group navigation persists with the bounded draft and resets on workspace restore. Screen-size changes can change grid columns without changing item order.
+
+The new “don't want” pictogram is original project artwork, distinct from the existing “no” symbol. Picture choices still need feedback from intended users and Cantonese-speaking communication partners; a symbol's meaning should not be assumed universal. Personal photos and recordings remain supported. Photo-scene hotspots are deferred. The implementation adds no dependency, runtime API, speech synthesis charge or remote storage.
+
 ## Cantonese voice and vocabulary behavior
 
 - New and existing installations without workspace preferences start in Cantonese, using colloquial Cantonese words and Traditional Chinese labels. English and Mandarin are explicit choices, with their own written vocabulary and voices.

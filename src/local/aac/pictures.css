@@ -1,0 +1,418 @@
+/* Open AAC Board addition, 2026-10-30. GPL-3.0-only. */
+.aac-discovery-tools {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+.aac-discovery-tools > .aac-browse-toggle,
+.aac-discovery-tools > .aac-search {
+  flex: 1;
+  min-width: 0;
+}
+.aac-discovery-tools > .aac-icon-button {
+  flex-shrink: 0;
+}
+.aac-browse-toggle {
+  justify-content: center;
+}
+.aac-word.aac-just-picked {
+  outline: 3px solid #1a6c5d;
+  outline-offset: -3px;
+  background: #edf7ed;
+}
+.aac-picked-check {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: #1a6c5d;
+  padding: 2px;
+}
+.aac-picked-check svg {
+  width: 18px;
+  height: 18px;
+}
+.aac-word[data-scan-focus='true'] {
+  outline: 4px solid #b67816 !important;
+  outline-offset: -4px;
+  box-shadow: 0 0 0 3px #f3d98d77;
+}
+.is-picture-browsing .aac-board-controls {
+  display: block;
+}
+.aac-picture-browser {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.aac-picture-nav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 0 0 10px;
+}
+.aac-picture-nav h2 {
+  flex: 1;
+  font-size: 17px;
+  line-height: 1.35;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.aac-picture-nav > button {
+  padding: 6px 10px;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.aac-picture-nav > button > svg {
+  width: 20px;
+}
+.aac-picture-nav > button > svg + svg {
+  display: none;
+}
+.aac-core-thumbnails {
+  display: flex;
+}
+.aac-core-thumbnails img {
+  width: 24px;
+  height: 28px;
+  object-fit: contain;
+}
+.aac-essential-pictures {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.aac-picture-browser .aac-essential-pictures .aac-word {
+  min-height: 92px;
+  padding: 7px;
+  gap: 3px;
+}
+.aac-picture-browser .aac-essential-pictures .aac-word-picture {
+  width: 48px;
+  height: 48px;
+  padding: 3px;
+  background: #fff;
+  border-radius: 8px;
+}
+.aac-picture-browser .aac-essential-pictures .aac-word-label {
+  font-size: 15px;
+}
+.aac-picture-groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.aac-picture-folder {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  border: 2px solid #cedfce;
+  border-radius: 18px 18px 9px 9px;
+  padding: 14px;
+  background: #edf3e9;
+  color: #254b46;
+  min-width: 0;
+}
+.aac-folder-collage {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  gap: 6px;
+}
+.aac-folder-collage img {
+  width: 100%;
+  height: 90px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid #d5e3d1;
+  border-radius: 12px;
+  padding: 8px;
+}
+.aac-folder-collage img:nth-child(2) {
+  transform: translateY(-5px);
+}
+.aac-folder-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 17px;
+  text-align: left;
+  gap: 8px;
+  line-height: 1.35;
+}
+.aac-folder-label svg {
+  width: 22px;
+  flex-shrink: 0;
+}
+.aac-picture-browser .aac-visual-words {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+.aac-picture-browser .aac-visual-words .aac-word {
+  min-height: 155px;
+  padding: 10px 6px;
+}
+.aac-picture-browser .aac-visual-words .aac-word-picture {
+  width: 106px;
+  height: 106px;
+  max-width: 100%;
+  padding: 5px;
+  background: #fff;
+  border-radius: 10px;
+}
+.aac-picture-browser .aac-visual-words .aac-word-label {
+  font-size: 18px;
+}
+.aac-pinned-pictures {
+  margin: 22px 0 12px;
+}
+.aac-pinned-pictures h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+.aac-pinned-pictures .aac-section-row {
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.aac-pin-slots {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+.aac-pin-slot {
+  min-width: 0;
+  display: flex;
+}
+.aac-pin-slot > button {
+  width: 100%;
+}
+.aac-pin-slot .aac-word {
+  min-height: 136px;
+}
+.aac-pin-slot .aac-word-picture {
+  width: 80px;
+  height: 80px;
+  max-width: 100%;
+  padding: 4px;
+  background: #fff;
+}
+.aac-empty-pin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 136px;
+  border: 2px dashed #c5d4c8;
+  color: #536b5e;
+  background: #f4f7f1;
+  border-radius: 13px;
+  font-size: 13px !important;
+}
+.aac-pin-editor[open] {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.aac-pin-editor > .aac-dialog-head,
+.aac-pin-actions {
+  flex-shrink: 0;
+}
+.aac-pin-content {
+  overflow-y: auto;
+  min-height: 0;
+}
+.aac-pin-picker {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+}
+.aac-pin-picker > button {
+  flex-direction: column;
+  padding: 4px;
+  gap: 3px;
+}
+.aac-pin-picker img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+.aac-pin-picker [aria-pressed='true'] {
+  outline: 3px solid #1a6c5d;
+  outline-offset: -3px;
+  background: #e4f1e7;
+}
+.aac-pin-options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.aac-pin-options .aac-word {
+  min-height: 115px;
+  padding: 7px;
+}
+.aac-pin-options .aac-word-picture {
+  width: 66px;
+  height: 66px;
+  max-width: 100%;
+  padding: 3px;
+}
+.aac-pin-options .aac-word-label {
+  font-size: 15px;
+}
+.aac-pin-actions {
+  border-top: 1px solid #dfe6dc;
+  padding: 12px 18px;
+  margin: 0;
+}
+.aac-photo-tip {
+  font-size: 13px;
+  color: var(--muted);
+}
+@media (max-width: 1200px) {
+  .aac-discovery-tools .aac-browse-toggle > svg {
+    display: none;
+  }
+  .aac-picture-browser .aac-visual-words {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .aac-folder-collage img {
+    height: 70px;
+    padding: 5px;
+  }
+  .aac-pin-slots {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 767px) {
+  .aac-picture-nav {
+    gap: 6px;
+  }
+  .aac-picture-nav h2 {
+    font-size: 14px;
+  }
+  .aac-picture-nav > button {
+    font-size: 12px;
+    padding: 5px 6px;
+    gap: 3px;
+  }
+  .aac-core-thumbnails img {
+    width: 20px;
+  }
+  .aac-essential-pictures {
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .aac-picture-browser .aac-essential-pictures .aac-word {
+    min-height: 84px;
+    padding: 5px 3px;
+  }
+  .aac-picture-browser .aac-essential-pictures .aac-word-label {
+    font-size: 14px;
+  }
+  .aac-picture-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .aac-picture-folder {
+    padding: 10px 8px;
+    gap: 8px;
+  }
+  .aac-folder-collage {
+    gap: 3px;
+  }
+  .aac-folder-collage img {
+    height: 60px;
+    padding: 3px;
+    border-radius: 7px;
+  }
+  .aac-folder-label {
+    font-size: 14px;
+    gap: 3px;
+  }
+  .aac-picture-browser .aac-visual-words {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .aac-picture-browser .aac-visual-words .aac-word {
+    min-height: 127px;
+    padding: 8px 4px;
+  }
+  .aac-picture-browser .aac-visual-words .aac-word-picture {
+    width: 84px;
+    height: 84px;
+  }
+  .aac-picture-browser .aac-visual-words .aac-word-label {
+    font-size: 17px;
+  }
+  .aac-pin-slot .aac-word-label {
+    font-size: 17px;
+  }
+  .aac-pin-picker {
+    gap: 4px;
+  }
+  .aac-pin-content {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .aac-pin-options {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.density-large .aac-picture-browser .aac-visual-words {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.density-large .aac-picture-browser .aac-visual-words .aac-word-picture {
+  width: 120px;
+  height: 120px;
+}
+.density-large .aac-picture-browser .aac-visual-words .aac-word {
+  min-height: 175px;
+}
+.density-large .aac-pin-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.density-large .aac-pin-options .aac-word-picture {
+  width: 100px;
+  height: 100px;
+}
+.density-large .aac-picture-browser .aac-essential-pictures .aac-word-picture {
+  width: 90px;
+  height: 90px;
+  max-width: 100%;
+}
+.density-large .aac-pin-slot .aac-word-picture {
+  width: 100px;
+  height: 100px;
+}
+.aac-large-text .aac-picture-browser .aac-word-label,
+.aac-large-text .aac-pin-options .aac-word-label {
+  font-size: 23px;
+}
+.aac-large-text .aac-folder-label {
+  font-size: 20px;
+}
+.aac-high-contrast .aac-picture-folder {
+  border: 2px solid #fff;
+  background: #111;
+  color: #fff;
+}
+.aac-high-contrast .aac-word.aac-just-picked {
+  outline-color: #09553b;
+  background: #e4f1e7;
+}
+@media (max-width: 767px) {
+  .density-large .aac-picture-browser .aac-visual-words,
+  .density-large .aac-essential-pictures,
+  .density-large .aac-pin-slots {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
