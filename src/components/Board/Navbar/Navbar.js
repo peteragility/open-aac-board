@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import { Scannable } from 'react-scannable';
 import { IconButton } from '@material-ui/core';
 import ScannerDeactivateIcon from '@material-ui/icons/ExploreOff';
-import BoardShare from '../BoardShare';
 import FullScreenButton from '../../UI/FullScreenButton';
 import PrintBoardButton from '../../UI/PrintBoardButton';
 import UserIcon from '../../UI/UserIcon';
@@ -69,7 +68,7 @@ export class Navbar extends React.Component {
   };
 
   onUserIconClick = () => {
-    const { userData, isLocked, intl, history } = this.props;
+    const { isLocked, intl, history } = this.props;
     if (isLocked) {
       const userLock = intl.formatMessage(messages.userProfileLocked);
       this.props.showNotification(userLock);
@@ -90,9 +89,6 @@ export class Navbar extends React.Component {
   render() {
     const {
       className,
-      intl,
-      board,
-      userData,
       title,
       disabled,
       isLocked,
@@ -102,10 +98,6 @@ export class Navbar extends React.Component {
       onLockClick,
       onLockNotify
     } = this.props;
-
-    const isPublic = board && board.isPublic;
-    const isOwnBoard = board && board.email === userData.email;
-    const isLogged = userData && userData.name && userData.email;
 
     return (
       <div className={classNames('Navbar', className)}>
@@ -142,7 +134,6 @@ export class Navbar extends React.Component {
               <PrintBoardButton />
               {!isCordova() && <FullScreenButton />}
               <SettingsButton component={Link} to="/settings" />
-
             </React.Fragment>
           )}
           <div className={'personal__account'}>

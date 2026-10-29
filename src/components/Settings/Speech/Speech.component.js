@@ -10,11 +10,9 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Slider from '@material-ui/core/Slider';
 import Chip from '@material-ui/core/Chip';
-import { IconButton, CircularProgress, Button } from '@material-ui/core';
-import CloudIcon from '@material-ui/icons/Cloud';
+import { Button } from '@material-ui/core';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
-import ApiKeyTextField from '../../UI/FormItems/ApiKeyTextField';
 import { isCordova } from '../../../cordova-util';
 import {
   MIN_PITCH,
@@ -322,7 +320,9 @@ const Speech = ({
         </List>
       </Paper>
       <Paper style={{ marginTop: 10, padding: 20 }}>
-        Device voices are free to use here. For offline speech, install a voice in your device settings and test it in airplane mode. You can also record audio directly in a tile.
+        Device voices are free to use here. For offline speech, install a voice
+        in your device settings and test it in airplane mode. You can also
+        record audio directly in a tile.
       </Paper>
       {langVoices.length && (
         <Menu

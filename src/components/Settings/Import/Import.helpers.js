@@ -212,8 +212,12 @@ export async function obzImportAdapter(file, intl, allBoards) {
   }
 
   const keys = Object.keys(zipFile.files);
-  const unpackedBytes = keys.reduce((total, key) => total + (zipFile.files[key]._data?.uncompressedSize || 0), 0);
-  if (keys.length > 10000 || unpackedBytes > 64 * 1024 * 1024) throw new Error('Archive contents exceed the import limit.');
+  const unpackedBytes = keys.reduce(
+    (total, key) => total + (zipFile.files[key]._data?.uncompressedSize || 0),
+    0
+  );
+  if (keys.length > 10000 || unpackedBytes > 64 * 1024 * 1024)
+    throw new Error('Archive contents exceed the import limit.');
   const boardKeys = keys.filter(
     (k) => !zipFile.files[k].dir && k.endsWith(IMPORT_PATHS.boards)
   );
@@ -296,7 +300,18 @@ export async function obfImportAdapter(file, intl, allBoards) {
 }
 
 export async function requestQuota(json) {
-  const size = JSON.stringify(json).length;
+  const size = new Blob([JSON.stringify(json)]).size;
+  if (navigator.storage?.estimate) {
+    const { quota, usage } = await navigator.storage.estimate();
+    if (
+      Number.isFinite(quota) &&
+      Number.isFinite(usage) &&
+      quota - usage < size * 2
+    ) {
+      throw new Error('There is not enough browser storage for this backup.');
+    }
+    return size;
+  }
   if (size > 1024 * 1024 * 4) {
     const requestQuotaAvailable =
       navigator &&
@@ -320,8 +335,6 @@ export async function requestQuota(json) {
       } catch (e) {
         throw new Error(e);
       }
-    } else {
-      throw new Error("Can't request quota");
     }
   }
 

@@ -17,13 +17,7 @@ import {
   updateConnectivity
 } from '../App/App.actions';
 import { getApiObjects } from '../Board/Board.actions';
-import {
-  isCordova,
-  isElectron,
-  onCvaResume,
-  cleanUpCvaOnResume
-} from '../../cordova-util';
-import { appInsights } from '../../appInsights';
+import { onCvaResume, cleanUpCvaOnResume } from '../../cordova-util';
 
 // Module-scoped so the sync throttle survives AppContainer remounts but still
 // resets on a real app launch.
@@ -71,7 +65,6 @@ export class AppContainer extends Component {
       this.handleNewContentAvailable,
       this.handleContentCached
     );
-
 
     // Set initial connection status and register event listeners
     if (!navigator.onLine) {

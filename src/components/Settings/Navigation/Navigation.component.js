@@ -22,7 +22,6 @@ import { NAVIGATION_BUTTONS_STYLES } from './Navigation.constants';
 
 import './Navigation.css';
 import ResetToursItem from '../../UI/ResetToursItem';
-import PremiumFeature from '../../PremiumFeature';
 
 const propTypes = {
   /**

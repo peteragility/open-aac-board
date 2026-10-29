@@ -15,7 +15,7 @@ if [[ -n "$(git status --porcelain)" ]]; then
 fi
 aws sts get-caller-identity --region "$AAC_REGION" --query Arn --output text
 if [[ ! -d node_modules ]]; then
-  echo 'Dependencies are missing. With installation approval, run npm ci first.' >&2
+  echo 'Dependencies are missing. Run npm ci first.' >&2
   exit 1
 fi
 npm run test:local
@@ -30,7 +30,7 @@ AAC_BUCKET="$(aws cloudformation describe-stacks --stack-name "$AAC_STACK" --reg
 AAC_DISTRIBUTION="$(aws cloudformation describe-stacks --stack-name "$AAC_STACK" --region "$AAC_REGION" --query 'Stacks[0].Outputs[?OutputKey==`DistributionId`].OutputValue' --output text)"
 AAC_URL="$(aws cloudformation describe-stacks --stack-name "$AAC_STACK" --region "$AAC_REGION" --query 'Stacks[0].Outputs[?OutputKey==`AppUrl`].OutputValue' --output text)"
 # Upload assets before HTML. Keep older assets for open tabs during updates.
-aws s3 sync build/ "s3://$AAC_BUCKET/" --region "$AAC_REGION" --exclude '*.html' --exclude 'service-worker.js' --cache-control 'public,max-age=3600' --only-show-errors
+aws s3 sync build/ "s3://$AAC_BUCKET/" --region "$AAC_REGION" --exclude 'static/*' --exclude '*.html' --exclude 'service-worker.js' --cache-control 'public,max-age=3600' --only-show-errors
 aws s3 sync build/static/ "s3://$AAC_BUCKET/static/" --region "$AAC_REGION" --cache-control 'public,max-age=31536000,immutable' --only-show-errors
 aws s3 cp build/service-worker.js "s3://$AAC_BUCKET/service-worker.js" --region "$AAC_REGION" --cache-control 'no-cache,no-store,must-revalidate' --content-type 'application/javascript' --only-show-errors
 aws s3 cp build/index.html "s3://$AAC_BUCKET/index.html" --region "$AAC_REGION" --cache-control 'no-cache,no-store,must-revalidate' --content-type 'text/html' --only-show-errors

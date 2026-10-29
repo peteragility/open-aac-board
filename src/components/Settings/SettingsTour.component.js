@@ -3,16 +3,9 @@ import PropTypes from 'prop-types';
 import Joyride, { STATUS } from 'react-joyride';
 import messages from './Settings.messages';
 import { FormattedMessage, intlShape } from 'react-intl';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper/core';
-import 'swiper/swiper.min.css';
-import 'swiper/components/navigation/navigation.min.css';
-import 'swiper/components/pagination/pagination.min.css';
 
 import './Settings.css';
 import { isCordova } from '../../cordova-util';
-
-SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 const propTypes = {
   isSettingsTourEnabled: PropTypes.bool.isRequired,
@@ -94,31 +87,51 @@ let settingsTourImages = {
   ]
 };
 
+function TourSlides({ items, intl }) {
+  const [index, setIndex] = useState(0);
+  const item = items[index];
+  return (
+    <section aria-label="Settings examples">
+      <h2>
+        <FormattedMessage {...item.title} />
+      </h2>
+      <img
+        src={item.src}
+        alt={intl.formatMessage(item.title)}
+        style={{ maxWidth: '100%', maxHeight: 200, objectFit: 'contain' }}
+      />
+      <p>
+        <FormattedMessage {...item.description} />
+      </p>
+      {items.length > 1 && (
+        <div>
+          <button
+            type="button"
+            disabled={index === 0}
+            onClick={() => setIndex(index - 1)}
+            aria-label="Previous example"
+          >
+            ←
+          </button>
+          <span aria-live="polite">
+            {' '}
+            {index + 1} / {items.length}{' '}
+          </span>
+          <button
+            type="button"
+            disabled={index === items.length - 1}
+            onClick={() => setIndex(index + 1)}
+            aria-label="Next example"
+          >
+            →
+          </button>
+        </div>
+      )}
+    </section>
+  );
+}
+
 function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
-  const [tooltipSwiperText, setTooltipSwiperText] = useState({
-    title: '',
-    description: ''
-  });
-
-  const handleOnSlideChange = (sectionEnabled, index) => {
-    for (const section in settingsTourImages) {
-      if (section === sectionEnabled) {
-        setTooltipSwiperText({
-          title: (
-            <FormattedMessage
-              {...settingsTourImages[sectionEnabled][index].title}
-            />
-          ),
-          description: (
-            <FormattedMessage
-              {...settingsTourImages[sectionEnabled][index].description}
-            />
-          )
-        });
-      }
-    }
-  };
-
   let settingsTourSteps = [
     {
       target: 'body',
@@ -175,114 +188,33 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
       hideCloseButton: true,
       target: '#Display',
       content: (
-        <div className="Settings__Tour__Step__Swiper__Container">
-          <h2 className="Settings_Tour_Tooltip_Swiper_Title">
-            {tooltipSwiperText.title}
-          </h2>
-          <Swiper
-            navigation={true}
-            pagination={true}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: true
-            }}
-            className="mySwiper"
-            onSlideChange={(swiper) => {
-              handleOnSlideChange('display', swiper.realIndex);
-            }}
-            onInit={(swiper) => {
-              handleOnSlideChange('display', swiper.realIndex);
-            }}
-          >
-            {settingsTourImages.display.map((imgData, inx) => (
-              <SwiperSlide key={`slide-${inx}`}>
-                <div className="swiperSlideContentContainer">
-                  <img
-                    src={imgData.src}
-                    alt={intl.formatMessage(imgData.title)}
-                    key={intl.formatMessage(imgData.title)}
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div>{tooltipSwiperText.description}</div>
-        </div>
+        <TourSlides
+          key="display"
+          items={settingsTourImages.display}
+          intl={intl}
+        />
       )
     },
     {
       hideCloseButton: true,
       target: '#Scanning',
       content: (
-        <div>
-          <h2 className="Settings_Tour_Tooltip_Swiper_Title">
-            {tooltipSwiperText.title}
-          </h2>
-          <Swiper
-            watchOverflow={true}
-            onSlideChange={(swiper) => {
-              handleOnSlideChange('scanning', swiper.realIndex);
-            }}
-            onInit={(swiper) => {
-              handleOnSlideChange('scanning', swiper.realIndex);
-            }}
-          >
-            {settingsTourImages.scanning.map((imgData, inx) => (
-              <SwiperSlide key={intl.formatMessage(imgData.title)}>
-                <div className="swiperSlideContentContainer Settings__Tour__Scanning__Img">
-                  <img
-                    style={{ height: '100% ' }}
-                    src={imgData.src}
-                    alt={intl.formatMessage(imgData.title)}
-                    key={intl.formatMessage(imgData.title)}
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div className="Settings_Tour_Description_Scanning">
-            {tooltipSwiperText.description}
-          </div>
-        </div>
+        <TourSlides
+          key="scanning"
+          items={settingsTourImages.scanning}
+          intl={intl}
+        />
       )
     },
     {
       hideCloseButton: true,
       target: '#Navigation',
       content: (
-        <div className="Settings__Tour__Step__Swiper__Container">
-          <h2 className="Settings_Tour_Tooltip_Swiper_Title">
-            {tooltipSwiperText.title}
-          </h2>
-          <Swiper
-            navigation={true}
-            pagination={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: true
-            }}
-            className="mySwiper"
-            onSlideChange={(swiper) => {
-              handleOnSlideChange('navigation', swiper.realIndex);
-            }}
-            onInit={(swiper) => {
-              handleOnSlideChange('navigation', swiper.realIndex);
-            }}
-          >
-            {settingsTourImages.navigation.map((imgData, inx) => (
-              <SwiperSlide key={intl.formatMessage(imgData.title)}>
-                <div className="swiperSlideContentContainer">
-                  <img
-                    src={imgData.src}
-                    alt={intl.formatMessage(imgData.title)}
-                    key={intl.formatMessage(imgData.title)}
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div>{tooltipSwiperText.description}</div>
-        </div>
+        <TourSlides
+          key="navigation"
+          items={settingsTourImages.navigation}
+          intl={intl}
+        />
       )
     }
   ];

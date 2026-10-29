@@ -1,6 +1,5 @@
 import * as azureSdk from 'microsoft-cognitiveservices-speech-sdk';
 import { isAndroid } from '../../cordova-util';
-import API from '../../api';
 import {
   AZURE_SPEECH_SERVICE_REGION,
   AZURE_SPEECH_SUBSCR_KEY,
@@ -161,8 +160,12 @@ const tts = {
       return [];
     }
   },
-  async fetchAzureVoices() { return []; },
-  async fetchElevenLabsVoices() { return []; },
+  async fetchAzureVoices() {
+    return [];
+  },
+  async fetchElevenLabsVoices() {
+    return [];
+  },
   async getPlatformVoicesAsync() {
     return new Promise((resolve) => {
       const VOICES_TIMEOUT = 7000;

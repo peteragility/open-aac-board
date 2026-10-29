@@ -4,11 +4,11 @@ Free communication boards, saved on your device. An independent GPLv3 derivative
 
 This first web release keeps Cboard’s board editor, sentence output, device speech, recording, local pictures, import/export, printing, scanning, and gaze controls. It removes subscription gates, account screens, upstream analytics, payment scripts, hosted speech configuration, and backend connections. Boards are stored in a separate local database. Speech and accessibility behavior still require testing on the target devices before everyday use.
 
-Implementation status: this is the initial web fork. A production build, browser smoke test, and real-device speech/accessibility checks are release gates; it is not yet a published service.
+Implementation status: early web preview. The production build and automated browser checks cover startup, synthetic speech, saved state, offline reopening, and backup import/export. Real-device speech, microphone, scanning and gaze checks remain necessary before everyday use.
 
 ## Development
 
-Use Node.js 22 LTS or a compatible supported version. With permission to install the existing dependencies:
+Use Node.js 22 LTS or a compatible supported version. Install the existing locked dependencies:
 
 ```sh
 npm ci
@@ -27,23 +27,29 @@ The web tests use an already installed Chrome. Set `AAC_CHROME_PATH` if necessar
 
 `infrastructure/hosting.json` provisions a private, encrypted S3 bucket in `ap-east-1`, a CloudFront distribution using Origin Access Control, HTTPS, and response security headers. CloudFront is global; the origin is in Hong Kong. User boards and recordings are stored on the user’s device, not in S3.
 
-After authenticating the intended AWS profile, approving dependency installation, testing, and committing the release:
+After authenticating the intended AWS profile, installing dependencies, and committing the release:
 
 ```sh
-AWS_PROFILE=default npm run deploy:aws
+AWS_PROFILE=aidecide npm run deploy:aws
 ```
 
 The script publishes the corresponding source archive alongside every release, even while the development GitHub repository is private. No AWS keys belong in the app or repository. Deployment creates billable S3/CloudFront resources; no always-on server or database is provisioned. The bucket is retained if the stack is deleted, to avoid accidental loss of releases.
 
+The script runs the production build and tests before provisioning or uploading. Initial offline preparation currently caches approximately 84 MB of app files and symbols; allow this download to finish on a suitable connection.
+
+## Inherited dependency maintenance
+
+The upstream lockfile is retained. On 2026-10-29, `npm audit --omit=dev` reported 19 findings (1 critical, 9 high, 6 moderate, 3 low); the full dependency tree reported 93. Swiper, the critical finding, is no longer imported by the app: tour examples use ordinary buttons. It remains in the inherited dependency manifest. Other findings still need dependency updates and a reachability review before a wider release. Automated smoke tests are not a security audit.
+
 ## Speech APIs
 
-| Capability | First release | Later option |
-| --- | --- | --- |
-| Text-to-speech (TTS) | Device voices through Web Speech / existing native adapter | Amazon Polly behind our authenticated API, with limits and caching |
-| Voice recordings | Browser microphone; audio saved with tiles | Native recording adapter |
-| Speech-to-text (STT) | Not required for picture-to-speech communication | Amazon Transcribe for optional caregiver dictation / conversation captions |
-| Accounts and sync | Export/import files | Our own backend after authorization and data-isolation tests |
-| AI sentence rewriting | Not offered | Optional, explicit user-controlled feature only |
+| Capability            | First release                                              | Later option                                                               |
+| --------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Text-to-speech (TTS)  | Device voices through Web Speech / existing native adapter | Amazon Polly behind our authenticated API, with limits and caching         |
+| Voice recordings      | Browser microphone; audio saved with tiles                 | Native recording adapter                                                   |
+| Speech-to-text (STT)  | Not required for picture-to-speech communication           | Amazon Transcribe for optional caregiver dictation / conversation captions |
+| Accounts and sync     | Export/import files                                        | Our own backend after authorization and data-isolation tests               |
+| AI sentence rewriting | Not offered                                                | Optional, explicit user-controlled feature only                            |
 
 AWS documents Cantonese in [Polly](https://docs.aws.amazon.com/polly/latest/dg/supported-languages.html) and [Transcribe](https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html), and lists Hong Kong endpoints for both. Verify the selected voice engine, language and batch/streaming feature in the region before integration. Device voices vary by browser and OS; an available browser voice may use an online OS service. Test in airplane mode and provide recordings where necessary.
 

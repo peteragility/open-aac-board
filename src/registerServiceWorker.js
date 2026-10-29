@@ -29,7 +29,7 @@ export default function register(onNewContentAvailable, onContentCached) {
       return;
     }
 
-    window.addEventListener('load', () => {
+    const registerWhenReady = () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
       if (!isLocalhost) {
@@ -37,9 +37,12 @@ export default function register(onNewContentAvailable, onContentCached) {
         registerValidSW(swUrl, onNewContentAvailable, onContentCached);
       } else {
         // This is running on localhost. Lets check if a service worker still exists or not.
-        checkValidServiceWorker(swUrl);
+        checkValidServiceWorker(swUrl, onNewContentAvailable, onContentCached);
       }
-    });
+    };
+    // Persisted state can finish loading after the window load event.
+    if (document.readyState === 'complete') registerWhenReady();
+    else window.addEventListener('load', registerWhenReady, { once: true });
   }
 }
 
@@ -78,7 +81,11 @@ function registerValidSW(
     });
 }
 
-function checkValidServiceWorker(swUrl) {
+function checkValidServiceWorker(
+  swUrl,
+  onNewContentAvailable,
+  onContentCached
+) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl)
     .then((response) => {
@@ -95,7 +102,7 @@ function checkValidServiceWorker(swUrl) {
         });
       } else {
         // Service worker found. Proceed as normal.
-        registerValidSW(swUrl);
+        registerValidSW(swUrl, onNewContentAvailable, onContentCached);
       }
     })
     .catch(() => {

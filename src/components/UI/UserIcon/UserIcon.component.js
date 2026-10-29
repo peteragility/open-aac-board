@@ -8,7 +8,6 @@ import green from '@material-ui/core/colors/green';
 import AccountIcon from '@material-ui/icons/SaveAlt';
 
 import IconButton from '../IconButton';
-import messages from './UserIcon.messages';
 
 const propTypes = {
   /**
@@ -52,10 +51,7 @@ export const UserIcon = ({ intl, user, classes, ...other }) => {
   }
 
   return (
-    <IconButton
-      label="Storage and backups"
-      {...other}
-    >
+    <IconButton label="Storage and backups" {...other}>
       <React.Fragment>
         {!user && <AccountIcon />}
         {!!user && (
