@@ -46,12 +46,14 @@ test('start, speak, persist, and reopen offline without third-party services', a
     });
   });
   await page.goto('/');
+  await page.getByRole('button', { name: 'English', exact: true }).click();
   await expect(
     page.getByRole('heading', { name: /Your words.*Your voice/ })
   ).toBeVisible();
   await page
     .getByRole('button', { name: /Open my communication board/ })
     .click();
+  await page.goto('/boards');
   await expect(
     page.locator('button.Tile:not(.Tile--folder)').first()
   ).toBeVisible();
@@ -78,7 +80,7 @@ test('start, speak, persist, and reopen offline without third-party services', a
     await navigator.serviceWorker.ready;
   });
   await context.setOffline(true);
-  await page.goto('/');
+  await page.goto('/boards');
   await expect(
     page.locator('button.Tile:not(.Tile--folder)').first()
   ).toBeVisible();
@@ -120,17 +122,16 @@ test('restore an embedded recording and export a matching backup', async ({
     }
   ];
   await page.goto('/');
+  await page.getByRole('button', { name: 'English', exact: true }).click();
   await page
     .getByRole('button', { name: /Open my communication board/ })
     .click();
   await page.goto('/settings/import');
-  await page
-    .locator('input[type="file"]')
-    .setInputFiles({
-      name: 'backup.json',
-      mimeType: 'application/json',
-      buffer: Buffer.from(JSON.stringify(backup))
-    });
+  await page.locator('input[type="file"]').setInputFiles({
+    name: 'backup.json',
+    mimeType: 'application/json',
+    buffer: Buffer.from(JSON.stringify(backup))
+  });
   await expect(page.getByText(/imported successfully/i)).toBeVisible();
   await page.goto('/settings/export');
   await page.locator('#export-all-select').click();

@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { Scannable } from 'react-scannable';
 import { IconButton } from '@material-ui/core';
 import ScannerDeactivateIcon from '@material-ui/icons/ExploreOff';
+import HomeIcon from '@material-ui/icons/HomeOutlined';
 import FullScreenButton from '../../UI/FullScreenButton';
 import PrintBoardButton from '../../UI/PrintBoardButton';
 import UserIcon from '../../UI/UserIcon';
@@ -103,6 +104,13 @@ export class Navbar extends React.Component {
       <div className={classNames('Navbar', className)}>
         {isLocked && <h2 className="Navbar__title">{title}</h2>}
         <div className="Navbar__group Navbar__group--start">
+          <IconButton
+            component={Link}
+            to="/"
+            aria-label="粵語說話 · Communication home"
+          >
+            <HomeIcon />
+          </IconButton>
           <div className={this.state.backButton ? 'scanner__focused' : ''}>
             <Scannable
               disabled={disabled}

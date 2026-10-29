@@ -11,6 +11,7 @@ import NotFound from '../NotFound';
 import Settings from '../Settings';
 import WelcomeScreen from '../../local/Welcome';
 import StorageNotice from '../../local/StorageNotice';
+import Workspace from '../../local/aac/Workspace';
 import GazeSwitchProvider from '../../providers/GazeSwitchProvider';
 import './App.css';
 
@@ -56,6 +57,7 @@ export class App extends Component {
         <Switch>
           <Route path="/settings" component={Settings} />
           <Route path="/board/:id" component={BoardContainer} />
+          <Route path="/boards" component={BoardContainer} />
           {isDownloadingLang && (
             <Route exact path={'/'}>
               <Redirect to={'/settings/language'} />
@@ -64,9 +66,7 @@ export class App extends Component {
           <Route
             exact
             path="/"
-            component={
-              isFirstVisit && !isLogged ? WelcomeScreen : BoardContainer
-            }
+            component={isFirstVisit && !isLogged ? WelcomeScreen : Workspace}
           />
           <Route component={NotFound} />
         </Switch>

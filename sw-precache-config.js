@@ -25,6 +25,8 @@ module.exports = {
     'build/*.html',
     'build/manifest.json',
     'build/app-icon.svg',
+    'build/app-icon-*.png',
+    'build/audio/**/*.mp3',
     'build/symbols/**/*',
     'build/static/**/!(*map*)',
     ...boardImages

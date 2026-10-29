@@ -1,9 +1,22 @@
 {
   "id": "/",
-  "short_name": "Open AAC",
-  "name": "Open AAC Board",
-  "description": "Free communication boards, saved on your device.",
+  "short_name": "粵語說話",
+  "name": "粵語說話 · Open AAC Board",
+  "lang": "zh-HK",
+  "description": "免費廣東話溝通板，支援英語及普通話。Cantonese-first AAC with English and Mandarin.",
   "icons": [
+    {
+      "src": "/app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
     {
       "src": "/app-icon.svg",
       "sizes": "any",

@@ -19,6 +19,7 @@ import communicatorReducer from './components/Communicator/Communicator.reducer'
 import notificationsReducer from './components/Notifications/Notifications.reducer';
 import subscriptionProviderReducer from './providers/SubscriptionProvider/SubscriptionProvider.reducer';
 import { DEFAULT_BOARDS } from '../src/helpers';
+import { workspaceReducer } from './local/aac/model';
 
 localForage.config({
   name: 'open-aac-board',
@@ -159,6 +160,7 @@ const languagePersistConfig = {
 export default function createReducer() {
   return persistCombineReducers(config, {
     app: appReducer,
+    workspace: workspaceReducer,
     language: persistReducer(languagePersistConfig, languageProviderReducer),
     speech: speechProviderReducer,
     board: boardReducer,

@@ -1,10 +1,14 @@
-# Open AAC Board
+# 粵語說話 · Open AAC Board
 
 Free communication boards, saved on your device. An independent GPLv3 derivative of [Cboard](https://github.com/cboard-org/cboard), starting from frontend commit `074972386a790b5dcb83a77799f676f457042abe`.
 
-This first web release keeps Cboard’s board editor, sentence output, device speech, recording, local pictures, import/export, printing, scanning, and gaze controls. It removes subscription gates, account screens, upstream analytics, payment scripts, hosted speech configuration, and backend connections. Boards are stored in a separate local database. Speech and accessibility behavior still require testing on the target devices before everyday use.
+The main workspace defaults to Cantonese, with explicit English and Mandarin choices. It provides a fixed-order core word board, multilingual vocabulary search, quick phrases and favourites, saved personal phrases, type-to-speak, a large rotatable partner display, editable visual routines and a break timer. Words can have custom photos, labels in all three languages, and personal recordings per language. Picture scanning uses Space/Enter, with adjustable timing.
 
-Implementation status: early web preview. The production build and automated browser checks cover startup, synthetic speech, saved state, offline reopening, and backup import/export. Real-device speech, microphone, scanning and gaze checks remain necessary before everyday use.
+The workspace adapts to phones and tablets in portrait and landscape, includes safe-area handling and install icons, and offers picture-size, larger-text, high-contrast and optional haptic preferences. The retained Cboard editor and its existing boards remain available under Preferences → Advanced boards & editor. Account screens, subscriptions, analytics, payments and backend connections remain disabled.
+
+Implementation status: early web preview. Tests cover Cantonese voice matching and real MP3 playback without a Cantonese device voice, offline audio, three-language selection, custom pictures/recordings and backups, sentence building, routines, and phone/iPad viewport layouts. Native speech dispatch is tested using fixtures, and recording uses a simulated microphone. Actual iPadOS/Android audio, accessibility hardware and microphone behavior still need physical-device verification. Native app packages are future work.
+
+See the [product comparison and implementation decisions](docs/product-comparison.md) for the analysis of Grid, TD Snap and SuperAAC, delivered features and deferred capabilities.
 
 ## Development
 
@@ -21,7 +25,7 @@ npm run build
 npm run test:web
 ```
 
-The web tests use an already installed Chrome. Set `AAC_CHROME_PATH` if necessary. They use synthetic speech fixtures; actual audio quality and native accessibility need device testing. No cloud account or API key is needed to run the app.
+The web tests use an already installed Chrome. Set `AAC_CHROME_PATH` if necessary. No cloud account or API key is needed to run the app. Dependencies were not added for this workspace.
 
 ## AWS Hong Kong
 
@@ -35,7 +39,7 @@ AWS_PROFILE=default npm run deploy:aws
 
 The script publishes the corresponding source archive alongside every release, even while the development GitHub repository is private. No AWS keys belong in the app or repository. Deployment creates billable S3/CloudFront resources; no always-on server or database is provisioned. The bucket is retained if the stack is deleted, to avoid accidental loss of releases.
 
-The script runs the production build and tests before provisioning or uploading. Initial offline preparation currently caches approximately 84 MB of app files and symbols; allow this download to finish on a suitable connection.
+The script runs the production build and tests before provisioning or uploading. Initial offline preparation currently caches approximately 85 MB of app files, symbols and bundled audio; allow this download to finish on a suitable connection.
 
 ## Inherited dependency maintenance
 
@@ -43,15 +47,17 @@ The upstream lockfile is retained. On 2026-10-29, `npm audit --omit=dev` reporte
 
 ## Speech APIs
 
-| Capability            | First release                                              | Later option                                                               |
-| --------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Text-to-speech (TTS)  | Device voices through Web Speech / existing native adapter | Amazon Polly behind our authenticated API, with limits and caching         |
-| Voice recordings      | Browser microphone; audio saved with tiles                 | Native recording adapter                                                   |
-| Speech-to-text (STT)  | Not required for picture-to-speech communication           | Amazon Transcribe for optional caregiver dictation / conversation captions |
-| Accounts and sync     | Export/import files                                        | Our own backend after authorization and data-isolation tests               |
-| AI sentence rewriting | Not offered                                                | Optional, explicit user-controlled feature only                            |
+| Capability            | First release                                                | Later option                                                               |
+| --------------------- | ------------------------------------------------------------ | -------------------------------------------------------------------------- |
+| Text-to-speech (TTS)  | Strictly matched device voices plus 189 bundled starter MP3s | Optional authenticated speech API for devices without suitable OS voices   |
+| Voice recordings      | Browser microphone; audio saved with tiles                   | Native recording adapter                                                   |
+| Speech-to-text (STT)  | Not required for picture-to-speech communication             | Amazon Transcribe for optional caregiver dictation / conversation captions |
+| Accounts and sync     | Export/import files                                          | Our own backend after authorization and data-isolation tests               |
+| AI sentence rewriting | Not offered                                                  | Optional, explicit user-controlled feature only                            |
 
-AWS documents Cantonese in [Polly](https://docs.aws.amazon.com/polly/latest/dg/supported-languages.html) and [Transcribe](https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html), and lists Hong Kong endpoints for both. Verify the selected voice engine, language and batch/streaming feature in the region before integration. Device voices vary by browser and OS; an available browser voice may use an online OS service. Test in airplane mode and provide recordings where necessary.
+The bundled audio was generated once from the generic catalog using Polly Hiujin, Amy and Zhiyu in Singapore (`ap-southeast-1`); a live API check found no Cantonese neural voice at the Hong Kong endpoint. No user content is sent to Polly. Running `python3 scripts/generate-starter-audio.py` regenerates changed catalog clips using the AWS CLI and can incur synthesis charges. The app itself has no runtime speech API calls or secrets.
+
+Without a matching device voice, included phrases play whole MP3s and word-built sentences can play individual clips. Arbitrary typed text and custom labels require a matching installed voice or a personal recording. The app does not substitute Mandarin for Cantonese. An OS voice may use an online service; try it in airplane mode before relying on it.
 
 ## Mobile path
 
@@ -59,10 +65,14 @@ Keep the board data and interaction model shared. In a later mobile phase, packa
 
 ## Data and recovery
 
-Personal boards, uploaded media and recordings live in browser storage. The app offers storage protection and a write-failure notice; neither replaces backups. Use Settings → Export and test restoring a copy. Uninstalling the app, clearing site data, private browsing and storage eviction can remove the local copy. Imported external media links still depend on their origin; download or replace these before offline use.
+Personal boards, uploaded media and recordings live in browser storage. Preferences → Export workspace backup includes workspace word edits, recordings, photos, saved phrases, favourites, routines and accessibility settings. Restore validates the file and asks before replacing the current workspace. Advanced Cboard boards retain their separate import/export flow under Advanced board backups. Export both when using both workspaces.
+
+The app offers storage protection and a write-failure recovery download; neither replaces backups. Workspace media is bounded so an exported workspace fits the import limit. Uninstalling the app, clearing site data, private browsing and storage eviction can remove the local copy. Imported external media links still depend on their origin.
 
 ## Attribution and licenses
 
 Code: GPL-3.0-only; see [LICENSE.txt](LICENSE.txt). Copyright © 2017–2024 Assistive Technology LLC and Cboard contributors; modifications © 2026 Open AAC Board contributors. See [README.upstream.md](README.upstream.md) for the upstream project and credits. This project is independent and is not endorsed by Cboard or its sponsors.
 
 Mulberry Symbols by Steve Lee: CC BY-SA 4.0. Bundled ARASAAC symbols by Sergio Palao / Government of Aragon: CC BY-NC-SA 4.0. Asset licenses remain separate from the code license. Retain their attribution and noncommercial/share-alike restrictions when distributing symbols and boards. No advertising or subscriptions are included here.
+
+Original pictograms in `public/symbols/open-aac/` and the three-language starter catalog are part of this GPLv3 project. The generic bundled speech clips were synthesized for this app; no voices or content were copied from the reference products.

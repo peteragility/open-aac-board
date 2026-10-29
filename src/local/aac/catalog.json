@@ -1,0 +1,586 @@
+{
+  "categories": [
+    {
+      "id": "core",
+      "icon": "grid",
+      "yue": "常用字詞",
+      "en": "Core words",
+      "cmn": "常用词语"
+    },
+    {
+      "id": "food",
+      "icon": "cup",
+      "yue": "食物飲品",
+      "en": "Food & drink",
+      "cmn": "食物饮品"
+    },
+    {
+      "id": "feelings",
+      "icon": "heart",
+      "yue": "感受需要",
+      "en": "Feelings & needs",
+      "cmn": "感受需要"
+    },
+    {
+      "id": "people",
+      "icon": "people",
+      "yue": "身邊嘅人",
+      "en": "People",
+      "cmn": "身边的人"
+    },
+    {
+      "id": "places",
+      "icon": "home",
+      "yue": "地方活動",
+      "en": "Places & activities",
+      "cmn": "地点和活动"
+    }
+  ],
+  "words": [
+    {
+      "id": "i",
+      "category": "core",
+      "symbol": "/symbols/open-aac/i.svg",
+      "yue": "我",
+      "en": "I",
+      "cmn": "我",
+      "tone": "person"
+    },
+    {
+      "id": "you",
+      "category": "core",
+      "symbol": "/symbols/open-aac/you.svg",
+      "yue": "你",
+      "en": "you",
+      "cmn": "你",
+      "tone": "person"
+    },
+    {
+      "id": "want",
+      "category": "core",
+      "symbol": "/symbols/mulberry/want_,_to.svg",
+      "yue": "想",
+      "en": "want",
+      "cmn": "想",
+      "tone": "action"
+    },
+    {
+      "id": "not-want",
+      "category": "core",
+      "symbol": "/symbols/mulberry/no.svg",
+      "yue": "唔想",
+      "en": "don't want",
+      "cmn": "不想",
+      "tone": "action"
+    },
+    {
+      "id": "yes",
+      "category": "core",
+      "symbol": "/symbols/mulberry/correct.svg",
+      "yue": "係",
+      "en": "yes",
+      "cmn": "是",
+      "tone": "social"
+    },
+    {
+      "id": "no",
+      "category": "core",
+      "symbol": "/symbols/mulberry/no.svg",
+      "yue": "唔係",
+      "en": "no",
+      "cmn": "不是",
+      "tone": "social"
+    },
+    {
+      "id": "eat",
+      "category": "core",
+      "symbol": "/symbols/mulberry/eat_,_to.svg",
+      "yue": "食",
+      "en": "eat",
+      "cmn": "吃",
+      "tone": "action"
+    },
+    {
+      "id": "drink",
+      "category": "core",
+      "symbol": "/symbols/mulberry/drink_,_to.svg",
+      "yue": "飲",
+      "en": "drink",
+      "cmn": "喝",
+      "tone": "action"
+    },
+    {
+      "id": "water",
+      "category": "core",
+      "symbol": "/symbols/mulberry/water.svg",
+      "yue": "水",
+      "en": "water",
+      "cmn": "水",
+      "tone": "thing"
+    },
+    {
+      "id": "more",
+      "category": "core",
+      "symbol": "/symbols/mulberry/more.svg",
+      "yue": "仲要",
+      "en": "more",
+      "cmn": "还要",
+      "tone": "action"
+    },
+    {
+      "id": "help",
+      "category": "core",
+      "symbol": "/symbols/mulberry/help_,_to.svg",
+      "yue": "幫手",
+      "en": "help",
+      "cmn": "帮忙",
+      "tone": "need"
+    },
+    {
+      "id": "stop",
+      "category": "core",
+      "symbol": "/symbols/open-aac/stop.svg",
+      "yue": "停",
+      "en": "stop",
+      "cmn": "停",
+      "tone": "need"
+    },
+    {
+      "id": "go",
+      "category": "core",
+      "symbol": "/symbols/mulberry/go_,_to.svg",
+      "yue": "去",
+      "en": "go",
+      "cmn": "去",
+      "tone": "action"
+    },
+    {
+      "id": "home",
+      "category": "core",
+      "symbol": "/symbols/mulberry/house.svg",
+      "yue": "屋企",
+      "en": "home",
+      "cmn": "家",
+      "tone": "place"
+    },
+    {
+      "id": "toilet",
+      "category": "core",
+      "symbol": "/symbols/mulberry/toilet.svg",
+      "yue": "廁所",
+      "en": "toilet",
+      "cmn": "厕所",
+      "tone": "place"
+    },
+    {
+      "id": "rest",
+      "category": "core",
+      "symbol": "/symbols/mulberry/rest_,_to.svg",
+      "yue": "休息",
+      "en": "rest",
+      "cmn": "休息",
+      "tone": "need"
+    },
+    {
+      "id": "happy",
+      "category": "core",
+      "symbol": "/symbols/mulberry/happy_lady.svg",
+      "yue": "開心",
+      "en": "happy",
+      "cmn": "开心",
+      "tone": "feeling"
+    },
+    {
+      "id": "pain",
+      "category": "core",
+      "symbol": "/symbols/open-aac/pain.svg",
+      "yue": "痛",
+      "en": "pain",
+      "cmn": "痛",
+      "tone": "need"
+    },
+    {
+      "id": "like",
+      "category": "core",
+      "symbol": "/symbols/open-aac/like.svg",
+      "yue": "鍾意",
+      "en": "like",
+      "cmn": "喜欢",
+      "tone": "feeling"
+    },
+    {
+      "id": "finished",
+      "category": "core",
+      "symbol": "/symbols/mulberry/finish.svg",
+      "yue": "做完",
+      "en": "finished",
+      "cmn": "做完了",
+      "tone": "action"
+    },
+    {
+      "id": "please",
+      "category": "core",
+      "symbol": "/symbols/open-aac/please.svg",
+      "yue": "唔該",
+      "en": "please",
+      "cmn": "请",
+      "tone": "social"
+    },
+    {
+      "id": "thanks",
+      "category": "core",
+      "symbol": "/symbols/open-aac/thanks.svg",
+      "yue": "多謝",
+      "en": "thank you",
+      "cmn": "谢谢",
+      "tone": "social"
+    },
+    {
+      "id": "wait",
+      "category": "core",
+      "symbol": "/symbols/mulberry/wait_,_to.svg",
+      "yue": "等陣",
+      "en": "wait",
+      "cmn": "等一下",
+      "tone": "action"
+    },
+    {
+      "id": "again",
+      "category": "core",
+      "symbol": "/symbols/open-aac/again.svg",
+      "yue": "再嚟",
+      "en": "again",
+      "cmn": "再来",
+      "tone": "action"
+    },
+    {
+      "id": "rice",
+      "category": "food",
+      "symbol": "/symbols/mulberry/rice.svg",
+      "yue": "飯",
+      "en": "rice",
+      "cmn": "米饭",
+      "tone": "thing"
+    },
+    {
+      "id": "noodles",
+      "category": "food",
+      "symbol": "/symbols/mulberry/noodles.svg",
+      "yue": "麵",
+      "en": "noodles",
+      "cmn": "面条",
+      "tone": "thing"
+    },
+    {
+      "id": "bread",
+      "category": "food",
+      "symbol": "/symbols/mulberry/bread_slice.svg",
+      "yue": "麵包",
+      "en": "bread",
+      "cmn": "面包",
+      "tone": "thing"
+    },
+    {
+      "id": "apple",
+      "category": "food",
+      "symbol": "/symbols/mulberry/apple.svg",
+      "yue": "蘋果",
+      "en": "apple",
+      "cmn": "苹果",
+      "tone": "thing"
+    },
+    {
+      "id": "milk",
+      "category": "food",
+      "symbol": "/symbols/mulberry/milk_carton.svg",
+      "yue": "奶",
+      "en": "milk",
+      "cmn": "牛奶",
+      "tone": "thing"
+    },
+    {
+      "id": "tea",
+      "category": "food",
+      "symbol": "/symbols/mulberry/tea.svg",
+      "yue": "茶",
+      "en": "tea",
+      "cmn": "茶",
+      "tone": "thing"
+    },
+    {
+      "id": "coffee",
+      "category": "food",
+      "symbol": "/symbols/mulberry/coffee.svg",
+      "yue": "咖啡",
+      "en": "coffee",
+      "cmn": "咖啡",
+      "tone": "thing"
+    },
+    {
+      "id": "juice",
+      "category": "food",
+      "symbol": "/symbols/mulberry/apple_juice.svg",
+      "yue": "果汁",
+      "en": "juice",
+      "cmn": "果汁",
+      "tone": "thing"
+    },
+    {
+      "id": "hungry",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/hungry.svg",
+      "yue": "肚餓",
+      "en": "hungry",
+      "cmn": "饿了",
+      "tone": "feeling"
+    },
+    {
+      "id": "thirsty",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/thirsty.svg",
+      "yue": "口渴",
+      "en": "thirsty",
+      "cmn": "口渴",
+      "tone": "feeling"
+    },
+    {
+      "id": "tired",
+      "category": "feelings",
+      "symbol": "/symbols/open-aac/tired.svg",
+      "yue": "攰",
+      "en": "tired",
+      "cmn": "累了",
+      "tone": "feeling"
+    },
+    {
+      "id": "sad",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/sad_lady.svg",
+      "yue": "唔開心",
+      "en": "sad",
+      "cmn": "难过",
+      "tone": "feeling"
+    },
+    {
+      "id": "scared",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/afraid_lady.svg",
+      "yue": "驚",
+      "en": "scared",
+      "cmn": "害怕",
+      "tone": "feeling"
+    },
+    {
+      "id": "hot",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/hot.svg",
+      "yue": "熱",
+      "en": "hot",
+      "cmn": "热",
+      "tone": "feeling"
+    },
+    {
+      "id": "cold",
+      "category": "feelings",
+      "symbol": "/symbols/open-aac/cold.svg",
+      "yue": "凍",
+      "en": "cold",
+      "cmn": "冷",
+      "tone": "feeling"
+    },
+    {
+      "id": "unwell",
+      "category": "feelings",
+      "symbol": "/symbols/open-aac/unwell.svg",
+      "yue": "唔舒服",
+      "en": "unwell",
+      "cmn": "不舒服",
+      "tone": "need"
+    },
+    {
+      "id": "mum",
+      "category": "people",
+      "symbol": "/symbols/mulberry/mum.svg",
+      "yue": "媽媽",
+      "en": "mum",
+      "cmn": "妈妈",
+      "tone": "person"
+    },
+    {
+      "id": "dad",
+      "category": "people",
+      "symbol": "/symbols/mulberry/dad.svg",
+      "yue": "爸爸",
+      "en": "dad",
+      "cmn": "爸爸",
+      "tone": "person"
+    },
+    {
+      "id": "friend",
+      "category": "people",
+      "symbol": "/symbols/open-aac/friend.svg",
+      "yue": "朋友",
+      "en": "friend",
+      "cmn": "朋友",
+      "tone": "person"
+    },
+    {
+      "id": "teacher",
+      "category": "people",
+      "symbol": "/symbols/mulberry/teacher_1a.svg",
+      "yue": "老師",
+      "en": "teacher",
+      "cmn": "老师",
+      "tone": "person"
+    },
+    {
+      "id": "doctor",
+      "category": "people",
+      "symbol": "/symbols/mulberry/doctor_1a.svg",
+      "yue": "醫生",
+      "en": "doctor",
+      "cmn": "医生",
+      "tone": "person"
+    },
+    {
+      "id": "school",
+      "category": "places",
+      "symbol": "/symbols/mulberry/school_1.svg",
+      "yue": "學校",
+      "en": "school",
+      "cmn": "学校",
+      "tone": "place"
+    },
+    {
+      "id": "park",
+      "category": "places",
+      "symbol": "/symbols/mulberry/tree.svg",
+      "yue": "公園",
+      "en": "park",
+      "cmn": "公园",
+      "tone": "place"
+    },
+    {
+      "id": "bus",
+      "category": "places",
+      "symbol": "/symbols/mulberry/bus.svg",
+      "yue": "巴士",
+      "en": "bus",
+      "cmn": "公共汽车",
+      "tone": "place"
+    },
+    {
+      "id": "play",
+      "category": "places",
+      "symbol": "/symbols/mulberry/play_,_to.svg",
+      "yue": "玩",
+      "en": "play",
+      "cmn": "玩",
+      "tone": "action"
+    },
+    {
+      "id": "sleep",
+      "category": "places",
+      "symbol": "/symbols/mulberry/sleep_on_side_,_to.svg",
+      "yue": "瞓覺",
+      "en": "sleep",
+      "cmn": "睡觉",
+      "tone": "action"
+    },
+    {
+      "id": "brush",
+      "category": "places",
+      "symbol": "/symbols/mulberry/brush_teeth_,_to.svg",
+      "yue": "刷牙",
+      "en": "brush teeth",
+      "cmn": "刷牙",
+      "tone": "action"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "hello",
+      "symbol": "/symbols/mulberry/hello.svg",
+      "yue": "你好！",
+      "en": "Hello!",
+      "cmn": "你好！"
+    },
+    {
+      "id": "need-water",
+      "symbol": "/symbols/mulberry/water.svg",
+      "yue": "我想飲水。",
+      "en": "I want to drink water.",
+      "cmn": "我想喝水。"
+    },
+    {
+      "id": "need-help",
+      "symbol": "/symbols/mulberry/help_,_to.svg",
+      "yue": "唔該幫吓我。",
+      "en": "Please help me.",
+      "cmn": "请帮帮我。"
+    },
+    {
+      "id": "need-toilet",
+      "symbol": "/symbols/mulberry/toilet.svg",
+      "yue": "我想去廁所。",
+      "en": "I need the toilet.",
+      "cmn": "我想去厕所。"
+    },
+    {
+      "id": "need-rest",
+      "symbol": "/symbols/mulberry/rest_,_to.svg",
+      "yue": "我想休息一陣。",
+      "en": "I need a break.",
+      "cmn": "我想休息一下。"
+    },
+    {
+      "id": "feel-unwell",
+      "symbol": "/symbols/open-aac/feel-unwell.svg",
+      "yue": "我唔舒服。",
+      "en": "I don't feel well.",
+      "cmn": "我不舒服。"
+    },
+    {
+      "id": "give-time",
+      "symbol": "/symbols/mulberry/wait_,_to.svg",
+      "yue": "請等一等，等我慢慢講。",
+      "en": "Please wait while I speak.",
+      "cmn": "请等一下，让我慢慢说。"
+    },
+    {
+      "id": "thank-you",
+      "symbol": "/symbols/open-aac/thank-you.svg",
+      "yue": "多謝你！",
+      "en": "Thank you!",
+      "cmn": "谢谢你！"
+    },
+    {
+      "id": "no-thanks",
+      "symbol": "/symbols/mulberry/no.svg",
+      "yue": "唔使喇，多謝。",
+      "en": "No thanks.",
+      "cmn": "不用了，谢谢。"
+    },
+    {
+      "id": "dont-understand",
+      "symbol": "/symbols/mulberry/confused_lady.svg",
+      "yue": "我聽唔明，可以再講一次嗎？",
+      "en": "I don't understand. Can you say it again?",
+      "cmn": "我听不懂，可以再说一次吗？"
+    },
+    {
+      "id": "go-home",
+      "symbol": "/symbols/mulberry/house.svg",
+      "yue": "我想返屋企。",
+      "en": "I want to go home.",
+      "cmn": "我想回家。"
+    },
+    {
+      "id": "try-again",
+      "symbol": "/symbols/open-aac/try-again.svg",
+      "yue": "我想再試一次。",
+      "en": "I want to try again.",
+      "cmn": "我想再试一次。"
+    }
+  ]
+}

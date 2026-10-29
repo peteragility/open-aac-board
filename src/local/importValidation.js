@@ -1,5 +1,7 @@
 const MAX_JSON_CHARS = 32 * 1024 * 1024;
 const FORBIDDEN_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+// eslint-disable-next-line no-control-regex
+const ASCII_CONTROLS = /[\u0000-\u001f]/;
 
 export function parseBoardJSON(text) {
   if (typeof text !== 'string' || text.length > MAX_JSON_CHARS) {
@@ -15,11 +17,10 @@ export function parseBoardJSON(text) {
 function validateMedia(value) {
   if (value == null || value === '') return;
   // Reject ASCII controls before interpreting imported media references.
-  // eslint-disable-next-line no-control-regex
   if (
     typeof value !== 'string' ||
     value.length > MAX_JSON_CHARS ||
-    /[\u0000-\u001f]/.test(value)
+    ASCII_CONTROLS.test(value)
   ) {
     throw new Error('Invalid media reference.');
   }
