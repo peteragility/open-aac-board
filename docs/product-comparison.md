@@ -24,11 +24,11 @@ The starter MP3s were generated once using [Amazon Polly](https://aws.amazon.com
 
 ## Device support and boundaries
 
-The delivered app remains a responsive installable web app. Core targets are iPhone/Android phone widths and iPad/Android tablet widths, including portrait, landscape, safe-area insets and reduced-height screens. PNG install icons and Apple home-screen metadata are included.
+The delivered web app is a mockup and MVP for validating the experience. The production targets are installed iOS/iPadOS apps for iPhone and iPad, and Android apps for phones and tablets. The web MVP exercises those screen sizes, including portrait, landscape, safe-area insets and reduced-height screens. PNG install icons and Apple home-screen metadata support web MVP testing.
 
 Picture scanning selects core-board words with Space/Enter and stops with Escape. Standard controls also remain keyboard accessible. Haptics depend on browser support; iPadOS may not expose vibration. Desktop viewport simulation does not certify physical switches, eye trackers, iPadOS audio behavior, microphone permissions or Android vendor voices.
 
-The speech controller accepts injected platform adapters so later native packaging can replace browser speech/audio without changing the vocabulary model. Native iOS and Android projects, app-store distribution, durable native storage and hardware integration remain future work, as requested.
+The speech controller accepts injected platform adapters so the mobile apps can replace browser speech/audio while sharing the vocabulary model. The [production mobile path](../README.md#production-mobile-path) calls for physical-device speech/recording and offline proofs before choosing the framework, followed by durable native storage, backup sharing, accessibility verification and store packaging. Native iOS/iPadOS and Android projects remain future work, as requested.
 
 ## Data and backup
 

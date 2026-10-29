@@ -2,11 +2,13 @@
 
 Free communication boards, saved on your device. An independent GPLv3 derivative of [Cboard](https://github.com/cboard-org/cboard), starting from frontend commit `074972386a790b5dcb83a77799f676f457042abe`.
 
+The web app is the current mockup and MVP for validating communication workflows and layouts. The production targets are installed iOS/iPadOS apps for iPhone and iPad, and Android apps for phones and tablets.
+
 The main workspace defaults to Cantonese, with explicit English and Mandarin choices. It provides a fixed-order core word board, multilingual vocabulary search, quick phrases and favourites, saved personal phrases, type-to-speak, a large rotatable partner display, editable visual routines and a break timer. Words can have custom photos, labels in all three languages, and personal recordings per language. Picture scanning uses Space/Enter, with adjustable timing.
 
 The workspace adapts to phones and tablets in portrait and landscape, includes safe-area handling and install icons, and offers picture-size, larger-text, high-contrast and optional haptic preferences. The retained Cboard editor and its existing boards remain available under Preferences → Advanced boards & editor. Account screens, subscriptions, analytics, payments and backend connections remain disabled.
 
-Implementation status: early web preview. Tests cover Cantonese voice matching and real MP3 playback without a Cantonese device voice, offline audio, three-language selection, custom pictures/recordings and backups, sentence building, routines, and phone/iPad viewport layouts. Native speech dispatch is tested using fixtures, and recording uses a simulated microphone. Actual iPadOS/Android audio, accessibility hardware and microphone behavior still need physical-device verification. Native app packages are future work.
+Implementation status: web mockup and MVP. Tests cover Cantonese voice matching and real MP3 playback without a Cantonese device voice, offline audio, three-language selection, custom pictures/recordings and backups, sentence building, routines, and phone/iPad viewport layouts. Native speech dispatch is tested using fixtures, and recording uses a simulated microphone. Actual iOS/iPadOS/Android audio, accessibility hardware and microphone behavior still need physical-device verification. Native app packages are future work.
 
 See the [product comparison and implementation decisions](docs/product-comparison.md) for the analysis of Grid, TD Snap and SuperAAC, delivered features and deferred capabilities.
 
@@ -27,7 +29,9 @@ npm run test:web
 
 The web tests use an already installed Chrome. Set `AAC_CHROME_PATH` if necessary. No cloud account or API key is needed to run the app. Dependencies were not added for this workspace.
 
-## AWS Hong Kong
+## Web MVP hosting — AWS Hong Kong
+
+AWS hosts the web mockup and MVP while the mobile experience is validated. Production mobile apps will be distributed through the iOS/iPadOS and Android app stores; any future backend services are a separate decision.
 
 `infrastructure/hosting.json` provisions a private, encrypted S3 bucket in `ap-east-1`, a CloudFront distribution using Origin Access Control, HTTPS, and response security headers. CloudFront is global; the origin is in Hong Kong. User boards and recordings are stored on the user’s device, not in S3.
 
@@ -59,9 +63,13 @@ The bundled audio was generated once from the generic catalog using Polly Hiujin
 
 Without a matching device voice, included phrases play whole MP3s and word-built sentences can play individual clips. Arbitrary typed text and custom labels require a matching installed voice or a personal recording. The app does not substitute Mandarin for Cantonese. An OS voice may use an online service; try it in airplane mode before relying on it.
 
-## Mobile path
+## Production mobile path
 
-Keep the board data and interaction model shared. In a later mobile phase, package the built web UI and implement/test adapters for native speech, microphone, durable file storage, safe-area handling and backup sharing. Cboard’s existing Cordova integrations are preserved as reference; mobile builds are not configured or verified by this web release. Choose Capacitor or the retained Cordova approach after an iOS speech/recording proof of concept.
+1. Validate the workflows, Cantonese vocabulary and phone/tablet layouts in the web MVP. Cantonese remains the default, with English and Mandarin available throughout.
+2. Prove speech, recording and offline operation on physical iPhone, iPad and Android devices before choosing the mobile framework. Reuse the vocabulary, board data and interaction logic where practical; implement platform adapters for OS speech, microphone access, durable database/file storage and backup sharing.
+3. Build and verify the installed apps with bundled offline assets, accessible controls, portrait/landscape layouts, safe-area handling and app lifecycle recovery. Test real device voices, microphone permissions and accessibility input on each target platform before preparing store packages.
+
+Cboard’s existing Cordova integrations are preserved as reference. Mobile projects and store releases are future work; this web MVP does not configure or verify them.
 
 ## Data and recovery
 
