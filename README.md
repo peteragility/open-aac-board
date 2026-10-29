@@ -30,7 +30,7 @@ The web tests use an already installed Chrome. Set `AAC_CHROME_PATH` if necessar
 After authenticating the intended AWS profile, installing dependencies, and committing the release:
 
 ```sh
-AWS_PROFILE=aidecide npm run deploy:aws
+AWS_PROFILE=default npm run deploy:aws
 ```
 
 The script publishes the corresponding source archive alongside every release, even while the development GitHub repository is private. No AWS keys belong in the app or repository. Deployment creates billable S3/CloudFront resources; no always-on server or database is provisioned. The bucket is retained if the stack is deleted, to avoid accidental loss of releases.
