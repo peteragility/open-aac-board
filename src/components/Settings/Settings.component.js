@@ -69,7 +69,16 @@ export class Settings extends PureComponent {
     return [
       {
         subheader: { id: 'openAAC.device', defaultMessage: 'On this device' },
-        settings: [{ icon: <PersonIcon />, text: { id: 'openAAC.storage', defaultMessage: 'Storage and backups' }, url: '/settings/device' }]
+        settings: [
+          {
+            icon: <PersonIcon />,
+            text: {
+              id: 'openAAC.storage',
+              defaultMessage: 'Storage and backups'
+            },
+            url: '/settings/device'
+          }
+        ]
       },
       {
         subheader: messages.language,
@@ -102,8 +111,7 @@ export class Settings extends PureComponent {
             icon: <InfoOutlinedIcon />,
             text: messages.about,
             url: '/settings/about'
-          },
-
+          }
         ]
       }
     ];

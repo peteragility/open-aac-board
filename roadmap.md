@@ -1,34 +1,54 @@
-# Cboard Project Roadmap
+# Open AAC Board Roadmap
 
-This document outlines the development plan from a high level and will be updated as development progresses towards version 2.0. It should be noted that this roadmap applies to the project as a whole (frontend/backend).
+This is the roadmap for the Cantonese-first AAC web app and its planned mobile
+releases. It supersedes the upstream Cboard roadmap retained in history. The
+authoritative phase table with completion checks lives in the
+[README](README.md#production-mobile-path); this file tracks the direction and
+the reasoning.
 
-## ✔️2020 Quarter 4 - Fixed boards support
+## Guiding constraints
 
-The quarter focuses on providing support boards that can be fixed in terms of rows and columns, and easily edited at the same time. This will allow to choose a position on the board to add a new tile, and when deleting a tile when locked, it deletes the tile and other tiles do not move position.
+- Cantonese is the default; English and Mandarin are explicit choices. The app
+  never silently substitutes Mandarin for Cantonese.
+- Device-only storage. No accounts, no sync, no analytics, no payments.
+- Every phase is validated with intended users and communication partners in
+  Hong Kong before the next phase is built.
 
-## 2021 Quarter 1 - Cloud TTS voices
+## Now (web MVP)
 
-The quarter deals mainly with adding the ability to use online services for the text to speech. There are many suitable cloud services (Azure?).
-This will allow to speak more naturally, choosing from more voices and more languages and variants. We can customize voices, and access voices with different speaking styles and emotional tones.
+- Review vocabulary packs with Hong Kong AAC professionals and NGO staff.
+- Simpler everyday communication layouts and direct printing of the current
+  workspace.
+- Jyutping search so partners can find words by romanisation.
+- Share a built message to messaging apps via the Web Share API.
+- Reduce first-load offline download size (precache only referenced symbols).
 
-## 2021 Quarter 2 - Improve navigation between tiles and folders
+## Next
 
-Implement machine learning algorithms to offer automated navigation across boards based on usage data, context (time and location), and text predictions.
-Milestones are:
+- Consistent navigation between the main workspace and the advanced Cboard
+  boards, with a single backup covering both.
+- Optional simpler layout with stable word positions.
+- Automated accessibility checks (axe) alongside the existing viewport checks.
 
-- Platform updates and requirements gathering.
-- Python and Sci-kit in our cloud.
-- Cboard to support automated navigation on the code (UI updates ).
+## Mobile proof of concept
 
-## 2021 Quarter 3 - Launch Machine learning
+Test speech, recording and offline operation on physical iPhone, iPad and
+Android devices before choosing the native framework. Share vocabulary, board
+data and interaction logic between web and native where practical.
 
-The third quarter continues some efforts from Q2, mainly setting up a ML model.
-Milestones are:
+## Mobile beta
 
-- Gathering Data.
-- Define boards set.
-- Implement data collect via Cboard API using anonymous data.
-- Define the model. Decision Trees/Random Forest algorithms?
-- Classification best fit
+Durable native storage, bundled offline assets, backup sharing and accessible
+phone/tablet layouts. Address inherited dependency findings and confirm store
+distribution requirements (see [licensing review](docs/licensing-review.md)).
 
-Launch to production and evaluate the model with production data.
+## Store release
+
+iOS/iPadOS and Android packages, store materials and a release/support
+process, after user testing and beta feedback.
+
+## Explicitly not planned
+
+- Conversation history or server upload of any user content.
+- Accounts, subscriptions, advertising or analytics.
+- AI sentence rewriting unless it becomes an explicit, user-controlled choice.

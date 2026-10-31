@@ -816,9 +816,7 @@ class CommunicatorDialogBoardItem extends React.Component {
               {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && (
                 <div>
                   <IconButton
-                    disabled={
-                      communicator.rootBoard === board.id
-                    }
+                    disabled={communicator.rootBoard === board.id}
                     label={intl.formatMessage(messages.removeBoard)}
                     onClick={() => {
                       addOrRemoveBoard(board);

@@ -169,7 +169,8 @@ export class ImportContainer extends PureComponent {
           importConstants.IMPORT_CONFIG_BY_EXTENSION[ext.toLowerCase()];
         if (importCallback) {
           try {
-            if (file.size > 32 * 1024 * 1024) throw new Error('File exceeds 32 MB.');
+            if (file.size > 32 * 1024 * 1024)
+              throw new Error('File exceeds 32 MB.');
             const jsonFile = await importCallback(
               file,
               this.props.intl,

@@ -38,8 +38,15 @@ import {
 import { getStore } from '../../../store';
 import * as _ from 'lodash';
 import mime from 'mime-types';
-import mongoose from 'mongoose';
 import * as utils from '../../../components/FixedGrid/utils';
+
+// Generates a unique 24-hex-character id, matching the shape of the
+// MongoDB ObjectId values OBF board files expect, without a dependency.
+function generateImageId() {
+  const bytes = new Uint8Array(12);
+  window.crypto.getRandomValues(bytes);
+  return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
+}
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -203,7 +210,7 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
                   ? image
                   : `/${image}`;
 
-            const imageID = new mongoose.Types.ObjectId().toString();
+            const imageID = generateImageId();
             fetchedImages[imageID] = _.defaults({ path }, imageResponse);
             button['image_id'] = imageID;
             images[imageID] = {

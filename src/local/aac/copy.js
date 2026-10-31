@@ -80,6 +80,34 @@ const strings = {
     'Saved to My phrases.',
     '已保存到“我的句子”。'
   ],
+  share: ['分享訊息', 'Share message', '分享消息'],
+  shareShort: ['分享', 'Share', '分享'],
+  shared: [
+    '已開啟分享。如果冇彈出分享視窗，可以複製訊息再貼上。',
+    'Sharing opened. If no share window appeared, copy and paste the message.',
+    '已打开分享。如果没有弹出分享窗口，可复制消息后粘贴。'
+  ],
+  copied: [
+    '已複製訊息，可以貼去其他程式。',
+    'Message copied. Paste it anywhere.',
+    '已复制消息，可粘贴到其他应用。'
+  ],
+  copyFailed: [
+    '複製失敗，請再試一次。',
+    'Could not copy. Please try again.',
+    '复制失败，请重试。'
+  ],
+  installHintTitle: [
+    '加去主畫面，一撳即用',
+    'Add to Home Screen',
+    '添加到主屏幕'
+  ],
+  installHintSteps: [
+    '喺 Safari 撳下方嘅分享按鈕（四方框加箭嘴），再撳「加入主畫面」，之後就可以全螢幕離線用。',
+    'In Safari, tap the Share button (a square with an arrow), then choose "Add to Home Screen". The app then works full-screen and offline.',
+    '在 Safari 中轻点底部的"分享"按钮（带箭头的方块），选择"添加到主屏幕"，之后即可全屏离线使用。'
+  ],
+  installHintDismiss: ['知道了', 'Got it', '知道了'],
   suggestions: ['你可能想講', 'You might want to say', '你可能想说'],
   delete: ['刪除', 'Delete', '删除'],
   partner: ['俾對方睇', 'Show my message', '给对方看'],

@@ -31,7 +31,6 @@ const dndOptions = {
   enableKeyboardEvents: true
 };
 
-
 const renderApp = () => {
   if (isCordova()) {
     initCordovaPlugins();
@@ -40,17 +39,17 @@ const renderApp = () => {
   ReactDOM.render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-          <SpeechProvider>
-            <LanguageProvider>
-              <ThemeProvider>
-                  <Router history={history}>
-                    <DndProvider backend={TouchBackend} options={dndOptions}>
-                      <Route path="/" component={App} />
-                    </DndProvider>
-                  </Router>
-              </ThemeProvider>
-            </LanguageProvider>
-          </SpeechProvider>
+        <SpeechProvider>
+          <LanguageProvider>
+            <ThemeProvider>
+              <Router history={history}>
+                <DndProvider backend={TouchBackend} options={dndOptions}>
+                  <Route path="/" component={App} />
+                </DndProvider>
+              </Router>
+            </ThemeProvider>
+          </LanguageProvider>
+        </SpeechProvider>
       </PersistGate>
     </Provider>,
     document.getElementById('root')

@@ -28,6 +28,7 @@ export const initialWorkspace = {
     speakOnTap: true,
     showScanControl: false,
     pictureBrowsing: false,
+    installHintDismissed: false,
     haptics: false,
     scanDelay: 2,
     rate: 1
@@ -168,6 +169,11 @@ export function validateWorkspace(value) {
     throw new Error('Invalid scanning preference.');
   if (p.pictureBrowsing !== undefined && typeof p.pictureBrowsing !== 'boolean')
     throw new Error('Invalid picture browsing preference.');
+  if (
+    p.installHintDismissed !== undefined &&
+    typeof p.installHintDismissed !== 'boolean'
+  )
+    throw new Error('Invalid install hint preference.');
   const pinnedWords = value.pinnedWords ?? DEFAULT_PINNED_WORDS;
   if (
     !Array.isArray(pinnedWords) ||
@@ -259,6 +265,7 @@ export function validateWorkspace(value) {
       speakOnTap: p.speakOnTap,
       showScanControl: p.showScanControl ?? false,
       pictureBrowsing: p.pictureBrowsing ?? false,
+      installHintDismissed: p.installHintDismissed ?? false,
       haptics: p.haptics,
       scanDelay: p.scanDelay,
       rate: p.rate

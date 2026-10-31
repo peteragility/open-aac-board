@@ -65,7 +65,10 @@ class API {
       ...config
     });
     this.axiosInstance.interceptors.request.use((request) => {
-      if (LOCAL_ONLY) throw new Error('Cloud services are unavailable in this device-only app.');
+      if (LOCAL_ONLY)
+        throw new Error(
+          'Cloud services are unavailable in this device-only app.'
+        );
       return request;
     });
     this.axiosInstance.interceptors.response.use(

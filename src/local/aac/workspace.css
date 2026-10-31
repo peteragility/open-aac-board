@@ -2010,6 +2010,9 @@
   }
 }
 @media (max-width: 359px) {
+  .aac-share .aac-composer-label {
+    display: none;
+  }
   .aac-mobile-brand strong {
     display: none;
   }
@@ -2103,6 +2106,38 @@
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+.aac-install-hint {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+  background: #f4f9f4;
+}
+.aac-install-hint svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--green);
+}
+.aac-install-hint div {
+  flex: 1;
+  min-width: 0;
+}
+.aac-install-hint strong {
+  display: block;
+  font-size: 13px;
+}
+.aac-install-hint p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-soft, #557);
+}
+.aac-install-hint .aac-text-button {
+  flex-shrink: 0;
 }
 .aac-readiness-bar {
   display: flex;

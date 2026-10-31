@@ -142,10 +142,7 @@
             {
               "Id": "hk-s3",
               "DomainName": {
-                "Fn::GetAtt": [
-                  "AppBucket",
-                  "RegionalDomainName"
-                ]
+                "Fn::GetAtt": ["AppBucket", "RegionalDomainName"]
               },
               "OriginAccessControlId": {
                 "Ref": "OriginAccess"
@@ -158,15 +155,8 @@
           "DefaultCacheBehavior": {
             "TargetOriginId": "hk-s3",
             "ViewerProtocolPolicy": "redirect-to-https",
-            "AllowedMethods": [
-              "GET",
-              "HEAD",
-              "OPTIONS"
-            ],
-            "CachedMethods": [
-              "GET",
-              "HEAD"
-            ],
+            "AllowedMethods": ["GET", "HEAD", "OPTIONS"],
+            "CachedMethods": ["GET", "HEAD"],
             "Compress": true,
             "CachePolicyId": {
               "Ref": "CachePolicy"
@@ -178,10 +168,7 @@
               {
                 "EventType": "viewer-request",
                 "FunctionARN": {
-                  "Fn::GetAtt": [
-                    "RouteFunction",
-                    "FunctionARN"
-                  ]
+                  "Fn::GetAtt": ["RouteFunction", "FunctionARN"]
                 }
               }
             ]
@@ -223,10 +210,7 @@
               "Action": "s3:*",
               "Resource": [
                 {
-                  "Fn::GetAtt": [
-                    "AppBucket",
-                    "Arn"
-                  ]
+                  "Fn::GetAtt": ["AppBucket", "Arn"]
                 },
                 {
                   "Fn::Sub": "${AppBucket.Arn}/*"

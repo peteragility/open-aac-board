@@ -592,7 +592,9 @@ export class SymbolSearch extends PureComponent {
           onClose={onClose}
         >
           <FilterBar
-            options={this.state.symbolSets.filter((option) => option.id === SymbolSets.mulberry)}
+            options={this.state.symbolSets.filter(
+              (option) => option.id === SymbolSets.mulberry
+            )}
             onChange={this.handleChangeOption}
           />
           {symbolNotFound}

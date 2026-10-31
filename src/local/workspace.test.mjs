@@ -434,3 +434,51 @@ test('a missing optional label on an edited starter word does not silently rever
   assert.equal(word.translated, false);
   assert.equal(word.text, '暖水');
 });
+
+test('install hint preference round-trips and defaults for older workspaces', () => {
+  const dismissed = validateWorkspace({
+    ...initialWorkspace,
+    preferences: {
+      ...initialWorkspace.preferences,
+      installHintDismissed: true
+    }
+  });
+  assert.equal(dismissed.preferences.installHintDismissed, true);
+  const { preferences, ...legacy } = initialWorkspace;
+  const { installHintDismissed, ...legacyPreferences } = preferences;
+  assert.equal(installHintDismissed, false);
+  assert.equal(
+    validateWorkspace({ ...legacy, preferences: legacyPreferences }).preferences
+      .installHintDismissed,
+    false
+  );
+  assert.throws(
+    () =>
+      validateWorkspace({
+        ...initialWorkspace,
+        preferences: { ...preferences, installHintDismissed: 'yes' }
+      }),
+    /Invalid install hint preference/
+  );
+});
+
+test('share and install hint copy exists in all three languages', async () => {
+  const { copy } = await import('./aac/copy.js');
+  for (const language of ['yue', 'en', 'cmn']) {
+    const c = copy(language);
+    for (const key of [
+      'share',
+      'shareShort',
+      'copied',
+      'copyFailed',
+      'installHintTitle',
+      'installHintSteps',
+      'installHintDismiss'
+    ]) {
+      assert.ok(
+        typeof c[key] === 'string' && c[key].trim(),
+        `${language} ${key}`
+      );
+    }
+  }
+});

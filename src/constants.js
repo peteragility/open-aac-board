@@ -1,6 +1,6 @@
-
 // No backend is used by this distribution. Requests fail before reaching the network.
-export const API_URL = new URL('/_local-api-disabled/', window.location.origin).href;
+export const API_URL = new URL('/_local-api-disabled/', window.location.origin)
+  .href;
 export const ARASAAC_BASE_PATH_API = 'https://api.arasaac.org/api/';
 export const GLOBALSYMBOLS_BASE_PATH_API = 'https://globalsymbols.com/api/v1/';
 

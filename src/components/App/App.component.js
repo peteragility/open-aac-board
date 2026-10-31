@@ -12,7 +12,6 @@ import Settings from '../Settings';
 import WelcomeScreen from '../../local/Welcome';
 import StorageNotice from '../../local/StorageNotice';
 import Workspace from '../../local/aac/Workspace';
-import GazeSwitchProvider from '../../providers/GazeSwitchProvider';
 import './App.css';
 
 export class App extends Component {
@@ -72,7 +71,6 @@ export class App extends Component {
         </Switch>
         <StorageNotice />
         <OfflineNotificationModal />
-        <GazeSwitchProvider />
       </div>
     );
   }

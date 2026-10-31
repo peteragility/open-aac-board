@@ -24,6 +24,7 @@ const paths = {
   home: 'm2 10 10-8 10 8M5 8v14h14V8M9 22v-8h6v8',
   arrow: 'M3 12h17M14 5l7 7-7 7',
   download: 'M12 3v12M6 10l6 6 6-6M3 17v5h18v-5',
+  share: 'M12 15V3M7 7l5-4 5 4M5 12v9h14v-9',
   shield: 'm12 2 9 4v6q-1 7-9 11-8-4-9-11V6ZM7 12l3 3 7-7',
   expand: 'M9 3H3v6M15 3h6v6M3 15v6h6M21 15v6h-6',
   clock: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20ZM12 6v6l4 3',

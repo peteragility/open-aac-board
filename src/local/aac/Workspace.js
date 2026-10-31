@@ -27,6 +27,7 @@ import Routine from './Routine';
 import QuickResponses from './QuickResponses';
 import QuickGuide from './QuickGuide';
 import CategoryTabs from './CategoryTabs';
+import InstallHint from './InstallHint';
 import PictureBrowser from './PictureBrowser';
 import PictureCard from './PictureCard';
 import PinnedWordEditor from './PinnedWordEditor';
@@ -221,6 +222,28 @@ export function Workspace({
       return false;
     } finally {
       if (sequence === speechSequence.current) setSpeaking(false);
+    }
+  }
+  // Share the built message through the system share sheet when available
+  // (WhatsApp, WeChat, Messages…), falling back to the clipboard.
+  async function shareMessage() {
+    const message = text.trim();
+    if (!message) return;
+    stop();
+    setNotice('');
+    if (typeof navigator.share === 'function') {
+      try {
+        await navigator.share({ text: message });
+        return;
+      } catch (error) {
+        if (error?.name === 'AbortError') return;
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(message);
+      setNotice(c.copied);
+    } catch {
+      setNotice(c.copyFailed);
     }
   }
   function selectWord(word) {
@@ -457,6 +480,13 @@ export function Workspace({
             <Icon name="settings" />
           </button>
         </header>
+        <InstallHint
+          language={language}
+          dismissed={preferences.installHintDismissed}
+          onDismiss={() =>
+            update('preferences', { installHintDismissed: true })
+          }
+        />
         <div className="aac-readiness-bar">
           <button
             className={`aac-readiness-voice ${voiceChecked ? '' : 'needs-check'}`}
@@ -589,6 +619,17 @@ export function Workspace({
                     >
                       <Icon name="refresh" />
                       {c.undo}
+                    </button>
+                  )}
+                  {text.trim() && (
+                    <button
+                      className="aac-text-button aac-share"
+                      aria-label={c.share}
+                      title={c.share}
+                      onClick={shareMessage}
+                    >
+                      <Icon name="share" />
+                      <span className="aac-composer-label">{c.shareShort}</span>
                     </button>
                   )}
                   <button

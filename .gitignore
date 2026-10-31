@@ -53,3 +53,6 @@ npm-debug.log*
 /tests/blob-report/
 /tests/playwright/.cache/
 /.playwright-mcp/
+
+# visual studio user files
+*.njsproj.user

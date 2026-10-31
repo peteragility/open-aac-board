@@ -1,5 +1,39 @@
 # Changelog
 
+Changes to the Open AAC Board fork are recorded from 2026-10 onwards. Entries
+below 1.7.1 are inherited from upstream Cboard.
+
+## Unreleased
+
+#### Features
+
+- Share a built message through the device share sheet (WhatsApp, WeChat,
+  Messages…) with a clipboard fallback where sharing is unavailable. The
+  control appears only when a message exists, to keep the composer compact
+  on small phones.
+- One-time Add to Home Screen guidance for iPhone and iPad Safari users,
+  since iOS offers no automatic install prompt. Dismissal is stored with
+  workspace preferences and included in backups.
+
+#### Engineering
+
+- Added a CI workflow running formatting checks, local unit tests and the
+  production build on every push and pull request.
+- Enabled CodeQL security scanning on push, pull requests and a weekly
+  schedule instead of manual runs only.
+- Removed unused inherited dependencies (mongoose, swiper, echarts,
+  react-adsense, application-insights, mediapipe) and the unreachable
+  eye-gaze tracking code and its 22 MB of bundled assets, closing the
+  critical Swiper audit finding.
+- Replaced the ObjectId generator in OBF export with a dependency-free
+  equivalent producing the same id shape.
+- Replaced the stale upstream roadmap with the fork roadmap.
+- Applied the project formatter to previously unformatted files so
+  formatting checks pass from a clean checkout.
+- Removed a stray Visual Studio user options file from the repository.
+- Known deferred: the PayPal subscription components and the Azure/ElevenLabs
+  speech SDK paths remain in the inherited tree pending a focused removal.
+
 ## 1.7.1 (23/12/2020)
 
 #### Bug Fixes:
