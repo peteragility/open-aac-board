@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "scope": "Files under public/ excluding generated notices and the GPL text. Bundled npm assets, including fonts, are documented separately in dependencies.json and THIRD_PARTY_NOTICES.md.",
-  "assetCount": 3958,
+  "assetCount": 3953,
   "assets": [
     {
       "path": "/_redirects",
@@ -2466,41 +2466,6 @@
       "sha256": "689ad0620f152642c3bcbb40872e2e719d1cd428598b0e3410b02cca8c68cb48",
       "license": "Project file or inherited asset; see project notices",
       "provenance": "Open AAC Board / retained Cboard distribution"
-    },
-    {
-      "path": "/mediapipe/face_landmarker.task",
-      "bytes": 3758596,
-      "sha256": "64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff",
-      "license": "Apache-2.0",
-      "provenance": "Google MediaPipe; model verified against official version-1 bundle; licenses/upstream/model-provenance.json"
-    },
-    {
-      "path": "/mediapipe/wasm/vision_wasm_internal.js",
-      "bytes": 316242,
-      "sha256": "6b7686dda814946b8d38b1802c53bc636e4aecf249915ddd25534fb0b7e928b6",
-      "license": "Apache-2.0",
-      "provenance": "Google MediaPipe; model verified against official version-1 bundle; licenses/upstream/model-provenance.json"
-    },
-    {
-      "path": "/mediapipe/wasm/vision_wasm_internal.wasm",
-      "bytes": 9423986,
-      "sha256": "f82a8e6c05e08a44cc9f9e7ec5f845935bcbb1b1500ebe8c2f4812fb4e2917dc",
-      "license": "Apache-2.0",
-      "provenance": "Google MediaPipe; model verified against official version-1 bundle; licenses/upstream/model-provenance.json"
-    },
-    {
-      "path": "/mediapipe/wasm/vision_wasm_nosimd_internal.js",
-      "bytes": 316124,
-      "sha256": "61089619dafdea167a33c1c2a8fe1d6b292675cdd50d3b1b8ce213ea7206e661",
-      "license": "Apache-2.0",
-      "provenance": "Google MediaPipe; model verified against official version-1 bundle; licenses/upstream/model-provenance.json"
-    },
-    {
-      "path": "/mediapipe/wasm/vision_wasm_nosimd_internal.wasm",
-      "bytes": 9294247,
-      "sha256": "38b61feab2fd7934e05cbe9f68baa308978a5e3b7f85c1913bb8ae89b8ef8b97",
-      "license": "Apache-2.0",
-      "provenance": "Google MediaPipe; model verified against official version-1 bundle; licenses/upstream/model-provenance.json"
     },
     {
       "path": "/ogv/ogv-decoder-audio-opus-wasm.js",

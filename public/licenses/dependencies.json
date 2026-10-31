@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "scope": "All installed packages in package-lock.json, including development/build tools. This is broader than the browser bundle and is not a legal clearance or an assertion that every package is redistributed.",
-  "lockfileSha256": "7bd9ca5319cb1c42b0617e7617fcec6f49aba3df4b2c24a73b6453b57f0e8cb5",
-  "packageCount": 2318,
-  "reviewCount": 109,
+  "lockfileSha256": "d5305455be039226d2ef908fac8d2c841cf600de69e8013b0614627afa3e639e",
+  "packageCount": 2282,
+  "reviewCount": 106,
   "packages": [
     {
       "name": "@alloc/quick-lru",
@@ -2644,21 +2644,6 @@
       ]
     },
     {
-      "name": "@ctrl/react-adsense",
-      "version": "1.8.0",
-      "location": "node_modules/@ctrl/react-adsense",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "scttcper/react-adsense",
-      "integrity": "sha512-c95s60v8WYlPgdeZV8gn80jTQdeNSCxHaZcZqNirlm24y/vceHafUcp0t8qemGV+tikKtSAl3vCDVA43jk9DAw==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "da337cfa918334bb9d4c84dd8610485b9a4fecd85b6b373028951028deb2b252"
-        }
-      ]
-    },
-    {
       "name": "@dabh/diagnostics",
       "version": "2.0.8",
       "location": "node_modules/@dabh/diagnostics",
@@ -3980,210 +3965,6 @@
         {
           "file": "LICENSE",
           "sha256": "f776953f07d3086635fd33953bcde47ba66fedaeb9a7cbc6ece2d4cb03cc56f8"
-        }
-      ]
-    },
-    {
-      "name": "@mediapipe/tasks-vision",
-      "version": "0.10.14",
-      "location": "node_modules/@mediapipe/tasks-vision",
-      "developmentOnly": false,
-      "license": "Apache-2.0",
-      "repository": null,
-      "integrity": "sha512-vOifgZhkndgybdvoRITzRkIueWWSiCKuEUXXK6Q4FaJsFvRJuwgg++vqFUMlL0Uox62U5aEXFhHxlhV7Ja5e3Q==",
-      "notices": [
-        {
-          "file": "README.md",
-          "sha256": "7ba4e6e531c8a158020d545025024ab636e0e54bbcdd01dbc37b618506ef3d2e"
-        }
-      ],
-      "review": [
-        "No standalone license/notice file in installed package; inspect README and upstream terms."
-      ]
-    },
-    {
-      "name": "@microsoft/applicationinsights-analytics-js",
-      "version": "2.8.18",
-      "location": "node_modules/@microsoft/applicationinsights-analytics-js",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/microsoft/ApplicationInsights-JS/tree/master/extensions/applicationinsights-analytics-js",
-      "integrity": "sha512-YfuUyTBx8HNGgIwg8N01iwsIO6LaqApNwGXw5YunAw+hqYR6jRmYlseQGTPFvKtq1ebEPJiwK0LjIQw/fOcxHQ==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "904dc4d8749877f1dba1cda48200d2462dccbeb7c134d5e4ef6fa75e0198c8fe"
-        },
-        {
-          "file": "NOTICE",
-          "sha256": "88c7bfe272ff8a305c79644131fceb45e09faa1b9cdabd196b4f50b477f0dd20"
-        }
-      ]
-    },
-    {
-      "name": "@microsoft/applicationinsights-channel-js",
-      "version": "2.8.18",
-      "location": "node_modules/@microsoft/applicationinsights-channel-js",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "github:Microsoft/applicationinsights-js",
-      "integrity": "sha512-KNYk8qeci8AcWKZUqgCElEr1Ef5G+iudq1mN57Sc/8hUONNp2fTfWh1Cm+RUTRIEWAC29uUWGyLhSqiTF3ox1w==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "904dc4d8749877f1dba1cda48200d2462dccbeb7c134d5e4ef6fa75e0198c8fe"
-        },
-        {
-          "file": "NOTICE",
-          "sha256": "88c7bfe272ff8a305c79644131fceb45e09faa1b9cdabd196b4f50b477f0dd20"
-        }
-      ]
-    },
-    {
-      "name": "@microsoft/applicationinsights-common",
-      "version": "2.8.18",
-      "location": "node_modules/@microsoft/applicationinsights-common",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/microsoft/ApplicationInsights-JS/tree/master/shared/AppInsightsCommon",
-      "integrity": "sha512-/PBRmRL6rFCoO3vWpIEHuFnu+TinEYRKWOj+I+XVUH5myZpv+nYvaRdwryVTkmCYxLyL9kxtNn7hQx8DBlhdSw==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "904dc4d8749877f1dba1cda48200d2462dccbeb7c134d5e4ef6fa75e0198c8fe"
-        },
-        {
-          "file": "NOTICE",
-          "sha256": "88c7bfe272ff8a305c79644131fceb45e09faa1b9cdabd196b4f50b477f0dd20"
-        }
-      ]
-    },
-    {
-      "name": "@microsoft/applicationinsights-core-js",
-      "version": "2.8.18",
-      "location": "node_modules/@microsoft/applicationinsights-core-js",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/microsoft/ApplicationInsights-JS/tree/master/shared/AppInsightsCore",
-      "integrity": "sha512-yPHRZFLpnEO0uSgFPM1BLMRRwjoten9YBbn4pJRbCT4PigLnj748knmWsMwXIdcehtkRTYz78kPYa/LWP7nvmA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "904dc4d8749877f1dba1cda48200d2462dccbeb7c134d5e4ef6fa75e0198c8fe"
-        },
-        {
-          "file": "NOTICE",
-          "sha256": "88c7bfe272ff8a305c79644131fceb45e09faa1b9cdabd196b4f50b477f0dd20"
-        }
-      ]
-    },
-    {
-      "name": "@microsoft/applicationinsights-dependencies-js",
-      "version": "2.8.18",
-      "location": "node_modules/@microsoft/applicationinsights-dependencies-js",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/microsoft/ApplicationInsights-JS/tree/master/extensions/applicationinsights-dependencies-js",
-      "integrity": "sha512-XW3m1DEXo2CkTUEeBzXGjoMjud6b1Y1J6W1Nz0RJ3IMC5ptbSOeen5rRDSzcBEUZN75vWvbGmhxVuQTXnnIu2g==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "904dc4d8749877f1dba1cda48200d2462dccbeb7c134d5e4ef6fa75e0198c8fe"
-        },
-        {
-          "file": "NOTICE",
-          "sha256": "88c7bfe272ff8a305c79644131fceb45e09faa1b9cdabd196b4f50b477f0dd20"
-        }
-      ]
-    },
-    {
-      "name": "@microsoft/applicationinsights-properties-js",
-      "version": "2.8.18",
-      "location": "node_modules/@microsoft/applicationinsights-properties-js",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/microsoft/ApplicationInsights-JS/tree/master/extensions/applicationinsights-properties-js",
-      "integrity": "sha512-WucPqEzgT20JhjwOPQhgBSal6tlKldUz3c6j5Kpj4Rej95c2vvm1t14lI/p9SvOjZDRK5dMfkuQtvFG7NrUlIA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "904dc4d8749877f1dba1cda48200d2462dccbeb7c134d5e4ef6fa75e0198c8fe"
-        },
-        {
-          "file": "NOTICE",
-          "sha256": "88c7bfe272ff8a305c79644131fceb45e09faa1b9cdabd196b4f50b477f0dd20"
-        }
-      ]
-    },
-    {
-      "name": "@microsoft/applicationinsights-shims",
-      "version": "2.0.2",
-      "location": "node_modules/@microsoft/applicationinsights-shims",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/microsoft/ApplicationInsights-JS/tree/master/tools/shims",
-      "integrity": "sha512-PoHEgsnmcqruLNHZ/amACqdJ6YYQpED0KSRe6J7gIJTtpZC1FfFU9b1fmDKDKtFoUSrPzEh1qzO3kmRZP0betg==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "904dc4d8749877f1dba1cda48200d2462dccbeb7c134d5e4ef6fa75e0198c8fe"
-        },
-        {
-          "file": "NOTICE",
-          "sha256": "88c7bfe272ff8a305c79644131fceb45e09faa1b9cdabd196b4f50b477f0dd20"
-        }
-      ]
-    },
-    {
-      "name": "@microsoft/applicationinsights-web",
-      "version": "2.8.18",
-      "location": "node_modules/@microsoft/applicationinsights-web",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/microsoft/ApplicationInsights-JS",
-      "integrity": "sha512-n6gW9WXr/oHrt2S8waXjYoBqzhPChJNoTPlKm+pwtO3iP+I8dQDuf8Q02RKLgCaWzvEhO/1GSznCECBX0jP+gg==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "904dc4d8749877f1dba1cda48200d2462dccbeb7c134d5e4ef6fa75e0198c8fe"
-        },
-        {
-          "file": "NOTICE",
-          "sha256": "88c7bfe272ff8a305c79644131fceb45e09faa1b9cdabd196b4f50b477f0dd20"
-        }
-      ]
-    },
-    {
-      "name": "@microsoft/dynamicproto-js",
-      "version": "1.1.11",
-      "location": "node_modules/@microsoft/dynamicproto-js",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "git+https://github.com/microsoft/DynamicProto-JS.git",
-      "integrity": "sha512-gNw9z9LbqLV+WadZ6/MMrWwO3e0LuoUH1wve/1iPsBNbgqeVCiB0EZFNNj2lysxS2gkqoF9hmyVaG3MoM1BkxA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "904dc4d8749877f1dba1cda48200d2462dccbeb7c134d5e4ef6fa75e0198c8fe"
-        },
-        {
-          "file": "NOTICE",
-          "sha256": "88c7bfe272ff8a305c79644131fceb45e09faa1b9cdabd196b4f50b477f0dd20"
-        }
-      ]
-    },
-    {
-      "name": "@mongodb-js/saslprep",
-      "version": "1.4.6",
-      "location": "node_modules/@mongodb-js/saslprep",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/mongodb-js/devtools-shared.git",
-      "integrity": "sha512-y+x3H1xBZd38n10NZF/rEBlvDOOMQ6LKUTHqr8R9VkJ+mmQOYtJFxIlkkK8fZrtOiL6VixbOBWMbZGBdal3Z1g==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "01d044f87801e366283c499bd75bf58bdd6abfbc48693244b396e1f153e4d089"
         }
       ]
     },
@@ -6282,21 +6063,6 @@
       ]
     },
     {
-      "name": "@types/webidl-conversions",
-      "version": "7.0.3",
-      "location": "node_modules/@types/webidl-conversions",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
-      "integrity": "sha512-CiJJvcRtIgzadHCYXw7dqEnMNRjhGZlYK05Mj9OyktqV8uVT8fD2BFOB7S1uwBE3Kj2Z+4UyPmFw/Ixgw/LAlA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
-        }
-      ]
-    },
-    {
       "name": "@types/webrtc",
       "version": "0.0.37",
       "location": "node_modules/@types/webrtc",
@@ -6304,21 +6070,6 @@
       "license": "MIT",
       "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
       "integrity": "sha512-JGAJC/ZZDhcrrmepU4sPLQLIOIAgs5oIK+Ieq90K8fdaNMhfdfqmYatJdgif1NDQtvrSlTOGJDUYHIDunuufOg==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
-        }
-      ]
-    },
-    {
-      "name": "@types/whatwg-url",
-      "version": "11.0.5",
-      "location": "node_modules/@types/whatwg-url",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
-      "integrity": "sha512-coYR071JRaHa+xoEvvYqvnIHaVqaYrLPbsufM9BF63HkwI5Lgmy2QR8Q5K/lYDYo5AK82wOvSOS0UsLTpTG7uQ==",
       "notices": [
         {
           "file": "LICENSE",
@@ -9128,21 +8879,6 @@
       ],
       "review": [
         "No standalone license/notice file in installed package; inspect README and upstream terms."
-      ]
-    },
-    {
-      "name": "bson",
-      "version": "6.10.4",
-      "location": "node_modules/bson",
-      "developmentOnly": false,
-      "license": "Apache-2.0",
-      "repository": "mongodb/js-bson",
-      "integrity": "sha512-WIsKqkSC0ABoBJuT1LEX+2HEvNmNKKgnTAyd0fL8qzK4SH2i9NXg+t08YtdZp/V9IZ33cxe3iV4yM0qg8lMQng==",
-      "notices": [
-        {
-          "file": "LICENSE.md",
-          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
-        }
       ]
     },
     {
@@ -12189,21 +11925,6 @@
       ]
     },
     {
-      "name": "dom7",
-      "version": "3.0.0",
-      "location": "node_modules/dom7",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "git+https://github.com/nolimits4web/dom7.git",
-      "integrity": "sha512-oNlcUdHsC4zb7Msx7JN3K0Nro1dzJ48knvBOnDPKJ2GV9wl1i5vydJZUSyOfrkKFDZEud/jBsTk92S/VGSAe/g==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "d3a872d7e699d3c4409583abc70c5bdfc3d9332837a33334879b0175fe858752"
-        }
-      ]
-    },
-    {
       "name": "domain-browser",
       "version": "4.23.0",
       "location": "node_modules/domain-browser",
@@ -12458,63 +12179,6 @@
         {
           "file": "LICENSE",
           "sha256": "50a6b24f8defc31a078aa9799a91d776f83948071574854f12473362aee74d0d"
-        }
-      ]
-    },
-    {
-      "name": "echarts",
-      "version": "5.5.1",
-      "location": "node_modules/echarts",
-      "developmentOnly": false,
-      "license": "Apache-2.0",
-      "repository": "git+https://github.com/apache/echarts.git",
-      "integrity": "sha512-Fce8upazaAXUVUVsjgV6mBnGuqgO+JNDlcgF79Dksy4+wgGpQB2lmYoO4TSweFg/mZITdpGHomw/cNBJZj1icA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "634293835b43a6dd2094fa39182a3d9a6b9ca43b7fdb9ac354e8037af2a3093a"
-        },
-        {
-          "file": "licenses/LICENSE-d3",
-          "sha256": "e1211892da0b0e0585b7aebe8f98c1274fba15bafe47fa1f4ee8a7a502c06304"
-        },
-        {
-          "file": "NOTICE",
-          "sha256": "fa99ac3af859d0e13166906dc53a73ad34a08898da7e8ae83407275496e9e30c"
-        }
-      ]
-    },
-    {
-      "name": "echarts-for-react",
-      "version": "3.0.6",
-      "location": "node_modules/echarts-for-react",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/hustcc/echarts-for-react.git",
-      "integrity": "sha512-4zqLgTGWS3JvkQDXjzkR1k1CHRdpd6by0988TWMJgnvDytegWLbeP/VNZmMa+0VJx2eD7Y632bi2JquXDgiGJg==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "87041126ec70d39c70705a60a7b1cf41168975d3f8f55377bc5fdc0318f2ec67"
-        }
-      ]
-    },
-    {
-      "name": "tslib",
-      "version": "2.3.0",
-      "location": "node_modules/echarts/node_modules/tslib",
-      "developmentOnly": false,
-      "license": "0BSD",
-      "repository": "https://github.com/Microsoft/tslib.git",
-      "integrity": "sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==",
-      "notices": [
-        {
-          "file": "CopyrightNotice.txt",
-          "sha256": "dd835e67a9a297da32f9467d7677a5d02c8e50e10f15da43b810147c79c04b9b"
-        },
-        {
-          "file": "LICENSE.txt",
-          "sha256": "210b19e543130388c68654b7497e967119ce17145f66ab7d85688fbd70f08751"
         }
       ]
     },
@@ -14122,7 +13786,7 @@
       "name": "fast-deep-equal",
       "version": "3.1.3",
       "location": "node_modules/fast-deep-equal",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "git+https://github.com/epoberezkin/fast-deep-equal.git",
       "integrity": "sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==",
@@ -20658,21 +20322,6 @@
       ]
     },
     {
-      "name": "kareem",
-      "version": "2.6.3",
-      "location": "node_modules/kareem",
-      "developmentOnly": false,
-      "license": "Apache-2.0",
-      "repository": "git://github.com/mongoosejs/kareem.git",
-      "integrity": "sha512-C3iHfuGUXK2u8/ipq9LfjFfXFxAZMQJJq7vLS45r3D9Y2xQ/m4S8zaR4zMLFWh9AsNPXmcFfUDhTEO8UIC/V6Q==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "3d7089968bde72b4ee523f374c8a5838f502c7462822c497f3cb644204bc0567"
-        }
-      ]
-    },
-    {
       "name": "keycode",
       "version": "2.2.1",
       "location": "node_modules/keycode",
@@ -21766,21 +21415,6 @@
       ]
     },
     {
-      "name": "memory-pager",
-      "version": "1.5.0",
-      "location": "node_modules/memory-pager",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/mafintosh/memory-pager.git",
-      "integrity": "sha512-ZS4Bp4r/Zoeq6+NLJpP+0Zzm0pR8whtGPf1XExKLJBAczGMnSi3It14OiNCStjQjM6NU1okjQGSxgEZN8eBYKg==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "7b3638496004b2daed183a91c4ba45d3ef6331db6c9d0eb1dd882a505630c172"
-        }
-      ]
-    },
-    {
       "name": "meow",
       "version": "3.7.0",
       "location": "node_modules/meow",
@@ -22198,51 +21832,6 @@
       ]
     },
     {
-      "name": "mongodb",
-      "version": "6.20.0",
-      "location": "node_modules/mongodb",
-      "developmentOnly": false,
-      "license": "Apache-2.0",
-      "repository": "git@github.com:mongodb/node-mongodb-native.git",
-      "integrity": "sha512-Tl6MEIU3K4Rq3TSHd+sZQqRBoGlFsOgNrH5ltAcFBV62Re3Fd+FcaVf8uSEQFOJ51SDowDVttBTONMfoYWrWlQ==",
-      "notices": [
-        {
-          "file": "LICENSE.md",
-          "sha256": "6dc0e068dcf3a5bc8e054205b85b7720e1d49265bbc64bf515d2cf79197df69a"
-        }
-      ]
-    },
-    {
-      "name": "mongodb-connection-string-url",
-      "version": "3.0.2",
-      "location": "node_modules/mongodb-connection-string-url",
-      "developmentOnly": false,
-      "license": "Apache-2.0",
-      "repository": "https://github.com/mongodb-js/mongodb-connection-string-url.git",
-      "integrity": "sha512-rMO7CGo/9BFwyZABcKAWL8UJwH/Kc2x0g72uhDWzG48URRax5TCIcJ7Rc3RZqffZzO/Gwff/jyKwCU9TN8gehA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "9319b9e67046c5e387d71b1a12a757a859da23a957c8c5b0af0b7a925062735b"
-        }
-      ]
-    },
-    {
-      "name": "mongoose",
-      "version": "8.24.3",
-      "location": "node_modules/mongoose",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "git://github.com/Automattic/mongoose.git",
-      "integrity": "sha512-CMHqVyjK0Szc6irT14+O+QpN30kHxJLa0FjjLiBz/Txivmfg3mUUdMWAXfYM1Ubl0SNUkcG2cyLKOnhvttLtOA==",
-      "notices": [
-        {
-          "file": "LICENSE.md",
-          "sha256": "b15cc7d4a0c19e709470e3057b90763b775acd82051047abe224a4ecfa90e4b3"
-        }
-      ]
-    },
-    {
       "name": "monkeypatch",
       "version": "1.0.0",
       "location": "node_modules/monkeypatch",
@@ -22272,36 +21861,6 @@
         {
           "file": "LICENSE",
           "sha256": "db0b57e1acff55e7283e4de70069ef7c92524ce055bebb9a9795ebb9e97e6cb1"
-        }
-      ]
-    },
-    {
-      "name": "mpath",
-      "version": "0.9.0",
-      "location": "node_modules/mpath",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "git://github.com/aheckmann/mpath.git",
-      "integrity": "sha512-ikJRQTk8hw5DEoFVxHG1Gn9T/xcjtdnOKIU1JTmGjZZlg9LST2mBLmcX3/ICIbgJydT2GOc15RnNy5mHmzfSew==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "601faae915be3661a9a6571550988fceafded0e3fc9ea7b020ad8d1ae824a573"
-        }
-      ]
-    },
-    {
-      "name": "mquery",
-      "version": "5.0.0",
-      "location": "node_modules/mquery",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "git://github.com/aheckmann/mquery.git",
-      "integrity": "sha512-iQMncpmEK8R8ncT8HJGsGc9Dsp8xcgYMVSbs5jgnm1lFHTZqMJTUWTDx1LBO8+mK3tPNZWFLBghQEIOULSTHZg==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "601faae915be3661a9a6571550988fceafded0e3fc9ea7b020ad8d1ae824a573"
         }
       ]
     },
@@ -25956,7 +25515,7 @@
       "name": "punycode",
       "version": "2.3.1",
       "location": "node_modules/punycode",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "https://github.com/mathiasbynens/punycode.js.git",
       "integrity": "sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==",
@@ -29349,24 +28908,6 @@
       ]
     },
     {
-      "name": "sift",
-      "version": "17.1.3",
-      "location": "node_modules/sift",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "crcn/sift.js",
-      "integrity": "sha512-Rtlj66/b0ICeFzYTuNvX/EF1igRbbnGSvEyT79McoZa/DeGhMyC5pWKOEsZKnpkqtSeovd5FL/bjHWC3CIIvCQ==",
-      "notices": [
-        {
-          "file": "README.md",
-          "sha256": "fa3164819413d4211e3d73fa7250342759981e120669a4bf80b4310c227ac450"
-        }
-      ],
-      "review": [
-        "No standalone license/notice file in installed package; inspect README and upstream terms."
-      ]
-    },
-    {
       "name": "signal-exit",
       "version": "3.0.7",
       "location": "node_modules/signal-exit",
@@ -29415,24 +28956,6 @@
           "file": "license",
           "sha256": "ade66f698fd417addc4d948a85ef33e8abb302daff6453feda18b191d250e54d"
         }
-      ]
-    },
-    {
-      "name": "size-sensor",
-      "version": "1.0.3",
-      "location": "node_modules/size-sensor",
-      "developmentOnly": false,
-      "license": "ISC",
-      "repository": "git+https://github.com/hustcc/size-sensor.git",
-      "integrity": "sha512-+k9mJ2/rQMiRmQUcjn+qznch260leIXY8r4FyYKKyRBO/s5UoeMAHGkCJyE1R/4wrIhTJONfyloY55SkE7ve3A==",
-      "notices": [
-        {
-          "file": "README.md",
-          "sha256": "09ce56e0c691d3e7a68d38450e64b671eda33e9ece168191fababe471068aad9"
-        }
-      ],
-      "review": [
-        "No standalone license/notice file in installed package; inspect README and upstream terms."
       ]
     },
     {
@@ -29770,21 +29293,6 @@
       ]
     },
     {
-      "name": "sparse-bitfield",
-      "version": "3.0.3",
-      "location": "node_modules/sparse-bitfield",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/mafintosh/sparse-bitfield.git",
-      "integrity": "sha512-kvzhi7vqKTfkh0PZU+2D2PIllw2ymqJKujUcyPMd9Y75Nv4nPbGJZXNhxsgdQab2BmlDct1YnfQCguEvHr7VsQ==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "6a134e51aa31496c15a741592fc5d782b2dbf8d8b6b8524e15c8520ae0cd6374"
-        }
-      ]
-    },
-    {
       "name": "spdx-correct",
       "version": "3.2.0",
       "location": "node_modules/spdx-correct",
@@ -29913,21 +29421,6 @@
         {
           "file": "LICENSE",
           "sha256": "f8287e4dd9480be58c56aca4a55c23b782c43a86e69aabad78fff4df0d29edef"
-        }
-      ]
-    },
-    {
-      "name": "ssr-window",
-      "version": "3.0.0",
-      "location": "node_modules/ssr-window",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "git+https://github.com/nolimits4web/ssr-window.git",
-      "integrity": "sha512-q+8UfWDg9Itrg0yWK7oe5p/XRCJpJF9OBtXfOPgSJl+u3Xd5KI328RUEvUqSMVM9CiQUEf1QdBzJMkYGErj9QA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "584c59575e2a05f4f525ef584c89a6d41ca0e454eeeed4ef4ce04becd5dff1c1"
         }
       ]
     },
@@ -31619,21 +31112,6 @@
       ]
     },
     {
-      "name": "swiper",
-      "version": "6.8.4",
-      "location": "node_modules/swiper",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/nolimits4web/Swiper.git",
-      "integrity": "sha512-O+buF9Q+sMA0H7luMS8R59hCaJKlpo8PXhQ6ZYu6Rn2v9OsFd4d1jmrv14QvxtQpKAvL/ZiovEeANI/uDGet7g==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "99f08e3e3ee0799fe1488fcbcb41dc933b14873e9556693209daf9e1007601d6"
-        }
-      ]
-    },
-    {
       "name": "symbol-tree",
       "version": "3.2.4",
       "location": "node_modules/symbol-tree",
@@ -32608,21 +32086,6 @@
         {
           "file": "LICENSE",
           "sha256": "3fda5977c0904e226190b4e21d64340c1731e2142d6fe5f3dee0090a216b8b63"
-        }
-      ]
-    },
-    {
-      "name": "tr46",
-      "version": "5.1.1",
-      "location": "node_modules/tr46",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/jsdom/tr46",
-      "integrity": "sha512-hdF5ZgjTqgAntKkklYw0R03MG2x/bSzTtkxmIRw/sTNV8YXsCJ1tfLAX23lhxhHJlEf3CRCOCGGWw3vI3GaSPw==",
-      "notices": [
-        {
-          "file": "LICENSE.md",
-          "sha256": "499d6d466d064e0460427967a344e2a32fcb86ea8c6cd1a285ec4f1fa03fba67"
         }
       ]
     },
@@ -34222,36 +33685,6 @@
       ]
     },
     {
-      "name": "whatwg-url",
-      "version": "14.2.0",
-      "location": "node_modules/whatwg-url",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "jsdom/whatwg-url",
-      "integrity": "sha512-De72GdQZzNTUBBChsXueQUnPKDkg/5A5zp7pFDuQAj5UFoENpiACU0wlCvzpAGnTkj++ihpKwKyYewn/XNUbKw==",
-      "notices": [
-        {
-          "file": "LICENSE.txt",
-          "sha256": "db480f236292a093e77a83c35431a8496624e1e664a3547768a9ce2bdde39877"
-        }
-      ]
-    },
-    {
-      "name": "webidl-conversions",
-      "version": "7.0.0",
-      "location": "node_modules/whatwg-url/node_modules/webidl-conversions",
-      "developmentOnly": false,
-      "license": "BSD-2-Clause",
-      "repository": "jsdom/webidl-conversions",
-      "integrity": "sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==",
-      "notices": [
-        {
-          "file": "LICENSE.md",
-          "sha256": "a889cc4dbee2ae172c179856b25d75b0b7a5a136e1b97109b9b590b2ff1a879c"
-        }
-      ]
-    },
-    {
       "name": "which",
       "version": "2.0.2",
       "location": "node_modules/which",
@@ -35253,40 +34686,6 @@
         {
           "file": "LICENSE",
           "sha256": "ec62dc96da0099b87f4511736c87309335527fb7031639493e06c95728dc8c54"
-        }
-      ]
-    },
-    {
-      "name": "zrender",
-      "version": "5.6.0",
-      "location": "node_modules/zrender",
-      "developmentOnly": false,
-      "license": "BSD-3-Clause",
-      "repository": "https://github.com/ecomfe/zrender.git",
-      "integrity": "sha512-uzgraf4njmmHAbEUxMJ8Oxg+P3fT04O+9p7gY+wJRVxo8Ge+KmYv0WJev945EH4wFuc4OY2NLXz46FZrWS9xJg==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "a681e9d183c72b4af4856935893805eb48c08f0f5a3f260203db7444c20fb98a"
-        }
-      ]
-    },
-    {
-      "name": "tslib",
-      "version": "2.3.0",
-      "location": "node_modules/zrender/node_modules/tslib",
-      "developmentOnly": false,
-      "license": "0BSD",
-      "repository": "https://github.com/Microsoft/tslib.git",
-      "integrity": "sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==",
-      "notices": [
-        {
-          "file": "CopyrightNotice.txt",
-          "sha256": "dd835e67a9a297da32f9467d7677a5d02c8e50e10f15da43b810147c79c04b9b"
-        },
-        {
-          "file": "LICENSE.txt",
-          "sha256": "210b19e543130388c68654b7497e967119ce17145f66ab7d85688fbd70f08751"
         }
       ]
     }

@@ -30,18 +30,6 @@ for (const source of JSON.parse(
   )
     throw new Error(`Upstream notice checksum mismatch: ${source.file}`);
 }
-const model = JSON.parse(
-  fs.readFileSync(
-    path.join(root, 'public/licenses/upstream/model-provenance.json')
-  )
-);
-if (
-  model.asset !== '/mediapipe/face_landmarker.task' ||
-  hash(fs.readFileSync(path.join(root, 'public', model.asset))) !== model.sha256
-)
-  throw new Error(
-    'MediaPipe model differs from the verified provenance record'
-  );
 
 function write(relative, data) {
   const destination = path.join(root, relative);
@@ -247,11 +235,6 @@ const groups = [
     'ogv/',
     'MIT and codec licenses; see dependency notices',
     'ogv.js / Xiph.Org contributors'
-  ],
-  [
-    'mediapipe/',
-    'Apache-2.0',
-    'Google MediaPipe; model verified against official version-1 bundle; licenses/upstream/model-provenance.json'
   ],
   [
     'images/',
