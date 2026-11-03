@@ -37,9 +37,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Check license inventory
-        run: npm run licenses:check
-
       - name: Run browser tests and accessibility checks
         env:
           # Preinstalled Google Chrome on GitHub-hosted Ubuntu runners.
@@ -52,3 +49,23 @@ jobs:
           name: build
           path: build
           retention-days: 7
+
+  licenses:
+    # The inventory covers every locked package, including macOS-only optional
+    # ones such as fsevents, and is generated and deployed from macOS.
+    name: License inventory
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Check license inventory
+        run: npm run licenses:check
