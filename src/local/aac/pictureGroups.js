@@ -13,6 +13,12 @@ export const PICTURE_GROUPS = [
     title: 'pictureActivities',
     examples: ['play', 'sleep', 'brush']
   },
+  { id: 'body', title: 'pictureBody', examples: ['head', 'tummy', 'medicine'] },
+  {
+    id: 'school',
+    title: 'pictureSchool',
+    examples: ['book', 'schoolbag', 'school-bus']
+  },
   { id: 'personal', title: 'myWords', examples: ['friend', 'apple', 'play'] }
 ];
 export const ESSENTIAL_WORDS = ['yes', 'no', 'help', 'stop'];
@@ -20,8 +26,10 @@ export const DEFAULT_PINNED_WORDS = ['water', 'toilet', null, null, null, null];
 const related = {
   food: ['eat', 'drink', 'water', 'hungry', 'thirsty'],
   feelings: ['happy', 'pain', 'like', 'not-want', 'rest', 'help'],
-  people: ['i', 'you'],
+  people: ['i', 'you', 'he-she', 'we', 'they', 'you-all'],
   places: ['home', 'toilet'],
+  body: ['pain', 'unwell', 'doctor', 'nurse', 'hospital', 'clinic', 'toilet'],
+  school: ['school', 'teacher', 'classmate', 'toilet', 'help'],
   activities: [
     'eat',
     'drink',
@@ -32,7 +40,14 @@ const related = {
     'brush',
     'wait',
     'finished',
-    'again'
+    'again',
+    'sit',
+    'walk',
+    'shower',
+    'draw',
+    'sing',
+    'sport',
+    'study'
   ]
 };
 

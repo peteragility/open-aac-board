@@ -234,7 +234,7 @@ test('voice confirmations migrate old backups and reset when the selected voice 
   );
 });
 
-test('every starter word and phrase has three labels, local artwork and three bundled MP3s', () => {
+test('every starter word and phrase has its labels, local artwork and bundled MP3s', () => {
   const entries = [...catalog.words, ...catalog.phrases];
   assert.equal(new Set(entries.map((e) => e.id)).size, entries.length);
   for (const item of entries) {
@@ -242,8 +242,11 @@ test('every starter word and phrase has three labels, local artwork and three bu
       fs.existsSync(new URL(`../../public${item.symbol}`, import.meta.url)),
       item.id
     );
-    for (const language of ['yue', 'en', 'cmn']) {
-      assert.ok(item[language]);
+    // Grammar words list the languages they exist in; all others have three.
+    const languages = item.only || ['yue', 'en', 'cmn'];
+    assert.ok(languages.includes('yue'), `${item.id} is Cantonese-first`);
+    for (const language of languages) {
+      assert.ok(item[language], `${language}/${item.id} label`);
       const file = new URL(
         `../../public/audio/${language}/${item.id}.mp3`,
         import.meta.url

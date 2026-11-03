@@ -34,6 +34,20 @@
       "yue": "地方活動",
       "en": "Places & activities",
       "cmn": "地点和活动"
+    },
+    {
+      "id": "body",
+      "icon": "body",
+      "yue": "身體健康",
+      "en": "Body & health",
+      "cmn": "身体健康"
+    },
+    {
+      "id": "school",
+      "icon": "book",
+      "yue": "學校",
+      "en": "School",
+      "cmn": "学校"
     }
   ],
   "words": [
@@ -278,6 +292,755 @@
       "tone": "action"
     },
     {
+      "id": "he-she",
+      "category": "core",
+      "symbol": "/symbols/arasaac/he.png",
+      "yue": "佢",
+      "jyutping": "keoi5",
+      "en": "he or she",
+      "cmn": "他或她",
+      "tone": "person"
+    },
+    {
+      "id": "they",
+      "category": "core",
+      "symbol": "/symbols/arasaac/they.png",
+      "yue": "佢哋",
+      "jyutping": "keoi5 dei6",
+      "en": "they",
+      "cmn": "他们",
+      "tone": "person"
+    },
+    {
+      "id": "we",
+      "category": "core",
+      "symbol": "/symbols/arasaac/we.png",
+      "yue": "我哋",
+      "jyutping": "ngo5 dei6",
+      "en": "we",
+      "cmn": "我们",
+      "tone": "person"
+    },
+    {
+      "id": "you-all",
+      "category": "core",
+      "symbol": "/symbols/arasaac/you.png",
+      "yue": "你哋",
+      "jyutping": "nei5 dei6",
+      "en": "you all",
+      "cmn": "你们",
+      "tone": "person"
+    },
+    {
+      "id": "this-one",
+      "category": "core",
+      "symbol": "/symbols/open-aac/this-one.svg",
+      "yue": "呢個",
+      "jyutping": "ni1 go3",
+      "en": "this one",
+      "cmn": "这个",
+      "tone": "thing"
+    },
+    {
+      "id": "that-one",
+      "category": "core",
+      "symbol": "/symbols/open-aac/that-one.svg",
+      "yue": "嗰個",
+      "jyutping": "go2 go3",
+      "en": "that one",
+      "cmn": "那个",
+      "tone": "thing"
+    },
+    {
+      "id": "what",
+      "category": "core",
+      "symbol": "/symbols/mulberry/what.svg",
+      "yue": "乜嘢",
+      "jyutping": "mat1 je5",
+      "en": "what",
+      "cmn": "什么",
+      "tone": "social"
+    },
+    {
+      "id": "who",
+      "category": "core",
+      "symbol": "/symbols/mulberry/who.svg",
+      "yue": "邊個",
+      "jyutping": "bin1 go3",
+      "en": "who",
+      "cmn": "谁",
+      "tone": "person"
+    },
+    {
+      "id": "where",
+      "category": "core",
+      "symbol": "/symbols/mulberry/where.svg",
+      "yue": "邊度",
+      "jyutping": "bin1 dou6",
+      "en": "where",
+      "cmn": "哪里",
+      "tone": "place"
+    },
+    {
+      "id": "when",
+      "category": "core",
+      "symbol": "/symbols/mulberry/when.svg",
+      "yue": "幾時",
+      "jyutping": "gei2 si4",
+      "en": "when",
+      "cmn": "什么时候",
+      "tone": "social"
+    },
+    {
+      "id": "why",
+      "category": "core",
+      "symbol": "/symbols/mulberry/why.svg",
+      "yue": "點解",
+      "jyutping": "dim2 gaai2",
+      "en": "why",
+      "cmn": "为什么",
+      "tone": "social"
+    },
+    {
+      "id": "how",
+      "category": "core",
+      "symbol": "/symbols/mulberry/how.svg",
+      "yue": "點樣",
+      "jyutping": "dim2 joeng2",
+      "en": "how",
+      "cmn": "怎么",
+      "tone": "social"
+    },
+    {
+      "id": "how-many",
+      "category": "core",
+      "symbol": "/symbols/mulberry/how_many.svg",
+      "yue": "幾多",
+      "jyutping": "gei2 do1",
+      "en": "how many",
+      "cmn": "多少",
+      "tone": "social"
+    },
+    {
+      "id": "need",
+      "category": "core",
+      "symbol": "/symbols/mulberry/want_,_to.svg",
+      "yue": "要",
+      "jyutping": "jiu3",
+      "en": "need",
+      "cmn": "要",
+      "tone": "need"
+    },
+    {
+      "id": "have",
+      "category": "core",
+      "symbol": "/symbols/open-aac/have.svg",
+      "yue": "有",
+      "jyutping": "jau5",
+      "en": "have",
+      "cmn": "有",
+      "tone": "action"
+    },
+    {
+      "id": "dont-have",
+      "category": "core",
+      "symbol": "/symbols/open-aac/dont-have.svg",
+      "yue": "冇",
+      "jyutping": "mou5",
+      "en": "don't have",
+      "cmn": "没有",
+      "tone": "action"
+    },
+    {
+      "id": "come",
+      "category": "core",
+      "symbol": "/symbols/mulberry/come_,_to.svg",
+      "yue": "嚟",
+      "jyutping": "lai4",
+      "en": "come",
+      "cmn": "来",
+      "tone": "action"
+    },
+    {
+      "id": "do",
+      "category": "core",
+      "symbol": "/symbols/mulberry/make_,_to.svg",
+      "yue": "做",
+      "jyutping": "zou6",
+      "en": "do",
+      "cmn": "做",
+      "tone": "action"
+    },
+    {
+      "id": "look",
+      "category": "core",
+      "symbol": "/symbols/mulberry/look_,_to.svg",
+      "yue": "睇",
+      "jyutping": "tai2",
+      "en": "look",
+      "cmn": "看",
+      "tone": "action"
+    },
+    {
+      "id": "listen",
+      "category": "core",
+      "symbol": "/symbols/mulberry/hear_,_to.svg",
+      "yue": "聽",
+      "jyutping": "teng1",
+      "en": "listen",
+      "cmn": "听",
+      "tone": "action"
+    },
+    {
+      "id": "speak",
+      "category": "core",
+      "symbol": "/symbols/mulberry/talk_1_,_to.svg",
+      "yue": "講",
+      "jyutping": "gong2",
+      "en": "speak",
+      "cmn": "说",
+      "tone": "action"
+    },
+    {
+      "id": "give",
+      "category": "core",
+      "symbol": "/symbols/mulberry/give_,_to.svg",
+      "yue": "俾",
+      "jyutping": "bei2",
+      "en": "give",
+      "cmn": "给",
+      "tone": "action"
+    },
+    {
+      "id": "take",
+      "category": "core",
+      "symbol": "/symbols/mulberry/take_,_to.svg",
+      "yue": "攞",
+      "jyutping": "lo2",
+      "en": "take",
+      "cmn": "拿",
+      "tone": "action"
+    },
+    {
+      "id": "dont-know",
+      "category": "core",
+      "symbol": "/symbols/mulberry/think_,_to.svg",
+      "yue": "唔知",
+      "jyutping": "m4 zi1",
+      "en": "don't know",
+      "cmn": "不知道",
+      "tone": "social"
+    },
+    {
+      "id": "can",
+      "category": "core",
+      "symbol": "/symbols/open-aac/can.svg",
+      "yue": "可以",
+      "jyutping": "ho2 ji5",
+      "en": "can",
+      "cmn": "可以",
+      "tone": "social"
+    },
+    {
+      "id": "cant",
+      "category": "core",
+      "symbol": "/symbols/open-aac/cant.svg",
+      "yue": "唔可以",
+      "jyutping": "m4 ho2 ji5",
+      "en": "can't",
+      "cmn": "不可以",
+      "tone": "social"
+    },
+    {
+      "id": "open",
+      "category": "core",
+      "symbol": "/symbols/mulberry/open_,_to.svg",
+      "yue": "開",
+      "jyutping": "hoi1",
+      "en": "open",
+      "cmn": "开",
+      "tone": "action"
+    },
+    {
+      "id": "close",
+      "category": "core",
+      "symbol": "/symbols/mulberry/close_,_to.svg",
+      "yue": "閂",
+      "jyutping": "saan1",
+      "en": "close",
+      "cmn": "关",
+      "tone": "action"
+    },
+    {
+      "id": "sit",
+      "category": "core",
+      "symbol": "/symbols/mulberry/sit_,_to.svg",
+      "yue": "坐",
+      "jyutping": "co5",
+      "en": "sit",
+      "cmn": "坐",
+      "tone": "action"
+    },
+    {
+      "id": "walk",
+      "category": "core",
+      "symbol": "/symbols/mulberry/walk_,_to.svg",
+      "yue": "行",
+      "jyutping": "haang4",
+      "en": "walk",
+      "cmn": "走",
+      "tone": "action"
+    },
+    {
+      "id": "go-back",
+      "category": "core",
+      "symbol": "/symbols/mulberry/return_,_to.svg",
+      "yue": "返",
+      "jyutping": "faan1",
+      "en": "go back",
+      "cmn": "回",
+      "tone": "action"
+    },
+    {
+      "id": "good",
+      "category": "core",
+      "symbol": "/symbols/mulberry/good.svg",
+      "yue": "好",
+      "jyutping": "hou2",
+      "en": "good",
+      "cmn": "好",
+      "tone": "feeling"
+    },
+    {
+      "id": "not-good",
+      "category": "core",
+      "symbol": "/symbols/mulberry/bad.svg",
+      "yue": "唔好",
+      "jyutping": "m4 hou2",
+      "en": "not good",
+      "cmn": "不好",
+      "tone": "feeling"
+    },
+    {
+      "id": "big",
+      "category": "core",
+      "symbol": "/symbols/arasaac/large.png",
+      "yue": "大",
+      "jyutping": "daai6",
+      "en": "big",
+      "cmn": "大",
+      "tone": "thing"
+    },
+    {
+      "id": "small",
+      "category": "core",
+      "symbol": "/symbols/arasaac/little.png",
+      "yue": "細",
+      "jyutping": "sai3",
+      "en": "small",
+      "cmn": "小",
+      "tone": "thing"
+    },
+    {
+      "id": "many",
+      "category": "core",
+      "symbol": "/symbols/mulberry/lots_more.svg",
+      "yue": "多",
+      "jyutping": "do1",
+      "en": "many",
+      "cmn": "多",
+      "tone": "thing"
+    },
+    {
+      "id": "a-little",
+      "category": "core",
+      "symbol": "/symbols/mulberry/little.svg",
+      "yue": "少",
+      "jyutping": "siu2",
+      "en": "a little",
+      "cmn": "少",
+      "tone": "thing"
+    },
+    {
+      "id": "fast",
+      "category": "core",
+      "symbol": "/symbols/mulberry/fast_2.svg",
+      "yue": "快",
+      "jyutping": "faai3",
+      "en": "fast",
+      "cmn": "快",
+      "tone": "action"
+    },
+    {
+      "id": "slow",
+      "category": "core",
+      "symbol": "/symbols/arasaac/slow.png",
+      "yue": "慢",
+      "jyutping": "maan6",
+      "en": "slow",
+      "cmn": "慢",
+      "tone": "action"
+    },
+    {
+      "id": "right",
+      "category": "core",
+      "symbol": "/symbols/mulberry/right.svg",
+      "yue": "啱",
+      "jyutping": "ngaam1",
+      "en": "right",
+      "cmn": "对",
+      "tone": "social"
+    },
+    {
+      "id": "wrong",
+      "category": "core",
+      "symbol": "/symbols/mulberry/wrong_thought.svg",
+      "yue": "錯",
+      "jyutping": "co3",
+      "en": "wrong",
+      "cmn": "错",
+      "tone": "social"
+    },
+    {
+      "id": "some",
+      "category": "core",
+      "symbol": "/symbols/arasaac/some.svg",
+      "yue": "一啲",
+      "jyutping": "jat1 di1",
+      "en": "some",
+      "cmn": "一些",
+      "tone": "thing"
+    },
+    {
+      "id": "all",
+      "category": "core",
+      "symbol": "/symbols/arasaac/every.png",
+      "yue": "全部",
+      "jyutping": "cyun4 bou6",
+      "en": "all",
+      "cmn": "全部",
+      "tone": "thing"
+    },
+    {
+      "id": "here",
+      "category": "core",
+      "symbol": "/symbols/open-aac/here.svg",
+      "yue": "呢度",
+      "jyutping": "ni1 dou6",
+      "en": "here",
+      "cmn": "这里",
+      "tone": "place"
+    },
+    {
+      "id": "there",
+      "category": "core",
+      "symbol": "/symbols/open-aac/there.svg",
+      "yue": "嗰度",
+      "jyutping": "go2 dou6",
+      "en": "there",
+      "cmn": "那里",
+      "tone": "place"
+    },
+    {
+      "id": "above",
+      "category": "core",
+      "symbol": "/symbols/mulberry/above.svg",
+      "yue": "上面",
+      "jyutping": "soeng6 min6",
+      "en": "above",
+      "cmn": "上面",
+      "tone": "place"
+    },
+    {
+      "id": "below",
+      "category": "core",
+      "symbol": "/symbols/mulberry/under_1.svg",
+      "yue": "下面",
+      "jyutping": "haa6 min6",
+      "en": "below",
+      "cmn": "下面",
+      "tone": "place"
+    },
+    {
+      "id": "inside",
+      "category": "core",
+      "symbol": "/symbols/mulberry/inside_room.svg",
+      "yue": "入面",
+      "jyutping": "jap6 min6",
+      "en": "inside",
+      "cmn": "里面",
+      "tone": "place"
+    },
+    {
+      "id": "outside",
+      "category": "core",
+      "symbol": "/symbols/mulberry/outside.svg",
+      "yue": "出面",
+      "jyutping": "ceot1 min6",
+      "en": "outside",
+      "cmn": "外面",
+      "tone": "place"
+    },
+    {
+      "id": "now",
+      "category": "core",
+      "symbol": "/symbols/mulberry/now.svg",
+      "yue": "而家",
+      "jyutping": "ji4 gaa1",
+      "en": "now",
+      "cmn": "现在",
+      "tone": "social"
+    },
+    {
+      "id": "later",
+      "category": "core",
+      "symbol": "/symbols/mulberry/after.svg",
+      "yue": "之後",
+      "jyutping": "zi1 hau6",
+      "en": "later",
+      "cmn": "以后",
+      "tone": "social"
+    },
+    {
+      "id": "today",
+      "category": "core",
+      "symbol": "/symbols/mulberry/today.svg",
+      "yue": "今日",
+      "jyutping": "gam1 jat6",
+      "en": "today",
+      "cmn": "今天",
+      "tone": "social"
+    },
+    {
+      "id": "tomorrow",
+      "category": "core",
+      "symbol": "/symbols/mulberry/tomorrow.svg",
+      "yue": "聽日",
+      "jyutping": "ting1 jat6",
+      "en": "tomorrow",
+      "cmn": "明天",
+      "tone": "social"
+    },
+    {
+      "id": "yesterday",
+      "category": "core",
+      "symbol": "/symbols/mulberry/yesterday.svg",
+      "yue": "尋日",
+      "jyutping": "cam4 jat6",
+      "en": "yesterday",
+      "cmn": "昨天",
+      "tone": "social"
+    },
+    {
+      "id": "first",
+      "category": "core",
+      "symbol": "/symbols/mulberry/first.svg",
+      "yue": "先",
+      "jyutping": "sin1",
+      "en": "first",
+      "cmn": "先",
+      "tone": "social"
+    },
+    {
+      "id": "sorry",
+      "category": "core",
+      "symbol": "/symbols/mulberry/sad_man.svg",
+      "yue": "對唔住",
+      "jyutping": "deoi3 m4 zyu6",
+      "en": "sorry",
+      "cmn": "对不起",
+      "tone": "social"
+    },
+    {
+      "id": "bye",
+      "category": "core",
+      "symbol": "/symbols/arasaac/goodbye.png",
+      "yue": "拜拜",
+      "jyutping": "baai1 baai3",
+      "en": "bye",
+      "cmn": "拜拜",
+      "tone": "social"
+    },
+    {
+      "id": "good-morning",
+      "category": "core",
+      "symbol": "/symbols/mulberry/morning.svg",
+      "yue": "早晨",
+      "jyutping": "zou2 san4",
+      "en": "good morning",
+      "cmn": "早上好",
+      "tone": "social"
+    },
+    {
+      "id": "ok",
+      "category": "core",
+      "symbol": "/symbols/mulberry/good.svg",
+      "yue": "好呀",
+      "jyutping": "hou2 aa3",
+      "en": "OK",
+      "cmn": "好啊",
+      "tone": "social"
+    },
+    {
+      "id": "never-mind",
+      "category": "core",
+      "symbol": "/symbols/mulberry/relax_,_to.svg",
+      "yue": "唔緊要",
+      "jyutping": "m4 gan2 jiu3",
+      "en": "never mind",
+      "cmn": "没关系",
+      "tone": "social"
+    },
+    {
+      "id": "and",
+      "category": "core",
+      "symbol": "/symbols/arasaac/and.png",
+      "yue": "同",
+      "jyutping": "tung4",
+      "en": "and",
+      "cmn": "和",
+      "tone": "social"
+    },
+    {
+      "id": "but",
+      "category": "core",
+      "symbol": "/symbols/open-aac/but.svg",
+      "yue": "但係",
+      "jyutping": "daan6 hai6",
+      "en": "but",
+      "cmn": "但是",
+      "tone": "social"
+    },
+    {
+      "id": "because",
+      "category": "core",
+      "symbol": "/symbols/open-aac/because.svg",
+      "yue": "因為",
+      "jyutping": "jan1 wai6",
+      "en": "because",
+      "cmn": "因为",
+      "tone": "social"
+    },
+    {
+      "id": "or",
+      "category": "core",
+      "symbol": "/symbols/open-aac/or.svg",
+      "yue": "或者",
+      "jyutping": "waak6 ze2",
+      "en": "or",
+      "cmn": "或者",
+      "tone": "social"
+    },
+    {
+      "id": "therefore",
+      "category": "core",
+      "symbol": "/symbols/open-aac/therefore.svg",
+      "yue": "所以",
+      "jyutping": "so2 ji5",
+      "en": "so",
+      "cmn": "所以",
+      "tone": "social"
+    },
+    {
+      "id": "marker-done",
+      "category": "core",
+      "symbol": "/symbols/open-aac/marker-done.svg",
+      "yue": "咗",
+      "jyutping": "zo2",
+      "en": "",
+      "cmn": "了",
+      "tone": "action",
+      "only": ["yue", "cmn"]
+    },
+    {
+      "id": "marker-ing",
+      "category": "core",
+      "symbol": "/symbols/open-aac/marker-ing.svg",
+      "yue": "緊",
+      "jyutping": "gan2",
+      "en": "",
+      "cmn": "着",
+      "tone": "action",
+      "only": ["yue", "cmn"]
+    },
+    {
+      "id": "marker-experience",
+      "category": "core",
+      "symbol": "/symbols/open-aac/marker-experience.svg",
+      "yue": "過",
+      "jyutping": "gwo3",
+      "en": "",
+      "cmn": "过",
+      "tone": "action",
+      "only": ["yue", "cmn"]
+    },
+    {
+      "id": "marker-possessive",
+      "category": "core",
+      "symbol": "/symbols/open-aac/marker-possessive.svg",
+      "yue": "嘅",
+      "jyutping": "ge3",
+      "en": "",
+      "cmn": "的",
+      "tone": "thing",
+      "only": ["yue", "cmn"]
+    },
+    {
+      "id": "particle-soft",
+      "category": "core",
+      "symbol": "/symbols/open-aac/particle-soft.svg",
+      "yue": "呀",
+      "jyutping": "aa3",
+      "en": "",
+      "cmn": "啊",
+      "tone": "social",
+      "only": ["yue", "cmn"]
+    },
+    {
+      "id": "particle-suggest",
+      "category": "core",
+      "symbol": "/symbols/open-aac/particle-suggest.svg",
+      "yue": "啦",
+      "jyutping": "laa1",
+      "en": "",
+      "cmn": "吧",
+      "tone": "social",
+      "only": ["yue", "cmn"]
+    },
+    {
+      "id": "particle-change",
+      "category": "core",
+      "symbol": "/symbols/open-aac/particle-change.svg",
+      "yue": "喇",
+      "jyutping": "laa3",
+      "en": "",
+      "cmn": "",
+      "tone": "social",
+      "only": ["yue"]
+    },
+    {
+      "id": "particle-question",
+      "category": "core",
+      "symbol": "/symbols/open-aac/particle-question.svg",
+      "yue": "咩",
+      "jyutping": "me1",
+      "en": "",
+      "cmn": "",
+      "tone": "social",
+      "only": ["yue"]
+    },
+    {
+      "id": "particle-emphasis",
+      "category": "core",
+      "symbol": "/symbols/open-aac/particle-emphasis.svg",
+      "yue": "㗎",
+      "jyutping": "gaa3",
+      "en": "",
+      "cmn": "",
+      "tone": "social",
+      "only": ["yue"]
+    },
+    {
       "id": "rice",
       "category": "food",
       "symbol": "/symbols/mulberry/rice.svg",
@@ -355,6 +1118,276 @@
       "jyutping": "gwo2 zap1",
       "en": "juice",
       "cmn": "果汁",
+      "tone": "thing"
+    },
+    {
+      "id": "milk-tea",
+      "category": "food",
+      "symbol": "/symbols/mulberry/tea.svg",
+      "yue": "奶茶",
+      "jyutping": "naai5 caa4",
+      "en": "milk tea",
+      "cmn": "奶茶",
+      "tone": "thing"
+    },
+    {
+      "id": "lemon-tea",
+      "category": "food",
+      "symbol": "/symbols/mulberry/lemon.svg",
+      "yue": "檸檬茶",
+      "jyutping": "ning4 mung1 caa4",
+      "en": "lemon tea",
+      "cmn": "柠檬茶",
+      "tone": "thing"
+    },
+    {
+      "id": "pineapple-bun",
+      "category": "food",
+      "symbol": "/symbols/mulberry/pineapple.svg",
+      "yue": "菠蘿包",
+      "jyutping": "bo1 lo4 baau1",
+      "en": "pineapple bun",
+      "cmn": "菠萝包",
+      "tone": "thing"
+    },
+    {
+      "id": "egg-tart",
+      "category": "food",
+      "symbol": "/symbols/mulberry/tart.svg",
+      "yue": "蛋撻",
+      "jyutping": "daan6 taat1",
+      "en": "egg tart",
+      "cmn": "蛋挞",
+      "tone": "thing"
+    },
+    {
+      "id": "bbq-pork-rice",
+      "category": "food",
+      "symbol": "/symbols/mulberry/takeaway_chinese.svg",
+      "yue": "叉燒飯",
+      "jyutping": "caa1 siu1 faan6",
+      "en": "BBQ pork rice",
+      "cmn": "叉烧饭",
+      "tone": "thing"
+    },
+    {
+      "id": "congee",
+      "category": "food",
+      "symbol": "/symbols/mulberry/porridge.svg",
+      "yue": "粥",
+      "jyutping": "zuk1",
+      "en": "congee",
+      "cmn": "粥",
+      "tone": "thing"
+    },
+    {
+      "id": "prawn-dumpling",
+      "category": "food",
+      "symbol": "/symbols/mulberry/prawn.svg",
+      "yue": "蝦餃",
+      "jyutping": "haa1 gaau2",
+      "en": "prawn dumplings",
+      "cmn": "虾饺",
+      "tone": "thing"
+    },
+    {
+      "id": "siu-mai",
+      "category": "food",
+      "symbol": "/symbols/open-aac/siu-mai.svg",
+      "yue": "燒賣",
+      "jyutping": "siu1 maai2",
+      "en": "siu mai",
+      "cmn": "烧卖",
+      "tone": "thing"
+    },
+    {
+      "id": "eggs",
+      "category": "food",
+      "symbol": "/symbols/mulberry/eggs.svg",
+      "yue": "雞蛋",
+      "jyutping": "gai1 daan2",
+      "en": "eggs",
+      "cmn": "鸡蛋",
+      "tone": "thing"
+    },
+    {
+      "id": "fish",
+      "category": "food",
+      "symbol": "/symbols/mulberry/fish.svg",
+      "yue": "魚",
+      "jyutping": "jyu2",
+      "en": "fish",
+      "cmn": "鱼",
+      "tone": "thing"
+    },
+    {
+      "id": "chicken",
+      "category": "food",
+      "symbol": "/symbols/mulberry/chicken_leg.svg",
+      "yue": "雞",
+      "jyutping": "gai1",
+      "en": "chicken",
+      "cmn": "鸡肉",
+      "tone": "thing"
+    },
+    {
+      "id": "vegetables",
+      "category": "food",
+      "symbol": "/symbols/mulberry/vegetables.svg",
+      "yue": "菜",
+      "jyutping": "coi3",
+      "en": "vegetables",
+      "cmn": "蔬菜",
+      "tone": "thing"
+    },
+    {
+      "id": "fruit",
+      "category": "food",
+      "symbol": "/symbols/mulberry/fruit.svg",
+      "yue": "生果",
+      "jyutping": "saang1 gwo2",
+      "en": "fruit",
+      "cmn": "水果",
+      "tone": "thing"
+    },
+    {
+      "id": "banana",
+      "category": "food",
+      "symbol": "/symbols/mulberry/banana.svg",
+      "yue": "香蕉",
+      "jyutping": "hoeng1 ziu1",
+      "en": "banana",
+      "cmn": "香蕉",
+      "tone": "thing"
+    },
+    {
+      "id": "orange",
+      "category": "food",
+      "symbol": "/symbols/mulberry/orange.svg",
+      "yue": "橙",
+      "jyutping": "caang2",
+      "en": "orange",
+      "cmn": "橙子",
+      "tone": "thing"
+    },
+    {
+      "id": "ice-cream",
+      "category": "food",
+      "symbol": "/symbols/mulberry/ice_cream.svg",
+      "yue": "雪糕",
+      "jyutping": "syut3 gou1",
+      "en": "ice cream",
+      "cmn": "冰淇淋",
+      "tone": "thing"
+    },
+    {
+      "id": "biscuits",
+      "category": "food",
+      "symbol": "/symbols/mulberry/biscuits.svg",
+      "yue": "餅乾",
+      "jyutping": "beng2 gon1",
+      "en": "biscuits",
+      "cmn": "饼干",
+      "tone": "thing"
+    },
+    {
+      "id": "sweets",
+      "category": "food",
+      "symbol": "/symbols/mulberry/sweet.svg",
+      "yue": "糖",
+      "jyutping": "tong2",
+      "en": "sweets",
+      "cmn": "糖果",
+      "tone": "thing"
+    },
+    {
+      "id": "pork",
+      "category": "food",
+      "symbol": "/symbols/mulberry/pork_chop.svg",
+      "yue": "豬肉",
+      "jyutping": "zyu1 juk6",
+      "en": "pork",
+      "cmn": "猪肉",
+      "tone": "thing"
+    },
+    {
+      "id": "soup",
+      "category": "food",
+      "symbol": "/symbols/mulberry/soup.svg",
+      "yue": "湯",
+      "jyutping": "tong1",
+      "en": "soup",
+      "cmn": "汤",
+      "tone": "thing"
+    },
+    {
+      "id": "watermelon",
+      "category": "food",
+      "symbol": "/symbols/mulberry/watermelon.svg",
+      "yue": "西瓜",
+      "jyutping": "sai1 gwaa1",
+      "en": "watermelon",
+      "cmn": "西瓜",
+      "tone": "thing"
+    },
+    {
+      "id": "chips",
+      "category": "food",
+      "symbol": "/symbols/mulberry/chips.svg",
+      "yue": "薯條",
+      "jyutping": "syu4 tiu2",
+      "en": "chips",
+      "cmn": "薯条",
+      "tone": "thing"
+    },
+    {
+      "id": "cake",
+      "category": "food",
+      "symbol": "/symbols/mulberry/cake.svg",
+      "yue": "蛋糕",
+      "jyutping": "daan6 gou1",
+      "en": "cake",
+      "cmn": "蛋糕",
+      "tone": "thing"
+    },
+    {
+      "id": "grapes",
+      "category": "food",
+      "symbol": "/symbols/mulberry/grapes.svg",
+      "yue": "提子",
+      "jyutping": "tai4 zi2",
+      "en": "grapes",
+      "cmn": "葡萄",
+      "tone": "thing"
+    },
+    {
+      "id": "fizzy-drink",
+      "category": "food",
+      "symbol": "/symbols/mulberry/lemonade.svg",
+      "yue": "汽水",
+      "jyutping": "hei3 seoi2",
+      "en": "fizzy drink",
+      "cmn": "汽水",
+      "tone": "thing"
+    },
+    {
+      "id": "tofu",
+      "category": "food",
+      "symbol": "/symbols/open-aac/tofu.svg",
+      "yue": "豆腐",
+      "jyutping": "dau6 fu6",
+      "en": "tofu",
+      "cmn": "豆腐",
+      "tone": "thing"
+    },
+    {
+      "id": "crisps",
+      "category": "food",
+      "symbol": "/symbols/mulberry/crisps.svg",
+      "yue": "薯片",
+      "jyutping": "syu4 pin2",
+      "en": "crisps",
+      "cmn": "薯片",
       "tone": "thing"
     },
     {
@@ -438,6 +1471,146 @@
       "tone": "need"
     },
     {
+      "id": "angry",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/angry_lady.svg",
+      "yue": "嬲",
+      "jyutping": "nau1",
+      "en": "angry",
+      "cmn": "生气",
+      "tone": "feeling"
+    },
+    {
+      "id": "bored",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/yawn_,_to.svg",
+      "yue": "悶",
+      "jyutping": "mun6",
+      "en": "bored",
+      "cmn": "无聊",
+      "tone": "feeling"
+    },
+    {
+      "id": "nervous",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/worried_man.svg",
+      "yue": "緊張",
+      "jyutping": "gan2 zoeng1",
+      "en": "nervous",
+      "cmn": "紧张",
+      "tone": "feeling"
+    },
+    {
+      "id": "excited",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/excited_lady.svg",
+      "yue": "興奮",
+      "jyutping": "hing1 fan5",
+      "en": "excited",
+      "cmn": "兴奋",
+      "tone": "feeling"
+    },
+    {
+      "id": "want-hug",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/hug_,_to.svg",
+      "yue": "想攬",
+      "jyutping": "soeng2 laam2",
+      "en": "want a hug",
+      "cmn": "想抱抱",
+      "tone": "need"
+    },
+    {
+      "id": "not-enough",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/enough.svg",
+      "yue": "唔夠",
+      "jyutping": "m4 gau3",
+      "en": "not enough",
+      "cmn": "不够",
+      "tone": "need"
+    },
+    {
+      "id": "too-noisy",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/noisy.svg",
+      "yue": "太嘈",
+      "jyutping": "taai3 cou4",
+      "en": "too noisy",
+      "cmn": "太吵",
+      "tone": "feeling"
+    },
+    {
+      "id": "dislike",
+      "category": "feelings",
+      "symbol": "/symbols/open-aac/dislike.svg",
+      "yue": "唔鍾意",
+      "jyutping": "m4 zung1 ji3",
+      "en": "don't like",
+      "cmn": "不喜欢",
+      "tone": "feeling"
+    },
+    {
+      "id": "embarrassed",
+      "category": "feelings",
+      "symbol": "/symbols/open-aac/embarrassed.svg",
+      "yue": "尷尬",
+      "jyutping": "gaam3 gaai3",
+      "en": "embarrassed",
+      "cmn": "尴尬",
+      "tone": "feeling"
+    },
+    {
+      "id": "worried",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/worried_lady.svg",
+      "yue": "擔心",
+      "jyutping": "daam1 sam1",
+      "en": "worried",
+      "cmn": "担心",
+      "tone": "feeling"
+    },
+    {
+      "id": "lonely",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/sad_man.svg",
+      "yue": "寂寞",
+      "jyutping": "zik6 mok6",
+      "en": "lonely",
+      "cmn": "寂寞",
+      "tone": "feeling"
+    },
+    {
+      "id": "calm",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/relax_,_to.svg",
+      "yue": "冷靜",
+      "jyutping": "laang5 zing6",
+      "en": "calm",
+      "cmn": "冷静",
+      "tone": "feeling"
+    },
+    {
+      "id": "full",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/full.svg",
+      "yue": "肚飽",
+      "jyutping": "tou5 baau2",
+      "en": "full",
+      "cmn": "饱了",
+      "tone": "feeling"
+    },
+    {
+      "id": "annoyed",
+      "category": "feelings",
+      "symbol": "/symbols/mulberry/angry_man.svg",
+      "yue": "煩",
+      "jyutping": "faan4",
+      "en": "annoyed",
+      "cmn": "烦",
+      "tone": "feeling"
+    },
+    {
       "id": "mum",
       "category": "people",
       "symbol": "/symbols/mulberry/mum.svg",
@@ -485,6 +1658,106 @@
       "jyutping": "ji1 saang1",
       "en": "doctor",
       "cmn": "医生",
+      "tone": "person"
+    },
+    {
+      "id": "older-brother",
+      "category": "people",
+      "symbol": "/symbols/mulberry/brother.svg",
+      "yue": "哥哥",
+      "jyutping": "go4 go1",
+      "en": "older brother",
+      "cmn": "哥哥",
+      "tone": "person"
+    },
+    {
+      "id": "older-sister",
+      "category": "people",
+      "symbol": "/symbols/mulberry/sister.svg",
+      "yue": "姐姐",
+      "jyutping": "ze4 ze1",
+      "en": "older sister",
+      "cmn": "姐姐",
+      "tone": "person"
+    },
+    {
+      "id": "younger-brother",
+      "category": "people",
+      "symbol": "/symbols/arasaac/boy.png",
+      "yue": "細佬",
+      "jyutping": "sai3 lou2",
+      "en": "younger brother",
+      "cmn": "弟弟",
+      "tone": "person"
+    },
+    {
+      "id": "younger-sister",
+      "category": "people",
+      "symbol": "/symbols/arasaac/girl.png",
+      "yue": "妹妹",
+      "jyutping": "mui4 mui2",
+      "en": "younger sister",
+      "cmn": "妹妹",
+      "tone": "person"
+    },
+    {
+      "id": "grandad",
+      "category": "people",
+      "symbol": "/symbols/mulberry/grandfather.svg",
+      "yue": "爺爺",
+      "jyutping": "je4 je2",
+      "en": "grandad",
+      "cmn": "爷爷",
+      "tone": "person"
+    },
+    {
+      "id": "grandma",
+      "category": "people",
+      "symbol": "/symbols/mulberry/grandmother.svg",
+      "yue": "嫲嫲",
+      "jyutping": "maa4 maa4",
+      "en": "grandma",
+      "cmn": "奶奶",
+      "tone": "person"
+    },
+    {
+      "id": "nurse",
+      "category": "people",
+      "symbol": "/symbols/mulberry/nurse_1a.svg",
+      "yue": "護士",
+      "jyutping": "wu6 si6",
+      "en": "nurse",
+      "cmn": "护士",
+      "tone": "person"
+    },
+    {
+      "id": "classmate",
+      "category": "people",
+      "symbol": "/symbols/arasaac/kids.png",
+      "yue": "同學",
+      "jyutping": "tung4 hok6",
+      "en": "classmate",
+      "cmn": "同学",
+      "tone": "person"
+    },
+    {
+      "id": "baby",
+      "category": "people",
+      "symbol": "/symbols/mulberry/baby.svg",
+      "yue": "寶寶",
+      "jyutping": "bou2 bou2",
+      "en": "baby",
+      "cmn": "宝宝",
+      "tone": "person"
+    },
+    {
+      "id": "family",
+      "category": "people",
+      "symbol": "/symbols/mulberry/family.svg",
+      "yue": "家人",
+      "jyutping": "gaa1 jan4",
+      "en": "family",
+      "cmn": "家人",
       "tone": "person"
     },
     {
@@ -546,6 +1819,556 @@
       "en": "brush teeth",
       "cmn": "刷牙",
       "tone": "action"
+    },
+    {
+      "id": "hospital",
+      "category": "places",
+      "symbol": "/symbols/mulberry/ambulance.svg",
+      "yue": "醫院",
+      "jyutping": "ji1 jyun2",
+      "en": "hospital",
+      "cmn": "医院",
+      "tone": "place"
+    },
+    {
+      "id": "clinic",
+      "category": "places",
+      "symbol": "/symbols/mulberry/medicine_cabinet.svg",
+      "yue": "診所",
+      "jyutping": "can2 so2",
+      "en": "clinic",
+      "cmn": "诊所",
+      "tone": "place"
+    },
+    {
+      "id": "supermarket",
+      "category": "places",
+      "symbol": "/symbols/mulberry/shop.svg",
+      "yue": "超級市場",
+      "jyutping": "ciu1 kap1 si5 coeng4",
+      "en": "supermarket",
+      "cmn": "超市",
+      "tone": "place"
+    },
+    {
+      "id": "market",
+      "category": "places",
+      "symbol": "/symbols/mulberry/greengrocer_1a.svg",
+      "yue": "街市",
+      "jyutping": "gaai1 si5",
+      "en": "market",
+      "cmn": "菜市场",
+      "tone": "place"
+    },
+    {
+      "id": "cha-chaan-teng",
+      "category": "places",
+      "symbol": "/symbols/mulberry/cafe.svg",
+      "yue": "茶餐廳",
+      "jyutping": "caa4 caan1 teng1",
+      "en": "Hong Kong café",
+      "cmn": "茶餐厅",
+      "tone": "place"
+    },
+    {
+      "id": "library",
+      "category": "places",
+      "symbol": "/symbols/mulberry/bookcase.svg",
+      "yue": "圖書館",
+      "jyutping": "tou4 syu1 gun2",
+      "en": "library",
+      "cmn": "图书馆",
+      "tone": "place"
+    },
+    {
+      "id": "shopping-centre",
+      "category": "places",
+      "symbol": "/symbols/mulberry/cart.svg",
+      "yue": "商場",
+      "jyutping": "soeng1 coeng4",
+      "en": "shopping centre",
+      "cmn": "商场",
+      "tone": "place"
+    },
+    {
+      "id": "beach",
+      "category": "places",
+      "symbol": "/symbols/mulberry/beach.svg",
+      "yue": "海灘",
+      "jyutping": "hoi2 taan1",
+      "en": "beach",
+      "cmn": "海滩",
+      "tone": "place"
+    },
+    {
+      "id": "playground",
+      "category": "places",
+      "symbol": "/symbols/mulberry/slide.svg",
+      "yue": "遊樂場",
+      "jyutping": "jau4 lok6 coeng4",
+      "en": "playground",
+      "cmn": "游乐场",
+      "tone": "place"
+    },
+    {
+      "id": "taxi",
+      "category": "places",
+      "symbol": "/symbols/mulberry/taxi.svg",
+      "yue": "的士",
+      "jyutping": "dik1 si2",
+      "en": "taxi",
+      "cmn": "出租车",
+      "tone": "place"
+    },
+    {
+      "id": "minibus",
+      "category": "places",
+      "symbol": "/symbols/mulberry/mini_bus.svg",
+      "yue": "小巴",
+      "jyutping": "siu2 baa1",
+      "en": "minibus",
+      "cmn": "小巴",
+      "tone": "place"
+    },
+    {
+      "id": "mtr",
+      "category": "places",
+      "symbol": "/symbols/mulberry/underground_train.svg",
+      "yue": "港鐵",
+      "jyutping": "gong2 tit3",
+      "en": "MTR",
+      "cmn": "地铁",
+      "tone": "place"
+    },
+    {
+      "id": "tram",
+      "category": "places",
+      "symbol": "/symbols/mulberry/train.svg",
+      "yue": "電車",
+      "jyutping": "din6 ce1",
+      "en": "tram",
+      "cmn": "有轨电车",
+      "tone": "place"
+    },
+    {
+      "id": "airport",
+      "category": "places",
+      "symbol": "/symbols/mulberry/aeroplane.svg",
+      "yue": "飛機場",
+      "jyutping": "fei1 gei1 coeng4",
+      "en": "airport",
+      "cmn": "机场",
+      "tone": "place"
+    },
+    {
+      "id": "hotel",
+      "category": "places",
+      "symbol": "/symbols/mulberry/double_bed.svg",
+      "yue": "酒店",
+      "jyutping": "zau2 dim3",
+      "en": "hotel",
+      "cmn": "酒店",
+      "tone": "place"
+    },
+    {
+      "id": "cinema",
+      "category": "places",
+      "symbol": "/symbols/mulberry/flatscreen_tv.svg",
+      "yue": "戲院",
+      "jyutping": "hei3 jyun2",
+      "en": "cinema",
+      "cmn": "电影院",
+      "tone": "place"
+    },
+    {
+      "id": "bus-stop",
+      "category": "places",
+      "symbol": "/symbols/mulberry/bus.svg",
+      "yue": "巴士站",
+      "jyutping": "baa1 si2 zaam6",
+      "en": "bus stop",
+      "cmn": "公交车站",
+      "tone": "place"
+    },
+    {
+      "id": "post-office",
+      "category": "places",
+      "symbol": "/symbols/mulberry/post_van.svg",
+      "yue": "郵局",
+      "jyutping": "jau4 guk2",
+      "en": "post office",
+      "cmn": "邮局",
+      "tone": "place"
+    },
+    {
+      "id": "bank",
+      "category": "places",
+      "symbol": "/symbols/mulberry/bank.svg",
+      "yue": "銀行",
+      "jyutping": "ngan4 hong4",
+      "en": "bank",
+      "cmn": "银行",
+      "tone": "place"
+    },
+    {
+      "id": "head",
+      "category": "body",
+      "symbol": "/symbols/mulberry/head.svg",
+      "yue": "頭",
+      "jyutping": "tau4",
+      "en": "head",
+      "cmn": "头",
+      "tone": "thing"
+    },
+    {
+      "id": "eye",
+      "category": "body",
+      "symbol": "/symbols/mulberry/eye.svg",
+      "yue": "眼",
+      "jyutping": "ngaan5",
+      "en": "eye",
+      "cmn": "眼睛",
+      "tone": "thing"
+    },
+    {
+      "id": "ear",
+      "category": "body",
+      "symbol": "/symbols/mulberry/ear.svg",
+      "yue": "耳仔",
+      "jyutping": "ji5 zai2",
+      "en": "ear",
+      "cmn": "耳朵",
+      "tone": "thing"
+    },
+    {
+      "id": "mouth",
+      "category": "body",
+      "symbol": "/symbols/mulberry/mouth.svg",
+      "yue": "口",
+      "jyutping": "hau2",
+      "en": "mouth",
+      "cmn": "嘴",
+      "tone": "thing"
+    },
+    {
+      "id": "teeth",
+      "category": "body",
+      "symbol": "/symbols/mulberry/teeth.svg",
+      "yue": "牙",
+      "jyutping": "ngaa4",
+      "en": "teeth",
+      "cmn": "牙齿",
+      "tone": "thing"
+    },
+    {
+      "id": "hand",
+      "category": "body",
+      "symbol": "/symbols/mulberry/right_hand.svg",
+      "yue": "手",
+      "jyutping": "sau2",
+      "en": "hand",
+      "cmn": "手",
+      "tone": "thing"
+    },
+    {
+      "id": "feet",
+      "category": "body",
+      "symbol": "/symbols/mulberry/feet.svg",
+      "yue": "腳",
+      "jyutping": "goek3",
+      "en": "feet",
+      "cmn": "脚",
+      "tone": "thing"
+    },
+    {
+      "id": "tummy",
+      "category": "body",
+      "symbol": "/symbols/mulberry/stomach.svg",
+      "yue": "肚",
+      "jyutping": "tou5",
+      "en": "tummy",
+      "cmn": "肚子",
+      "tone": "thing"
+    },
+    {
+      "id": "nose",
+      "category": "body",
+      "symbol": "/symbols/open-aac/nose.svg",
+      "yue": "鼻",
+      "jyutping": "bei6",
+      "en": "nose",
+      "cmn": "鼻子",
+      "tone": "thing"
+    },
+    {
+      "id": "fever",
+      "category": "body",
+      "symbol": "/symbols/mulberry/thermometer.svg",
+      "yue": "發燒",
+      "jyutping": "faat3 siu1",
+      "en": "fever",
+      "cmn": "发烧",
+      "tone": "feeling"
+    },
+    {
+      "id": "cough",
+      "category": "body",
+      "symbol": "/symbols/mulberry/sneeze_cold.svg",
+      "yue": "咳",
+      "jyutping": "kat1",
+      "en": "cough",
+      "cmn": "咳嗽",
+      "tone": "feeling"
+    },
+    {
+      "id": "dizzy",
+      "category": "body",
+      "symbol": "/symbols/mulberry/spin_,_to.svg",
+      "yue": "頭暈",
+      "jyutping": "tau4 wan4",
+      "en": "dizzy",
+      "cmn": "头晕",
+      "tone": "feeling"
+    },
+    {
+      "id": "feel-sick",
+      "category": "body",
+      "symbol": "/symbols/mulberry/vomit_,_to.svg",
+      "yue": "想嘔",
+      "jyutping": "soeng2 au2",
+      "en": "feel sick",
+      "cmn": "想吐",
+      "tone": "feeling"
+    },
+    {
+      "id": "bleeding",
+      "category": "body",
+      "symbol": "/symbols/open-aac/bleeding.svg",
+      "yue": "流血",
+      "jyutping": "lau4 hyut3",
+      "en": "bleeding",
+      "cmn": "流血",
+      "tone": "need"
+    },
+    {
+      "id": "medicine",
+      "category": "body",
+      "symbol": "/symbols/mulberry/medicine.svg",
+      "yue": "藥",
+      "jyutping": "joek6",
+      "en": "medicine",
+      "cmn": "药",
+      "tone": "need"
+    },
+    {
+      "id": "allergic",
+      "category": "body",
+      "symbol": "/symbols/mulberry/rash.svg",
+      "yue": "敏感",
+      "jyutping": "man5 gam2",
+      "en": "allergic",
+      "cmn": "过敏",
+      "tone": "feeling"
+    },
+    {
+      "id": "headache",
+      "category": "body",
+      "symbol": "/symbols/mulberry/headache.svg",
+      "yue": "頭痛",
+      "jyutping": "tau4 tung3",
+      "en": "headache",
+      "cmn": "头痛",
+      "tone": "need"
+    },
+    {
+      "id": "stomach-ache",
+      "category": "body",
+      "symbol": "/symbols/mulberry/stomach_ache.svg",
+      "yue": "肚痛",
+      "jyutping": "tou5 tung3",
+      "en": "stomach ache",
+      "cmn": "肚子痛",
+      "tone": "need"
+    },
+    {
+      "id": "cut",
+      "category": "body",
+      "symbol": "/symbols/mulberry/plaster.svg",
+      "yue": "傷口",
+      "jyutping": "soeng1 hau2",
+      "en": "cut",
+      "cmn": "伤口",
+      "tone": "need"
+    },
+    {
+      "id": "shower",
+      "category": "body",
+      "symbol": "/symbols/mulberry/shower.svg",
+      "yue": "沖涼",
+      "jyutping": "cung1 loeng4",
+      "en": "shower",
+      "cmn": "洗澡",
+      "tone": "action"
+    },
+    {
+      "id": "book",
+      "category": "school",
+      "symbol": "/symbols/mulberry/notebook.svg",
+      "yue": "書",
+      "jyutping": "syu1",
+      "en": "book",
+      "cmn": "书",
+      "tone": "thing"
+    },
+    {
+      "id": "pen",
+      "category": "school",
+      "symbol": "/symbols/mulberry/write_,_to.svg",
+      "yue": "筆",
+      "jyutping": "bat1",
+      "en": "pen",
+      "cmn": "笔",
+      "tone": "thing"
+    },
+    {
+      "id": "schoolbag",
+      "category": "school",
+      "symbol": "/symbols/mulberry/school_bag.svg",
+      "yue": "書包",
+      "jyutping": "syu1 baau1",
+      "en": "schoolbag",
+      "cmn": "书包",
+      "tone": "thing"
+    },
+    {
+      "id": "homework",
+      "category": "school",
+      "symbol": "/symbols/mulberry/work_book.svg",
+      "yue": "功課",
+      "jyutping": "gung1 fo3",
+      "en": "homework",
+      "cmn": "作业",
+      "tone": "thing"
+    },
+    {
+      "id": "go-to-class",
+      "category": "school",
+      "symbol": "/symbols/mulberry/class_room.svg",
+      "yue": "上堂",
+      "jyutping": "soeng5 tong4",
+      "en": "go to class",
+      "cmn": "上课",
+      "tone": "action"
+    },
+    {
+      "id": "break-time",
+      "category": "school",
+      "symbol": "/symbols/mulberry/break_time_1.svg",
+      "yue": "小息",
+      "jyutping": "siu2 sik1",
+      "en": "break time",
+      "cmn": "课间休息",
+      "tone": "thing"
+    },
+    {
+      "id": "home-time",
+      "category": "school",
+      "symbol": "/symbols/mulberry/house.svg",
+      "yue": "放學",
+      "jyutping": "fong3 hok6",
+      "en": "home time",
+      "cmn": "放学",
+      "tone": "action"
+    },
+    {
+      "id": "school-bus",
+      "category": "school",
+      "symbol": "/symbols/mulberry/bus.svg",
+      "yue": "校巴",
+      "jyutping": "haau6 baa1",
+      "en": "school bus",
+      "cmn": "校车",
+      "tone": "thing"
+    },
+    {
+      "id": "exam",
+      "category": "school",
+      "symbol": "/symbols/mulberry/test.svg",
+      "yue": "考試",
+      "jyutping": "haau2 si5",
+      "en": "exam",
+      "cmn": "考试",
+      "tone": "thing"
+    },
+    {
+      "id": "draw",
+      "category": "school",
+      "symbol": "/symbols/mulberry/draw_,_to.svg",
+      "yue": "畫畫",
+      "jyutping": "waak6 waa2",
+      "en": "draw",
+      "cmn": "画画",
+      "tone": "action"
+    },
+    {
+      "id": "sing",
+      "category": "school",
+      "symbol": "/symbols/mulberry/sing_,_to.svg",
+      "yue": "唱歌",
+      "jyutping": "coeng3 go1",
+      "en": "sing",
+      "cmn": "唱歌",
+      "tone": "action"
+    },
+    {
+      "id": "sport",
+      "category": "school",
+      "symbol": "/symbols/mulberry/exercise_,_to.svg",
+      "yue": "運動",
+      "jyutping": "wan6 dung6",
+      "en": "sport",
+      "cmn": "运动",
+      "tone": "action"
+    },
+    {
+      "id": "computer",
+      "category": "school",
+      "symbol": "/symbols/mulberry/computer_1.svg",
+      "yue": "電腦",
+      "jyutping": "din6 nou5",
+      "en": "computer",
+      "cmn": "电脑",
+      "tone": "thing"
+    },
+    {
+      "id": "uniform",
+      "category": "school",
+      "symbol": "/symbols/mulberry/shirt.svg",
+      "yue": "校服",
+      "jyutping": "haau6 fuk6",
+      "en": "uniform",
+      "cmn": "校服",
+      "tone": "thing"
+    },
+    {
+      "id": "study",
+      "category": "school",
+      "symbol": "/symbols/mulberry/study_,_to.svg",
+      "yue": "讀書",
+      "jyutping": "duk6 syu1",
+      "en": "study",
+      "cmn": "读书",
+      "tone": "action"
+    },
+    {
+      "id": "scissors",
+      "category": "school",
+      "symbol": "/symbols/mulberry/scissors.svg",
+      "yue": "鉸剪",
+      "jyutping": "gaau3 zin2",
+      "en": "scissors",
+      "cmn": "剪刀",
+      "tone": "thing"
     }
   ],
   "phrases": [
@@ -644,6 +2467,166 @@
       "jyutping": "ngo5 soeng2 zoi3 si3 jat1 ci3",
       "en": "I want to try again.",
       "cmn": "我想再试一次。"
+    },
+    {
+      "id": "want-this-one",
+      "symbol": "/symbols/mulberry/want_,_to.svg",
+      "yue": "我要呢個。",
+      "jyutping": "ngo5 jiu3 ni1 go3",
+      "en": "I want this one.",
+      "cmn": "我要这个。"
+    },
+    {
+      "id": "speak-slower",
+      "symbol": "/symbols/mulberry/talk_1_,_to.svg",
+      "yue": "唔該講慢啲。",
+      "jyutping": "m4 goi1 gong2 maan6 di1",
+      "en": "Please speak more slowly.",
+      "cmn": "请说慢一点。"
+    },
+    {
+      "id": "just-a-moment",
+      "symbol": "/symbols/mulberry/wait_,_to.svg",
+      "yue": "等陣先。",
+      "jyutping": "dang2 zan6 sin1",
+      "en": "Just a moment.",
+      "cmn": "等一下。"
+    },
+    {
+      "id": "i-dont-understand",
+      "symbol": "/symbols/mulberry/confused_lady.svg",
+      "yue": "我唔明。",
+      "jyutping": "ngo5 m4 ming4",
+      "en": "I don't understand.",
+      "cmn": "我不明白。"
+    },
+    {
+      "id": "say-again",
+      "symbol": "/symbols/open-aac/again.svg",
+      "yue": "再講一次。",
+      "jyutping": "zoi3 gong2 jat1 ci3",
+      "en": "Please say that again.",
+      "cmn": "请再说一次。"
+    },
+    {
+      "id": "bill-please",
+      "symbol": "/symbols/mulberry/money.svg",
+      "yue": "唔該埋單。",
+      "jyutping": "m4 goi1 maai4 daan1",
+      "en": "The bill, please.",
+      "cmn": "请结账。"
+    },
+    {
+      "id": "that-hurts",
+      "symbol": "/symbols/open-aac/pain.svg",
+      "yue": "好痛呀！",
+      "jyutping": "hou2 tung3 aa3",
+      "en": "That hurts!",
+      "cmn": "好痛啊！"
+    },
+    {
+      "id": "tummy-hurts",
+      "symbol": "/symbols/mulberry/stomach_ache.svg",
+      "yue": "我肚痛。",
+      "jyutping": "ngo5 tou5 tung3",
+      "en": "My tummy hurts.",
+      "cmn": "我肚子痛。"
+    },
+    {
+      "id": "i-have-headache",
+      "symbol": "/symbols/mulberry/headache.svg",
+      "yue": "我頭痛。",
+      "jyutping": "ngo5 tau4 tung3",
+      "en": "I have a headache.",
+      "cmn": "我头痛。"
+    },
+    {
+      "id": "want-something-to-eat",
+      "symbol": "/symbols/mulberry/eat_,_to.svg",
+      "yue": "我想食嘢。",
+      "jyutping": "ngo5 soeng2 sik6 je5",
+      "en": "I want something to eat.",
+      "cmn": "我想吃东西。"
+    },
+    {
+      "id": "dont-want-it",
+      "symbol": "/symbols/mulberry/no.svg",
+      "yue": "我唔要。",
+      "jyutping": "ngo5 m4 jiu3",
+      "en": "I don't want it.",
+      "cmn": "我不要。"
+    },
+    {
+      "id": "im-tired",
+      "symbol": "/symbols/open-aac/tired.svg",
+      "yue": "我好攰。",
+      "jyutping": "ngo5 hou2 seoi6",
+      "en": "I'm tired.",
+      "cmn": "我很累。"
+    },
+    {
+      "id": "want-to-sleep",
+      "symbol": "/symbols/mulberry/sleep_on_side_,_to.svg",
+      "yue": "我想瞓覺。",
+      "jyutping": "ngo5 soeng2 fan3 gaau3",
+      "en": "I want to sleep.",
+      "cmn": "我想睡觉。"
+    },
+    {
+      "id": "need-doctor",
+      "symbol": "/symbols/mulberry/doctor_1a.svg",
+      "yue": "我要睇醫生。",
+      "jyutping": "ngo5 jiu3 tai2 ji1 saang1",
+      "en": "I need to see a doctor.",
+      "cmn": "我要看医生。"
+    },
+    {
+      "id": "can-you-help",
+      "symbol": "/symbols/mulberry/help_,_to.svg",
+      "yue": "可唔可以幫我？",
+      "jyutping": "ho2 m4 ho2 ji5 bong1 ngo5",
+      "en": "Can you help me?",
+      "cmn": "可以帮我吗？"
+    },
+    {
+      "id": "excuse-me",
+      "symbol": "/symbols/mulberry/hello.svg",
+      "yue": "唔好意思。",
+      "jyutping": "m4 hou2 ji3 si1",
+      "en": "Excuse me.",
+      "cmn": "不好意思。"
+    },
+    {
+      "id": "i-dont-know",
+      "symbol": "/symbols/mulberry/think_,_to.svg",
+      "yue": "我唔知。",
+      "jyutping": "ngo5 m4 zi1",
+      "en": "I don't know.",
+      "cmn": "我不知道。"
+    },
+    {
+      "id": "let-me-think",
+      "symbol": "/symbols/mulberry/think_,_to.svg",
+      "yue": "等我諗吓。",
+      "jyutping": "dang2 ngo5 nam2 haa5",
+      "en": "Let me think.",
+      "cmn": "让我想想。"
+    },
+    {
+      "id": "do-you-understand",
+      "symbol": "/symbols/mulberry/confused_lady.svg",
+      "yue": "你明唔明？",
+      "jyutping": "nei5 ming4 m4 ming4",
+      "en": "Do you understand?",
+      "cmn": "你明白吗？"
+    },
+    {
+      "id": "im-happy",
+      "symbol": "/symbols/mulberry/happy_lady.svg",
+      "yue": "我好開心。",
+      "jyutping": "ngo5 hou2 hoi1 sam1",
+      "en": "I'm happy.",
+      "cmn": "我很开心。"
     }
   ]
 }

@@ -112,7 +112,7 @@ for (const { name, viewport } of VIEWPORTS) {
       await page
         .getByRole('button', { name: 'Browse pictures', exact: true })
         .click();
-      await expect(page.locator('.aac-picture-folder')).toHaveCount(6);
+      await expect(page.locator('.aac-picture-folder')).toHaveCount(8);
       expect(await blockingViolations(page, 'pictures')).toEqual([]);
     });
 

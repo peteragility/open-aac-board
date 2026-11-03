@@ -93,7 +93,7 @@ async function browse(page) {
   await page
     .getByRole('button', { name: /^(Browse pictures|睇圖搵)$/ })
     .click();
-  await expect(page.locator('.aac-picture-folder')).toHaveCount(6);
+  await expect(page.locator('.aac-picture-folder')).toHaveCount(8);
 }
 
 test('picture groups navigate silently, expose core vocabulary and speak real bundled Cantonese from every route offline', async ({
@@ -393,7 +393,7 @@ test.describe('visual layouts', () => {
       [1366, 768]
     ]) {
       await page.setViewportSize({ width, height });
-      await expect(page.locator('.aac-picture-folder')).toHaveCount(6);
+      await expect(page.locator('.aac-picture-folder')).toHaveCount(8);
       for (const folder of await page.locator('.aac-picture-folder').all()) {
         await folder.scrollIntoViewIfNeeded();
         const box = await folder.boundingBox();
@@ -462,7 +462,11 @@ test.describe('accessible picture choices', () => {
     });
     await expect(search).toBeFocused();
     await search.fill('water');
-    await expect(page.locator('.aac-word-grid [data-word-id]')).toHaveCount(1);
+    // "water" and "watermelon".
+    await expect(page.locator('.aac-word-grid [data-word-id]')).toHaveCount(2);
+    await expect(
+      page.locator('.aac-word-grid [data-word-id="water"]')
+    ).toBeVisible();
     await page.getByRole('button', { name: 'Close', exact: true }).click();
     await browse(page);
     await page

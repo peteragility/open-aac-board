@@ -46,7 +46,9 @@ def generate(task):
 
 
 if __name__ == '__main__':
-    tasks = [(language, entry) for language in VOICES for entry in ENTRIES]
+    # Grammar words exist only in some languages ("only"); never synthesize an empty label.
+    tasks = [(language, entry) for language in VOICES for entry in ENTRIES
+             if entry.get(language, '').strip() and language in entry.get('only', VOICES)]
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
         generated = dict(pool.map(generate, tasks))
     MANIFEST.write_text(json.dumps(generated, indent=2) + '\n')

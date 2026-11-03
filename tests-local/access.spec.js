@@ -118,7 +118,7 @@ test('two-switch scanning reaches the message controls, so a switch user can spe
     .poll(async () => (await spoken(page)).slice(before).map((s) => s.text))
     .toContain('I');
   // Categories and the stop control are in the scan as well.
-  for (let i = 0; i < 80; i++) {
+  for (let i = 0; i < 400; i++) {
     if (
       (await page
         .getByRole('button', { name: 'Stop scanning', exact: true })
