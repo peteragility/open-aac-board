@@ -41,6 +41,8 @@ npm run build
 npm run test:web
 ```
 
+If your machine installs through a private npm mirror, the lockfile must still name the public registry: `node scripts/check-lockfile.cjs` (also run in CI) lists any other URLs to rewrite to `https://registry.npmjs.org/` before committing. Set `AAC_TEST_PORT` to run the browser tests from two checkouts at once.
+
 The web tests use an already installed Chrome. Set `AAC_CHROME_PATH` if necessary. No cloud account or API key is needed to run the app. Dependencies were not added for this workspace.
 
 Responsive checks cover 12 viewport sizes from 320×568 phones through 1440×900 laptops, including 667×375 and 844×390 phone landscape, and iPad portrait/landscape. They check complete visible word cards in all three languages, stable vocabulary order, 44px primary touch targets, larger text, typing, routines and scrollable editing/settings dialogs. These are browser viewport checks; Safari, real keyboards, device safe areas and VoiceOver/TalkBack still require physical-device testing.
