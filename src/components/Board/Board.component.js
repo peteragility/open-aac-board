@@ -16,8 +16,6 @@ import EditToolbar from './EditToolbar';
 import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
 import BoardGrid from './BoardGrid/BoardGrid.component';
 
-import { Link } from 'react-router-dom';
-
 import messages from './Board.messages';
 
 import './Board.css';
@@ -79,7 +77,6 @@ export class Board extends Component {
     deactivateScanner: PropTypes.func,
     navHistory: PropTypes.arrayOf(PropTypes.string),
     emptyVoiceAlert: PropTypes.bool,
-    offlineVoiceAlert: PropTypes.bool,
     onBoardTypeChange: PropTypes.func,
     isFixedBoard: PropTypes.bool,
     onAddRemoveColumn: PropTypes.func,
@@ -225,7 +222,6 @@ export class Board extends Component {
       deactivateScanner,
       publishBoard,
       emptyVoiceAlert,
-      offlineVoiceAlert,
       onAddRemoveRow,
       onAddRemoveColumn,
       onTileDrop,
@@ -297,26 +293,6 @@ export class Board extends Component {
               {intl.formatMessage(messages.emptyVoiceAlert)}
             </Alert>
           )}
-          {offlineVoiceAlert && (
-            <Alert
-              variant="filled"
-              severity="warning"
-              action={
-                <Button
-                  size="small"
-                  variant="outlined"
-                  style={{ color: 'white', borderColor: 'white' }}
-                  component={Link}
-                  to="/settings/speech"
-                >
-                  {intl.formatMessage(messages.offlineChangeVoice)}
-                </Button>
-              }
-            >
-              {intl.formatMessage(messages.offlineVoiceAlert)}
-            </Alert>
-          )}
-
           <CommunicatorToolbar
             className="Board__communicator-toolbar"
             isSelecting={isSelecting || isSaving}

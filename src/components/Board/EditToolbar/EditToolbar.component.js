@@ -22,7 +22,6 @@ import IconButton from '../../UI/IconButton';
 import messages from './EditToolbar.messages';
 import './EditToolbar.css';
 import { FormControlLabel } from '@material-ui/core';
-import PremiumFeature from '../../PremiumFeature';
 import { resolveBoardName } from '../../../helpers';
 
 EditToolbar.propTypes = {
@@ -216,22 +215,20 @@ function EditToolbar({
               </DialogActions>
             </Dialog>
 
-            <PremiumFeature>
-              <IconButton
-                label={intl.formatMessage(messages.copyTiles)}
-                disabled={!isItemsSelected}
-                onClick={onCopyTiles}
-              >
-                <MdContentCopy />
-              </IconButton>
-              <IconButton
-                label={intl.formatMessage(messages.pasteTiles)}
-                disabled={!copiedTiles.length}
-                onClick={onPasteTiles}
-              >
-                <MdContentPaste />
-              </IconButton>
-            </PremiumFeature>
+            <IconButton
+              label={intl.formatMessage(messages.copyTiles)}
+              disabled={!isItemsSelected}
+              onClick={onCopyTiles}
+            >
+              <MdContentCopy />
+            </IconButton>
+            <IconButton
+              label={intl.formatMessage(messages.pasteTiles)}
+              disabled={!copiedTiles.length}
+              onClick={onPasteTiles}
+            >
+              <MdContentPaste />
+            </IconButton>
             <IconButton
               label={intl.formatMessage(messages.editTiles)}
               disabled={!isItemsSelected}

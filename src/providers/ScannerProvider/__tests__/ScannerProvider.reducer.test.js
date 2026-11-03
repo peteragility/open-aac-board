@@ -9,7 +9,6 @@ import {
   SCANNING_METHOD_AUTOMATIC,
   SCANNING_METHOD_MANUAL
 } from '../../../components/Settings/Scanning/Scanning.constants';
-import { LOGIN_SUCCESS } from '../../../components/Account/Login/Login.constants';
 
 let mockScanner, initialState;
 
@@ -28,13 +27,6 @@ describe('reducer', () => {
   });
   it('should return the initial state', () => {
     expect(scannerProviderReducer(undefined, {})).toEqual(initialState);
-  });
-  it('should handle login ', () => {
-    const login = {
-      type: LOGIN_SUCCESS,
-      payload: initialState
-    };
-    expect(scannerProviderReducer(initialState, login)).toEqual(initialState);
   });
   it('should handle updateScannerSettings ', () => {
     const updateScannerSettings = {

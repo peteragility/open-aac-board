@@ -51,7 +51,6 @@ import {
   SYNC_STATUS,
   SET_IS_SAVING
 } from './Board.constants';
-import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
 const initialBoardsState = [
   ...DEFAULT_BOARDS.advanced,
@@ -127,72 +126,6 @@ function tileReducer(board, action) {
 
 function boardReducer(state = initialState, action) {
   switch (action.type) {
-    case LOGIN_SUCCESS: {
-      let activeBoardId = state.activeBoardId;
-      const userCommunicators = action.payload.communicators || [];
-      const activeCommunicator = userCommunicators.length
-        ? userCommunicators[userCommunicators.length - 1]
-        : null;
-
-      if (activeCommunicator) {
-        activeBoardId =
-          activeCommunicator.rootBoard || initialState.activeBoardId;
-      }
-
-      if (action.payload.discardLocalChanges) {
-        const remoteBoards = (action.payload.boards || []).map((b) =>
-          deepCopy(b)
-        );
-        const remoteIds = new Set(remoteBoards.map((b) => b.id));
-        const defaults = deepCopy(initialBoardsState).filter(
-          (b) => !remoteIds.has(b.id)
-        );
-        const allBoards = [...defaults, ...remoteBoards];
-        const allIds = new Set(allBoards.map((b) => b.id));
-        const discardActiveBoardId = allIds.has(activeBoardId)
-          ? activeBoardId
-          : 'root';
-        return {
-          ...state,
-          boards: allBoards,
-          syncMeta: remoteBoards.reduce((acc, b) => {
-            acc[b.id] = { status: SYNC_STATUS.SYNCED };
-            return acc;
-          }, {}),
-          activeBoardId: discardActiveBoardId,
-          navHistory: discardActiveBoardId ? [discardActiveBoardId] : []
-        };
-      }
-
-      const remoteBoards = (action.payload.boards || []).map((b) =>
-        deepCopy(b)
-      );
-      const existingIds = new Set(state.boards.map((b) => b.id));
-      const newBoards = remoteBoards.filter(
-        (b) => b?.id && !existingIds.has(b.id)
-      );
-      const addedSyncMeta = newBoards.reduce((acc, b) => {
-        acc[b.id] = {
-          status: isLocalBoard(b) ? SYNC_STATUS.PENDING : SYNC_STATUS.SYNCED
-        };
-        return acc;
-      }, {});
-      return {
-        ...state,
-        boards: state.boards.concat(newBoards),
-        syncMeta: { ...state.syncMeta, ...addedSyncMeta },
-        activeBoardId,
-        navHistory: activeBoardId ? [activeBoardId] : []
-      };
-    }
-
-    case LOGOUT:
-      return {
-        ...initialState,
-        boards: deepCopy(initialBoardsState),
-        syncMeta: {}
-      };
-
     case ADD_BOARDS: {
       const existingIds = new Set(state.boards.map((b) => b.id));
       const newBoards = action.boards.filter(

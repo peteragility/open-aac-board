@@ -1,5 +1,14 @@
-import lodash from 'lodash';
 import { TileItem } from './../../types';
+
+// Same result as lodash.chunk for arrays; kept local so the TypeScript build needs no lodash typings.
+function chunkItems<T>(items: T[], size: number): T[][] {
+  const width = Math.floor(size);
+  if (!(width >= 1)) return [];
+  const pages: T[][] = [];
+  for (let i = 0; i < items.length; i += width)
+    pages.push(items.slice(i, i + width));
+  return pages;
+}
 export interface Grid {
   rows: number;
   columns: number;
@@ -173,7 +182,7 @@ function getDeprecatedOrderedPages({
     });
 
   const size = firstPageIds.length;
-  const restOfPages = lodash.chunk(restOfTiles, size);
+  const restOfPages = chunkItems(restOfTiles, size);
 
   return [deprecatedFirstPage, ...restOfPages];
 }

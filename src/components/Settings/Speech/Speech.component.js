@@ -9,8 +9,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Slider from '@material-ui/core/Slider';
-import Chip from '@material-ui/core/Chip';
-import { Button } from '@material-ui/core';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import { isCordova } from '../../../cordova-util';
@@ -20,32 +18,14 @@ import {
   INCREMENT_PITCH,
   MIN_RATE,
   MAX_RATE,
-  INCREMENT_RATE,
-  MIN_ELEVENLABS_SPEED,
-  MAX_ELEVENLABS_SPEED,
-  INCREMENT_ELEVENLABS_SPEED,
-  MIN_ELEVENLABS_STABILITY,
-  MAX_ELEVENLABS_STABILITY,
-  INCREMENT_ELEVENLABS_STABILITY,
-  MIN_ELEVENLABS_SIMILARITY,
-  MAX_ELEVENLABS_SIMILARITY,
-  INCREMENT_ELEVENLABS_SIMILARITY,
-  MIN_ELEVENLABS_STYLE,
-  MAX_ELEVENLABS_STYLE,
-  INCREMENT_ELEVENLABS_STYLE
+  INCREMENT_RATE
 } from './Speech.constants';
 import messages from './Speech.messages';
 import './Speech.css';
-import PremiumFeature from '../../PremiumFeature';
-import { ELEVEN_LABS } from '../../../providers/SpeechProvider/SpeechProvider.constants';
 
 const propTypes = {
   handleChangePitch: PropTypes.func,
   handleChangeRate: PropTypes.func,
-  handleChangeElevenLabsStability: PropTypes.func,
-  handleChangeElevenLabsSimilarity: PropTypes.func,
-  handleChangeElevenLabsStyle: PropTypes.func,
-  handleResetElevenLabsSettings: PropTypes.func,
   handleClickListItem: PropTypes.func,
   onMenuItemClick: PropTypes.func,
   handleVoiceClose: PropTypes.func,
@@ -56,13 +36,7 @@ const propTypes = {
   rate: PropTypes.number,
   selectedVoiceIndex: PropTypes.number,
   isVoiceOpen: PropTypes.bool.isRequired,
-  voice: PropTypes.object.isRequired,
-  elevenLabsSettings: PropTypes.object,
-  elevenLabsApiKey: PropTypes.string,
-  handleUpdateElevenLabsApiKey: PropTypes.func,
-  elevenLabsConnected: PropTypes.bool,
-  elevenLabsValidating: PropTypes.bool,
-  elevenLabsConnectionError: PropTypes.string
+  voice: PropTypes.object.isRequired
 };
 
 const styles = (theme) => ({
@@ -106,10 +80,6 @@ const Speech = ({
   classes,
   handleChangePitch,
   handleChangeRate,
-  handleChangeElevenLabsStability,
-  handleChangeElevenLabsSimilarity,
-  handleChangeElevenLabsStyle,
-  handleResetElevenLabsSettings,
   handleClickListItem,
   onMenuItemClick,
   handleVoiceClose,
@@ -120,13 +90,7 @@ const Speech = ({
   rate,
   selectedVoiceIndex,
   isVoiceOpen,
-  voice,
-  elevenLabsSettings,
-  elevenLabsApiKey,
-  handleUpdateElevenLabsApiKey,
-  elevenLabsConnected,
-  elevenLabsValidating,
-  elevenLabsConnectionError
+  voice
 }) => (
   <div className="Speech">
     <FullScreenDialog
@@ -150,17 +114,7 @@ const Speech = ({
               secondary={getVoiceLabel(voice)}
             />
           </ListItem>
-          <ListItem
-            disabled={
-              voice &&
-              (voice.voiceSource === 'cloud' ||
-                voice.voiceSource === ELEVEN_LABS)
-                ? true
-                : false
-            }
-            divider
-            aria-label={intl.formatMessage(messages.pitch)}
-          >
+          <ListItem divider aria-label={intl.formatMessage(messages.pitch)}>
             <ListItemText
               primary={<FormattedMessage {...messages.pitch} />}
               secondary={<FormattedMessage {...messages.pitchDescription} />}
@@ -173,21 +127,10 @@ const Speech = ({
                 max={MAX_PITCH}
                 step={INCREMENT_PITCH}
                 onChange={handleChangePitch}
-                disabled={
-                  voice &&
-                  (voice.voiceSource === 'cloud' ||
-                    voice.voiceSource === ELEVEN_LABS)
-                    ? true
-                    : false
-                }
               />
             </div>
           </ListItem>
-          <ListItem
-            disabled={voice && voice.voiceSource === 'cloud' ? true : false}
-            divider
-            aria-label={intl.formatMessage(messages.rate)}
-          >
+          <ListItem divider aria-label={intl.formatMessage(messages.rate)}>
             <ListItemText
               className="Speech__ListItemText"
               primary={<FormattedMessage {...messages.rate} />}
@@ -197,126 +140,13 @@ const Speech = ({
               <Slider
                 color="secondary"
                 value={rate}
-                min={
-                  voice && voice.voiceSource === ELEVEN_LABS
-                    ? MIN_ELEVENLABS_SPEED
-                    : MIN_RATE
-                }
-                max={
-                  voice && voice.voiceSource === ELEVEN_LABS
-                    ? MAX_ELEVENLABS_SPEED
-                    : MAX_RATE
-                }
-                step={
-                  voice && voice.voiceSource === ELEVEN_LABS
-                    ? INCREMENT_ELEVENLABS_SPEED
-                    : INCREMENT_RATE
-                }
+                min={MIN_RATE}
+                max={MAX_RATE}
+                step={INCREMENT_RATE}
                 onChange={handleChangeRate}
-                disabled={voice && voice.voiceSource === 'cloud' ? true : false}
               />
             </div>
           </ListItem>
-
-          {voice?.voiceSource === ELEVEN_LABS && (
-            <>
-              <ListItem
-                divider
-                aria-label={intl.formatMessage(messages.elevenLabsStability)}
-              >
-                <ListItemText
-                  className="Speech__ListItemText"
-                  primary={
-                    <FormattedMessage {...messages.elevenLabsStability} />
-                  }
-                  secondary={
-                    <FormattedMessage
-                      {...messages.elevenLabsStabilityDescription}
-                    />
-                  }
-                />
-                <div className={classes.container}>
-                  <Slider
-                    color="secondary"
-                    value={elevenLabsSettings?.stability ?? 0.5}
-                    min={MIN_ELEVENLABS_STABILITY}
-                    max={MAX_ELEVENLABS_STABILITY}
-                    step={INCREMENT_ELEVENLABS_STABILITY}
-                    onChange={handleChangeElevenLabsStability}
-                  />
-                </div>
-              </ListItem>
-              <ListItem
-                divider
-                aria-label={intl.formatMessage(messages.elevenLabsSimilarity)}
-              >
-                <ListItemText
-                  className="Speech__ListItemText"
-                  primary={
-                    <FormattedMessage {...messages.elevenLabsSimilarity} />
-                  }
-                  secondary={
-                    <FormattedMessage
-                      {...messages.elevenLabsSimilarityDescription}
-                    />
-                  }
-                />
-                <div className={classes.container}>
-                  <Slider
-                    color="secondary"
-                    value={elevenLabsSettings?.similarity ?? 0.75}
-                    min={MIN_ELEVENLABS_SIMILARITY}
-                    max={MAX_ELEVENLABS_SIMILARITY}
-                    step={INCREMENT_ELEVENLABS_SIMILARITY}
-                    onChange={handleChangeElevenLabsSimilarity}
-                  />
-                </div>
-              </ListItem>
-              <ListItem
-                divider
-                aria-label={intl.formatMessage(messages.elevenLabsStyle)}
-              >
-                <ListItemText
-                  className="Speech__ListItemText"
-                  primary={<FormattedMessage {...messages.elevenLabsStyle} />}
-                  secondary={
-                    <FormattedMessage
-                      {...messages.elevenLabsStyleDescription}
-                    />
-                  }
-                />
-                <div className={classes.container}>
-                  <Slider
-                    color="secondary"
-                    value={elevenLabsSettings?.style ?? 0.0}
-                    min={MIN_ELEVENLABS_STYLE}
-                    max={MAX_ELEVENLABS_STYLE}
-                    step={INCREMENT_ELEVENLABS_STYLE}
-                    onChange={handleChangeElevenLabsStyle}
-                  />
-                </div>
-              </ListItem>
-              <ListItem>
-                <div
-                  style={{
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    padding: '16px 0'
-                  }}
-                >
-                  <Button
-                    variant="outlined"
-                    color="secondary"
-                    onClick={handleResetElevenLabsSettings}
-                    size="small"
-                  >
-                    <FormattedMessage {...messages.resetToDefaults} />
-                  </Button>
-                </div>
-              </ListItem>
-            </>
-          )}
         </List>
       </Paper>
       <Paper style={{ marginTop: 10, padding: 20 }}>
@@ -333,12 +163,7 @@ const Speech = ({
         >
           {langVoices.map((voice, index) => {
             const key = voice.voiceURI || index;
-            const isPremium = voice.voiceSource === 'cloud';
-            const isOnline =
-              voice.voiceSource === 'cloud' ||
-              voice.voiceSource === 'elevenlabs';
-
-            const VoiceItem = (
+            return (
               <MenuItem
                 key={key}
                 selected={index === selectedVoiceIndex}
@@ -348,22 +173,8 @@ const Speech = ({
                   <div className="Speech__VoiceLabel">
                     {getVoiceLabel(voice)}
                   </div>
-                  <div className="Speech__VoiceChips">
-                    {voice.voiceSource === 'elevenlabs' && (
-                      <Chip label="ElevenLabs" size="small" color="primary" />
-                    )}
-                    {isOnline && (
-                      <Chip label="online" size="small" color="secondary" />
-                    )}
-                  </div>
                 </div>
               </MenuItem>
-            );
-
-            return isPremium ? (
-              <PremiumFeature key={key}>{VoiceItem}</PremiumFeature>
-            ) : (
-              VoiceItem
             );
           })}
         </Menu>

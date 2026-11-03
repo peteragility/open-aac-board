@@ -19,20 +19,15 @@
   "license": "GPL-3.0-only",
   "dependencies": {
     "@cospired/i18n-iso-languages": "^2.2.0",
-    "@crowdin/crowdin-api-client": "^1.56.3",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "@material-ui/lab": "4.0.0-alpha.57",
-    "@paypal/react-paypal-js": "^7.8.3",
-    "@redux-beacon/google-analytics-gtag": "^1.1.0",
-    "@redux-beacon/offline-web": "^1.0.0",
-    "axios": "^1.19.0",
+    "axios": "^1.20.0",
     "browser-image-resizer": "^2.4.1",
     "dom-to-image": "^2.6.0",
     "dotenv": "^16.6.1",
     "file-saver": "^2.0.5",
     "fontsource-roboto": "^4.0.0",
-    "formik": "^1.5.8",
     "history": "^4.10.1",
     "i18n-iso-countries": "4.3.1",
     "idb": "^7.1.1",
@@ -48,7 +43,6 @@
     "localforage": "1.10.0",
     "lodash": "^4.18.1",
     "mathjs": "7.6.0",
-    "microsoft-cognitiveservices-speech-sdk": "^1.51.0",
     "mime-types": "^2.1.35",
     "moment": "2.29.4",
     "ogv": "^1.9.0",
@@ -74,20 +68,16 @@
     "react-scannable": "0.0.18",
     "react-share": "^2.4.0",
     "react-sizeme": "^3.0.2",
-    "react-social-login-buttons": "^3.9.1",
-    "react-transition-group": "4.4.5",
     "redux": "^4.2.1",
-    "redux-beacon": "^2.1.0",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.4.2",
     "reselect": "5.1.1",
-    "shortid": "^2.2.17",
-    "source-map-explorer": "^2.5.3",
-    "yup": "^0.32.11"
+    "shortid": "^2.2.17"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@craco/craco": "^7.1.0",
+    "@crowdin/crowdin-api-client": "^1.56.3",
     "@playwright/test": "1.56.1",
     "@types/mime-types": "^2.1.4",
     "@types/react": "^17.0.91",
@@ -109,12 +99,13 @@
     "react-scripts": "5.0.1",
     "react-test-renderer": "^17.0.2",
     "redux-mock-store": "^1.5.5",
+    "source-map-explorer": "^2.5.3",
     "sw-precache": "^5.2.1",
     "typescript": "^4.9.5"
   },
   "jest": {
     "transformIgnorePatterns": [
-      "node_modules/(?!idb|microsoft-cognitiveservices-speech-sdk)"
+      "node_modules/(?!idb)"
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js",

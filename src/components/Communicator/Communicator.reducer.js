@@ -22,7 +22,6 @@ import {
   GET_API_MY_COMMUNICATORS_STARTED,
   SYNC_COMMUNICATORS
 } from './Communicator.constants';
-import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import moment from 'moment';
 import { deepCopy } from '../../helpers';
 
@@ -37,30 +36,6 @@ function communicatorReducer(state = initialState, action) {
     (communicator) => communicator.id === state.activeCommunicatorId
   );
   switch (action.type) {
-    case LOGIN_SUCCESS: {
-      const userCommunicators = action.payload.communicators || [];
-      const activeCommunicatorId = userCommunicators.length
-        ? userCommunicators[userCommunicators.length - 1].id
-        : state.activeCommunicatorId;
-      const remoteIds = new Set(userCommunicators.map((c) => c.id));
-      const base = (
-        action.payload.discardLocalChanges
-          ? deepCopy(defaultCommunicators)
-          : state.communicators
-      ).filter((c) => !remoteIds.has(c.id));
-      return {
-        ...state,
-        activeCommunicatorId,
-        communicators: base.concat(userCommunicators)
-      };
-    }
-
-    case LOGOUT:
-      return {
-        ...initialState,
-        communicators: deepCopy(defaultCommunicators)
-      };
-
     case IMPORT_COMMUNICATOR:
       return {
         ...state,

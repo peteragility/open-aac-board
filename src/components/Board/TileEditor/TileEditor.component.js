@@ -41,7 +41,6 @@ import {
   requestCvaPermissions
 } from '../../../cordova-util';
 import { resolveBoardName } from '../../../helpers';
-import PremiumFeature from '../../PremiumFeature';
 import LoadBoardEditor from './LoadBoardEditor/LoadBoardEditor';
 import { Typography } from '@material-ui/core';
 import { LostedFolderForLoadBoardAlert } from './LostedFolderForLoadBoardAlert';
@@ -718,12 +717,10 @@ export class TileEditor extends Component {
                       <FormLabel>
                         {intl.formatMessage(messages.voiceRecorder)}
                       </FormLabel>
-                      <PremiumFeature>
-                        <VoiceRecorder
-                          src={this.currentTileProp('sound')}
-                          onChange={this.handleSoundChange}
-                        />
-                      </PremiumFeature>
+                      <VoiceRecorder
+                        src={this.currentTileProp('sound')}
+                        onChange={this.handleSoundChange}
+                      />
                     </div>
                   )}
                 </div>

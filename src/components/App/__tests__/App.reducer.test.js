@@ -1,5 +1,4 @@
 import { DEFAULT_FONT_FAMILY } from '../../../providers/ThemeProvider/ThemeProvider.constants';
-import { LOGIN_SUCCESS, LOGOUT } from '../../Account/Login/Login.constants';
 import { DISPLAY_SIZE_STANDARD } from '../../Settings/Display/Display.constants';
 import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../../Settings/Navigation/Navigation.constants';
 import {
@@ -57,8 +56,7 @@ describe('reducer', () => {
       symbolsSettings: {
         arasaacActive: false
       },
-      userData: {},
-      unauthEditModalDismissed: false
+      userData: {}
     };
     uData = { name: 'martin bedouret', email: 'anything@cboard.io' };
     mockApp = {
@@ -93,65 +91,6 @@ describe('reducer', () => {
   });
   it('should return the initial state', () => {
     expect(appReducer(undefined, {})).toEqual(initialState);
-  });
-  it('should handle login ', () => {
-    const login = {
-      type: LOGIN_SUCCESS,
-      payload: uData
-    };
-    expect(appReducer(initialState, login)).toEqual({
-      ...initialState,
-      userData: uData,
-      isFirstVisit: false
-    });
-  });
-  it('should handle logout', () => {
-    const logout = {
-      type: LOGOUT
-    };
-    expect(appReducer(initialState, logout)).toEqual(initialState);
-  });
-  it('should clear PIN on logout', () => {
-    const stateWithPin = {
-      ...initialState,
-      userData: uData,
-      navigationSettings: {
-        ...initialState.navigationSettings,
-        pinLockEnabled: true,
-        pinCode: '1234'
-      }
-    };
-    expect(appReducer(stateWithPin, { type: LOGOUT })).toEqual({
-      ...stateWithPin,
-      userData: {},
-      navigationSettings: {
-        ...stateWithPin.navigationSettings,
-        pinLockEnabled: false,
-        pinCode: ''
-      }
-    });
-  });
-  it('should handle setUnauthEditModalDismissed', () => {
-    const action = {
-      type: SET_UNAUTH_EDIT_MODAL_DISMISSED,
-      payload: true
-    };
-    expect(appReducer(initialState, action)).toEqual({
-      ...initialState,
-      unauthEditModalDismissed: true
-    });
-  });
-  it('should reset unauthEditModalDismissed on logout', () => {
-    const dismissedState = {
-      ...initialState,
-      userData: uData,
-      unauthEditModalDismissed: true
-    };
-    expect(appReducer(dismissedState, { type: LOGOUT })).toEqual({
-      ...dismissedState,
-      userData: {},
-      unauthEditModalDismissed: false
-    });
   });
   it('should handle updateDisplaySettings', () => {
     const updateDisplaySettings = {

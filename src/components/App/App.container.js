@@ -10,12 +10,7 @@ import messages from './App.messages';
 import App from './App.component';
 import { DISPLAY_SIZE_STANDARD } from '../Settings/Display/Display.constants';
 
-import {
-  updateUserDataFromAPI,
-  updateLoggedUserLocation,
-  updateUnloggedUserLocation,
-  updateConnectivity
-} from '../App/App.actions';
+import { updateConnectivity } from '../App/App.actions';
 import { getApiObjects } from '../Board/Board.actions';
 import { onCvaResume, cleanUpCvaOnResume } from '../../cordova-util';
 
@@ -202,9 +197,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   showNotification,
-  updateUserDataFromAPI,
-  updateLoggedUserLocation,
-  updateUnloggedUserLocation,
   updateConnectivity,
   getApiObjects
 };

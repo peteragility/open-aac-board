@@ -1,14 +1,11 @@
 import axios from 'axios';
 import { LOCAL_ONLY } from '../local/config';
 import { readLocalMedia } from '../local/media';
-import history from '../history';
 import { alpha2ToAlpha3T } from '@cospired/i18n-iso-languages';
 import {
   API_URL,
   ARASAAC_BASE_PATH_API,
-  GLOBALSYMBOLS_BASE_PATH_API,
-  AZURE_VOICES_BASE_PATH_API,
-  AZURE_SPEECH_SUBSCR_KEY
+  GLOBALSYMBOLS_BASE_PATH_API
 } from '../constants';
 import { getStore } from '../store';
 import {
@@ -17,7 +14,6 @@ import {
   isDataURL,
   isLocalFileURL
 } from '../helpers';
-import { logout } from '../components/Account/Login/Login.actions.js';
 import { cvaFileToBlob, isAndroid } from '../cordova-util';
 
 const BASE_URL = API_URL;
@@ -37,14 +33,6 @@ const getUserData = () => {
   } = store.getState();
 
   return userData;
-};
-
-const getSubscriberId = () => {
-  const store = getStore();
-  const {
-    subscription: { subscriberId }
-  } = store.getState();
-  return subscriberId;
 };
 
 const getAuthToken = () => {
@@ -71,30 +59,6 @@ class API {
         );
       return request;
     });
-    this.axiosInstance.interceptors.response.use(
-      (response) => response,
-      (error) => {
-        if (
-          error.response?.status === 403 &&
-          error.config?.baseURL === BASE_URL
-        ) {
-          if (isAndroid()) {
-            window.FirebasePlugin.unregister();
-            window.facebookConnectPlugin.logout(
-              function (msg) {
-                console.log('disconnect facebook msg' + msg);
-              },
-              function (msg) {
-                console.log('error facebook disconnect msg' + msg);
-              }
-            );
-          }
-          getStore().dispatch(logout());
-          history.push('/login-signup/');
-        }
-        return Promise.reject(error);
-      }
-    );
   }
 
   async getLanguage(lang) {
@@ -106,24 +70,6 @@ class API {
       return null;
     } catch (err) {
       return null;
-    }
-  }
-
-  async getAzureVoices() {
-    const azureVoicesListPath = `${AZURE_VOICES_BASE_PATH_API}list`;
-    const headers = {
-      'Ocp-Apim-Subscription-Key': AZURE_SPEECH_SUBSCR_KEY
-    };
-    try {
-      const { status, data } = await this.axiosInstance.get(
-        azureVoicesListPath,
-        { headers }
-      );
-      if (status === 200) return data;
-      return [];
-    } catch (err) {
-      console.error(err.message);
-      return [];
     }
   }
 
@@ -165,63 +111,6 @@ class API {
     } catch (err) {
       return [];
     }
-  }
-
-  async login(email, password) {
-    const { data } = await this.axiosInstance.post('/user/login', {
-      email,
-      password
-    });
-
-    return data;
-  }
-
-  async forgot(email) {
-    const { data } = await this.axiosInstance.post('/user/forgot', {
-      email
-    });
-
-    return data;
-  }
-
-  async storePassword(userid, password, url) {
-    const { data } = await this.axiosInstance.post('/user/store-password', {
-      userid: userid,
-      token: url,
-      password: password
-    });
-
-    return data;
-  }
-
-  async oAuthLogin(type, query) {
-    if (type === 'apple' || type === 'apple-web') {
-      const authCode = query?.substring(1);
-      const { data } = await this.axiosInstance.post(
-        `/login/${type}/callback`,
-        {
-          state: 'cordova',
-          code: authCode
-        }
-      );
-      return data;
-    }
-    const { data } = await this.axiosInstance.get(
-      `/login/${type}/callback${query}`
-    );
-    return data;
-  }
-
-  async getUserData(userId) {
-    const authToken = getAuthToken();
-    const headers = {
-      Authorization: `Bearer ${authToken}`
-    };
-
-    const { data } = await this.axiosInstance.get(`/user/${userId}`, {
-      headers
-    });
-    return data;
   }
 
   async getBoards({
@@ -382,23 +271,6 @@ class API {
     };
 
     const { data } = await this.axiosInstance.post(`/settings`, newSettings, {
-      headers
-    });
-
-    return data;
-  }
-
-  async updateUser(user) {
-    const authToken = getAuthToken();
-    if (!(authToken && authToken.length)) {
-      throw new Error('Need to be authenticated to perform this request');
-    }
-
-    const headers = {
-      Authorization: `Bearer ${authToken}`
-    };
-
-    const { data } = await this.axiosInstance.put(`/user/${user.id}`, user, {
       headers
     });
 
@@ -732,151 +604,6 @@ class API {
     }
 
     return data;
-  }
-
-  async analyticsReport(report) {
-    const authToken = getAuthToken();
-    if (!(authToken && authToken.length)) {
-      throw new Error('Need to be authenticated to perform this request');
-    }
-    const headers = {
-      Authorization: `Bearer ${authToken}`
-    };
-
-    const { data } = await this.axiosInstance.post(
-      `/analytics/batchGet`,
-      report,
-      {
-        headers
-      }
-    );
-    return data;
-  }
-
-  async getUserLocation() {
-    const { data } = await this.axiosInstance.get(`/location`);
-    return data;
-  }
-
-  async getSubscriber(userId = getUserData().id, requestOrigin = 'unknown') {
-    const authToken = getAuthToken();
-    if (!(authToken && authToken.length)) {
-      throw new Error('Need to be authenticated to perform this request');
-    }
-    const headers = {
-      Authorization: `Bearer ${authToken}`,
-      requestOrigin,
-      purchaseVersion: '1.0.0'
-    };
-    const { data } = await this.axiosInstance.get(`/subscriber/${userId}`, {
-      headers
-    });
-
-    if (data && !data.success) {
-      throw data;
-    }
-
-    return data;
-  }
-
-  async createSubscriber(subscriber = {}) {
-    const authToken = getAuthToken();
-    if (!(authToken && authToken.length)) {
-      throw new Error('Need to be authenticated to perform this request');
-    }
-
-    const headers = {
-      Authorization: `Bearer ${authToken}`
-    };
-    const { data } = await this.axiosInstance.post(`/subscriber`, subscriber, {
-      headers
-    });
-    return data;
-  }
-
-  async cancelPlan(subscriptionId = '') {
-    const authToken = getAuthToken();
-    if (!(authToken && authToken.length)) {
-      throw new Error('Need to be authenticated to perform this request');
-    }
-    const data = { reason: 'User cancelled the subscription' };
-
-    const headers = {
-      Authorization: `Bearer ${authToken}`
-    };
-    const res = await this.axiosInstance.post(
-      `/subscriber/cancel/${subscriptionId}`,
-      { data },
-      { headers }
-    );
-    return res;
-  }
-
-  async postTransaction(transaction = {}) {
-    const authToken = getAuthToken();
-    if (!(authToken && authToken.length)) {
-      throw new Error('Need to be authenticated to perform this request');
-    }
-
-    const headers = {
-      Authorization: `Bearer ${authToken}`
-    };
-    const subscriberId = getSubscriberId();
-    if (!subscriberId) throw new Error('No subscriber id supplied');
-
-    const { data } = await this.axiosInstance.post(
-      `/subscriber/${subscriberId}/transaction`,
-      transaction,
-      {
-        headers
-      }
-    );
-    return data;
-  }
-
-  async updateSubscriber(subscriber = {}) {
-    const authToken = getAuthToken();
-    if (!(authToken && authToken.length)) {
-      throw new Error('Need to be authenticated to perform this request');
-    }
-
-    const headers = {
-      Authorization: `Bearer ${authToken}`
-    };
-    const subscriberId = getSubscriberId();
-    if (!subscriberId) throw new Error('No subscriber id supplied');
-
-    const { data } = await this.axiosInstance.patch(
-      `/subscriber/${subscriberId}`,
-      subscriber,
-      {
-        headers
-      }
-    );
-    return data;
-  }
-
-  async listSubscriptions() {
-    const { data } = await this.axiosInstance.get(`/subscription/list`);
-    return data;
-  }
-
-  async deleteAccount() {
-    const userId = getUserData().id;
-    if (userId) {
-      const authToken = getAuthToken();
-      if (!(authToken && authToken.length)) {
-        throw new Error('Need to be authenticated to perform this request');
-      }
-
-      const headers = {
-        Authorization: `Bearer ${authToken}`
-      };
-      const { data } = await this.axiosInstance.delete(`/account/${userId}`, {
-        headers
-      });
-      return data;
-    }
   }
 
   async improvePhrase({ phrase, language }) {

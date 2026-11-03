@@ -1,17 +1,7 @@
 import {
-  trackSyncEvent,
-  trackSyncException,
   getManifestWatermark,
   countUntrackedBoards
 } from '../Board.sync.analytics';
-import { appInsights } from '../../../appInsights';
-
-jest.mock('../../../appInsights', () => ({
-  appInsights: {
-    trackEvent: jest.fn(),
-    trackException: jest.fn()
-  }
-}));
 
 describe('getManifestWatermark', () => {
   it('returns the newest lastEdited as an ISO string', () => {
@@ -105,47 +95,5 @@ describe('countUntrackedBoards', () => {
     const syncMeta = { dddddddddddddddd: { status: 'SYNCED' } };
 
     expect(countUntrackedBoards(boards, syncMeta, USER_EMAIL)).toBe(2);
-  });
-});
-
-describe('sync telemetry wrappers', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    jest.spyOn(console, 'error').mockImplementation(() => {});
-  });
-
-  afterEach(() => {
-    console.error.mockRestore();
-  });
-
-  it('tags every event with the sync feature', () => {
-    trackSyncEvent('Sync_BoardsStarted', {
-      properties: { manifestWatermark: 'null' },
-      measurements: { manifestSize: 0 }
-    });
-
-    expect(appInsights.trackEvent).toHaveBeenCalledWith({
-      name: 'Sync_BoardsStarted',
-      properties: { feature: 'sync', manifestWatermark: 'null' },
-      measurements: { manifestSize: 0 }
-    });
-  });
-
-  it('does not throw when the App Insights SDK throws', () => {
-    appInsights.trackEvent.mockImplementation(() => {
-      throw new Error('SDK not loaded');
-    });
-
-    expect(() => trackSyncEvent('Sync_BoardsStarted')).not.toThrow();
-  });
-
-  it('does not throw when trackException throws', () => {
-    appInsights.trackException.mockImplementation(() => {
-      throw new Error('SDK not loaded');
-    });
-
-    expect(() =>
-      trackSyncException(new Error('sync failed'), { phase: 'syncBoards' })
-    ).not.toThrow();
   });
 });

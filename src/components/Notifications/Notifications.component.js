@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import { NOTIFICATION_DELAY } from './Notifications.constants';
 import { FormattedMessage } from 'react-intl';
 import messages from './Notifications.messages';
-import { Link } from 'react-router-dom';
 
 const propTypes = {
   config: PropTypes.object.isRequired,
@@ -45,43 +44,6 @@ const Notifications = ({
           <span id="message-id">{message}</span>
         </Alert>
       );
-    if (kind === 'cloudSpeakError' || kind === 'cloudVoiceIsSeted') {
-      const isCloudError = !!(kind === 'cloudSpeakError');
-      return (
-        <Alert
-          variant="filled"
-          severity={isCloudError ? 'error' : 'info'}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-          action={
-            isCloudError ? (
-              <Button
-                size="small"
-                variant="outlined"
-                style={{
-                  color: 'white',
-                  borderColor: 'white',
-                  textAlign: 'center'
-                }}
-                component={Link}
-                to="/settings/speech"
-              >
-                <FormattedMessage {...messages.changeVoiceOnError} />
-              </Button>
-            ) : null
-          }
-        >
-          {isCloudError ? (
-            <FormattedMessage {...messages.cloudSpeakErrorAlert} />
-          ) : (
-            <FormattedMessage {...messages.cloudVoiceIsSetedAlert} />
-          )}
-        </Alert>
-      );
-    }
   };
   return (
     <Snackbar

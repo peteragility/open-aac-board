@@ -1,6 +1,5 @@
 import languageProviderReducer from '../LanguageProvider.reducer';
 import { CHANGE_LANG, SET_LANGS } from '../LanguageProvider.constants';
-import { LOGIN_SUCCESS } from '../../../components/Account/Login/Login.constants';
 import { DEFAULT_LANG } from '../../../components/App/App.constants';
 let initialState;
 
@@ -19,16 +18,6 @@ describe('reducer', () => {
   });
   it('should return the initial state', () => {
     expect(languageProviderReducer(undefined, {})).toEqual(initialState);
-  });
-  it('should handle login ', () => {
-    const login = {
-      type: LOGIN_SUCCESS,
-      payload: initialState
-    };
-    expect(languageProviderReducer(initialState, login)).toEqual({
-      ...initialState,
-      dir: 'ltr'
-    });
   });
   it('should handle setLangs ', () => {
     const setLangs = {

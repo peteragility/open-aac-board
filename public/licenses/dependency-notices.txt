@@ -2,7 +2,7 @@ OPEN AAC BOARD — THIRD-PARTY PACKAGE NOTICES
 
 All installed packages in package-lock.json, including development/build tools. This is broader than the browser bundle and is not a legal clearance or an assertion that every package is redistributed.
 
-Lockfile SHA-256: d5305455be039226d2ef908fac8d2c841cf600de69e8013b0614627afa3e639e
+Lockfile SHA-256: a71b377992ff6c991f9fc0aff31038470c3693495a0e6e08cd83204974173ac6
 
 Original notices follow verbatim, deduplicated by SHA-256. License declarations do not override the attached terms.
 
@@ -405,34 +405,6 @@ ast-types-flow@0.0.8: node_modules/ast-types-flow/LICENSE
 MIT License
 
 Copyright (c) 2018 Kyle Davis
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-
-
-========================================================================
-SHA-256: 02915fdf6fde882c366b2da8db5d79cc8a522c5993e8a2bd7609a28710fb1f4d
-react-social-login-buttons@3.9.1: node_modules/react-social-login-buttons/LICENSE
-------------------------------------------------------------------------
-MIT License
-
-Copyright (c) 2018 Michal Szorád
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -2257,40 +2229,6 @@ SOFTWARE.
 
 
 ========================================================================
-SHA-256: 0ccb0dc204a2d08f25ed7f984de0c73335eb2945b54bfcf57660034a27b5c0f5
-caseless@0.12.0: node_modules/caseless/LICENSE
-------------------------------------------------------------------------
-Apache License
-Version 2.0, January 2004
-http://www.apache.org/licenses/
-TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-1. Definitions.
-"License" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document.
-"Licensor" shall mean the copyright owner or entity authorized by the copyright owner that is granting the License.
-"Legal Entity" shall mean the union of the acting entity and all other entities that control, are controlled by, or are under common control with that entity. For the purposes of this definition, "control" means (i) the power, direct or indirect, to cause the direction or management of such entity, whether by contract or otherwise, or (ii) ownership of fifty percent (50%) or more of the outstanding shares, or (iii) beneficial ownership of such entity.
-"You" (or "Your") shall mean an individual or Legal Entity exercising permissions granted by this License.
-"Source" form shall mean the preferred form for making modifications, including but not limited to software source code, documentation source, and configuration files.
-"Object" form shall mean any form resulting from mechanical transformation or translation of a Source form, including but not limited to compiled object code, generated documentation, and conversions to other media types.
-"Work" shall mean the work of authorship, whether in Source or Object form, made available under the License, as indicated by a copyright notice that is included in or attached to the work (an example is provided in the Appendix below).
-"Derivative Works" shall mean any work, whether in Source or Object form, that is based on (or derived from) the Work and for which the editorial revisions, annotations, elaborations, or other modifications represent, as a whole, an original work of authorship. For the purposes of this License, Derivative Works shall not include works that remain separable from, or merely link (or bind by name) to the interfaces of, the Work and Derivative Works thereof.
-"Contribution" shall mean any work of authorship, including the original version of the Work and any modifications or additions to that Work or Derivative Works thereof, that is intentionally submitted to Licensor for inclusion in the Work by the copyright owner or by an individual or Legal Entity authorized to submit on behalf of the copyright owner. For the purposes of this definition, "submitted" means any form of electronic, verbal, or written communication sent to the Licensor or its representatives, including but not limited to communication on electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, the Licensor for the purpose of discussing and improving the Work, but excluding communication that is conspicuously marked or otherwise designated in writing by the copyright owner as "Not a Contribution."
-"Contributor" shall mean Licensor and any individual or Legal Entity on behalf of whom a Contribution has been received by Licensor and subsequently incorporated within the Work.
-2. Grant of Copyright License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.
-3. Grant of Patent License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this section) patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer the Work, where such license applies only to those patent claims licensable by such Contributor that are necessarily infringed by their Contribution(s) alone or by combination of their Contribution(s) with the Work to which such Contribution(s) was submitted. If You institute patent litigation against any entity (including a cross-claim or counterclaim in a lawsuit) alleging that the Work or a Contribution incorporated within the Work constitutes direct or contributory patent infringement, then any patent licenses granted to You under this License for that Work shall terminate as of the date such litigation is filed.
-4. Redistribution. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:
-You must give any other recipients of the Work or Derivative Works a copy of this License; and
-You must cause any modified files to carry prominent notices stating that You changed the files; and
-You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and
-If the Work includes a "NOTICE" text file as part of its distribution, then any Derivative Works that You distribute must include a readable copy of the attribution notices contained within such NOTICE file, excluding those notices that do not pertain to any part of the Derivative Works, in at least one of the following places: within a NOTICE text file distributed as part of the Derivative Works; within the Source form or documentation, if provided along with the Derivative Works; or, within a display generated by the Derivative Works, if and wherever such third-party notices normally appear. The contents of the NOTICE file are for informational purposes only and do not modify the License. You may add Your own attribution notices within Derivative Works that You distribute, alongside or as an addendum to the NOTICE text from the Work, provided that such additional attribution notices cannot be construed as modifying the License. You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License.
-5. Submission of Contributions. Unless You explicitly state otherwise, any Contribution intentionally submitted for inclusion in the Work by You to the Licensor shall be under the terms and conditions of this License, without any additional terms or conditions. Notwithstanding the above, nothing herein shall supersede or modify the terms of any separate license agreement you may have executed with Licensor regarding such Contributions.
-6. Trademarks. This License does not grant permission to use the trade names, trademarks, service marks, or product names of the Licensor, except as required for reasonable and customary use in describing the origin of the Work and reproducing the content of the NOTICE file.
-7. Disclaimer of Warranty. Unless required by applicable law or agreed to in writing, Licensor provides the Work (and each Contributor provides its Contributions) on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely responsible for determining the appropriateness of using or redistributing the Work and assume any risks associated with Your exercise of permissions under this License.
-8. Limitation of Liability. In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall any Contributor be liable to You for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising as a result of this License or out of the use or inability to use the Work (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if such Contributor has been advised of the possibility of such damages.
-9. Accepting Warranty or Additional Liability. While redistributing the Work or Derivative Works thereof, You may choose to offer, and charge a fee for, acceptance of support, warranty, indemnity, or other liability obligations and/or rights consistent with this License. However, in accepting such obligations, You may act only on Your own behalf and on Your sole responsibility, not on behalf of any other Contributor, and only if You agree to indemnify, defend, and hold each Contributor harmless for any liability incurred by, or claims asserted against, such Contributor by reason of your accepting any such warranty or additional liability.
-END OF TERMS AND CONDITIONS
-
-
-========================================================================
 SHA-256: 0cdf2593fd1d0058cf59397a2f6284b1955652813ecd2a3c8c9203b82b008b7b
 @pmmmwh/react-refresh-webpack-plugin@0.5.17: node_modules/@pmmmwh/react-refresh-webpack-plugin/LICENSE
 ------------------------------------------------------------------------
@@ -3199,34 +3137,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
-
-========================================================================
-SHA-256: 0e15c200e47c53a384aa01271398af2f43df40332061b8c0be1907cb9e61e8d2
-toposort@2.0.2: node_modules/toposort/License
-------------------------------------------------------------------------
-
-Toposort - Topological sorting for node.js
-Copyright (c) 2012 by Marcel Klehr <mklehr@gmx.net>
-MIT LICENSE
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
 
 
 
@@ -5562,204 +5472,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 ========================================================================
-SHA-256: 18773940da4b0121e7fe6728134716d4af8e170184a59dfeb1084b4f084d618b
-@paypal/paypal-js@5.1.6: node_modules/@paypal/paypal-js/LICENSE
-@paypal/react-paypal-js@7.8.3: node_modules/@paypal/react-paypal-js/LICENSE
-------------------------------------------------------------------------
-                                 Apache License
-                           Version 2.0, January 2004
-                        https://www.apache.org/licenses/
-
-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-   1. Definitions.
-
-      "License" shall mean the terms and conditions for use, reproduction,
-      and distribution as defined by Sections 1 through 9 of this document.
-
-      "Licensor" shall mean the copyright owner or entity authorized by
-      the copyright owner that is granting the License.
-
-      "Legal Entity" shall mean the union of the acting entity and all
-      other entities that control, are controlled by, or are under common
-      control with that entity. For the purposes of this definition,
-      "control" means (i) the power, direct or indirect, to cause the
-      direction or management of such entity, whether by contract or
-      otherwise, or (ii) ownership of fifty percent (50%) or more of the
-      outstanding shares, or (iii) beneficial ownership of such entity.
-
-      "You" (or "Your") shall mean an individual or Legal Entity
-      exercising permissions granted by this License.
-
-      "Source" form shall mean the preferred form for making modifications,
-      including but not limited to software source code, documentation
-      source, and configuration files.
-
-      "Object" form shall mean any form resulting from mechanical
-      transformation or translation of a Source form, including but
-      not limited to compiled object code, generated documentation,
-      and conversions to other media types.
-
-      "Work" shall mean the work of authorship, whether in Source or
-      Object form, made available under the License, as indicated by a
-      copyright notice that is included in or attached to the work
-      (an example is provided in the Appendix below).
-
-      "Derivative Works" shall mean any work, whether in Source or Object
-      form, that is based on (or derived from) the Work and for which the
-      editorial revisions, annotations, elaborations, or other modifications
-      represent, as a whole, an original work of authorship. For the purposes
-      of this License, Derivative Works shall not include works that remain
-      separable from, or merely link (or bind by name) to the interfaces of,
-      the Work and Derivative Works thereof.
-
-      "Contribution" shall mean any work of authorship, including
-      the original version of the Work and any modifications or additions
-      to that Work or Derivative Works thereof, that is intentionally
-      submitted to Licensor for inclusion in the Work by the copyright owner
-      or by an individual or Legal Entity authorized to submit on behalf of
-      the copyright owner. For the purposes of this definition, "submitted"
-      means any form of electronic, verbal, or written communication sent
-      to the Licensor or its representatives, including but not limited to
-      communication on electronic mailing lists, source code control systems,
-      and issue tracking systems that are managed by, or on behalf of, the
-      Licensor for the purpose of discussing and improving the Work, but
-      excluding communication that is conspicuously marked or otherwise
-      designated in writing by the copyright owner as "Not a Contribution."
-
-      "Contributor" shall mean Licensor and any individual or Legal Entity
-      on behalf of whom a Contribution has been received by Licensor and
-      subsequently incorporated within the Work.
-
-   2. Grant of Copyright License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      copyright license to reproduce, prepare Derivative Works of,
-      publicly display, publicly perform, sublicense, and distribute the
-      Work and such Derivative Works in Source or Object form.
-
-   3. Grant of Patent License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      (except as stated in this section) patent license to make, have made,
-      use, offer to sell, sell, import, and otherwise transfer the Work,
-      where such license applies only to those patent claims licensable
-      by such Contributor that are necessarily infringed by their
-      Contribution(s) alone or by combination of their Contribution(s)
-      with the Work to which such Contribution(s) was submitted. If You
-      institute patent litigation against any entity (including a
-      cross-claim or counterclaim in a lawsuit) alleging that the Work
-      or a Contribution incorporated within the Work constitutes direct
-      or contributory patent infringement, then any patent licenses
-      granted to You under this License for that Work shall terminate
-      as of the date such litigation is filed.
-
-   4. Redistribution. You may reproduce and distribute copies of the
-      Work or Derivative Works thereof in any medium, with or without
-      modifications, and in Source or Object form, provided that You
-      meet the following conditions:
-
-      (a) You must give any other recipients of the Work or
-          Derivative Works a copy of this License; and
-
-      (b) You must cause any modified files to carry prominent notices
-          stating that You changed the files; and
-
-      (c) You must retain, in the Source form of any Derivative Works
-          that You distribute, all copyright, patent, trademark, and
-          attribution notices from the Source form of the Work,
-          excluding those notices that do not pertain to any part of
-          the Derivative Works; and
-
-      (d) If the Work includes a "NOTICE" text file as part of its
-          distribution, then any Derivative Works that You distribute must
-          include a readable copy of the attribution notices contained
-          within such NOTICE file, excluding those notices that do not
-          pertain to any part of the Derivative Works, in at least one
-          of the following places: within a NOTICE text file distributed
-          as part of the Derivative Works; within the Source form or
-          documentation, if provided along with the Derivative Works; or,
-          within a display generated by the Derivative Works, if and
-          wherever such third-party notices normally appear. The contents
-          of the NOTICE file are for informational purposes only and
-          do not modify the License. You may add Your own attribution
-          notices within Derivative Works that You distribute, alongside
-          or as an addendum to the NOTICE text from the Work, provided
-          that such additional attribution notices cannot be construed
-          as modifying the License.
-
-      You may add Your own copyright statement to Your modifications and
-      may provide additional or different license terms and conditions
-      for use, reproduction, or distribution of Your modifications, or
-      for any such Derivative Works as a whole, provided Your use,
-      reproduction, and distribution of the Work otherwise complies with
-      the conditions stated in this License.
-
-   5. Submission of Contributions. Unless You explicitly state otherwise,
-      any Contribution intentionally submitted for inclusion in the Work
-      by You to the Licensor shall be under the terms and conditions of
-      this License, without any additional terms or conditions.
-      Notwithstanding the above, nothing herein shall supersede or modify
-      the terms of any separate license agreement you may have executed
-      with Licensor regarding such Contributions.
-
-   6. Trademarks. This License does not grant permission to use the trade
-      names, trademarks, service marks, or product names of the Licensor,
-      except as required for reasonable and customary use in describing the
-      origin of the Work and reproducing the content of the NOTICE file.
-
-   7. Disclaimer of Warranty. Unless required by applicable law or
-      agreed to in writing, Licensor provides the Work (and each
-      Contributor provides its Contributions) on an "AS IS" BASIS,
-      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-      implied, including, without limitation, any warranties or conditions
-      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
-      appropriateness of using or redistributing the Work and assume any
-      risks associated with Your exercise of permissions under this License.
-
-   8. Limitation of Liability. In no event and under no legal theory,
-      whether in tort (including negligence), contract, or otherwise,
-      unless required by applicable law (such as deliberate and grossly
-      negligent acts) or agreed to in writing, shall any Contributor be
-      liable to You for damages, including any direct, indirect, special,
-      incidental, or consequential damages of any character arising as a
-      result of this License or out of the use or inability to use the
-      Work (including but not limited to damages for loss of goodwill,
-      work stoppage, computer failure or malfunction, or any and all
-      other commercial damages or losses), even if such Contributor
-      has been advised of the possibility of such damages.
-
-   9. Accepting Warranty or Additional Liability. While redistributing
-      the Work or Derivative Works thereof, You may choose to offer,
-      and charge a fee for, acceptance of support, warranty, indemnity,
-      or other liability obligations and/or rights consistent with this
-      License. However, in accepting such obligations, You may act only
-      on Your own behalf and on Your sole responsibility, not on behalf
-      of any other Contributor, and only if You agree to indemnify,
-      defend, and hold each Contributor harmless for any liability
-      incurred by, or claims asserted against, such Contributor by reason
-      of your accepting any such warranty or additional liability.
-
-   END OF TERMS AND CONDITIONS
-
-   Copyright 2020 PayPal
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       https://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
-
-
-========================================================================
 SHA-256: 18a53184b61f21e9f39035c106e5e6bf885353ce4177d18e15fcb18980cb1ee2
 glob-to-regexp@0.4.1: node_modules/glob-to-regexp/README.md
 ------------------------------------------------------------------------
@@ -5952,158 +5664,6 @@ babel-plugin-transform-import-meta@2.3.3: node_modules/babel-plugin-transform-im
 
 
 ========================================================================
-SHA-256: 199fd5d150d791e4b36894a4f915036d45cbae9d8ada457f50e891742445cc58
-agent-base@5.1.1: node_modules/microsoft-cognitiveservices-speech-sdk/node_modules/https-proxy-agent/node_modules/agent-base/README.md
-------------------------------------------------------------------------
-agent-base
-==========
-### Turn a function into an [`http.Agent`][http.Agent] instance
-[![Build Status](https://github.com/TooTallNate/node-agent-base/workflows/Node%20CI/badge.svg)](https://github.com/TooTallNate/node-agent-base/actions?workflow=Node+CI)
-
-This module provides an `http.Agent` generator. That is, you pass it an async
-callback function, and it returns a new `http.Agent` instance that will invoke the
-given callback function when sending outbound HTTP requests.
-
-#### Some subclasses:
-
-Here's some more interesting uses of `agent-base`.
-Send a pull request to list yours!
-
- * [`http-proxy-agent`][http-proxy-agent]: An HTTP(s) proxy `http.Agent` implementation for HTTP endpoints
- * [`https-proxy-agent`][https-proxy-agent]: An HTTP(s) proxy `http.Agent` implementation for HTTPS endpoints
- * [`pac-proxy-agent`][pac-proxy-agent]: A PAC file proxy `http.Agent` implementation for HTTP and HTTPS
- * [`socks-proxy-agent`][socks-proxy-agent]: A SOCKS (v4a) proxy `http.Agent` implementation for HTTP and HTTPS
-
-
-Installation
-------------
-
-Install with `npm`:
-
-``` bash
-$ npm install agent-base
-```
-
-
-Example
--------
-
-Here's a minimal example that creates a new `net.Socket` connection to the server
-for every HTTP request (i.e. the equivalent of `agent: false` option):
-
-```js
-var net = require('net');
-var tls = require('tls');
-var url = require('url');
-var http = require('http');
-var agent = require('agent-base');
-
-var endpoint = 'http://nodejs.org/api/';
-var parsed = url.parse(endpoint);
-
-// This is the important part!
-parsed.agent = agent(function (req, opts) {
-  var socket;
-  // `secureEndpoint` is true when using the https module
-  if (opts.secureEndpoint) {
-    socket = tls.connect(opts);
-  } else {
-    socket = net.connect(opts);
-  }
-  return socket;
-});
-
-// Everything else works just like normal...
-http.get(parsed, function (res) {
-  console.log('"response" event!', res.headers);
-  res.pipe(process.stdout);
-});
-```
-
-Returning a Promise or using an `async` function is also supported:
-
-```js
-agent(async function (req, opts) {
-  await sleep(1000);
-  // etc…
-});
-```
-
-Return another `http.Agent` instance to "pass through" the responsibility
-for that HTTP request to that agent:
-
-```js
-agent(function (req, opts) {
-  return opts.secureEndpoint ? https.globalAgent : http.globalAgent;
-});
-```
-
-
-API
----
-
-## Agent(Function callback[, Object options]) → [http.Agent][]
-
-Creates a base `http.Agent` that will execute the callback function `callback`
-for every HTTP request that it is used as the `agent` for. The callback function
-is responsible for creating a `stream.Duplex` instance of some kind that will be
-used as the underlying socket in the HTTP request.
-
-The `options` object accepts the following properties:
-
-  * `timeout` - Number - Timeout for the `callback()` function in milliseconds. Defaults to Infinity (optional).
-
-The callback function should have the following signature:
-
-### callback(http.ClientRequest req, Object options, Function cb) → undefined
-
-The ClientRequest `req` can be accessed to read request headers and
-and the path, etc. The `options` object contains the options passed
-to the `http.request()`/`https.request()` function call, and is formatted
-to be directly passed to `net.connect()`/`tls.connect()`, or however
-else you want a Socket to be created. Pass the created socket to
-the callback function `cb` once created, and the HTTP request will
-continue to proceed.
-
-If the `https` module is used to invoke the HTTP request, then the
-`secureEndpoint` property on `options` _will be set to `true`_.
-
-
-License
--------
-
-(The MIT License)
-
-Copyright (c) 2013 Nathan Rajlich &lt;nathan@tootallnate.net&gt;
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-[http-proxy-agent]: https://github.com/TooTallNate/node-http-proxy-agent
-[https-proxy-agent]: https://github.com/TooTallNate/node-https-proxy-agent
-[pac-proxy-agent]: https://github.com/TooTallNate/node-pac-proxy-agent
-[socks-proxy-agent]: https://github.com/TooTallNate/node-socks-proxy-agent
-[http.Agent]: https://nodejs.org/api/http.html#http_class_http_agent
-
-
-
-========================================================================
 SHA-256: 1a3aeb1f1398bd697d57c3c585faadf59d825aca6e3162cd7eeb72ff76eb2466
 es-iterator-helpers@1.2.2: node_modules/es-iterator-helpers/LICENSE
 es-set-tostringtag@2.1.0: node_modules/es-set-tostringtag/LICENSE
@@ -6287,117 +5847,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-
-
-========================================================================
-SHA-256: 1c71a37fa911c31a096a862824bbf993c2fa3716b2870146f6928af3a4be0c21
-bent@7.3.12: node_modules/bent/README.md
-------------------------------------------------------------------------
-# bent
-
-![2377](https://img.shields.io/badge/compiled%20bundle-2k-brightgreen) ![1106](https://img.shields.io/badge/gzipped%20bundle-1k-brightgreen)
-
-Functional HTTP client for Node.js and Browsers with async/await.
-
-*Incredibly small browser version built on fetch with no external dependencies or polyfills.*
-
-## Usage
-
-```javascript
-const bent = require('bent')
-
-const getJSON = bent('json')
-const getBuffer = bent('buffer')
-
-let obj = await getJSON('http://site.com/json.api')
-let buffer = await getBuffer('http://site.com/image.png')
-```
-
-As you can see, bent is a function that returns an async function.
-
-Bent takes options which constrain what is accepted by the client.
-Any response that falls outside the constraints will generate an error.
-
-You can provide these options in any order, and Bent will figure out which option is which by inspecting the option's type and content.
-```javascript
-const post = bent('http://localhost:3000/', 'POST', 'json', 200);
-const response = await post('cars/new', {name: 'bmw', wheels: 4});
-```
-
-If you don't set a response encoding (`'json'`, `'string'` or `'buffer'`)
-then the *native* response object will be returned after the statusCode check.
-
-In Node.js, we also add decoding methods that match the Fetch API (`.json()`,
-`.text()` and `.arrayBuffer()`).
-
-```javascript
-const bent = require('bent')
-
-const getStream = bent('http://site.com')
-
-let stream = await getStream('/json.api')
-// status code
-stream.status // 200
-stream.statusCode // 200
-// optionally decode
-const obj = await stream.json()
-// or
-const str = await stream.text()
-```
-
-The following options are available.
-
-* **HTTP Method**: `'GET'`, `'PUT'`, or any other ALLCAPS string will be
-  used to set the HTTP method. Defaults to `'GET'`.
-* **Response Format**: Available formats are `'string'`, `'buffer'`, and
-  `'json'`. By default, the response object/stream will be returned instead
-  of a decoded response. *Browser returns `ArrayBuffer` instead of `Buffer`.*
-* **Status Codes**: Any number will be considered an acceptable status code.
-  By default, `200` is the only acceptable status code. When any status codes
-  are provided, `200` must be included explicitly in order to be acceptable.
-* **Headers**: An object can be passed to set request headers.
-* **Base URL**: Any string that begins with 'https:' or 'http:' is
-  considered the Base URL. Subsequent queries need only pass the remaining
-  URL string.
-
-The returned async function is used for subsequent requests.
-
-When working with Binary this library uses different types in the browser and Node.js. In Node.js all binary must be done
-using the `Buffer` type. In the browser you can use ArrayBuffer or any ArrayBuffer view type (UInt8Array, etc).
-
-### `async request(url[, body=null, headers={}])`
-
-* **url**: Fully qualified URL to the remote resource, or in the case that a
-  base URL is passed the remaining URL string.
-* **body**: Request body. Can be a string, a stream (node.js), a buffer (node.js) (see note below),
-  an ArrayBuffer (browser), or a JSON object.
-* **headers**: An object of any headers you need to set for just this request.
-
-```javascript
-const bent = require('bent')
-
-const put = bent('PUT', 201)
-await put('http://site.com/upload', Buffer.from('test'))
-```
-
-Or
-
-
-```javascript
-const bent = require('bent')
-
-const put = bent('PUT', 201, 'http://site.com')
-await put('/upload', Buffer.from('test'))
-```
-
-**NOTE:** If the `body` is passed as an `object`, it will be treated
-as JSON, stringified and the `Content-Type` will be set to `application/json`
-unless already set.  A common requirement is to POST using `form-urlencoded`.
-This will require you to set the `Content-Type` header to
-`application/x-www-form-urlencoded` and to encode the body yourself,
-perhaps using
-[form-urlencoded](https://www.npmjs.com/package/form-urlencoded).
 
 
 
@@ -6596,7 +6045,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ========================================================================
 SHA-256: 1e187eec147d04bcbb3b7aef9f3b0ea82228961fa7d390d3efb9e57751dbe0cb
-react-fast-compare@2.0.4: node_modules/react-fast-compare/LICENSE
 react-fast-compare@3.2.2: node_modules/react-helmet/node_modules/react-fast-compare/LICENSE
 ------------------------------------------------------------------------
 MIT License
@@ -6645,34 +6093,6 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
 OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-========================================================================
-SHA-256: 1f83c934f29383a9b4ccb7a25eea6907da6f2b7675905fbb82f8f97f278b83ef
-@azure/abort-controller@2.1.2: node_modules/@azure/abort-controller/LICENSE
-------------------------------------------------------------------------
-The MIT License (MIT)
-
-Copyright (c) 2020 Microsoft
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
 
 
@@ -6843,7 +6263,6 @@ THE SOFTWARE.
 
 ========================================================================
 SHA-256: 210b19e543130388c68654b7497e967119ce17145f66ab7d85688fbd70f08751
-tslib@1.14.1: node_modules/formik/node_modules/tslib/LICENSE.txt
 tslib@2.8.1: node_modules/tslib/LICENSE.txt
 tslib@1.14.1: node_modules/tsutils/node_modules/tslib/LICENSE.txt
 ------------------------------------------------------------------------
@@ -7366,29 +6785,6 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-========================================================================
-SHA-256: 2453d3b90aa23715eec80b25fcda1bebf71052ad41a6694d58a9aa867d103c81
-encoding@0.1.13: node_modules/encoding/LICENSE
-------------------------------------------------------------------------
-Copyright (c) 2012-2014 Andris Reinman
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
 
 
@@ -9275,7 +8671,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ========================================================================
 SHA-256: 32f0856d2c43df7d05cca960fdee84e1e38ab545bd7b2186433dfa41aa90a712
 https-proxy-agent@5.0.1: node_modules/https-proxy-agent/README.md
-https-proxy-agent@4.0.0: node_modules/microsoft-cognitiveservices-speech-sdk/node_modules/https-proxy-agent/README.md
 ------------------------------------------------------------------------
 https-proxy-agent
 ================
@@ -11937,32 +11332,6 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 
 ========================================================================
-SHA-256: 453a712c58161b74efa998578aaf10fd7ad8204120730de38ca04d7f47f3ea46
-promise-polyfill@8.3.0: node_modules/promise-polyfill/LICENSE
-------------------------------------------------------------------------
-Copyright (c) 2014 Taylor Hakes
-Copyright (c) 2014 Forbes Lindesay
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-
-========================================================================
 SHA-256: 456fe85ad3e71db9523313cf7437b0f90c392d8a48c869908e46716b26d2cf53
 lines-and-columns@1.2.4: node_modules/lines-and-columns/LICENSE
 ------------------------------------------------------------------------
@@ -12989,34 +12358,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 ========================================================================
-SHA-256: 4db62091452bb75599fe174df10e9cbaa645df1f09fe1e182a3ae8f0a63d379e
-isomorphic-fetch@2.2.1: node_modules/isomorphic-fetch/LICENSE
-------------------------------------------------------------------------
-The MIT License (MIT)
-
-Copyright (c) 2015 Matt Andrews
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-
-
-========================================================================
 SHA-256: 4df78f3bcde252efdbef67e5a3ef02877be68a4b4ff7ee0c78e4d89a0a7f1f00
 @sinonjs/commons@1.8.6: node_modules/@sinonjs/commons/LICENSE
 ------------------------------------------------------------------------
@@ -13255,38 +12596,6 @@ permission of its copyright owner.
 
 
 ========================================================================
-SHA-256: 4e8b0db5ae4d19cdaa332982021499e12826b54b72543c17c1727cdd0e15a779
-gud@1.0.0: node_modules/gud/README.md
-------------------------------------------------------------------------
-# gud
-
-> Create a 'gud nuff' (not cryptographically secure) globally unique id
-
-## Install
-
-```
-yarn add gud
-```
-
-## Usage
-
-```js
-const gud = require('gud');
-
-console.log(gud()); // 1
-console.log(gud()); // 2
-```
-
-This is ever so slightly better than using something like `_.uniqueId` because
-it will work across multiple copies of the same module.
-
-Do not use this in place of actual UUIDs, security folks will hate me.
-
-This will not be unique across processes/workers.
-
-
-
-========================================================================
 SHA-256: 4eb7543b08d955a6d23fcc224601d43ff566e775be918805e26210d7f6eb4893
 loose-envify@1.4.0: node_modules/loose-envify/LICENSE
 ------------------------------------------------------------------------
@@ -13496,7 +12805,6 @@ before resolving the list.
 
 ========================================================================
 SHA-256: 4eeb3271453a891df609e5a9f4ee79a68307f730c13417a3bfeffa604ac8cf25
-array-flatten@2.1.1: node_modules/array-flatten/LICENSE
 camel-case@4.1.2: node_modules/camel-case/LICENSE
 dot-case@3.0.4: node_modules/dot-case/LICENSE
 array-flatten@1.1.1: node_modules/express/node_modules/array-flatten/LICENSE
@@ -13590,7 +12898,7 @@ SOFTWARE.
 
 ========================================================================
 SHA-256: 4f8563870d0fca38bbc3e00b6f670cb7fa9f380ba9f26a7f7d1184a6b18b1653
-axe-core@4.11.1: node_modules/axe-core/LICENSE-3RD-PARTY.txt
+axe-core@4.14.0: node_modules/axe-core/LICENSE-3RD-PARTY.txt
 ------------------------------------------------------------------------
 -----------------------------------------------------------------------------
                               MIT License
@@ -17196,201 +16504,6 @@ SOFTWARE.
 
 
 ========================================================================
-SHA-256: 5d653995711a5e0d02dd98d9096c5771d028950b91d5ae0b2c50974ee12d90ac
-redux-beacon@2.1.0: node_modules/redux-beacon/README.md
-------------------------------------------------------------------------
-<p align="center">
-  <a href="https://rangle.github.io/redux-beacon/">
-    <img alt="Redux Beacon" src="https://raw.githubusercontent.com/rangle/redux-beacon/af4a88229194291f6b6c9f5311b86488f6b16f1d/logo/redux-beacon-logomark.png" width="150">
-  </a>
-</p>
-
-<h3 align="center">Redux Beacon</h3>
-
-<p align="center">
-Analytics integration for Redux and ngrx/store
-</p>
-
-<p align="center">
-  <a href="https://www.npmjs.com/package/redux-beacon"><img src="https://img.shields.io/npm/v/redux-beacon.svg?style=flat-square"></a>
-  <a href="https://www.npmjs.com/package/redux-beacon"><img src="https://img.shields.io/npm/dm/redux-beacon.svg?style=flat-square"></a>
-  <a href="https://bundlephobia.com/result?p=redux-beacon"><img src="https://img.shields.io/bundlephobia/minzip/redux-beacon.svg?style=flat-square"></a>
-</p>
-
-## [Docs](https://rangle.gitbook.io/redux-beacon/)
-
- - [Migration Guide (from v1 to v2)](https://rangle.gitbook.io/redux-beacon/migration-guide-v1-to-v2)
- - [Getting Started (Redux users)](https://rangle.gitbook.io/redux-beacon/getting-started-redux)
- - [Getting Started (ngrx users)](https://rangle.gitbook.io/redux-beacon/getting-started-ngrx)
-
-## Introduction
-
-If you're using Redux or ngrx/store to manage your app's state, you can use
-Redux Beacon to tap into your dispatched actions and map them to events that are
-consumable by an analytics service (e.g. Google Analytics). With Redux Beacon
-your entire global state life-cycle becomes trackable.
-
-<p align="center">
-  <img alt="Redux Beacon Diagram" src="https://user-images.githubusercontent.com/7446702/38284923-bf9e2b56-378b-11e8-99b0-0416b1efab46.gif">
-</p>
-
- - **Redux Beacon is lightweight**. The core Redux Beacon module is tiny (~ 1KB), and each target, extension, and
-   util, is either around the same size or smaller.
-
- - **You can use Redux Beacon with any framework**. Redux Beacon doesn't depend on any
-   framework, you can use Redux Beacon with React, Angular, React Native, Vue or
-   just plain JavaScript.
-
- - **You can send analytics anywhere**. We have prebuilt targets for the most
-   popular analytics services, you can also build your own custom targets if you
-   need to.
-
- - **You can track analytics offline**. Redux Beacon provides
-   extensions for tracking analytics during intermittent outages in
-   connectivity. These extensions save events in a persistent store when offline
-   (e.g indexedDB). When back online, the extensions purge the store and pass
-   the events off to a target. Read more about offline event collection in the
-   [docs](https://rangle.gitbook.io/redux-beacon/extensions/offlineweb).
-
-## Packages
-
-|                                                                                                                          | Version                                                                                                                                                                                 | Package                                                                                                                       |
-|--------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-|                                                                                                                          | [![npm](https://img.shields.io/npm/v/redux-beacon.svg?style=flat-square)](https://www.npmjs.com/package/redux-beacon)                                                                   | [redux-beacon](https://rangle.gitbook.io/redux-beacon/api-reference)                                                          |
-| ![Google](https://www.google.com/favicon.ico)                                                                            | [![npm](https://img.shields.io/npm/v/@redux-beacon/google-analytics.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/google-analytics)                               | [@redux-beacon/google-analytics](https://rangle.gitbook.io/redux-beacon/targets/googleanalytics)                              |
-| ![Google](https://www.google.com/favicon.ico)                                                                            | [![npm](https://img.shields.io/npm/v/@redux-beacon/google-analytics-gtag.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/google-analytics-gtag)                     | [@redux-beacon/google-analytics-gtag](https://rangle.gitbook.io/redux-beacon/targets/googleanalyticsgtag)                     |
-| ![Google](https://www.google.com/favicon.ico)                                                                            | [![npm](https://img.shields.io/npm/v/@redux-beacon/google-tag-manager.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/google-tag-manager)                           | [@redux-beacon/google-tag-manager](https://rangle.gitbook.io/redux-beacon/targets/googletagmanager)                           |
-| ![Google](https://www.google.com/favicon.ico)                                                                            | [![npm](https://img.shields.io/npm/v/@redux-beacon/react-native-google-analytics.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/react-native-google-analytics)     | [@redux-beacon/react-native-google-analytics](https://rangle.gitbook.io/redux-beacon/targets/react-native-googleanalytics)    |
-| ![Google](https://www.google.com/favicon.ico)                                                                            | [![npm](https://img.shields.io/npm/v/@redux-beacon/react-native-google-tag-manager.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/react-native-google-tag-manager) | [@redux-beacon/react-native-google-tag-manager](https://rangle.gitbook.io/redux-beacon/targets/react-native-googletagmanager) |
-| ![Amplitude](https://amplitude.com/favicon.ico)                                                                          | [![npm](https://img.shields.io/npm/v/@redux-beacon/amplitude.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/amplitude)                                             | [@redux-beacon/amplitude](https://rangle.gitbook.io/redux-beacon/targets/amplitude)                                           |
-| ![Segment](https://d1gi394wp2tyv2.cloudfront.net/app/4.244.0/favicon-6430a09ca7d7fb4217290b0d1a7a0ae3-favicon-32x32.png) | [![npm](https://img.shields.io/npm/v/@redux-beacon/segment.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/segment)                                                 | [@redux-beacon/segment](https://rangle.gitbook.io/redux-beacon/targets/segment)                                               |
-| 🔌                                                                                                                       | [![npm](https://img.shields.io/npm/v/@redux-beacon/logger.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/logger)                                                   | [@redux-beacon/logger](https://rangle.gitbook.io/redux-beacon/extensions/logger)                                              |
-| 🔧                                                                                                                       | [![npm](https://img.shields.io/npm/v/@redux-beacon/combine-events.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/combine-events)                                   | [@redux-beacon/combine-events](https://rangle.gitbook.io/redux-beacon/utils/combineevents)                                    |
-| 🔧                                                                                                                       | [![npm](https://img.shields.io/npm/v/@redux-beacon/ensure.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/ensure)                                                   | [@redux-beacon/ensure](https://rangle.gitbook.io/redux-beacon/utils/ensure)                                                   |
-| 🔧                                                                                                                       | [![npm](https://img.shields.io/npm/v/@redux-beacon/debounce-event.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/debounce-event)                                   | [@redux-beacon/debounce-event](https://rangle.gitbook.io/redux-beacon/utils/debounce-event)                                   |
-| 🔌                                                                                                                       | [![npm](https://img.shields.io/npm/v/@redux-beacon/offline-web.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/offline-web)                                         | [@redux-beacon/offline-web](https://rangle.gitbook.io/redux-beacon/extensions/offlineweb)                                     |
-| 🔌                                                                                                                       | [![npm](https://img.shields.io/npm/v/@redux-beacon/offline-react-native.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/offline-react-native)                       | [@redux-beacon/offline-react-native](https://rangle.gitbook.io/redux-beacon/extensions/offlinereactnative)                    |
-
-
-## Usage
-
- - **Step 1.** Pick out a target _(see above)_
-
- - **Step 2.** Pick out some events you want to track from your target's Event Definitions section
-
- - **Step 3.** Match the events to action types _(see below)_
-
-### Examples
-
-_Track a page view on each `ROUTE_CHANGED` action_
-```js
-const eventsMap = {
-  'ROUTE_CHANGED': trackPageView(action => ({
-    page: action.payload.routerState.url,
-  })),
-}
-```
-
-_Track an event on each `VIDEO_SELECTED` action, use the state before the action
-and the state after the action to hydrate the analytics event_
-```js
-const eventsMap = {
-  'VIDEO_SELECTED': trackEvent((action, prevState, nextState) => ({
-    category: 'Videos',
-    action: action.type,
-    label: prevState.videos.currentCampaign,
-    value: nextState.videos.numVideosSelected,
-  }))
-}
-```
-
-_Track an event on _every_ action using the special '*' key_
-```js
-const eventsMap = {
-  '*': trackEvent(action => ({
-    category: 'redux',
-    action: action.type,
-  })),
-}
-```
-
-_Track multiple events on each `VIDEO_PLAYED` action using the `combineEvents` util_
-
-```js
-const eventsMap = {
-  'VIDEO_PLAYED': combineEvents(
-    trackTiming(action => ({
-      category: 'Videos',
-      action: 'load',
-      value: action.payload.loadTime,
-    }))
-    trackEvent(() => ({
-      category: 'Videos',
-      action: 'play'
-    })),
-  ),
-}
-```
-
-_Track an event on each 'VIDEO_SEARCHED' action, but throttle it with the debounceEvent util so it doesn't fire as often_
-
-```js
-const eventsMap = {
-  'VIDEO_SEARCHED': debounceEvent(300,
-     trackEvent(action => ({
-       category: 'Videos',
-       action: 'search',
-       label: action.payload.searchTerm,
-     }))
-   ),
-}
-```
-
-The `trackPageView`, `trackEvent`, and `trackTiming` functions used above are
-called `eventDefinitions` and are what you use to create events that are
-consumable by an analytics service (a.k.a "target"). Each target will have its
-own set of `eventDefinitions` that you can use and customize.
-
-**Don't like the idea of using an object to map actions?**
-
-_You can use a function..._
-```js
-const pageView = trackPageView(action => ({
-  page: action.payload.routerState.url,
-}));
-
-const videoLoadTime = trackTiming(action => ({
-   category: 'Videos',
-   action: 'load',
-   value: action.payload.loadTime,
-}));
-
-const videoPlayed = trackEvent(() => ({
-  category: 'Videos',
-  action: 'play'
-}));
-
-const eventsMapper = (action) => {
-  switch(action.type) {
-    case 'ROUTE_CHANGED':
-      return pageView;
-    case 'VIDEO_PLAYED':
-      return [videoLoadTime, videoPlayed]
-    default:
-      return [];
-  }
-}
-```
-
-## More Examples & Recipes
- - [How to Track Pageviews in a React-Redux app](https://rangle.gitbook.io/redux-beacon/examples-and-recipes#how-to-track-pageviews-in-a-react-redux-app)
- - [How to Track Pageviews in an Angular-ngrx app](https://rangle.gitbook.io/redux-beacon/examples-and-recipes#how-to-track-pageviews-in-an-angular-ngrx-app)
- - [How to Track Analytics Offline (Web)](https://rangle.gitbook.io/redux-beacon/extensions/offlineweb)
- - [How to Track Analytics Offline (React Native)](https://rangle.gitbook.io/redux-beacon/extensions/offlinereactnative)
-
-
-
-========================================================================
 SHA-256: 5df660fe115c8ddcdb81c5d733c117b94abb706b91c26dac3ab7dc817dd9ba71
 hash.js@1.1.7: node_modules/hash.js/README.md
 ------------------------------------------------------------------------
@@ -17515,7 +16628,6 @@ SOFTWARE.
 
 ========================================================================
 SHA-256: 5e733eb92ed0c571da3f27c5da203e0a9f975b4f96e7692c9fa3660ca54820ec
-promise@7.3.1: node_modules/promise/LICENSE
 promise@8.3.0: node_modules/react-app-polyfill/node_modules/promise/LICENSE
 ------------------------------------------------------------------------
 Copyright (c) 2014 Forbes Lindesay
@@ -18678,34 +17790,6 @@ USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 ========================================================================
-SHA-256: 631c8340beaaf98bc57bf22578605f9e1a501f852aa9367b9bde48463edc72f5
-nanoclone@0.2.1: node_modules/nanoclone/LICENSE
-------------------------------------------------------------------------
-MIT License
-
-Copyright (c) 2017 Anton Kosykh
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-
-
-========================================================================
 SHA-256: 635da794c92d278f8355428be0f9922d643f556d4f75f33fe4aca6b98d27affe
 redux-thunk@2.4.2: node_modules/redux-thunk/LICENSE.md
 ------------------------------------------------------------------------
@@ -19308,203 +18392,6 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
-
-
-========================================================================
-SHA-256: 695f9cc5574270d59c15dea17dc3cc3b47e74628caea94e81c0407ccfda905b4
-@paypal/sdk-constants@1.0.157: node_modules/@paypal/sdk-constants/LICENSE
-------------------------------------------------------------------------
-                                 Apache License
-                           Version 2.0, January 2004
-                        https://www.apache.org/licenses/
-
-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-   1. Definitions.
-
-      "License" shall mean the terms and conditions for use, reproduction,
-      and distribution as defined by Sections 1 through 9 of this document.
-
-      "Licensor" shall mean the copyright owner or entity authorized by
-      the copyright owner that is granting the License.
-
-      "Legal Entity" shall mean the union of the acting entity and all
-      other entities that control, are controlled by, or are under common
-      control with that entity. For the purposes of this definition,
-      "control" means (i) the power, direct or indirect, to cause the
-      direction or management of such entity, whether by contract or
-      otherwise, or (ii) ownership of fifty percent (50%) or more of the
-      outstanding shares, or (iii) beneficial ownership of such entity.
-
-      "You" (or "Your") shall mean an individual or Legal Entity
-      exercising permissions granted by this License.
-
-      "Source" form shall mean the preferred form for making modifications,
-      including but not limited to software source code, documentation
-      source, and configuration files.
-
-      "Object" form shall mean any form resulting from mechanical
-      transformation or translation of a Source form, including but
-      not limited to compiled object code, generated documentation,
-      and conversions to other media types.
-
-      "Work" shall mean the work of authorship, whether in Source or
-      Object form, made available under the License, as indicated by a
-      copyright notice that is included in or attached to the work
-      (an example is provided in the Appendix below).
-
-      "Derivative Works" shall mean any work, whether in Source or Object
-      form, that is based on (or derived from) the Work and for which the
-      editorial revisions, annotations, elaborations, or other modifications
-      represent, as a whole, an original work of authorship. For the purposes
-      of this License, Derivative Works shall not include works that remain
-      separable from, or merely link (or bind by name) to the interfaces of,
-      the Work and Derivative Works thereof.
-
-      "Contribution" shall mean any work of authorship, including
-      the original version of the Work and any modifications or additions
-      to that Work or Derivative Works thereof, that is intentionally
-      submitted to Licensor for inclusion in the Work by the copyright owner
-      or by an individual or Legal Entity authorized to submit on behalf of
-      the copyright owner. For the purposes of this definition, "submitted"
-      means any form of electronic, verbal, or written communication sent
-      to the Licensor or its representatives, including but not limited to
-      communication on electronic mailing lists, source code control systems,
-      and issue tracking systems that are managed by, or on behalf of, the
-      Licensor for the purpose of discussing and improving the Work, but
-      excluding communication that is conspicuously marked or otherwise
-      designated in writing by the copyright owner as "Not a Contribution."
-
-      "Contributor" shall mean Licensor and any individual or Legal Entity
-      on behalf of whom a Contribution has been received by Licensor and
-      subsequently incorporated within the Work.
-
-   2. Grant of Copyright License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      copyright license to reproduce, prepare Derivative Works of,
-      publicly display, publicly perform, sublicense, and distribute the
-      Work and such Derivative Works in Source or Object form.
-
-   3. Grant of Patent License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      (except as stated in this section) patent license to make, have made,
-      use, offer to sell, sell, import, and otherwise transfer the Work,
-      where such license applies only to those patent claims licensable
-      by such Contributor that are necessarily infringed by their
-      Contribution(s) alone or by combination of their Contribution(s)
-      with the Work to which such Contribution(s) was submitted. If You
-      institute patent litigation against any entity (including a
-      cross-claim or counterclaim in a lawsuit) alleging that the Work
-      or a Contribution incorporated within the Work constitutes direct
-      or contributory patent infringement, then any patent licenses
-      granted to You under this License for that Work shall terminate
-      as of the date such litigation is filed.
-
-   4. Redistribution. You may reproduce and distribute copies of the
-      Work or Derivative Works thereof in any medium, with or without
-      modifications, and in Source or Object form, provided that You
-      meet the following conditions:
-
-      (a) You must give any other recipients of the Work or
-          Derivative Works a copy of this License; and
-
-      (b) You must cause any modified files to carry prominent notices
-          stating that You changed the files; and
-
-      (c) You must retain, in the Source form of any Derivative Works
-          that You distribute, all copyright, patent, trademark, and
-          attribution notices from the Source form of the Work,
-          excluding those notices that do not pertain to any part of
-          the Derivative Works; and
-
-      (d) If the Work includes a "NOTICE" text file as part of its
-          distribution, then any Derivative Works that You distribute must
-          include a readable copy of the attribution notices contained
-          within such NOTICE file, excluding those notices that do not
-          pertain to any part of the Derivative Works, in at least one
-          of the following places: within a NOTICE text file distributed
-          as part of the Derivative Works; within the Source form or
-          documentation, if provided along with the Derivative Works; or,
-          within a display generated by the Derivative Works, if and
-          wherever such third-party notices normally appear. The contents
-          of the NOTICE file are for informational purposes only and
-          do not modify the License. You may add Your own attribution
-          notices within Derivative Works that You distribute, alongside
-          or as an addendum to the NOTICE text from the Work, provided
-          that such additional attribution notices cannot be construed
-          as modifying the License.
-
-      You may add Your own copyright statement to Your modifications and
-      may provide additional or different license terms and conditions
-      for use, reproduction, or distribution of Your modifications, or
-      for any such Derivative Works as a whole, provided Your use,
-      reproduction, and distribution of the Work otherwise complies with
-      the conditions stated in this License.
-
-   5. Submission of Contributions. Unless You explicitly state otherwise,
-      any Contribution intentionally submitted for inclusion in the Work
-      by You to the Licensor shall be under the terms and conditions of
-      this License, without any additional terms or conditions.
-      Notwithstanding the above, nothing herein shall supersede or modify
-      the terms of any separate license agreement you may have executed
-      with Licensor regarding such Contributions.
-
-   6. Trademarks. This License does not grant permission to use the trade
-      names, trademarks, service marks, or product names of the Licensor,
-      except as required for reasonable and customary use in describing the
-      origin of the Work and reproducing the content of the NOTICE file.
-
-   7. Disclaimer of Warranty. Unless required by applicable law or
-      agreed to in writing, Licensor provides the Work (and each
-      Contributor provides its Contributions) on an "AS IS" BASIS,
-      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-      implied, including, without limitation, any warranties or conditions
-      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
-      appropriateness of using or redistributing the Work and assume any
-      risks associated with Your exercise of permissions under this License.
-
-   8. Limitation of Liability. In no event and under no legal theory,
-      whether in tort (including negligence), contract, or otherwise,
-      unless required by applicable law (such as deliberate and grossly
-      negligent acts) or agreed to in writing, shall any Contributor be
-      liable to You for damages, including any direct, indirect, special,
-      incidental, or consequential damages of any character arising as a
-      result of this License or out of the use or inability to use the
-      Work (including but not limited to damages for loss of goodwill,
-      work stoppage, computer failure or malfunction, or any and all
-      other commercial damages or losses), even if such Contributor
-      has been advised of the possibility of such damages.
-
-   9. Accepting Warranty or Additional Liability. While redistributing
-      the Work or Derivative Works thereof, You may choose to offer,
-      and charge a fee for, acceptance of support, warranty, indemnity,
-      or other liability obligations and/or rights consistent with this
-      License. However, in accepting such obligations, You may act only
-      on Your own behalf and on Your sole responsibility, not on behalf
-      of any other Contributor, and only if You agree to indemnify,
-      defend, and hold each Contributor harmless for any liability
-      incurred by, or claims asserted against, such Contributor by reason
-      of your accepting any such warranty or additional liability.
-
-   END OF TERMS AND CONDITIONS
-
-   Copyright 2016 PayPal
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       https://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
 
 
 
@@ -20579,7 +19466,6 @@ is-stream@1.1.0: node_modules/execa/node_modules/is-stream/license
 shebang-regex@1.0.0: node_modules/execa/node_modules/shebang-regex/license
 is-obj@1.0.1: node_modules/is-obj/license
 is-redirect@1.0.0: node_modules/is-redirect/license
-is-stream@1.1.0: node_modules/isomorphic-fetch/node_modules/is-stream/license
 load-json-file@1.1.0: node_modules/load-json-file/license
 parse-json@2.2.0: node_modules/load-json-file/node_modules/parse-json/license
 pify@2.3.0: node_modules/load-json-file/node_modules/pify/license
@@ -21542,60 +20428,6 @@ const theme = {
 ## License
 
 [MIT](http://markdalgleish.mit-license.org)
-
-
-
-========================================================================
-SHA-256: 759112e97f9f08ae36834b664b603e0e2d589e83982bb45825d68e09968ffcbe
-formik@1.5.8: node_modules/formik/LICENSE
-------------------------------------------------------------------------
-MIT License
-
-Copyright (c) 2017 Jared Palmer http://jaredpalmer.com
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-
-
-========================================================================
-SHA-256: 75f180f3bc1164e750e0ae5014fc7681176367e8ce882133506bec7760e4f785
-core-js@1.2.7: node_modules/core-js/LICENSE
-------------------------------------------------------------------------
-Copyright (c) 2015 Denis Pushkarev
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
 
 
 
@@ -22593,36 +21425,6 @@ The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-
-
-========================================================================
-SHA-256: 7c77a44a8acd9b41fdc209864a8016b3d430b5d0e09309818d5b7444336df744
-@azure/core-auth@1.10.1: node_modules/@azure/core-auth/LICENSE
-@azure/core-util@1.13.1: node_modules/@azure/core-util/LICENSE
-@typespec/ts-http-runtime@0.3.3: node_modules/@typespec/ts-http-runtime/LICENSE
-------------------------------------------------------------------------
-Copyright (c) Microsoft Corporation.
-
-MIT License
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -23902,7 +22704,8 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ========================================================================
 SHA-256: 82761059eaedacb3356803aea8a170d8298609f91b14fc32ee1bfb40d690183c
-axios@1.19.0: node_modules/axios/LICENSE
+axios@1.19.0: node_modules/@crowdin/crowdin-api-client/node_modules/axios/LICENSE
+axios@1.20.0: node_modules/axios/LICENSE
 ------------------------------------------------------------------------
 # Copyright (c) 2014-present Matt Zabriskie & Collaborators
 
@@ -26547,7 +25350,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ========================================================================
 SHA-256: 84eaa985e1ef71b8c630e8aba73404c219ff425c6fdb45c62e998b58d4fbdc8e
-node-fetch@1.7.3: node_modules/isomorphic-fetch/node_modules/node-fetch/LICENSE.md
 node-fetch@2.7.0: node_modules/node-fetch/LICENSE.md
 ------------------------------------------------------------------------
 The MIT License (MIT)
@@ -27023,34 +25825,6 @@ Redistribution and use in source and binary forms, with or without modification,
 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-
-
-========================================================================
-SHA-256: 89ae1a9d73f2eb3948e37c810309ccc04e5c2c81cb83618df6bb6429d73d9fc1
-property-expr@2.0.6: node_modules/property-expr/LICENSE.txt
-yup@0.32.11: node_modules/yup/LICENSE.md
-------------------------------------------------------------------------
-The MIT License (MIT)
-
-Copyright (c) 2014 Jason Quense
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
 
 ========================================================================
@@ -27540,119 +26314,6 @@ localforage@1.10.0: node_modules/localforage/LICENSE
 
 
 ========================================================================
-SHA-256: 8c49ec29d3598a9d413ed96823736949bf29b5e87501b52850b422b51fd4e5d7
-bytesish@0.4.4: node_modules/bytesish/README.md
-------------------------------------------------------------------------
-# `bytesish`
-
-![5002](https://img.shields.io/badge/compiled%20bundle-5k-green) ![1903](https://img.shields.io/badge/gzipped%20bundle-2k-brightgreen)
-
-If you're writing a library that needs to work in Node.js and in Browsers,
-it's quite difficult to figure out what "the right thing" to do with binary
-is.
-
-If you want to be compatible with Node.js libraries you'll need to accept
-and return `Buffer` instances. If you want to be compatible with Browser API's
-you'll need to accept and return a number of types, the browser is sort of a mess
-when it comes to binary with many different "views" of binary data.
-
-The moment you use the Node.js `Buffer` API in a library that is bundled for
-use in Browsers the bundler will inject a rather large polyfill for the entire
-`Buffer` API. It's quite difficult to accept and return `Buffer` instances while
-avoiding this penalty.
-
-However, there is some good news. No matter what the binary type there's an underlying
-`ArrayBuffer` associated with the instance. There's also one generic binary view object
-available in both Node.js and Browsers called `DataView`. This means that you can take
-any binary type and do a **zero memcopy** conversion to a `DataView`.
-
-But there are some problems with `DataView`. Not all APIs take it in browsers and almost
-none accept it in Node.js. It's a great API for reading and writing to an `ArrayBuffer`
-but it lacks a lot of other functionality that can be difficult to accomplish cross-platform.
-
-`bytesish` is here to help. This library helps you accept and convert different binary types
-into a consistent type, `DataView`, without loading any polyfills or other dependencies, then
-convert back into an ideal type for the platform your library is running in.
-
-What `bytesish` does:
-
-* Returns a `DataView` from any known binary type (zero copy).
-* Creates a `DataView` from a string with any encoding.
-* Converts any type to a string of any encoding.
-* Converts any to an ideal native object (`Buffer` or `Uint8Array`).
-* Provides utility functions for comparison, sorting, copying and slices
-any binary type or string.
-
-`bytesish` does not create a new Binary Type for accessing and manipulating
-binary data, because you can just use `DataView` for that. `bytesish` tries to be a
-small piece of code that does not contribute any more than necessary to your bundle size.
-It does this by containing only the binary operations you need that are difficult to
-do cross-platform (Node.js and Browsers).
-
-```javascript
-let bytes = require('bytesish')
-let view = bytes('hello world')
-
-/* zero copy conversions */
-view = bytes(Buffer.from('hello world')) // Buffer instance
-view = bytes((new TextEncoder()).encode('hello world')) // Uint8Array
-
-/* base64 conversions */
-let base64String = bytes.toString(view, 'base64')
-base64String = bytes.toString(Buffer.from('hello world'), 'base64')
-base64String = bytes.toString('hello world', 'base64')
-
-/* since this is a string conversion it will create a new binary instance */
-let viewCopy = bytes(base64String, 'base64')
-```
-
-# API
-
-## Zero Copy
-
-### `bytes(from)`
-
-### `bytes.sort(a, b)`
-
-### `bytes.compare(a, b)`
-
-### `bytes.native(from[, encoding])`
-
-### `bytes.slice(from[, start=0[, end=from.byteLength]])`
-
-### `bytes.typedArray(from[, Class=Uint8Array])`
-
-## Optimized (memcopy only when necessary)
-
-### `bytes.arrayBuffer(from[, encoding])` 
-
-## Memory Copy
-
-All memcopy APIs return an `ArrayBuffer`
-
-### `bytes.memcopy(from[, encoding])`
-
-Returns an `ArrayBuffer` copy of the given binary or string.
-
-### `bytes.memcopySlice(from[, start=0[, end=from.byteLength]])`
-
-Returns an `ArrayBuffer` copy from a slize of the given binary or string.
-
-### `bytes.concat(values)`
-
-`values` is an iterable of binary or string types.
-
-Returns a newly allocated `ArrayBuffer` contained the concatenated binary data.
-
-## String Conversions
-
-### `bytes(from[, encoding])`
-
-### `bytes.toString(from[, outputEncoding])`
-
-
-
-========================================================================
 SHA-256: 8c535800331e1e4439835555b3f9edc7fe9dee2fab0d8bbbd5a982e8b8343d4d
 parse5@6.0.1: node_modules/jsdom/node_modules/parse5/LICENSE
 parse5@7.3.0: node_modules/parse5/LICENSE
@@ -27971,8 +26632,6 @@ SOFTWARE.
 
 ========================================================================
 SHA-256: 8d8c55319c7729d57be811c747452636688d54f19701ee0752b6b15ad3771d9a
-agent-base@7.1.4: node_modules/@typespec/ts-http-runtime/node_modules/agent-base/LICENSE
-https-proxy-agent@7.0.6: node_modules/@typespec/ts-http-runtime/node_modules/https-proxy-agent/LICENSE
 agent-base@7.1.4: node_modules/gaxios/node_modules/agent-base/LICENSE
 https-proxy-agent@7.0.6: node_modules/gaxios/node_modules/https-proxy-agent/LICENSE
 agent-base@7.1.4: node_modules/google-gax/node_modules/agent-base/LICENSE
@@ -29417,34 +28076,6 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-========================================================================
-SHA-256: 9659b14ee609fc60bcb0d660a0823d03bbb6184c20d1f50e96af4bbe1f56d5b1
-ua-parser-js@0.7.41: node_modules/ua-parser-js/license.md
-------------------------------------------------------------------------
-MIT License
-
-Copyright (c) 2012-2025 Faisal Salman <<f@faisalman.com>>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
 
 
@@ -32883,7 +31514,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ========================================================================
 SHA-256: ac779f7314c74f232ef847ea86e714abe25cf6eeb5cc97b69451b74e2af6492d
 iconv-lite@0.4.24: node_modules/body-parser/node_modules/iconv-lite/LICENSE
-iconv-lite@0.6.3: node_modules/encoding/node_modules/iconv-lite/LICENSE
 iconv-lite@0.7.2: node_modules/iconv-lite/LICENSE
 iconv-lite@0.4.24: node_modules/raw-body/node_modules/iconv-lite/LICENSE
 iconv-lite@0.6.3: node_modules/source-map-loader/node_modules/iconv-lite/LICENSE
@@ -33500,7 +32130,7 @@ THE SOFTWARE.
 
 ========================================================================
 SHA-256: af175b9d96ee93c21a036152e1b905b0b95304d4ae8c2c921c7609100ba8df7e
-axe-core@4.11.1: node_modules/axe-core/LICENSE
+axe-core@4.14.0: node_modules/axe-core/LICENSE
 ------------------------------------------------------------------------
 Mozilla Public License, version 2.0
 
@@ -34236,21 +32866,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-
-
-========================================================================
-SHA-256: b39fd61a5797b69a5abb5452fb9901cc82b5c7f85052b8445b47ec8c29907fcc
-@redux-beacon/google-analytics-gtag@1.1.0: node_modules/@redux-beacon/google-analytics-gtag/README.md
-------------------------------------------------------------------------
-### Description
-
-This is a redux-beacon plugin or 'target' for sending page views, events, and more to Google Analytics.
-
-### Documention & Examples
-
- - [Getting Started Guide (Redux)](https://rangle.gitbook.io/redux-beacon/getting-started-redux-users)
- - [Getting Started Guide (Ngrx)](https://rangle.gitbook.io/redux-beacon/getting-started-ngrx-users)
- - [Google Analytics Target API & Installation](https://rangle.gitbook.io/redux-beacon/index/google-analytics-gtag)
 
 
 ========================================================================
@@ -36139,40 +34754,10 @@ SOFTWARE.
 
 
 ========================================================================
-SHA-256: be7b290b46ac5e5922eb8a6bedda3e11f452ef82567c012cb21b47f397e045ad
-hi-base32@0.5.1: node_modules/hi-base32/LICENSE.txt
-------------------------------------------------------------------------
-Copyright (c) 2015-2021 Chen, Yi-Cyuan
-
-MIT License
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-========================================================================
 SHA-256: beaa6b04fb82e41dd2ad679e19e27953afb5999b1abbb455b6564e78ebfeb332
 uuid@11.1.1: node_modules/browserstack-node-sdk/node_modules/uuid/LICENSE.md
 uuid@9.0.1: node_modules/gaxios/node_modules/uuid/LICENSE.md
 uuid@9.0.1: node_modules/googleapis-common/node_modules/uuid/LICENSE.md
-uuid@11.1.1: node_modules/microsoft-cognitiveservices-speech-sdk/node_modules/uuid/LICENSE.md
 uuid@9.0.1: node_modules/react-scannable/node_modules/uuid/LICENSE.md
 uuid@8.3.2: node_modules/uuid/LICENSE.md
 ------------------------------------------------------------------------
@@ -36609,61 +35194,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 ========================================================================
-SHA-256: c26f35fa8b9ea5e5aaf157fd5872d9331365cb8e93832b8f37a825b15bec3abe
-create-react-context@0.2.3: node_modules/create-react-context/LICENSE
-------------------------------------------------------------------------
-Copyright (c) Jamie Kyle
-
-This license is granted to everyone except for the following entities and
-any of their subsidiaries:
-
-- "Microsoft Corporation" (for working with ICE)
-- "Palantir Technologies" (for working with ICE)
-- "Amazon.com, Inc." (for abusive treatment of workers and for working with ICE)
-- "Northeastern University" (for working with ICE)
-- "Ernst & Young" (for working with ICE)
-- "Thomson Reuters" (for working with ICE)
-- "Motorola Solutions" (for working with ICE)
-- "Deloitte Consulting LLP" (for working with ICE)
-- "John Hopkins University" (for working with ICE)
-- "Dell Inc" (for working with ICE)
-- "Xerox Corporation" (for working with ICE)
-- "Canon Inc" (for working with ICE)
-- "Vermont State Colleges" (for working with ICE)
-- "Charter Communications"/"Spectrum"/"Time Warner Cable" (for working with ICE)
-- "LinkedIn Corporation" (for working with ICE)
-- "United Parcel Service Co" (for working with ICE)
-- "Walmart Inc" (for abusive treatment of workers)
-- "Sears Holding Corporation" (for abusive treatment of workers)
-- "Apple Inc" (for abusive treatment of workers)
-- "Tyson Foods Inc" (for abusive treatment of workers)
-- "Target Corporation" (for union busting and anti-union propaganda)
-- "The H&M group" (for abusive treatment of workers)
-- "Tesla, Inc" (for abusive treatment of workers)
-
-MIT License
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-
-
-========================================================================
 SHA-256: c2a03b31ed1ddbfeec98b6fcc10445564dba11458b6bd0af227e504396d28074
 tryer@1.0.1: node_modules/tryer/COPYING
 ------------------------------------------------------------------------
@@ -36747,7 +35277,6 @@ SHA-256: c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383
 @types/js-yaml@4.0.9: node_modules/@types/js-yaml/LICENSE
 @types/json-schema@7.0.15: node_modules/@types/json-schema/LICENSE
 @types/keyv@3.1.4: node_modules/@types/keyv/LICENSE
-@types/lodash@4.17.24: node_modules/@types/lodash/LICENSE
 @types/mdast@3.0.15: node_modules/@types/mdast/LICENSE
 @types/mime@1.3.5: node_modules/@types/mime/LICENSE
 @types/mime-types@2.1.4: node_modules/@types/mime-types/LICENSE
@@ -36777,7 +35306,6 @@ SHA-256: c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383
 @types/triple-beam@1.3.5: node_modules/@types/triple-beam/LICENSE
 @types/trusted-types@2.0.7: node_modules/@types/trusted-types/LICENSE
 @types/unist@2.0.11: node_modules/@types/unist/LICENSE
-@types/webrtc@0.0.37: node_modules/@types/webrtc/LICENSE
 @types/ws@8.18.1: node_modules/@types/ws/LICENSE
 @types/yargs@16.0.11: node_modules/@types/yargs/LICENSE
 @types/yargs-parser@21.0.3: node_modules/@types/yargs-parser/LICENSE
@@ -43061,7 +41589,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ========================================================================
 SHA-256: dd835e67a9a297da32f9467d7677a5d02c8e50e10f15da43b810147c79c04b9b
-tslib@1.14.1: node_modules/formik/node_modules/tslib/CopyrightNotice.txt
 tslib@1.14.1: node_modules/tsutils/node_modules/tslib/CopyrightNotice.txt
 ------------------------------------------------------------------------
 /*! *****************************************************************************
@@ -43620,34 +42147,6 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-========================================================================
-SHA-256: df9f7d1de68a86422c9c59579b5febcdefc6705ea3926e911fc29b7eddb75c18
-deepmerge@2.2.1: node_modules/deepmerge/license.txt
-------------------------------------------------------------------------
-The MIT License (MIT)
-
-Copyright (c) 2012 Nicholas Fisher
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
 
 
 
@@ -45828,33 +44327,6 @@ We love pull requests! We are very happy to work with you to get your changes me
 
 
 ========================================================================
-SHA-256: eeae92452d6c91422ebad43d76a1bb69893660ec5f4d84a9e63c5395795097c2
-microsoft-cognitiveservices-speech-sdk@1.51.0: node_modules/microsoft-cognitiveservices-speech-sdk/LICENSE
-------------------------------------------------------------------------
-------------------------------------------- START OF LICENSE -----------------------------------------
-Microsoft Azure Cognitive Services Speech SDK Javascript
-Copyright (c) Microsoft Corporation
-All rights reserved.
-
-Component.
-uuid (https://github.com/uuidjs/uuid)
-Open Source License/Copyright Notice.
-Copyright (c) 2010-2020 Robert Kieffer and other contributors
-
-This software is licensed under the MIT License.
- 
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the Software), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------------------------------------------ END OF LICENSE ------------------------------------------
-
-
-
-========================================================================
 SHA-256: eeed1ca176eebad5c73870e233cfff03981fecd319c969475dfa3633036c336b
 tr46@2.1.0: node_modules/data-urls/node_modules/tr46/LICENSE.md
 tr46@2.1.0: node_modules/jsdom/node_modules/tr46/LICENSE.md
@@ -46629,33 +45101,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
-
-========================================================================
-SHA-256: f5c31c91b57c9cf95c64a160c40f1a478d87b400e7d31fbd33351e3fb7596e61
-fbjs@0.8.18: node_modules/fbjs/LICENSE
-------------------------------------------------------------------------
-MIT License
-
-Copyright (c) 2013-present, Facebook, Inc.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 

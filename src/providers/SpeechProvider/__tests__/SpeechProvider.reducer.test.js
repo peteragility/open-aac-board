@@ -10,7 +10,6 @@ import {
 } from '../SpeechProvider.constants';
 
 import { CHANGE_LANG } from '../../LanguageProvider/LanguageProvider.constants';
-import { LOGIN_SUCCESS } from '../../../components/Account/Login/Login.constants';
 
 let mockApSpeechProvider, initialState;
 
@@ -83,13 +82,6 @@ describe('reducer', () => {
   });
   it('should return the initial state', () => {
     expect(speechProviderReducer(undefined, {})).toEqual(initialState);
-  });
-  it('should handle login ', () => {
-    const login = {
-      type: LOGIN_SUCCESS,
-      payload: mockApSpeechProvider
-    };
-    expect(speechProviderReducer(initialState, login)).toEqual(initialState);
   });
   it('should handle endSpeech ', () => {
     const endSpeech = {

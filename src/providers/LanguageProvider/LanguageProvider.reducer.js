@@ -3,7 +3,6 @@ import {
   SET_LANGS,
   SET_DOWNLOADING_LANG
 } from './LanguageProvider.constants';
-import { LOGIN_SUCCESS } from '../../components/Account/Login/Login.constants';
 import { APP_LANGS } from '../../components/App/App.constants';
 import { getDefaultLang } from '../../i18n';
 
@@ -23,19 +22,6 @@ const initialState = {
 
 function languageProviderReducer(state = initialState, action) {
   switch (action.type) {
-    case LOGIN_SUCCESS:
-      const settings = action.payload.settings || {};
-      const { language } = settings;
-
-      const lang =
-        language && language.lang && state.langs.indexOf(language.lang) >= 0
-          ? language.lang
-          : state.lang;
-      return {
-        ...state,
-        lang,
-        dir: getDir(lang)
-      };
     case CHANGE_LANG:
       return {
         ...state,

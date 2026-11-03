@@ -36,7 +36,6 @@ import {
   SYNC_FINISHED,
   SYNC_STATUS
 } from '../Board.constants';
-import { LOGOUT, LOGIN_SUCCESS } from '../../Account/Login/Login.constants';
 
 const mockBoard = {
   name: 'tewt',
@@ -66,30 +65,6 @@ const initialState = {
 describe('reducer', () => {
   it('should return the initial state', () => {
     expect(boardReducer(undefined, {})).toEqual(initialState);
-  });
-  it('should handle logout', () => {
-    const logout = {
-      type: LOGOUT
-    };
-    expect(boardReducer(initialState, logout)).toEqual(initialState);
-  });
-  it('should handle login ', () => {
-    const login = {
-      type: LOGIN_SUCCESS,
-      payload: {}
-    };
-    expect(
-      boardReducer(
-        {
-          ...initialState,
-          navHistory: ['root']
-        },
-        login
-      )
-    ).toEqual({
-      ...initialState,
-      navHistory: []
-    });
   });
   it('should handle createApiBoardStarted', () => {
     const createApiBoardStarted = {

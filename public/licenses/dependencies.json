@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "scope": "All installed packages in package-lock.json, including development/build tools. This is broader than the browser bundle and is not a legal clearance or an assertion that every package is redistributed.",
-  "lockfileSha256": "d5305455be039226d2ef908fac8d2c841cf600de69e8013b0614627afa3e639e",
-  "packageCount": 2282,
-  "reviewCount": 106,
+  "lockfileSha256": "a71b377992ff6c991f9fc0aff31038470c3693495a0e6e08cd83204974173ac6",
+  "packageCount": 2239,
+  "reviewCount": 98,
   "packages": [
     {
       "name": "@alloc/quick-lru",
@@ -311,51 +311,6 @@
         {
           "file": "LICENSE",
           "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b"
-        }
-      ]
-    },
-    {
-      "name": "@azure/abort-controller",
-      "version": "2.1.2",
-      "location": "node_modules/@azure/abort-controller",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "github:Azure/azure-sdk-for-js",
-      "integrity": "sha512-nBrLsEWm4J2u5LpAPjxADTlq3trDgVZZXHNKabeXZtpq3d3AbN/KGO82R87rdDz5/lYB024rtEf10/q0urNgsA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "1f83c934f29383a9b4ccb7a25eea6907da6f2b7675905fbb82f8f97f278b83ef"
-        }
-      ]
-    },
-    {
-      "name": "@azure/core-auth",
-      "version": "1.10.1",
-      "location": "node_modules/@azure/core-auth",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "github:Azure/azure-sdk-for-js",
-      "integrity": "sha512-ykRMW8PjVAn+RS6ww5cmK9U2CyH9p4Q88YJwvUslfuMmN98w/2rdGRLPqJYObapBCdzBVeDgYWdJnFPFb7qzpg==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "7c77a44a8acd9b41fdc209864a8016b3d430b5d0e09309818d5b7444336df744"
-        }
-      ]
-    },
-    {
-      "name": "@azure/core-util",
-      "version": "1.13.1",
-      "location": "node_modules/@azure/core-util",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "github:Azure/azure-sdk-for-js",
-      "integrity": "sha512-XPArKLzsvl0Hf0CaGyKHUyVgF7oDnhKoP85Xv6M4StF/1AhfORhZudHtOyf2s+FcbuQ9dPRAjB8J2KvRRMUK2A==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "7c77a44a8acd9b41fdc209864a8016b3d430b5d0e09309818d5b7444336df744"
         }
       ]
     },
@@ -2362,7 +2317,7 @@
       "name": "@crowdin/crowdin-api-client",
       "version": "1.56.3",
       "location": "node_modules/@crowdin/crowdin-api-client",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "git+https://github.com/crowdin/crowdin-api-client-js.git",
       "integrity": "sha512-QX+tGpe8aF+BPQRx+ORtopQe8SVHL61mkXSnEcbxYNzL33/mmkz0LOGc/ZWyULWn542lKNpagEa8JAhzjsWeJw==",
@@ -2370,6 +2325,21 @@
         {
           "file": "LICENSE",
           "sha256": "28804c967d95f6f96812045fe3ca483a371ba9bc34bbe996afe816688347b9ac"
+        }
+      ]
+    },
+    {
+      "name": "axios",
+      "version": "1.19.0",
+      "location": "node_modules/@crowdin/crowdin-api-client/node_modules/axios",
+      "developmentOnly": true,
+      "license": "MIT",
+      "repository": "https://github.com/axios/axios.git",
+      "integrity": "sha512-ht/iuYZXEjFxLH/Hkezgd7m6JKlHHXEUSneaDz8uZe1Gj5QZtCnpyDsckvAiEnT89OEbCLmnte4R4sn7P0EKFw==",
+      "notices": [
+        {
+          "file": "LICENSE",
+          "sha256": "82761059eaedacb3356803aea8a170d8298609f91b14fc32ee1bfb40d690183c"
         }
       ]
     },
@@ -4077,51 +4047,6 @@
       ]
     },
     {
-      "name": "@paypal/paypal-js",
-      "version": "5.1.6",
-      "location": "node_modules/@paypal/paypal-js",
-      "developmentOnly": false,
-      "license": "Apache-2.0",
-      "repository": "git://github.com/paypal/paypal-js.git",
-      "integrity": "sha512-1upF06pv0AUtTftRVSra44p8ibqGa3ruKLArvdhpZla25zcrND7R+nDUIMrJ0iteVYZowhujZStFs6NoruExfg==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "18773940da4b0121e7fe6728134716d4af8e170184a59dfeb1084b4f084d618b"
-        }
-      ]
-    },
-    {
-      "name": "@paypal/react-paypal-js",
-      "version": "7.8.3",
-      "location": "node_modules/@paypal/react-paypal-js",
-      "developmentOnly": false,
-      "license": "Apache-2.0",
-      "repository": "git://github.com/paypal/react-paypal-js.git",
-      "integrity": "sha512-7sD5JFA0IH9kysyGFv5DTmtPn54vLWZ0DLhdjUvsjqZnoEs11mJJJlTsTA7MkIO3jBAJOWlfoA4wLYzmy68C4g==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "18773940da4b0121e7fe6728134716d4af8e170184a59dfeb1084b4f084d618b"
-        }
-      ]
-    },
-    {
-      "name": "@paypal/sdk-constants",
-      "version": "1.0.157",
-      "location": "node_modules/@paypal/sdk-constants",
-      "developmentOnly": false,
-      "license": "Apache-2.0",
-      "repository": "git://github.com/paypal/paypal-sdk-constants.git",
-      "integrity": "sha512-BjxWT9rK6dM1AOffSpvHYY47/8BY775jgEYYiwH6eL4YaqU5Epcw7zOtwQ8L4UaEn4FCAjZ2EWxaS83dCN7SpA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "695f9cc5574270d59c15dea17dc3cc3b47e74628caea94e81c0407ccfda905b4"
-        }
-      ]
-    },
-    {
       "name": "@percy/appium-app",
       "version": "2.1.0",
       "location": "node_modules/@percy/appium-app",
@@ -4464,37 +4389,6 @@
           "file": "LICENSE",
           "sha256": "709e45bb17277819ce27e9abe5dc8e56fe93081e54adb6e6385517f28aa11ac4"
         }
-      ]
-    },
-    {
-      "name": "@redux-beacon/google-analytics-gtag",
-      "version": "1.1.0",
-      "location": "node_modules/@redux-beacon/google-analytics-gtag",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/rangle/redux-beacon.git",
-      "integrity": "sha512-FtJ/Ddv3DQVCB/N/1NNJLiNcik9DTfNoB6kIS+BFRMWoPZ+eDXTNvczd0BYFcc3tq2GGy3vAKisPJGYCkejuqQ==",
-      "notices": [
-        {
-          "file": "README.md",
-          "sha256": "b39fd61a5797b69a5abb5452fb9901cc82b5c7f85052b8445b47ec8c29907fcc"
-        }
-      ],
-      "review": [
-        "No standalone license/notice file in installed package; inspect README and upstream terms."
-      ]
-    },
-    {
-      "name": "@redux-beacon/offline-web",
-      "version": "1.0.0",
-      "location": "node_modules/@redux-beacon/offline-web",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/rangle/redux-beacon.git",
-      "integrity": "sha512-8V91oXHDV+3RX0KI3TScyWnkdSQTOr2qcW85Z3c7fYLh6rOWRzROoITmgrERwlHrF94kessg8RdMY5vOwhlB/Q==",
-      "notices": [],
-      "review": [
-        "No standalone license/notice file in installed package; inspect README and upstream terms."
       ]
     },
     {
@@ -5583,21 +5477,6 @@
       ]
     },
     {
-      "name": "@types/lodash",
-      "version": "4.17.24",
-      "location": "node_modules/@types/lodash",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
-      "integrity": "sha512-gIW7lQLZbue7lRSWEFql49QJJWThrTFFeIMJdp3eH4tKoxm1OvEPg02rm4wCCSHS0cL3/Fizimb35b7k8atwsQ==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
-        }
-      ]
-    },
-    {
       "name": "@types/mdast",
       "version": "3.0.15",
       "location": "node_modules/@types/mdast",
@@ -6063,21 +5942,6 @@
       ]
     },
     {
-      "name": "@types/webrtc",
-      "version": "0.0.37",
-      "location": "node_modules/@types/webrtc",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
-      "integrity": "sha512-JGAJC/ZZDhcrrmepU4sPLQLIOIAgs5oIK+Ieq90K8fdaNMhfdfqmYatJdgif1NDQtvrSlTOGJDUYHIDunuufOg==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
-        }
-      ]
-    },
-    {
       "name": "@types/ws",
       "version": "8.18.1",
       "location": "node_modules/@types/ws",
@@ -6329,51 +6193,6 @@
         {
           "file": "LICENSE",
           "sha256": "2eb5c7a0bba9deb77a98c81bf6b9d3fb1c67118eebf968b6b1a787b3f8928ee0"
-        }
-      ]
-    },
-    {
-      "name": "@typespec/ts-http-runtime",
-      "version": "0.3.3",
-      "location": "node_modules/@typespec/ts-http-runtime",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "github:Azure/azure-sdk-for-js",
-      "integrity": "sha512-91fp6CAAJSRtH5ja95T1FHSKa8aPW9/Zw6cta81jlZTUw/+Vq8jM/AfF/14h2b71wwR84JUTW/3Y8QPhDAawFA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "7c77a44a8acd9b41fdc209864a8016b3d430b5d0e09309818d5b7444336df744"
-        }
-      ]
-    },
-    {
-      "name": "agent-base",
-      "version": "7.1.4",
-      "location": "node_modules/@typespec/ts-http-runtime/node_modules/agent-base",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/TooTallNate/proxy-agents.git",
-      "integrity": "sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "8d8c55319c7729d57be811c747452636688d54f19701ee0752b6b15ad3771d9a"
-        }
-      ]
-    },
-    {
-      "name": "https-proxy-agent",
-      "version": "7.0.6",
-      "location": "node_modules/@typespec/ts-http-runtime/node_modules/https-proxy-agent",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/TooTallNate/proxy-agents.git",
-      "integrity": "sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "8d8c55319c7729d57be811c747452636688d54f19701ee0752b6b15ad3771d9a"
         }
       ]
     },
@@ -6999,7 +6818,7 @@
       "name": "ansi-regex",
       "version": "5.0.1",
       "location": "node_modules/ansi-regex",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "chalk/ansi-regex",
       "integrity": "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==",
@@ -7014,7 +6833,7 @@
       "name": "ansi-styles",
       "version": "4.3.0",
       "location": "node_modules/ansi-styles",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "chalk/ansi-styles",
       "integrity": "sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==",
@@ -7191,21 +7010,6 @@
       ]
     },
     {
-      "name": "array-flatten",
-      "version": "2.1.1",
-      "location": "node_modules/array-flatten",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "git://github.com/blakeembrey/array-flatten.git",
-      "integrity": "sha512-Ylfqm/V1V/VKGazsJeRDZ31wV9gdNeK3ZsvwbYBAVSNgH8o8CMLfdx/ofn9pnMVsvTMfvC3yfcBYzGpD1vxnlw==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "4eeb3271453a891df609e5a9f4ee79a68307f730c13417a3bfeffa604ac8cf25"
-        }
-      ]
-    },
-    {
       "name": "array-includes",
       "version": "3.1.9",
       "location": "node_modules/array-includes",
@@ -7359,7 +7163,7 @@
       "name": "asap",
       "version": "2.0.6",
       "location": "node_modules/asap",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "https://github.com/kriskowal/asap.git",
       "integrity": "sha512-BSHWgDSAiKs50o2Re8ppvp3seVHXSRM44cdSsT9FfNEUUZLOGWVCsiWaRPWM1Znn+mqZ1OfVZ3z3DWEzSp7hRA==",
@@ -7467,7 +7271,7 @@
       "name": "async",
       "version": "3.2.6",
       "location": "node_modules/async",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "https://github.com/caolan/async.git",
       "integrity": "sha512-htCUDlxyyCLMgaM3xXg0C0LW2xqfuQ6p05pCEIsXuyQ+a1koYKTuBMzRNwmybfLgvJDMd0r1LTn4+E0Ti6C2AA==",
@@ -7555,12 +7359,12 @@
     },
     {
       "name": "axe-core",
-      "version": "4.11.1",
+      "version": "4.14.0",
       "location": "node_modules/axe-core",
       "developmentOnly": true,
       "license": "MPL-2.0",
       "repository": "https://github.com/dequelabs/axe-core.git",
-      "integrity": "sha512-BASOg+YwO2C+346x3LZOeoovTIoTrRqEsqMa6fmfAV0P+U9mFr9NsyOEpiYvFjbc64NMrSswhV50WdXzdb/Z5A==",
+      "integrity": "sha512-9WTZxEjsZ7b13TH8JPmbV2z8CHbl80/2hm3XPEG4JgNdQLK81IBRXmSxHfMAOkSqQeRxT/0dwNDz2GOm3zzpcQ==",
       "notices": [
         {
           "file": "LICENSE",
@@ -7574,12 +7378,12 @@
     },
     {
       "name": "axios",
-      "version": "1.19.0",
+      "version": "1.20.0",
       "location": "node_modules/axios",
       "developmentOnly": false,
       "license": "MIT",
       "repository": "https://github.com/axios/axios.git",
-      "integrity": "sha512-ht/iuYZXEjFxLH/Hkezgd7m6JKlHHXEUSneaDz8uZe1Gj5QZtCnpyDsckvAiEnT89OEbCLmnte4R4sn7P0EKFw==",
+      "integrity": "sha512-r8aOh8j9cGKpgQAqpzrUHnSIc6a59Y3Xf/cv8sy1DrHCkZHzQGEuoq1tARk6qSyDdtQGSDgpb9kFlruzPvrgwg==",
       "notices": [
         {
           "file": "LICENSE",
@@ -7972,7 +7776,7 @@
       "name": "balanced-match",
       "version": "1.0.2",
       "location": "node_modules/balanced-match",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "git://github.com/juliangruber/balanced-match.git",
       "integrity": "sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==",
@@ -8165,24 +7969,6 @@
           "file": "LICENSE",
           "sha256": "e96a312fae66b1fca554bbf3340e20c286ea5cbcb23948010adf68b76243a659"
         }
-      ]
-    },
-    {
-      "name": "bent",
-      "version": "7.3.12",
-      "location": "node_modules/bent",
-      "developmentOnly": false,
-      "license": "Apache-2.0",
-      "repository": "https://github.com/mikeal/bent.git",
-      "integrity": "sha512-T3yrKnVGB63zRuoco/7Ybl7BwwGZR0lceoVG5XmQyMIH9s19SV5m+a8qam4if0zQuAmOQTyPTPmsQBdAorGK3w==",
-      "notices": [
-        {
-          "file": "README.md",
-          "sha256": "1c71a37fa911c31a096a862824bbf993c2fa3716b2870146f6928af3a4be0c21"
-        }
-      ],
-      "review": [
-        "No standalone license/notice file in installed package; inspect README and upstream terms."
       ]
     },
     {
@@ -8558,7 +8344,7 @@
       "name": "brace-expansion",
       "version": "2.1.4",
       "location": "node_modules/brace-expansion",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "git://github.com/juliangruber/brace-expansion.git",
       "integrity": "sha512-hGfVzPxthbf3+2yjg/RBs60cB0FhqBS/zvdV/4wn4/BmN0bNMMHPc4V/BbFieqf1TKAGGAHnY4eSjajCl0f2Xg==",
@@ -8885,7 +8671,7 @@
       "name": "btoa",
       "version": "1.2.1",
       "location": "node_modules/btoa",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "(MIT OR Apache-2.0)",
       "repository": "git://git.coolaj86.com/coolaj86/btoa.js.git",
       "integrity": "sha512-SB4/MIGlsiVkMcHmT+pSmIPoNDoHg+7cMzmt3Uxt628MTz2487DKSqK/fuhFBrkuqrYv5UCEnACpF4dTFNKc/g==",
@@ -9037,24 +8823,6 @@
           "file": "LICENSE",
           "sha256": "e3b44af066615de2ea48d18d852d0762f18c0b2efcea714fa48a6f729d405b85"
         }
-      ]
-    },
-    {
-      "name": "bytesish",
-      "version": "0.4.4",
-      "location": "node_modules/bytesish",
-      "developmentOnly": false,
-      "license": "(Apache-2.0 AND MIT)",
-      "repository": "git+https://github.com/mikeal/bytesish.git",
-      "integrity": "sha512-i4uu6M4zuMUiyfZN4RU2+i9+peJh//pXhd9x1oSe1LBkZ3LEbCoygu8W0bXTukU1Jme2txKuotpCZRaC3FLxcQ==",
-      "notices": [
-        {
-          "file": "README.md",
-          "sha256": "8c49ec29d3598a9d413ed96823736949bf29b5e87501b52850b422b51fd4e5d7"
-        }
-      ],
-      "review": [
-        "No standalone license/notice file in installed package; inspect README and upstream terms."
       ]
     },
     {
@@ -9283,21 +9051,6 @@
       ]
     },
     {
-      "name": "caseless",
-      "version": "0.12.0",
-      "location": "node_modules/caseless",
-      "developmentOnly": false,
-      "license": "Apache-2.0",
-      "repository": "https://github.com/mikeal/caseless",
-      "integrity": "sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "0ccb0dc204a2d08f25ed7f984de0c73335eb2945b54bfcf57660034a27b5c0f5"
-        }
-      ]
-    },
-    {
       "name": "chainsaw",
       "version": "0.1.0",
       "location": "node_modules/chainsaw",
@@ -9319,7 +9072,7 @@
       "name": "chalk",
       "version": "4.1.2",
       "location": "node_modules/chalk",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "chalk/chalk",
       "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
@@ -9799,7 +9552,7 @@
       "name": "color-convert",
       "version": "2.0.1",
       "location": "node_modules/color-convert",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "Qix-/color-convert",
       "integrity": "sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==",
@@ -9814,7 +9567,7 @@
       "name": "color-name",
       "version": "1.1.4",
       "location": "node_modules/color-name",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "git@github.com:colorjs/color-name.git",
       "integrity": "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==",
@@ -10069,7 +9822,7 @@
       "name": "concat-map",
       "version": "0.0.1",
       "location": "node_modules/concat-map",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "git://github.com/substack/node-concat-map.git",
       "integrity": "sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==",
@@ -10249,21 +10002,6 @@
       ],
       "review": [
         "No standalone license/notice file in installed package; inspect README and upstream terms."
-      ]
-    },
-    {
-      "name": "core-js",
-      "version": "1.2.7",
-      "location": "node_modules/core-js",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/zloirock/core-js.git",
-      "integrity": "sha512-ZiPp9pZlgxpWRu0M+YWbm6+aQ84XEfH1JRXvfOc/fILWI0VKhLC2LX13X1NYq4fULzLMq7Hfh43CSo2/aIaUPA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "75f180f3bc1164e750e0ae5014fc7681176367e8ce882133506bec7760e4f785"
-        }
       ]
     },
     {
@@ -10458,21 +10196,6 @@
         {
           "file": "LICENSE",
           "sha256": "cf93ad78cfd5f3523248675aeb2a46e003367596883d4fa26a0c38d553ab0f61"
-        }
-      ]
-    },
-    {
-      "name": "create-react-context",
-      "version": "0.2.3",
-      "location": "node_modules/create-react-context",
-      "developmentOnly": false,
-      "license": "SEE LICENSE IN LICENSE",
-      "repository": "https://github.com/thejameskyle/create-react-context",
-      "integrity": "sha512-CQBmD0+QGgTaxDL3OX1IDXYqjkp2It4RIbcb99jS6AEg27Ga+a9G3JtK6SIu0HBwPLZlmwt9F7UwWA4Bn92Rag==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "c26f35fa8b9ea5e5aaf157fd5872d9331365cb8e93832b8f37a825b15bec3abe"
         }
       ]
     },
@@ -11335,21 +11058,6 @@
       ]
     },
     {
-      "name": "deepmerge",
-      "version": "2.2.1",
-      "location": "node_modules/deepmerge",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "git://github.com/KyleAMathews/deepmerge.git",
-      "integrity": "sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==",
-      "notices": [
-        {
-          "file": "license.txt",
-          "sha256": "df9f7d1de68a86422c9c59579b5febcdefc6705ea3926e911fc29b7eddb75c18"
-        }
-      ]
-    },
-    {
       "name": "default-gateway",
       "version": "6.0.3",
       "location": "node_modules/default-gateway",
@@ -12108,7 +11816,7 @@
       "name": "duplexer",
       "version": "0.1.2",
       "location": "node_modules/duplexer",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "git://github.com/Raynos/duplexer.git",
       "integrity": "sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==",
@@ -12201,7 +11909,7 @@
       "name": "ejs",
       "version": "3.1.10",
       "location": "node_modules/ejs",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "Apache-2.0",
       "repository": "git://github.com/mde/ejs.git",
       "integrity": "sha512-UeJmFfOrAQS8OJWPZ4qtgHyWExa088/MtK5UEyoJGFH67cDEXkZSviOiKRCZ4Xij0zxI3JECgYs3oKx+AizQBA==",
@@ -12347,36 +12055,6 @@
         {
           "file": "LICENSE",
           "sha256": "7585ea7bba616ccbbe43cb54ecb67956688c3c5641bb84f3099a652a73193afe"
-        }
-      ]
-    },
-    {
-      "name": "encoding",
-      "version": "0.1.13",
-      "location": "node_modules/encoding",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/andris9/encoding.git",
-      "integrity": "sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "2453d3b90aa23715eec80b25fcda1bebf71052ad41a6694d58a9aa867d103c81"
-        }
-      ]
-    },
-    {
-      "name": "iconv-lite",
-      "version": "0.6.3",
-      "location": "node_modules/encoding/node_modules/iconv-lite",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "git://github.com/ashtuchkin/iconv-lite.git",
-      "integrity": "sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "ac779f7314c74f232ef847ea86e714abe25cf6eeb5cc97b69451b74e2af6492d"
         }
       ]
     },
@@ -12684,7 +12362,7 @@
       "name": "escalade",
       "version": "3.2.0",
       "location": "node_modules/escalade",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "lukeed/escalade",
       "integrity": "sha512-WUj2qlxaQtO4g6Pq5c29GTcWGDyd8itL8zTlipgECz3JesAiiOKotd8JU6otB3PACgG6xkJUyVhboMS+bje/jA==",
@@ -12714,7 +12392,7 @@
       "name": "escape-html",
       "version": "1.0.3",
       "location": "node_modules/escape-html",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "component/escape-html",
       "integrity": "sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==",
@@ -13936,21 +13614,6 @@
       ]
     },
     {
-      "name": "fbjs",
-      "version": "0.8.18",
-      "location": "node_modules/fbjs",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "facebook/fbjs",
-      "integrity": "sha512-EQaWFK+fEPSoibjNy8IxUtaFOMXcWsY0JaVrQoZR9zC8N2Ygf9iDITPWjUTVIax95b6I742JFLqASHfsag/vKA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "f5c31c91b57c9cf95c64a160c40f1a478d87b400e7d31fbd33351e3fb7596e61"
-        }
-      ]
-    },
-    {
       "name": "fdir",
       "version": "6.5.0",
       "location": "node_modules/fdir",
@@ -14104,7 +13767,7 @@
       "name": "filelist",
       "version": "1.0.6",
       "location": "node_modules/filelist",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "Apache-2.0",
       "repository": "git://github.com/mde/filelist.git",
       "integrity": "sha512-5giy2PkLYY1cP39p17Ech+2xlpTRL9HLspOfEgm0L6CwBXBTgsK5ou0JtzYuepxkaQ/tvhCFIJ5uXo0OrM2DxA==",
@@ -14704,40 +14367,6 @@
       ]
     },
     {
-      "name": "formik",
-      "version": "1.5.8",
-      "location": "node_modules/formik",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "jaredpalmer/formik",
-      "integrity": "sha512-fNvPe+ddbh+7xiByT25vuso2p2hseG/Yvuj211fV1DbCjljUEG9OpgRpcb7g7O3kxHX/q31cbZDzMxJXPWSNwA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "759112e97f9f08ae36834b664b603e0e2d589e83982bb45825d68e09968ffcbe"
-        }
-      ]
-    },
-    {
-      "name": "tslib",
-      "version": "1.14.1",
-      "location": "node_modules/formik/node_modules/tslib",
-      "developmentOnly": false,
-      "license": "0BSD",
-      "repository": "https://github.com/Microsoft/tslib.git",
-      "integrity": "sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==",
-      "notices": [
-        {
-          "file": "CopyrightNotice.txt",
-          "sha256": "dd835e67a9a297da32f9467d7677a5d02c8e50e10f15da43b810147c79c04b9b"
-        },
-        {
-          "file": "LICENSE.txt",
-          "sha256": "210b19e543130388c68654b7497e967119ce17145f66ab7d85688fbd70f08751"
-        }
-      ]
-    },
-    {
       "name": "forwarded",
       "version": "0.2.0",
       "location": "node_modules/forwarded",
@@ -14816,7 +14445,7 @@
       "name": "fs.realpath",
       "version": "1.0.0",
       "location": "node_modules/fs.realpath",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "git+https://github.com/isaacs/fs.realpath.git",
       "integrity": "sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==",
@@ -14996,7 +14625,7 @@
       "name": "get-caller-file",
       "version": "2.0.5",
       "location": "node_modules/get-caller-file",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "git+https://github.com/stefanpenner/get-caller-file.git",
       "integrity": "sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==",
@@ -15788,28 +15417,10 @@
       ]
     },
     {
-      "name": "gud",
-      "version": "1.0.0",
-      "location": "node_modules/gud",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/jamiebuilds/global-unique-id",
-      "integrity": "sha512-zGEOVKFM5sVPPrYs7J5/hYEw2Pof8KCyOwyhG8sAF26mCAeUFAcYPu1mwB7hhpIP29zOIBaDqwuHdLp0jvZXjw==",
-      "notices": [
-        {
-          "file": "README.md",
-          "sha256": "4e8b0db5ae4d19cdaa332982021499e12826b54b72543c17c1727cdd0e15a779"
-        }
-      ],
-      "review": [
-        "No standalone license/notice file in installed package; inspect README and upstream terms."
-      ]
-    },
-    {
       "name": "gzip-size",
       "version": "6.0.0",
       "location": "node_modules/gzip-size",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "sindresorhus/gzip-size",
       "integrity": "sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==",
@@ -15890,7 +15501,7 @@
       "name": "has-flag",
       "version": "4.0.0",
       "location": "node_modules/has-flag",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "sindresorhus/has-flag",
       "integrity": "sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==",
@@ -16055,21 +15666,6 @@
       ],
       "review": [
         "No standalone license/notice file in installed package; inspect README and upstream terms."
-      ]
-    },
-    {
-      "name": "hi-base32",
-      "version": "0.5.1",
-      "location": "node_modules/hi-base32",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/emn178/hi-base32.git",
-      "integrity": "sha512-EmBBpvdYh/4XxsnUybsPag6VikPYnN30td+vQk+GI3qpahVEG9+gTkG0aXVxTjBqQ5T6ijbWIu77O+C5WFWsnA==",
-      "notices": [
-        {
-          "file": "LICENSE.txt",
-          "sha256": "be7b290b46ac5e5922eb8a6bedda3e11f452ef82567c012cb21b47f397e045ad"
-        }
       ]
     },
     {
@@ -16475,7 +16071,7 @@
       "name": "http-proxy-agent",
       "version": "7.0.2",
       "location": "node_modules/http-proxy-agent",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "https://github.com/TooTallNate/proxy-agents.git",
       "integrity": "sha512-T1gkAiYYDWYx3V5Bmyu7HcfcvL7mUrTWiM6yOfa3PIphViJ/gFPbvidQ+veqSOHci/PxBcDabeUNCzpOODJZig==",
@@ -16490,7 +16086,7 @@
       "name": "agent-base",
       "version": "7.1.4",
       "location": "node_modules/http-proxy-agent/node_modules/agent-base",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "https://github.com/TooTallNate/proxy-agents.git",
       "integrity": "sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==",
@@ -16916,7 +16512,7 @@
       "name": "inflight",
       "version": "1.0.6",
       "location": "node_modules/inflight",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "https://github.com/npm/inflight.git",
       "integrity": "sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==",
@@ -17321,7 +16917,7 @@
       "name": "is-docker",
       "version": "2.2.1",
       "location": "node_modules/is-docker",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "sindresorhus/is-docker",
       "integrity": "sha512-F+i2BKsFrH66iaUFc0woD8sLy8getkwTwtOBjvs56Cx4CgJDeKQeqfz8wAYiSb8JOprWhHH5p77PbmYCvvUuXQ==",
@@ -17381,7 +16977,7 @@
       "name": "is-fullwidth-code-point",
       "version": "3.0.0",
       "location": "node_modules/is-fullwidth-code-point",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "sindresorhus/is-fullwidth-code-point",
       "integrity": "sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==",
@@ -17813,7 +17409,7 @@
       "name": "is-stream",
       "version": "2.0.1",
       "location": "node_modules/is-stream",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "sindresorhus/is-stream",
       "integrity": "sha512-hFoiJiTl63nn+kstHGBtewWSKnQLpyb155KHheA1l39uvtO9nWIop1p3udqPcUd/xbF1VLMO4n7OI6p7RbngDg==",
@@ -17978,7 +17574,7 @@
       "name": "is-wsl",
       "version": "2.2.0",
       "location": "node_modules/is-wsl",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "sindresorhus/is-wsl",
       "integrity": "sha512-fKzAra0rGJUUBwGBgNkHZuToZcn+TtXHpeCgmkMJMMYx1sQDYaCSyjJBSCa2nH1DGm7s3n1oBnohoVTBaN7Lww==",
@@ -18079,51 +17675,6 @@
         {
           "file": "LICENSE",
           "sha256": "0ead7e8cd8b0bc66a981ee69acaf1297ffa838cfce1b156a039bb24f997c0a27"
-        }
-      ]
-    },
-    {
-      "name": "isomorphic-fetch",
-      "version": "2.2.1",
-      "location": "node_modules/isomorphic-fetch",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/matthew-andrews/isomorphic-fetch.git",
-      "integrity": "sha512-9c4TNAKYXM5PRyVcwUZrF3W09nQ+sO7+jydgs4ZGW9dhsLG2VOlISJABombdQqQRXCwuYG3sYV/puGf5rp0qmA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "4db62091452bb75599fe174df10e9cbaa645df1f09fe1e182a3ae8f0a63d379e"
-        }
-      ]
-    },
-    {
-      "name": "is-stream",
-      "version": "1.1.0",
-      "location": "node_modules/isomorphic-fetch/node_modules/is-stream",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "sindresorhus/is-stream",
-      "integrity": "sha512-uQPm8kcs47jx38atAcWTVxyltQYoPT68y9aWYdV6yWXSyW8mzSat0TL6CiWdZeCdF3KrAvpVtnHbTv4RN+rqdQ==",
-      "notices": [
-        {
-          "file": "license",
-          "sha256": "6fb9754611c20f6649f68805e8c990e83261f29316e29de9e6cedae607b8634c"
-        }
-      ]
-    },
-    {
-      "name": "node-fetch",
-      "version": "1.7.3",
-      "location": "node_modules/isomorphic-fetch/node_modules/node-fetch",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/bitinn/node-fetch.git",
-      "integrity": "sha512-NhZ4CsKx7cYm2vSrBAr2PvFOe6sWDf0UYLRqA6svUYg7+/TSfVAu49jYC4BvQ4Sms9SZgdqGBgroqfDhJdTyKQ==",
-      "notices": [
-        {
-          "file": "LICENSE.md",
-          "sha256": "84eaa985e1ef71b8c630e8aba73404c219ff425c6fdb45c62e998b58d4fbdc8e"
         }
       ]
     },
@@ -18281,7 +17832,7 @@
       "name": "jake",
       "version": "10.9.4",
       "location": "node_modules/jake",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "Apache-2.0",
       "repository": "git://github.com/jakejs/jake.git",
       "integrity": "sha512-wpHYzhxiVQL+IV05BLE2Xn34zW1S223hvjtqk0+gsPrwd/8JNLXJgZZM/iPFsYc1xyphF+6M6EvdE5E9MBGkDA==",
@@ -21520,72 +21071,6 @@
       ]
     },
     {
-      "name": "microsoft-cognitiveservices-speech-sdk",
-      "version": "1.51.0",
-      "location": "node_modules/microsoft-cognitiveservices-speech-sdk",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/Microsoft/cognitive-services-speech-sdk-js",
-      "integrity": "sha512-BLLovv5PegOr5Lp52h4CSgL2c/ViFAh9LoU49ILNPyb/Z0giGI7nPV3xNLcmTtHLT+kfYNRGUIA62vORLzP8TA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "eeae92452d6c91422ebad43d76a1bb69893660ec5f4d84a9e63c5395795097c2"
-        }
-      ]
-    },
-    {
-      "name": "https-proxy-agent",
-      "version": "4.0.0",
-      "location": "node_modules/microsoft-cognitiveservices-speech-sdk/node_modules/https-proxy-agent",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "git://github.com/TooTallNate/node-https-proxy-agent.git",
-      "integrity": "sha512-zoDhWrkR3of1l9QAL8/scJZyLu8j/gBkcwcaQOZh7Gyh/+uJQzGVETdgT30akuwkpL8HTRfssqI3BZuV18teDg==",
-      "notices": [
-        {
-          "file": "README.md",
-          "sha256": "32f0856d2c43df7d05cca960fdee84e1e38ab545bd7b2186433dfa41aa90a712"
-        }
-      ],
-      "review": [
-        "No standalone license/notice file in installed package; inspect README and upstream terms."
-      ]
-    },
-    {
-      "name": "agent-base",
-      "version": "5.1.1",
-      "location": "node_modules/microsoft-cognitiveservices-speech-sdk/node_modules/https-proxy-agent/node_modules/agent-base",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "git://github.com/TooTallNate/node-agent-base.git",
-      "integrity": "sha512-TMeqbNl2fMW0nMjTEPOwe3J/PRFP4vqeoNuQMG0HlMrtm5QxKqdvAkZ1pRBQ/ulIyDD5Yq0nJ7YbdD8ey0TO3g==",
-      "notices": [
-        {
-          "file": "README.md",
-          "sha256": "199fd5d150d791e4b36894a4f915036d45cbae9d8ada457f50e891742445cc58"
-        }
-      ],
-      "review": [
-        "No standalone license/notice file in installed package; inspect README and upstream terms."
-      ]
-    },
-    {
-      "name": "uuid",
-      "version": "11.1.1",
-      "location": "node_modules/microsoft-cognitiveservices-speech-sdk/node_modules/uuid",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/uuidjs/uuid.git",
-      "integrity": "sha512-vIYxrBCC/N/K+Js3qSN88go7kIfNPssr/hHCesKCQNAjmgvYS2oqr69kIufEG+O4+PfezOH4EbIeHCfFov8ZgQ==",
-      "notices": [
-        {
-          "file": "LICENSE.md",
-          "sha256": "beaa6b04fb82e41dd2ad679e19e27953afb5999b1abbb455b6564e78ebfeb332"
-        }
-      ]
-    },
-    {
       "name": "miller-rabin",
       "version": "4.0.1",
       "location": "node_modules/miller-rabin",
@@ -21745,7 +21230,7 @@
       "name": "minimatch",
       "version": "5.1.9",
       "location": "node_modules/minimatch",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "git://github.com/isaacs/minimatch.git",
       "integrity": "sha512-7o1wEA2RyMP7Iu7GNba9vc0RWWGACJOCZBJX2GJWip0ikV+wcOsgVuY9uE8CPiyQhkGFSlhuSkZPavN7u1c2Fw==",
@@ -21760,7 +21245,7 @@
       "name": "minimist",
       "version": "1.2.8",
       "location": "node_modules/minimist",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "git://github.com/minimistjs/minimist.git",
       "integrity": "sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==",
@@ -21790,7 +21275,7 @@
       "name": "mkdirp",
       "version": "0.5.6",
       "location": "node_modules/mkdirp",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "https://github.com/substack/node-mkdirp.git",
       "integrity": "sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==",
@@ -21906,21 +21391,6 @@
         {
           "file": "LICENSE",
           "sha256": "b54cad06af80663a692483d407ea7d3fbec77fc12f4d7eed3f9f511ad87fca6a"
-        }
-      ]
-    },
-    {
-      "name": "nanoclone",
-      "version": "0.2.1",
-      "location": "node_modules/nanoclone",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/kelin2025/nanoclone",
-      "integrity": "sha512-wynEP02LmIbLpcYw8uBKpcfF6dmg2vcpKqxeH5UcoKEYdExslsdUA4ugFauuaeYdTB76ez6gJW8XAZ6CgkXYxA==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "631c8340beaaf98bc57bf22578605f9e1a501f852aa9367b9bde48463edc72f5"
         }
       ]
     },
@@ -22708,7 +22178,7 @@
       "name": "once",
       "version": "1.4.0",
       "location": "node_modules/once",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "git://github.com/isaacs/once",
       "integrity": "sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==",
@@ -23431,7 +22901,7 @@
       "name": "path-is-absolute",
       "version": "1.0.1",
       "location": "node_modules/path-is-absolute",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "sindresorhus/path-is-absolute",
       "integrity": "sha512-AVbw3UJ2e9bq64vSaS9Am0fje1Pa8pbGqTTsmXfaIiMpnr5DlDhfJOuLj9Sf95ZPVDAUerDfEk88MPmPe7UCQg==",
@@ -23629,7 +23099,7 @@
       "name": "picocolors",
       "version": "1.1.1",
       "location": "node_modules/picocolors",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "alexeyraspopov/picocolors",
       "integrity": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==",
@@ -25221,36 +24691,6 @@
       ]
     },
     {
-      "name": "promise",
-      "version": "7.3.1",
-      "location": "node_modules/promise",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/then/promise.git",
-      "integrity": "sha512-nolQXZ/4L+bP/UGlkfaIujX9BKxGwmQ9OT4mOt5yvy8iK1h3wqTEJCijzGANTCCl9nWjY41juyAn2K3Q1hLLTg==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "5e733eb92ed0c571da3f27c5da203e0a9f975b4f96e7692c9fa3660ca54820ec"
-        }
-      ]
-    },
-    {
-      "name": "promise-polyfill",
-      "version": "8.3.0",
-      "location": "node_modules/promise-polyfill",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/taylorhakes/promise-polyfill.git",
-      "integrity": "sha512-H5oELycFml5yto/atYqmjyigJoAo3+OXwolYiH7OfQuYlAqhxNvTfiNMbV9hsC6Yp83yE5r2KTVmtrG6R9i6Pg==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "453a712c58161b74efa998578aaf10fd7ad8204120730de38ca04d7f47f3ea46"
-        }
-      ]
-    },
-    {
       "name": "prompts",
       "version": "2.4.2",
       "location": "node_modules/prompts",
@@ -25307,21 +24747,6 @@
         {
           "file": "LICENSE",
           "sha256": "aaa78451b6fecd1b9c4594c796c133c0e90cad100372ff8bc6de615e9ef9adf1"
-        }
-      ]
-    },
-    {
-      "name": "property-expr",
-      "version": "2.0.6",
-      "location": "node_modules/property-expr",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/jquense/expr/",
-      "integrity": "sha512-SVtmxhRE/CGkn3eZY1T6pC8Nln6Fr/lu1mKSgRud0eC73whjGfoAogbn78LkD8aFL0zz3bAFerKSnOl7NlErBA==",
-      "notices": [
-        {
-          "file": "LICENSE.txt",
-          "sha256": "89ae1a9d73f2eb3948e37c810309ccc04e5c2c81cb83618df6bb6429d73d9fc1"
         }
       ]
     },
@@ -26108,21 +25533,6 @@
       ]
     },
     {
-      "name": "react-fast-compare",
-      "version": "2.0.4",
-      "location": "node_modules/react-fast-compare",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "git+https://github.com/FormidableLabs/react-fast-compare.git",
-      "integrity": "sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "1e187eec147d04bcbb3b7aef9f3b0ea82228961fa7d390d3efb9e57751dbe0cb"
-        }
-      ]
-    },
-    {
       "name": "react-floater",
       "version": "0.7.9",
       "location": "node_modules/react-floater",
@@ -26700,21 +26110,6 @@
       ]
     },
     {
-      "name": "react-social-login-buttons",
-      "version": "3.9.1",
-      "location": "node_modules/react-social-login-buttons",
-      "developmentOnly": false,
-      "license": "ISC",
-      "repository": "git+https://github.com/MichalSzorad/react-social-login-buttons.git",
-      "integrity": "sha512-KtucVWvdnIZ0icG99WJ3usQUJYmlKsOIBYGyngcuNSVyyYdZtif4KHY80qnCg+teDlgYr54ToQtg3x26ZqaS2w==",
-      "notices": [
-        {
-          "file": "LICENSE",
-          "sha256": "02915fdf6fde882c366b2da8db5d79cc8a522c5993e8a2bd7609a28710fb1f4d"
-        }
-      ]
-    },
-    {
       "name": "react-test-renderer",
       "version": "17.0.2",
       "location": "node_modules/react-test-renderer",
@@ -27111,24 +26506,6 @@
       ]
     },
     {
-      "name": "redux-beacon",
-      "version": "2.1.0",
-      "location": "node_modules/redux-beacon",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/rangle/redux-beacon.git",
-      "integrity": "sha512-KMbopAM7YLnQdospn5ClG3o8c4uhYkLBDEWSmxNbvQb4MGAJJh3sbbPKoEB00qU5rTXbwKuaaqZlWdgrY1Twxw==",
-      "notices": [
-        {
-          "file": "README.md",
-          "sha256": "5d653995711a5e0d02dd98d9096c5771d028950b91d5ae0b2c50974ee12d90ac"
-        }
-      ],
-      "review": [
-        "No standalone license/notice file in installed package; inspect README and upstream terms."
-      ]
-    },
-    {
       "name": "redux-mock-store",
       "version": "1.5.5",
       "location": "node_modules/redux-mock-store",
@@ -27495,7 +26872,7 @@
       "name": "require-directory",
       "version": "2.1.1",
       "location": "node_modules/require-directory",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "git://github.com/troygoode/node-require-directory.git",
       "integrity": "sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==",
@@ -29071,7 +28448,7 @@
       "name": "source-map-explorer",
       "version": "2.5.3",
       "location": "node_modules/source-map-explorer",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "Apache-2.0",
       "repository": "git+https://github.com/danvk/source-map-explorer.git",
       "integrity": "sha512-qfUGs7UHsOBE5p/lGfQdaAj/5U/GWYBw2imEpD6UQNkqElYonkow8t+HBL1qqIl3CuGZx7n8/CQo4x1HwSHhsg==",
@@ -29086,7 +28463,7 @@
       "name": "brace-expansion",
       "version": "1.1.18",
       "location": "node_modules/source-map-explorer/node_modules/brace-expansion",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "git://github.com/juliangruber/brace-expansion.git",
       "integrity": "sha512-Edep/X9fGqVNmzKBVsDYIOtD+z1tuezV70LBjdCst9Tqu76lsnvRiZ6oTic1n+/BIwX6QDGAO94PN4N2SADvtw==",
@@ -29101,7 +28478,7 @@
       "name": "cliui",
       "version": "7.0.4",
       "location": "node_modules/source-map-explorer/node_modules/cliui",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "yargs/cliui",
       "integrity": "sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==",
@@ -29116,7 +28493,7 @@
       "name": "convert-source-map",
       "version": "1.9.0",
       "location": "node_modules/source-map-explorer/node_modules/convert-source-map",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "git://github.com/thlorenz/convert-source-map.git",
       "integrity": "sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==",
@@ -29131,7 +28508,7 @@
       "name": "glob",
       "version": "7.2.3",
       "location": "node_modules/source-map-explorer/node_modules/glob",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "git://github.com/isaacs/node-glob.git",
       "integrity": "sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==",
@@ -29146,7 +28523,7 @@
       "name": "minimatch",
       "version": "3.1.5",
       "location": "node_modules/source-map-explorer/node_modules/minimatch",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "git://github.com/isaacs/minimatch.git",
       "integrity": "sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==",
@@ -29161,7 +28538,7 @@
       "name": "open",
       "version": "7.4.2",
       "location": "node_modules/source-map-explorer/node_modules/open",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "sindresorhus/open",
       "integrity": "sha512-MVHddDVweXZF3awtlAS+6pgKLlm/JgxZ90+/NBurBoQctVOOB/zDdVjcyPzQ+0laDGbsWgrRkflI65sQeOgT9Q==",
@@ -29176,7 +28553,7 @@
       "name": "source-map",
       "version": "0.7.6",
       "location": "node_modules/source-map-explorer/node_modules/source-map",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "BSD-3-Clause",
       "repository": "http://github.com/mozilla/source-map.git",
       "integrity": "sha512-i5uvt8C3ikiWeNZSVZNWcfZPItFQOsYTUAOkcUPGd8DqDy1uOUikjt5dG+uRlwyvR108Fb9DOd4GvXfT0N2/uQ==",
@@ -29191,7 +28568,7 @@
       "name": "yargs",
       "version": "16.2.0",
       "location": "node_modules/source-map-explorer/node_modules/yargs",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "https://github.com/yargs/yargs.git",
       "integrity": "sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==",
@@ -29206,7 +28583,7 @@
       "name": "yargs-parser",
       "version": "20.2.9",
       "location": "node_modules/source-map-explorer/node_modules/yargs-parser",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "https://github.com/yargs/yargs-parser.git",
       "integrity": "sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==",
@@ -29735,7 +29112,7 @@
       "name": "string-width",
       "version": "4.2.3",
       "location": "node_modules/string-width",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "sindresorhus/string-width",
       "integrity": "sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==",
@@ -29780,7 +29157,7 @@
       "name": "emoji-regex",
       "version": "8.0.0",
       "location": "node_modules/string-width/node_modules/emoji-regex",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "https://github.com/mathiasbynens/emoji-regex.git",
       "integrity": "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==",
@@ -29900,7 +29277,7 @@
       "name": "strip-ansi",
       "version": "6.0.1",
       "location": "node_modules/strip-ansi",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "chalk/strip-ansi",
       "integrity": "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==",
@@ -30119,7 +29496,7 @@
       "name": "supports-color",
       "version": "7.2.0",
       "location": "node_modules/supports-color",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "chalk/supports-color",
       "integrity": "sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==",
@@ -31343,7 +30720,7 @@
       "name": "temp",
       "version": "0.9.4",
       "location": "node_modules/temp",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "git://github.com/bruce/node-temp.git",
       "integrity": "sha512-yYrrsWnrXMcdsnu/7YMYAofM1ktpL5By7vZhf15CrXijWWrEYZks5AXBudalfSWJLlnen/QUJUB5aoB0kqZUGA==",
@@ -31373,7 +30750,7 @@
       "name": "brace-expansion",
       "version": "1.1.18",
       "location": "node_modules/temp/node_modules/brace-expansion",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "git://github.com/juliangruber/brace-expansion.git",
       "integrity": "sha512-Edep/X9fGqVNmzKBVsDYIOtD+z1tuezV70LBjdCst9Tqu76lsnvRiZ6oTic1n+/BIwX6QDGAO94PN4N2SADvtw==",
@@ -31388,7 +30765,7 @@
       "name": "glob",
       "version": "7.2.3",
       "location": "node_modules/temp/node_modules/glob",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "git://github.com/isaacs/node-glob.git",
       "integrity": "sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==",
@@ -31403,7 +30780,7 @@
       "name": "minimatch",
       "version": "3.1.5",
       "location": "node_modules/temp/node_modules/minimatch",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "git://github.com/isaacs/minimatch.git",
       "integrity": "sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==",
@@ -31418,7 +30795,7 @@
       "name": "rimraf",
       "version": "2.6.3",
       "location": "node_modules/temp/node_modules/rimraf",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "git://github.com/isaacs/rimraf.git",
       "integrity": "sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==",
@@ -32015,21 +31392,6 @@
       ]
     },
     {
-      "name": "toposort",
-      "version": "2.0.2",
-      "location": "node_modules/toposort",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/marcelklehr/toposort.git",
-      "integrity": "sha512-0a5EOkAUp8D4moMi2W8ZF8jcga7BgZd91O/yabJCFY8az+XSzeGyTKs0Aoo897iV1Nj6guFq8orWDS96z91oGg==",
-      "notices": [
-        {
-          "file": "License",
-          "sha256": "0e15c200e47c53a384aa01271398af2f43df40332061b8c0be1907cb9e61e8d2"
-        }
-      ]
-    },
-    {
       "name": "touch",
       "version": "0.0.3",
       "location": "node_modules/touch",
@@ -32303,7 +31665,7 @@
       "name": "tslib",
       "version": "2.8.1",
       "location": "node_modules/tslib",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "0BSD",
       "repository": "https://github.com/Microsoft/tslib.git",
       "integrity": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==",
@@ -32598,21 +31960,6 @@
         {
           "file": "LICENSE.txt",
           "sha256": "6b7a1792144374d84dc5ed3655b8bbe2754d06f4f1f64a9fb8b9de2d6f448b85"
-        }
-      ]
-    },
-    {
-      "name": "ua-parser-js",
-      "version": "0.7.41",
-      "location": "node_modules/ua-parser-js",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "https://github.com/faisalman/ua-parser-js.git",
-      "integrity": "sha512-O3oYyCMPYgNNHuO7Jjk3uacJWZF8loBgwrfd/5LE/HyZ3lUIOdniQ7DNXJcIgZbwioZxk0fLfI4EVnetdiX5jg==",
-      "notices": [
-        {
-          "file": "license.md",
-          "sha256": "9659b14ee609fc60bcb0d660a0823d03bbb6184c20d1f50e96af4bbe1f56d5b1"
         }
       ]
     },
@@ -33658,7 +33005,7 @@
       "name": "whatwg-fetch",
       "version": "3.6.20",
       "location": "node_modules/whatwg-fetch",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "github/fetch",
       "integrity": "sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg==",
@@ -34378,7 +33725,7 @@
       "name": "wrap-ansi",
       "version": "7.0.0",
       "location": "node_modules/wrap-ansi",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "chalk/wrap-ansi",
       "integrity": "sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==",
@@ -34408,7 +33755,7 @@
       "name": "wrappy",
       "version": "1.0.2",
       "location": "node_modules/wrappy",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "https://github.com/npm/wrappy",
       "integrity": "sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==",
@@ -34438,7 +33785,7 @@
       "name": "ws",
       "version": "8.21.0",
       "location": "node_modules/ws",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "MIT",
       "repository": "git+https://github.com/websockets/ws.git",
       "integrity": "sha512-Vsp28b7DRcimFQvrqu2Wek3z1iYxDCWqHYB8Qsnk/S4RfaCQzPGPyBNuVjJV3cd6UiKtUtp6sNM77gWvzcCH+g==",
@@ -34528,7 +33875,7 @@
       "name": "y18n",
       "version": "5.0.8",
       "location": "node_modules/y18n",
-      "developmentOnly": false,
+      "developmentOnly": true,
       "license": "ISC",
       "repository": "yargs/y18n",
       "integrity": "sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==",
@@ -34641,21 +33988,6 @@
         {
           "file": "license",
           "sha256": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3"
-        }
-      ]
-    },
-    {
-      "name": "yup",
-      "version": "0.32.11",
-      "location": "node_modules/yup",
-      "developmentOnly": false,
-      "license": "MIT",
-      "repository": "git+https://github.com/jquense/yup.git",
-      "integrity": "sha512-Z2Fe1bn+eLstG8DRR6FTavGD+MeAwyfmouhHsIUgaADz8jvFKbO/fXc2trJKZg+5EBjh4gGm3iU/t3onKlXHIg==",
-      "notices": [
-        {
-          "file": "LICENSE.md",
-          "sha256": "89ae1a9d73f2eb3948e37c810309ccc04e5c2c81cb83618df6bb6429d73d9fc1"
         }
       ]
     },

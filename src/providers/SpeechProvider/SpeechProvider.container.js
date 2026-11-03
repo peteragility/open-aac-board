@@ -8,8 +8,7 @@ import {
   getTtsEngines,
   getTtsDefaultEngine,
   updateLangSpeechStatus,
-  setTtsEngine,
-  setCurrentVoiceSource
+  setTtsEngine
 } from './SpeechProvider.actions';
 import { isAndroid } from '../../cordova-util';
 
@@ -27,14 +26,8 @@ export class SpeechProvider extends Component {
       getTtsEngines,
       getTtsDefaultEngine,
       ttsEngine,
-      setTtsEngine,
-      setCurrentVoiceSource,
-      elevenLabsApiKey
+      setTtsEngine
     } = this.props;
-
-    if (elevenLabsApiKey) {
-      tts.initElevenLabsInstance(elevenLabsApiKey);
-    }
 
     if (tts.isSupported()) {
       if (isAndroid()) {
@@ -64,7 +57,6 @@ export class SpeechProvider extends Component {
         console.error('Error getting voices:', err.message);
       }
     }
-    setCurrentVoiceSource();
   }
 
   render() {
@@ -75,8 +67,7 @@ export class SpeechProvider extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  ttsEngine: state.speech.ttsEngine,
-  elevenLabsApiKey: state.speech.elevenLabsApiKey
+  ttsEngine: state.speech.ttsEngine
 });
 
 const mapDispatchToProps = {
@@ -84,8 +75,7 @@ const mapDispatchToProps = {
   getTtsEngines,
   getTtsDefaultEngine,
   setTtsEngine,
-  updateLangSpeechStatus,
-  setCurrentVoiceSource
+  updateLangSpeechStatus
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpeechProvider);

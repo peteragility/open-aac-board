@@ -24,9 +24,6 @@ import './Settings.css';
 import { CircularProgress } from '@material-ui/core';
 
 const propTypes = {
-  isLogged: PropTypes.bool.isRequired,
-  logout: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
   intl: intlShape.isRequired,
   isDownloadingLang: PropTypes.bool
 };

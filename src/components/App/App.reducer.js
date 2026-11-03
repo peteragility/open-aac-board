@@ -4,14 +4,9 @@ import {
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS,
   UPDATE_SYMBOLS_SETTINGS,
-  UPDATE_USER_DATA,
   DISABLE_TOUR,
-  ENABLE_ALL_TOURS,
-  SET_UNLOGGED_USER_LOCATION,
-  SET_UNAUTH_EDIT_MODAL_DISMISSED,
-  USER_DATA_PROPERTIES
+  ENABLE_ALL_TOURS
 } from './App.constants';
-import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
   DISPLAY_SIZE_STANDARD,
   LABEL_POSITION_BELOW
@@ -62,17 +57,7 @@ const initialState = {
   symbolsSettings: {
     arasaacActive: false
   },
-  userData: {},
-  unauthEditModalDismissed: true
-};
-
-const getKeysFromApiUserDataResponse = (payload) => {
-  const newUser = {};
-  if (!payload) return newUser;
-  USER_DATA_PROPERTIES.forEach((prop) => {
-    if (payload[prop] !== undefined) newUser[prop] = payload[prop];
-  });
-  return newUser;
+  userData: {}
 };
 
 function appReducer(state = initialState, action) {
@@ -144,56 +129,6 @@ function appReducer(state = initialState, action) {
         }
       };
 
-    case LOGIN_SUCCESS:
-      const settings = action.payload.settings || {};
-      const { display, navigation } = settings;
-
-      displaySettings = { ...state.displaySettings };
-      navigationSettings = { ...state.navigationSettings };
-
-      if (display) {
-        displaySettings = { ...displaySettings, ...display };
-      }
-
-      if (navigation) {
-        navigationSettings = { ...navigationSettings, ...navigation };
-      }
-
-      return {
-        ...state,
-        isFirstVisit: false,
-        displaySettings,
-        navigationSettings,
-        userData: getKeysFromApiUserDataResponse(action.payload)
-      };
-    case LOGOUT:
-      return {
-        ...state,
-        userData: {},
-        unauthEditModalDismissed: true,
-        navigationSettings: {
-          ...state.navigationSettings,
-          pinLockEnabled: false,
-          pinCode: ''
-        }
-      };
-    case UPDATE_USER_DATA:
-      return {
-        ...state,
-        userData: action.userData
-          ? getKeysFromApiUserDataResponse(action.userData)
-          : state.userData
-      };
-    case SET_UNLOGGED_USER_LOCATION:
-      return {
-        ...state,
-        unloggedUserLocation: action.location
-      };
-    case SET_UNAUTH_EDIT_MODAL_DISMISSED:
-      return {
-        ...state,
-        unauthEditModalDismissed: action.payload
-      };
     default:
       return state;
   }

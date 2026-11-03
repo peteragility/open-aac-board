@@ -53,11 +53,8 @@ import {
   addBoardCommunicator,
   verifyAndUpsertCommunicator
 } from '../Communicator/Communicator.actions';
-import { disableTour, setUnauthEditModalDismissed } from '../App/App.actions';
-import { isLogged, isUnauthEditModalDismissed } from '../App/App.selectors';
-import { showPremiumRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
-import { isSubscriptionRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.selectors';
-import UnauthenticatedEditModal from '../LoggedInFeature/UnauthenticatedEditModal';
+import { disableTour } from '../App/App.actions';
+import { isLogged } from '../App/App.selectors';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
@@ -66,7 +63,6 @@ import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 import { getVisibleBoards } from './Board.selectors';
-import PremiumFeature from '../PremiumFeature';
 import {
   scrollBoardToTop,
   processTileClick,
@@ -187,16 +183,7 @@ export class BoardContainer extends Component {
     isSymbolSearchTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func,
     isLiveMode: PropTypes.bool,
-    changeDefaultBoard: PropTypes.func,
-    /**
-     * Whether the unauthenticated edit modal has already been dismissed
-     * for the current logged-out session
-     */
-    unauthEditModalDismissed: PropTypes.bool,
-    /**
-     * Persist that the unauthenticated edit modal was dismissed
-     */
-    setUnauthEditModalDismissed: PropTypes.func
+    changeDefaultBoard: PropTypes.func
   };
 
   state = {
@@ -215,8 +202,7 @@ export class BoardContainer extends Component {
     isCbuilderBoard: false,
     pinDialogOpen: false,
     pinAttempt: '',
-    pinError: false,
-    showUnauthEditModal: false
+    pinError: false
   };
   constructor(props) {
     super(props);
@@ -786,8 +772,7 @@ export class BoardContainer extends Component {
   };
 
   handleLockClick = () => {
-    const { showPremiumRequired, isSubscriptionRequired, setIsSaving } =
-      this.props;
+    const { setIsSaving } = this.props;
     const { pinLockEnabled, pinCode } = this.props.navigationSettings || {};
 
     const hasValidPinCode =
@@ -804,15 +789,6 @@ export class BoardContainer extends Component {
       return;
     }
 
-    if (
-      this.state.isLocked &&
-      !this.props.isLogged &&
-      !this.props.unauthEditModalDismissed
-    ) {
-      this.setState({ showUnauthEditModal: true });
-      return;
-    }
-
     this.setState(
       (prevState) => ({
         isLocked: !prevState.isLocked,
@@ -822,9 +798,6 @@ export class BoardContainer extends Component {
       }),
       () => {
         setIsSaving(false);
-        if (!this.state.isLocked && isSubscriptionRequired) {
-          showPremiumRequired({ showTryPeriodFinishedMessages: true });
-        }
       }
     );
   };
@@ -958,25 +931,17 @@ export class BoardContainer extends Component {
   };
 
   handlePinSubmit = () => {
-    const { showPremiumRequired, isSubscriptionRequired } = this.props;
     const { pinCode } = this.props.navigationSettings || {};
     if (this.state.pinAttempt === pinCode) {
-      this.setState(
-        {
-          pinDialogOpen: false,
-          pinAttempt: '',
-          pinError: false,
-          isLocked: false,
-          isSaving: false,
-          isSelecting: false,
-          selectedTileIds: []
-        },
-        () => {
-          if (isSubscriptionRequired) {
-            showPremiumRequired({ showTryPeriodFinishedMessages: true });
-          }
-        }
-      );
+      this.setState({
+        pinDialogOpen: false,
+        pinAttempt: '',
+        pinError: false,
+        isLocked: false,
+        isSaving: false,
+        isSelecting: false,
+        selectedTileIds: []
+      });
     } else {
       this.setState({
         pinError: true,
@@ -1566,14 +1531,7 @@ export class BoardContainer extends Component {
   };
 
   render() {
-    const {
-      navHistory,
-      board,
-      focusTile,
-      isPremiumRequiredModalOpen,
-      improvedPhrase,
-      speak
-    } = this.props;
+    const { navHistory, board, focusTile, improvedPhrase, speak } = this.props;
     const { isCbuilderBoard } = this.state;
 
     if (!this.props.board) {
@@ -1634,7 +1592,6 @@ export class BoardContainer extends Component {
           publishBoard={this.publishBoard}
           showNotification={this.props.showNotification}
           emptyVoiceAlert={this.props.emptyVoiceAlert}
-          offlineVoiceAlert={this.props.offlineVoiceAlert}
           onAddRemoveColumn={this.handleAddRemoveColumn}
           onAddRemoveRow={this.handleAddRemoveRow}
           onTileDrop={this.handleTileDrop}
@@ -1652,7 +1609,7 @@ export class BoardContainer extends Component {
           speak={speak}
         />
         <Dialog
-          open={!!this.state.copyPublicBoard && !isPremiumRequiredModalOpen}
+          open={!!this.state.copyPublicBoard}
           TransitionComponent={Transition}
           keepMounted
           onClose={this.handleCloseDialog}
@@ -1697,20 +1654,18 @@ export class BoardContainer extends Component {
                 )}
               </Button>
             ) : (
-              <PremiumFeature>
-                <Button
-                  onClick={this.handleCopyRemoteBoard}
-                  color="primary"
-                  variant="contained"
-                  disabled={this.state.isSaving}
-                >
-                  {this.state.isSaving ? (
-                    <LoadingIcon />
-                  ) : (
-                    this.props.intl.formatMessage(messages.boardCopyAccept)
-                  )}
-                </Button>
-              </PremiumFeature>
+              <Button
+                onClick={this.handleCopyRemoteBoard}
+                color="primary"
+                variant="contained"
+                disabled={this.state.isSaving}
+              >
+                {this.state.isSaving ? (
+                  <LoadingIcon />
+                ) : (
+                  this.props.intl.formatMessage(messages.boardCopyAccept)
+                )}
+              </Button>
             )}
           </DialogActions>
         </Dialog>
@@ -1766,34 +1721,6 @@ export class BoardContainer extends Component {
           isSymbolSearchTourEnabled={this.props.isSymbolSearchTourEnabled}
           disableTour={this.props.disableTour}
         />
-        <UnauthenticatedEditModal
-          open={this.state.showUnauthEditModal}
-          onClose={() => this.setState({ showUnauthEditModal: false })}
-          onContinue={() => {
-            const {
-              showPremiumRequired,
-              isSubscriptionRequired,
-              setIsSaving,
-              setUnauthEditModalDismissed
-            } = this.props;
-            setUnauthEditModalDismissed(true);
-            this.setState(
-              {
-                showUnauthEditModal: false,
-                isLocked: false,
-                isSaving: false,
-                isSelecting: false,
-                selectedTileIds: []
-              },
-              () => {
-                setIsSaving(false);
-                if (isSubscriptionRequired) {
-                  showPremiumRequired({ showTryPeriodFinishedMessages: true });
-                }
-              }
-            );
-          }}
-        />
         <PinDialog
           open={this.state.pinDialogOpen}
           onClose={this.handlePinDialogClose}
@@ -1813,15 +1740,8 @@ export const mapStateToProps = (state) => {
     communicator,
     speech,
     scanner,
-    app: {
-      displaySettings,
-      navigationSettings,
-      userData,
-      isConnected,
-      liveHelp
-    },
-    language: { lang },
-    subscription: { premiumRequiredModalState }
+    app: { displaySettings, navigationSettings, userData, liveHelp },
+    language: { lang }
   } = state;
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
@@ -1832,7 +1752,6 @@ export const mapStateToProps = (state) => {
     speech.voices.length > 0 && speech.options.voiceURI !== EMPTY_VOICES
       ? false
       : true;
-  const offlineVoiceAlert = !isConnected && speech.options.isCloud;
   return {
     communicator: currentCommunicator,
     board: getVisibleBoards(state).find((board) => board.id === activeBoardId),
@@ -1846,15 +1765,11 @@ export const mapStateToProps = (state) => {
     userData,
     emptyVoiceAlert,
     lang,
-    offlineVoiceAlert,
     isRootBoardTourEnabled: liveHelp.isRootBoardTourEnabled,
     isSymbolSearchTourEnabled: liveHelp.isSymbolSearchTourEnabled,
     isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
-    isPremiumRequiredModalOpen: premiumRequiredModalState?.open,
     improvedPhrase: board.improvedPhrase,
-    isSubscriptionRequired: isSubscriptionRequired(state),
-    isLogged: isLogged(state),
-    unauthEditModalDismissed: isUnauthEditModalDismissed(state)
+    isLogged: isLogged(state)
   };
 };
 
@@ -1888,9 +1803,7 @@ const mapDispatchToProps = {
   upsertApiBoard,
   changeDefaultBoard,
   verifyAndUpsertCommunicator,
-  showPremiumRequired,
-  setIsSaving,
-  setUnauthEditModalDismissed
+  setIsSaving
 };
 
 export default connect(

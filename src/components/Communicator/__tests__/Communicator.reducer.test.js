@@ -19,7 +19,6 @@ import {
   GET_API_MY_COMMUNICATORS_FAILURE,
   GET_API_MY_COMMUNICATORS_STARTED
 } from '../Communicator.constants';
-import { LOGIN_SUCCESS, LOGOUT } from '../../Account/Login/Login.constants';
 import moment from 'moment';
 
 let mockComm, defaultCommunicatorID, initialState;
@@ -44,19 +43,6 @@ describe('reducer', () => {
 
   it('should return the initial state', () => {
     expect(communicatorReducer(undefined, {})).toEqual(initialState);
-  });
-  it('should handle login ', () => {
-    const login = {
-      type: LOGIN_SUCCESS,
-      payload: mockComm
-    };
-    expect(communicatorReducer(initialState, login)).toEqual(initialState);
-  });
-  it('should handle logout', () => {
-    const logout = {
-      type: LOGOUT
-    };
-    expect(communicatorReducer(initialState, logout)).toEqual(initialState);
   });
   it('should handle getApiMyCommunicatorsStarted', () => {
     const getApiMyCommunicatorsStarted = {

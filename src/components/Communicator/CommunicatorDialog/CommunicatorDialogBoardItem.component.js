@@ -39,7 +39,6 @@ import messages from './CommunicatorDialog.messages';
 import { isCordova, isPackagedApp } from '../../../cordova-util';
 import InputImage from '../../UI/InputImage';
 import SymbolSearch from '../../Board/SymbolSearch';
-import PremiumFeature from '../../PremiumFeature';
 import Language from '../../Settings/Language/Language.messages';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -889,22 +888,20 @@ class CommunicatorDialogBoardItem extends React.Component {
                       >
                         {intl.formatMessage(messages.close)}
                       </Button>
-                      <PremiumFeature>
-                        <Button
-                          onClick={() => {
-                            this.handleBoardCopy(board);
-                          }}
-                          variant="contained"
-                          color="primary"
-                          disabled={this.state.loading}
-                        >
-                          {this.state.loading ? (
-                            <LoadingIcon />
-                          ) : (
-                            intl.formatMessage(messages.accept)
-                          )}
-                        </Button>
-                      </PremiumFeature>
+                      <Button
+                        onClick={() => {
+                          this.handleBoardCopy(board);
+                        }}
+                        variant="contained"
+                        color="primary"
+                        disabled={this.state.loading}
+                      >
+                        {this.state.loading ? (
+                          <LoadingIcon />
+                        ) : (
+                          intl.formatMessage(messages.accept)
+                        )}
+                      </Button>
                     </DialogActions>
                   </Dialog>
                 </div>
@@ -928,11 +925,9 @@ class CommunicatorDialogBoardItem extends React.Component {
                       <InputIcon />
                     )}
                   </IconButton>
-                  {board.description || board.isPublic ? (
-                    <PremiumFeature>{PublishBoardButton}</PremiumFeature>
-                  ) : (
-                    PublishBoardButton
-                  )}
+                  {board.description || board.isPublic
+                    ? { PublishBoardButton }
+                    : PublishBoardButton}
                   <Dialog
                     onClose={this.handleDialogClose.bind(this)}
                     aria-labelledby="board-publish-dialog"
@@ -968,17 +963,15 @@ class CommunicatorDialogBoardItem extends React.Component {
                       >
                         {intl.formatMessage(messages.close)}
                       </Button>
-                      <PremiumFeature>
-                        <Button
-                          onClick={() => {
-                            this.handleBoardPublish(board);
-                          }}
-                          variant="contained"
-                          color="primary"
-                        >
-                          {intl.formatMessage(messages.accept)}
-                        </Button>
-                      </PremiumFeature>
+                      <Button
+                        onClick={() => {
+                          this.handleBoardPublish(board);
+                        }}
+                        variant="contained"
+                        color="primary"
+                      >
+                        {intl.formatMessage(messages.accept)}
+                      </Button>
                     </DialogActions>
                   </Dialog>
                   <IconButton
