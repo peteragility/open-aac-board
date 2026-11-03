@@ -162,7 +162,7 @@
     "test:e2e:report-browserstack": "browserstack-node-sdk playwright show-report",
     "test:e2e:ui-browserstack": "browserstack-node-sdk playwright test --ui",
     "test:e2e:install-browserstack": "browserstack-node-sdk playwright install",
-    "test:local": "node --test src/local/*.test.mjs",
+    "test:local": "node --test src/local/*.test.mjs scripts/limit-precache.test.cjs",
     "deploy:aws": "bash infrastructure/deploy.sh",
     "test:web": "playwright test --config=playwright.local.config.js"
   },
