@@ -1,4 +1,7 @@
+const fs = require('node:fs');
+const path = require('node:path');
 const boards = require('./src/api/boards.json');
+const catalog = require('./src/local/aac/catalog.json');
 
 function mapImagesToGlobs(boards, globPrefix) {
   let globs = [];
@@ -17,6 +20,41 @@ function mapImagesToGlobs(boards, globPrefix) {
   return globs;
 }
 
+// Every symbol named anywhere in the starter catalog. The vocabulary can grow
+// without editing this file: new symbol paths are picked up at build time.
+function catalogSymbolPaths(value, found = new Set()) {
+  if (typeof value === 'string') {
+    const match = value.match(
+      /^\/?(symbols\/[^'"?#]+\.(?:svg|png|jpe?g|gif|webp))$/i
+    );
+    if (match) found.add(match[1]);
+  } else if (Array.isArray(value)) {
+    value.forEach((item) => catalogSymbolPaths(item, found));
+  } else if (value && typeof value === 'object') {
+    Object.values(value).forEach((item) => catalogSymbolPaths(item, found));
+  }
+  return found;
+}
+
+const catalogSymbols = [...catalogSymbolPaths(catalog)].sort().map((file) => {
+  if (!fs.existsSync(path.join(__dirname, 'build', file))) {
+    throw new Error(`Starter catalog references a missing symbol: ${file}`);
+  }
+  return 'build/' + file;
+});
+
+// Only the entry chunks needed by the workspace route are precached. Upstream
+// editor and settings chunks, and any other symbols, are cached on first use.
+const assetManifest = JSON.parse(
+  fs.readFileSync(path.join(__dirname, 'build', 'asset-manifest.json'), 'utf8')
+);
+const entryFiles = assetManifest.entrypoints
+  .filter((file) => /\.(js|css)$/.test(file))
+  .map((file) => 'build/' + file);
+if (!entryFiles.some((file) => /static\/js\/main\./.test(file))) {
+  throw new Error('Build manifest does not list the main script.');
+}
+
 const boardImages = mapImagesToGlobs(boards.advanced, 'build/');
 
 module.exports = {
@@ -30,8 +68,10 @@ module.exports = {
     'build/app-icon.svg',
     'build/app-icon-*.png',
     'build/audio/**/*.mp3',
-    'build/symbols/**/*',
-    'build/static/**/!(*map*)',
+    'build/static/media/**/*',
+    'build/symbols/open-aac/**/*',
+    ...entryFiles,
+    ...catalogSymbols,
     ...boardImages
   ],
   maximumFileSizeToCacheInBytes: 8 * 1024 * 1024, // 8 MB
@@ -60,6 +100,16 @@ module.exports = {
       options: {
         cache: {
           name: 'symbols-cboard'
+        }
+      }
+    },
+    {
+      // Hashed script, style and font chunks: lazy routes and translations.
+      urlPattern: /\/static\/(js|css|media)\//,
+      handler: 'cacheFirst',
+      options: {
+        cache: {
+          name: 'static-runtime'
         }
       }
     }

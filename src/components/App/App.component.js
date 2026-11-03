@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import classNames from 'classnames';
 
-import BoardContainer from '../Board';
 import OfflineNotificationModal from '../OfflineNotification';
 import Notifications from '../Notifications';
 import NotFound from '../NotFound';
-import Settings from '../Settings';
 import WelcomeScreen from '../../local/Welcome';
 import StorageNotice from '../../local/StorageNotice';
 import Workspace from '../../local/aac/Workspace';
 import './App.css';
+
+// Upstream board editor and settings load on demand so the workspace shell stays small.
+const BoardContainer = lazy(() => import('../Board'));
+const Settings = lazy(() => import('../Settings'));
 
 export class App extends Component {
   static propTypes = {
@@ -53,22 +55,24 @@ export class App extends Component {
         </Helmet>
 
         <Notifications />
-        <Switch>
-          <Route path="/settings" component={Settings} />
-          <Route path="/board/:id" component={BoardContainer} />
-          <Route path="/boards" component={BoardContainer} />
-          {isDownloadingLang && (
-            <Route exact path={'/'}>
-              <Redirect to={'/settings/language'} />
-            </Route>
-          )}
-          <Route
-            exact
-            path="/"
-            component={isFirstVisit && !isLogged ? WelcomeScreen : Workspace}
-          />
-          <Route component={NotFound} />
-        </Switch>
+        <Suspense fallback={null}>
+          <Switch>
+            <Route path="/settings" component={Settings} />
+            <Route path="/board/:id" component={BoardContainer} />
+            <Route path="/boards" component={BoardContainer} />
+            {isDownloadingLang && (
+              <Route exact path={'/'}>
+                <Redirect to={'/settings/language'} />
+              </Route>
+            )}
+            <Route
+              exact
+              path="/"
+              component={isFirstVisit && !isLogged ? WelcomeScreen : Workspace}
+            />
+            <Route component={NotFound} />
+          </Switch>
+        </Suspense>
         <StorageNotice />
         <OfflineNotificationModal />
       </div>
