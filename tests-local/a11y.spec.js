@@ -8,152 +8,9 @@ const axeSource = fs.readFileSync(
 );
 const BLOCKING_IMPACTS = ['serious', 'critical'];
 
-// Violations present in the current UI, recorded so this suite passes today.
-// Each entry names the axe rule and the selector axe reports for the element.
-// Remove an entry when its element is fixed; any other serious or critical
-// violation fails the suite.
-const KNOWN_VIOLATIONS = [
-  // color-contrast: text colour contrast below the WCAG minimum, found on the word
-  // board, quick responses, pictures and preferences at phone and tablet sizes.
-  // label-content-name-mismatch: the accessible name omits the visible label.
-  {
-    rule: 'color-contrast',
-    selector: '.aac-brand > div > span',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: '.aac-categories > button:nth-child(2)',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: '.aac-categories > button:nth-child(3)',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: '.aac-categories > button:nth-child(4)',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: '.aac-categories > button:nth-child(5)',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: '.aac-categories > button:nth-child(6)',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: '.aac-message-placeholder',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: '.aac-mobile-nav > button:nth-child(2) > span',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: '.aac-mobile-nav > button:nth-child(3) > span',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: '.aac-mobile-nav > button:nth-child(4) > span',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: '.aac-section-row > .aac-text-button',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: '.aac-sidebar-caption',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: '.aac-sidebar-footer > p',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: 'button[lang="en"]',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: 'button[lang="zh-CN"]',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: 'button[lang="zh-HK"]',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: 'h2 > span',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: 'section:nth-child(1) > .aac-muted',
-    impact: 'serious'
-  },
-  {
-    rule: 'color-contrast',
-    selector: 'section:nth-child(3) > .aac-muted',
-    impact: 'serious'
-  },
-  {
-    rule: 'label-content-name-mismatch',
-    selector: '.aac-add-word',
-    impact: 'serious'
-  },
-  {
-    rule: 'label-content-name-mismatch',
-    selector: '.aac-readiness-voice',
-    impact: 'serious'
-  },
-  {
-    rule: 'label-content-name-mismatch',
-    selector: '.aac-response-trigger',
-    impact: 'serious'
-  },
-  {
-    rule: 'label-content-name-mismatch',
-    selector: 'button[aria-label="Remove last word"]',
-    impact: 'serious'
-  },
-  {
-    rule: 'label-content-name-mismatch',
-    selector: 'button[aria-label="俾對方睇"]',
-    impact: 'serious'
-  },
-  {
-    rule: 'label-content-name-mismatch',
-    selector: 'button[aria-label="刪除上一個字"]',
-    impact: 'serious'
-  },
-  // Quick responses dialog.
-  {
-    rule: 'color-contrast',
-    selector: '.aac-settings-body > .aac-muted',
-    impact: 'serious'
-  },
-  // Quick responses dialog.
-  {
-    rule: 'color-contrast',
-    selector: '.aac-button-row > .aac-text-button',
-    impact: 'serious'
-  }
-];
+// Accepted exceptions: { rule, selector, impact } with a comment saying why.
+// There are none; any serious or critical violation fails the suite.
+const KNOWN_VIOLATIONS = [];
 
 const VIEWPORTS = [
   { name: 'phone', viewport: { width: 390, height: 844 } },
@@ -165,7 +22,12 @@ test.use({ serviceWorkers: 'block' });
 test.beforeEach(async ({ page }) => {
   // Keep the check hermetic: only the local app is reachable.
   await page.route('**/*', (route) =>
-    route.request().url().startsWith('http://127.0.0.1:3017/')
+    route
+      .request()
+      .url()
+      .startsWith(
+        `http://127.0.0.1:${Number(process.env.AAC_TEST_PORT) || 3017}/`
+      )
       ? route.continue()
       : route.abort()
   );
@@ -237,7 +99,7 @@ for (const { name, viewport } of VIEWPORTS) {
     }) => {
       await openEnglishBoard(page);
       await page
-        .getByRole('button', { name: 'Quick responses', exact: true })
+        .getByRole('button', { name: 'Reply: Quick responses', exact: true })
         .click();
       await expect(page.getByRole('dialog')).toBeVisible();
       expect(await blockingViolations(page, 'quick responses')).toEqual([]);

@@ -100,7 +100,7 @@ test('two-switch scanning reaches the message controls, so a switch user can spe
   await expect(page.locator('.aac-message')).toContainText('I');
   // After a selection the scan restarts on the now usable message controls.
   const back = page.getByRole('button', {
-    name: 'Remove last word',
+    name: 'Back: remove last word',
     exact: true
   });
   await expect(back).toHaveAttribute('data-scan-focus', 'true');

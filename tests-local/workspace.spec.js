@@ -756,7 +756,7 @@ test('quick responses preserve board and typing drafts, work from routines and r
   await open(page, 'en');
   await page.locator('[data-word-id="water"]').click();
   await page
-    .getByRole('button', { name: 'Quick responses', exact: true })
+    .getByRole('button', { name: 'Reply: Quick responses', exact: true })
     .click();
   const dialog = page.getByRole('dialog');
   await dialog
@@ -776,7 +776,7 @@ test('quick responses preserve board and typing drafts, work from routines and r
     .getByRole('textbox', { name: 'Type to speak', exact: true })
     .fill('I have another question.');
   await page
-    .getByRole('button', { name: 'Quick responses', exact: true })
+    .getByRole('button', { name: 'Reply: Quick responses', exact: true })
     .click();
   await dialog.getByRole('button', { name: 'No thanks.', exact: true }).click();
   await dialog
@@ -802,7 +802,7 @@ test('quick responses preserve board and typing drafts, work from routines and r
     .getByRole('button', { name: 'Daily routine', exact: true })
     .click();
   await page
-    .getByRole('button', { name: 'Quick responses', exact: true })
+    .getByRole('button', { name: 'Reply: Quick responses', exact: true })
     .click();
   await dialog.getByRole('button', { name: 'Hello!', exact: true }).click();
   await expect
@@ -812,7 +812,7 @@ test('quick responses preserve board and typing drafts, work from routines and r
   await page.waitForTimeout(500);
   await page.reload();
   await page
-    .getByRole('button', { name: 'Quick responses', exact: true })
+    .getByRole('button', { name: 'Reply: Quick responses', exact: true })
     .click();
   await expect(
     dialog.getByRole('button', { name: 'Hello!', exact: true })
@@ -1439,7 +1439,7 @@ test.describe('responsive MVP layouts', () => {
       }
       await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
       await page
-        .getByRole('button', { name: 'Quick responses', exact: true })
+        .getByRole('button', { name: 'Reply: Quick responses', exact: true })
         .click();
       await expectLayoutToFit(page);
       await dialog

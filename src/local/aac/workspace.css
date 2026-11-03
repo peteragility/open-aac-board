@@ -1,6 +1,6 @@
 .aac-workspace {
   --ink: #203e39;
-  --muted: #6d7e78;
+  --muted: #586a63;
   --green: #1a6c5d;
   --border: #e1e8e3;
   --paper: #fff;
@@ -197,7 +197,7 @@
 }
 .aac-language-picker button {
   border: 0;
-  color: #6f7a70;
+  color: #4f5a50;
   min-height: 44px;
   padding: 4px 16px;
   white-space: nowrap;
@@ -332,7 +332,7 @@
 }
 .aac-message-placeholder {
   font-size: 18px;
-  color: #a7b2a7;
+  color: #6c776c;
   letter-spacing: 0.03em;
 }
 .aac-message-word {
@@ -1069,7 +1069,7 @@
 }
 .aac-muted {
   font-size: 13px;
-  color: #738075;
+  color: #5d6a5f;
   line-height: 1.8;
 }
 .aac-button-row {
@@ -1902,7 +1902,7 @@
     align-items: center;
     justify-content: center;
     gap: 4px;
-    color: #869080;
+    color: #5c665a;
     border-radius: 9px;
     min-height: 53px;
     min-width: 0;

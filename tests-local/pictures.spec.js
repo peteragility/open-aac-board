@@ -434,7 +434,7 @@ test.describe('visual layouts', () => {
     const words = await page.locator('.aac-message-word').count();
     await openTool(page, 'Start picture scanning');
     const back = page.getByRole('button', {
-      name: 'Remove last word',
+      name: 'Back: remove last word',
       exact: true
     });
     await expect(back).toBeFocused();

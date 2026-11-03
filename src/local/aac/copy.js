@@ -26,7 +26,11 @@ const strings = {
   clear: ['清除', 'Clear', '清除'],
   undo: ['復原', 'Undo', '撤销'],
   backShort: ['刪一字', 'Back', '删一字'],
-  backspace: ['刪除上一個字', 'Remove last word', '删除上一个词'],
+  backspace: [
+    '刪一字：刪除上一個字',
+    'Back: remove last word',
+    '删一字：删除上一个词'
+  ],
   search: [
     '搵字詞或粵拼，例如：水、seoi2⋯⋯',
     'Find a word or Jyutping, e.g. water, seoi…',
@@ -154,8 +158,8 @@ const strings = {
     'Familiar photos can help. Use Tools → Personalize words to add your people or everyday objects.',
     '熟悉的照片有助辨认。在“工具 → 修改图卡”添加家人或常用物品照片。'
   ],
-  addWordShort: ['加字詞', 'Add word', '加词语'],
-  partnerShort: ['俾人睇', 'Show', '展示'],
+  addWordShort: ['新增字詞', 'Add a word', '添加词语'],
+  partnerShort: ['俾對方睇', 'Show', '给对方看'],
   saveShort: ['儲存', 'Save', '保存'],
   moreCategories: ['更多分類', 'More categories', '更多分类'],
   previousCategories: ['之前嘅分類', 'Previous categories', '之前的分类'],

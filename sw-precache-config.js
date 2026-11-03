@@ -109,7 +109,9 @@ module.exports = {
       handler: 'cacheFirst',
       options: {
         cache: {
-          name: 'static-runtime'
+          name: 'static-runtime',
+          // Old hashed chunks from earlier releases are evicted.
+          maxEntries: 150
         }
       }
     }

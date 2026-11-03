@@ -669,7 +669,7 @@ export function Workspace({
           </button>
           <button
             className="aac-response-trigger"
-            aria-label={c.responses}
+            aria-label={`${c.responsesShort}: ${c.responses}`}
             title={c.responses}
             onClick={() => {
               setScanning(false);
