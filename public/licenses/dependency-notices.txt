@@ -2,7 +2,7 @@ OPEN AAC BOARD — THIRD-PARTY PACKAGE NOTICES
 
 All installed packages in package-lock.json, including development/build tools. This is broader than the browser bundle and is not a legal clearance or an assertion that every package is redistributed.
 
-Lockfile SHA-256: a71b377992ff6c991f9fc0aff31038470c3693495a0e6e08cd83204974173ac6
+Lockfile SHA-256: 100fa1e4d5aa81ae9ad7fc3a37ca2e8b88bfb1b3340c80b586bad076a2aaa5a0
 
 Original notices follow verbatim, deduplicated by SHA-256. License declarations do not override the attached terms.
 
