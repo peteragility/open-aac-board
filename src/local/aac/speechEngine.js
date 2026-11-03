@@ -35,20 +35,45 @@ export class SpeechEngine {
     );
     return match ? `/audio/${language}/${match.id}.mp3` : null;
   }
-  speakDevice(text, voice, rate) {
+  // Some browsers never fire onend (Chrome stops long utterances after about
+  // 15 s; a stalled synthesizer fires nothing). Give up after a generous time
+  // so the button never stays on "Stop" and the bundled audio can take over.
+  speechTimeout(text, rate) {
+    return (3000 + Array.from(text).length * 400) / Math.max(rate, 0.5);
+  }
+  speakDevice(text, voice, rate, volume = 1) {
     return new Promise((resolve, reject) => {
-      this.finish = resolve;
+      const done = (callback) => (value) => {
+        clearTimeout(watchdog);
+        callback(value);
+      };
+      const watchdog = setTimeout(
+        () => {
+          this.getSynth()?.cancel();
+          reject(new Error('speech-timeout'));
+        },
+        this.speechTimeout(text, rate)
+      );
+      this.finish = done(resolve);
       const utterance = this.createUtterance(text);
       utterance.voice = voice;
       utterance.lang = voice.lang;
       utterance.rate = rate;
-      utterance.onend = resolve;
+      utterance.volume = volume;
+      utterance.onend = done(resolve);
       utterance.onerror = (event) =>
-        reject(new Error(event.error || 'speech-failed'));
+        done(reject)(new Error(event.error || 'speech-failed'));
       this.getSynth().speak(utterance);
     });
   }
-  async speak({ text, language, preferredURI, segments = [], rate = 1 }) {
+  async speak({
+    text,
+    language,
+    preferredURI,
+    segments = [],
+    rate = 1,
+    volume = 1
+  }) {
     this.stop();
     if (!text.trim()) return;
     const generation = this.generation;
@@ -70,7 +95,7 @@ export class SpeechEngine {
       voice && (this.isOnline() || voice.localService === true);
     if (canUseDevice && !hasRecording) {
       try {
-        await this.speakDevice(text, voice, rate);
+        await this.speakDevice(text, voice, rate, volume);
         return;
       } catch (error) {
         if (generation !== this.generation) return;
@@ -83,7 +108,7 @@ export class SpeechEngine {
     for (const [index, file] of files.entries()) {
       if (generation !== this.generation) return;
       if (!file && canUseDevice) {
-        await this.speakDevice(segments[index].text, voice, rate);
+        await this.speakDevice(segments[index].text, voice, rate, volume);
         continue;
       }
       await new Promise((resolve, reject) => {
@@ -92,6 +117,7 @@ export class SpeechEngine {
         this.audio.onerror = () => reject(new Error('audio-failed'));
         this.audio.src = file;
         this.audio.playbackRate = rate;
+        this.audio.volume = volume;
         this.audio.play().catch(reject);
       });
     }

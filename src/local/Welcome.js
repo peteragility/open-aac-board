@@ -35,6 +35,7 @@ export function Welcome({
           {LANGUAGES.map((l) => (
             <button
               key={l.id}
+              lang={l.html}
               aria-pressed={language === l.id}
               onClick={() => changeLanguage(l.id)}
             >
@@ -45,7 +46,9 @@ export function Welcome({
       </header>
       <div className="local-welcome-content">
         <section>
-          <p className="local-eyebrow">COMMUNICATION BELONGS TO EVERYONE</p>
+          <p className="local-eyebrow" lang="en">
+            COMMUNICATION BELONGS TO EVERYONE
+          </p>
           <h1 style={{ whiteSpace: 'pre-line' }}>{c.welcomeTitle}</h1>
           <p className="local-intro">{c.welcomeIntro}</p>
           <button className="local-primary" onClick={finishFirstVisit}>
@@ -62,7 +65,15 @@ export function Welcome({
           </button>
           <p className="local-caption">{c.noAccount}</p>
         </section>
-        <div className="local-preview" aria-label="Communication board">
+        <div
+          className="local-preview"
+          role="img"
+          aria-label={tr(
+            '溝通板示範',
+            'Communication board example',
+            '沟通板示例'
+          )}
+        >
           <div className="local-preview-message">
             {tr('我想飲水', 'I want to drink water', '我想喝水')}{' '}
             <span aria-hidden="true">♫</span>
@@ -136,7 +147,7 @@ export function Welcome({
         >
           Cboard
         </a>
-        . Code licensed under GPLv3.
+        . <span lang="en">Code licensed under GPLv3.</span>
       </footer>
     </main>
   );

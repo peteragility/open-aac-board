@@ -429,10 +429,18 @@ test.describe('visual layouts', () => {
       ).toBe(false);
       await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
     }
+    // With words in the message, scanning starts on the message controls, so a
+    // switch user can correct or speak it without waiting for every picture.
+    const words = await page.locator('.aac-message-word').count();
     await openTool(page, 'Start picture scanning');
-    await expect(page.locator('.aac-visual-words')).toBeFocused();
+    const back = page.getByRole('button', {
+      name: 'Remove last word',
+      exact: true
+    });
+    await expect(back).toBeFocused();
+    await expect(back).toHaveAttribute('data-scan-focus', 'true');
     await page.keyboard.press('Space');
-    await expect(page.locator('.aac-message-word').last()).toContainText('I');
+    await expect(page.locator('.aac-message-word')).toHaveCount(words - 1);
     await page.keyboard.press('Escape');
   });
 });

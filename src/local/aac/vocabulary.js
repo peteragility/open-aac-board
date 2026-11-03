@@ -1,11 +1,23 @@
 // Open AAC Board additions, 2026-10-29. GPL-3.0-only.
 import { LANGUAGES } from './languages.js';
 
+// Only the user's own changes apply on top of a starter word. Older edits also
+// stored the word's picture, category and colour, which would otherwise hide
+// later vocabulary updates.
+const EDITABLE = ['yue', 'en', 'cmn', 'recordings', 'image'];
+const userChanges = (override) =>
+  Object.fromEntries(
+    EDITABLE.filter((key) => override?.[key] !== undefined).map((key) => [
+      key,
+      override[key]
+    ])
+  );
+
 export function workspaceWords(starterWords, workspace, language) {
   return [
     ...starterWords.map((word) => ({
       ...word,
-      ...workspace.overrides[word.id]
+      ...userChanges(workspace.overrides[word.id])
     })),
     ...(workspace.customWords || []).map((word) => ({
       ...word,

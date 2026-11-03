@@ -23,10 +23,14 @@ export default function VoiceCheck({
   async function listen() {
     setState('playing');
     const played = await tryVoice();
-    if (mounted.current) {
-      setState(played ? 'played' : 'error');
-      if (!played) setHelp(true);
+    if (!mounted.current) return;
+    // Stopped or replaced by other speech: let the user simply try again.
+    if (played === 'cancelled') {
+      setState('idle');
+      return;
     }
+    setState(played ? 'played' : 'error');
+    if (!played) setHelp(true);
   }
   return (
     <Modal

@@ -316,7 +316,10 @@ test('quick phrases, saved typing, partner view, daily routine and switch scanni
     .getByRole('dialog')
     .getByRole('button', { name: 'Start picture scanning', exact: true })
     .click();
-  await expect(page.locator('.aac-word-grid')).toBeFocused();
+  // With an empty message the scan starts on the first word card.
+  const first = page.locator('[data-word-id="i"]');
+  await expect(first).toBeFocused();
+  await expect(first).toHaveAttribute('data-scan-focus', 'true');
   await page.keyboard.press('Space');
   await expect(page.locator('.aac-message')).toContainText('I');
   await page.keyboard.press('Escape');

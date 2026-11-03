@@ -54,6 +54,7 @@ export default function CategoryTabs({
         role="group"
         aria-label={c.board}
         ref={ref}
+        data-scan-group="categories"
       >
         {categories.map((cat) => (
           <button
@@ -61,6 +62,7 @@ export default function CategoryTabs({
             aria-pressed={category === cat.id && !query}
             className={category === cat.id && !query ? 'is-active' : ''}
             onClick={() => onSelect(cat.id)}
+            data-scan-target=""
           >
             <Icon name={cat.icon} />
             {cat[language]}

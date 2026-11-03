@@ -24,6 +24,7 @@ export default function WordEditor({
   const [error, setError] = useState('');
   const [step, setStep] = useState(0);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [confirmReset, setConfirmReset] = useState(false);
   const session = useRef(null);
   const labelInput = useRef(null);
   const mounted = useRef(true);
@@ -258,9 +259,40 @@ export default function WordEditor({
           )}
           <p role="alert">{error}</p>
           {override && (
-            <button className="aac-text-button" type="button" onClick={onReset}>
-              {c.resetWord}
-            </button>
+            // Resetting deletes the user's own photo and recordings: confirm first.
+            <div className="aac-delete-word">
+              {confirmReset ? (
+                <>
+                  <p>{c.resetWordConfirm}</p>
+                  <div className="aac-button-row">
+                    <button
+                      type="button"
+                      className="aac-secondary"
+                      disabled={Boolean(recording)}
+                      onClick={onReset}
+                    >
+                      {c.confirmReset}
+                    </button>
+                    <button
+                      type="button"
+                      className="aac-text-button"
+                      onClick={() => setConfirmReset(false)}
+                    >
+                      {c.cancel}
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <button
+                  className="aac-text-button"
+                  type="button"
+                  disabled={Boolean(recording)}
+                  onClick={() => setConfirmReset(true)}
+                >
+                  {c.resetWord}
+                </button>
+              )}
+            </div>
           )}
           {onDelete && (
             <div className="aac-delete-word">

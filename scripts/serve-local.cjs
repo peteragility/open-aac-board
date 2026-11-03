@@ -1,3 +1,5 @@
+// AAC_TEST_PORT lets two checkouts run their browser tests at the same time.
+const port = Number(process.env.AAC_TEST_PORT) || 3017;
 const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -54,6 +56,6 @@ http
       res.writeHead(400).end();
     }
   })
-  .listen(3017, '127.0.0.1', () =>
-    console.log('Open AAC Board: http://127.0.0.1:3017')
+  .listen(port, '127.0.0.1', () =>
+    console.log('Open AAC Board: http://127.0.0.1:' + port)
   );

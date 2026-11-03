@@ -15,11 +15,7 @@ export default function PictureBrowser({
   c,
   editing,
   disabled,
-  highlighted,
-  scanGrid,
-  scanning,
-  scanIndex,
-  onScanKey
+  highlighted
 }) {
   const heading = useRef();
   const previousGroup = useRef(group);
@@ -46,21 +42,17 @@ export default function PictureBrowser({
       editing={editing}
       disabled={disabled}
       highlighted={highlighted === word.id}
-      attributes={
-        scanning && !prefix && scanIndex === index
-          ? { 'data-scan-focus': true }
-          : {}
-      }
     />
   );
   return (
     <section className="aac-picture-browser" aria-label={c.browsePictures}>
-      <div className="aac-picture-nav">
+      <div className="aac-picture-nav" data-scan-group="picture-nav">
         <button
           className="aac-secondary"
           onClick={() => onGroup(null)}
           disabled={!group}
           aria-label={c.pictureBack}
+          data-scan-target=""
         >
           <Icon name="arrow" className="aac-arrow-back" />
           <Icon name="pictures" />
@@ -74,6 +66,7 @@ export default function PictureBrowser({
           aria-label={c.pictureCore}
           aria-pressed={group === 'core'}
           onClick={() => onGroup('core')}
+          data-scan-target=""
         >
           <span className="aac-core-thumbnails" aria-hidden="true">
             {['i', 'want'].map((id) => (
@@ -91,6 +84,7 @@ export default function PictureBrowser({
         className="aac-essential-pictures"
         role="group"
         aria-label={c.essentialWords}
+        data-scan-group="essential"
       >
         {ESSENTIAL_WORDS.map((id, index) =>
           card(
@@ -102,7 +96,7 @@ export default function PictureBrowser({
       </div>
       {!group ? (
         <>
-          <div className="aac-picture-groups">
+          <div className="aac-picture-groups" data-scan-group="folders">
             {PICTURE_GROUPS.map((item) => {
               const personal = words
                 .filter((word) => word.personal)
@@ -118,6 +112,7 @@ export default function PictureBrowser({
                   className="aac-picture-folder"
                   key={item.id}
                   data-picture-group={item.id}
+                  data-scan-target=""
                   aria-label={c[item.title]}
                   onClick={() => onGroup(item.id)}
                 >
@@ -141,9 +136,7 @@ export default function PictureBrowser({
             className="aac-word-grid aac-visual-words"
             role="group"
             aria-label={title}
-            ref={scanGrid}
-            tabIndex={scanning ? 0 : -1}
-            onKeyDown={onScanKey}
+            data-scan-group="board"
           >
             {visible.map((word, index) => card(word, index))}
           </div>
@@ -172,7 +165,7 @@ export default function PictureBrowser({
             {c.choosePins}
           </button>
         </div>
-        <div className="aac-pin-slots">
+        <div className="aac-pin-slots" data-scan-group="pins">
           {slots.map((id, index) => {
             const word = words.find((item) => item.id === id);
             return (

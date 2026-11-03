@@ -34,6 +34,8 @@ import PinnedWordEditor from './PinnedWordEditor';
 import { wordsInGroup, DEFAULT_PINNED_WORDS } from './pictureGroups';
 import { COMMUNICATION_ACTION, initialCommunication } from './communication';
 import { workspaceWords, pictureSegments } from './vocabulary';
+import { useSwitchScanning } from './scanning';
+import { playChime, useWakeLock } from './device';
 import './workspace.css';
 import './pictures.css';
 
@@ -110,11 +112,14 @@ export function Workspace({
   const [speaking, setSpeaking] = useState(false);
   const [notice, setNotice] = useState('');
   const [undoDraft, setUndoDraft] = useState(null);
-  const [deletedPhrase, setDeletedPhrase] = useState(null);
+  // Most recent last; each can be undone in turn.
+  const [deletedPhrases, setDeletedPhrases] = useState([]);
   const [translationWord, setTranslationWord] = useState(null);
   const [scanning, setScanning] = useState(false);
-  const [scanIndex, setScanIndex] = useState(0);
-  const scanGrid = useRef();
+  const [announcement, setAnnouncement] = useState('');
+  const [timerDone, setTimerDone] = useState(false);
+  const mainArea = useRef();
+  const messageArea = useRef();
   const scrollArea = useRef();
   const scrollPositions = useRef({});
   const speechSequence = useRef(0);
@@ -187,14 +192,38 @@ export function Workspace({
     speech.stop();
     setSpeaking(false);
   }, [language]);
+  useSwitchScanning({
+    root: mainArea,
+    active: scanning && section === 'board' && !modal && !editWord,
+    mode: preferences.scanMode || 'auto',
+    delay: preferences.scanDelay,
+    hold: preferences.scanHold || 0,
+    rows: Boolean(preferences.scanRows),
+    // Wait while a selection is being spoken, so nothing interrupts it.
+    paused: speaking,
+    onPreview: previewTarget,
+    onStop: () => setScanning(false)
+  });
+  useWakeLock(preferences.keepAwake !== false);
+  // Short confirmations clear themselves; notices that need an action stay.
+  const actionNotices = [
+    c.phraseSaved,
+    c.translationMissing,
+    c.timerDone,
+    c.noVoice,
+    c.speechError
+  ];
   useEffect(() => {
-    if (!scanning || !visible.length) return;
-    const timer = setInterval(
-      () => setScanIndex((index) => (index + 1) % visible.length),
-      preferences.scanDelay * 1000
-    );
-    return () => clearInterval(timer);
-  }, [scanning, visible.length, preferences.scanDelay]);
+    if (!notice || actionNotices.includes(notice)) return undefined;
+    const timer = setTimeout(() => setNotice(''), 6000);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [notice]);
+  // The message area keeps a fixed height; keep its newest words in view.
+  useLayoutEffect(() => {
+    const area = messageArea.current;
+    if (area) area.scrollTop = area.scrollHeight;
+  }, [tokens.length, phrase?.id]);
 
   function stop() {
     speechSequence.current++;
@@ -213,16 +242,42 @@ export function Workspace({
         preferredURI: workspace.voices[language],
         rate: preferences.rate
       });
-      return sequence === speechSequence.current;
+      // Stopped or replaced by newer speech: not a failure.
+      return sequence === speechSequence.current ? true : 'cancelled';
     } catch (error) {
-      if (sequence === speechSequence.current)
-        setNotice(
-          error.message === 'missing-voice' ? c.noVoice : c.speechError
-        );
+      if (sequence !== speechSequence.current) return 'cancelled';
+      setNotice(error.message === 'missing-voice' ? c.noVoice : c.speechError);
       return false;
     } finally {
       if (sequence === speechSequence.current) setSpeaking(false);
     }
+  }
+  // Quietly name each item as scanning highlights it. A word without a label in
+  // this language is never read with another language's text.
+  function previewTarget(element) {
+    if (!preferences.scanPreview || speaking) return;
+    const word =
+      element.dataset.wordId &&
+      words.find((item) => item.id === element.dataset.wordId);
+    if (word && !word.translated) return;
+    const label = word
+      ? word.text
+      : (
+          element.getAttribute('aria-label') ||
+          element.textContent ||
+          ''
+        ).trim();
+    if (!label) return;
+    speech
+      .speak({
+        text: label,
+        segments: word ? [{ text: word.text, recording: word.recording }] : [],
+        language,
+        preferredURI: workspace.voices[language],
+        rate: preferences.rate,
+        volume: 0.6
+      })
+      .catch(() => {});
   }
   // Share the built message through the system share sheet when available
   // (WhatsApp, WeChat, Messages…), falling back to the clipboard.
@@ -255,10 +310,16 @@ export function Workspace({
       missingWord(word);
       return;
     }
-    if (tokens.length >= 30) return;
-    if (undoDraft?.kind === 'board') setUndoDraft(null);
+    if (tokens.length >= 30) {
+      setNotice(c.messageFull);
+      return;
+    }
+    // Replacing a whole phrase can be undone; adding to built words cannot.
+    if (phrase) setUndoDraft({ kind: 'board', tokens: [...tokens], phrase });
+    else if (undoDraft?.kind === 'board') setUndoDraft(null);
     setPhrase(null);
     setTokens((old) => [...old, word.id]);
+    setAnnouncement(word.text);
     setLastPicked({ id: word.id, time: Date.now() });
     if (preferences.haptics) navigator.vibrate?.(35);
     if (preferences.speakOnTap)
@@ -274,6 +335,13 @@ export function Workspace({
     setScanning(false);
     setEditing(false);
     setNotice('');
+    if (next === 'routine') setTimerDone(false);
+  }
+  function breakOver() {
+    if (section !== 'routine') setTimerDone(true);
+    setNotice(c.timerDone);
+    navigator.vibrate?.([300, 150, 300]);
+    playChime();
   }
   function missingWord(word) {
     stop();
@@ -282,8 +350,6 @@ export function Workspace({
   }
   function selectPictureGroup(group) {
     changeDraft({ pictureGroup: group });
-    setScanning(false);
-    setScanIndex(0);
     setNotice('');
     if (scrollArea.current) scrollArea.current.scrollTop = 0;
   }
@@ -302,21 +368,12 @@ export function Workspace({
     setScanning(false);
     setModal('pins');
   }
-  function scanKey(event) {
-    if (event.key === 'Escape') setScanning(false);
-    if (scanning && [' ', 'Enter'].includes(event.key)) {
-      event.preventDefault();
-      const word = visible[scanIndex % visible.length];
-      if (word) selectWord(word);
-    }
-  }
   function toggleScan() {
-    if (pictureBrowsing && !pictureGroup) changeDraft({ pictureGroup: 'core' });
     setModal(null);
     setEditing(false);
-    setScanIndex(0);
+    setShowSearch(false);
+    setQuery('');
     setScanning(!scanning);
-    if (!scanning) requestAnimationFrame(() => scanGrid.current?.focus());
   }
   function finishGuide() {
     stop();
@@ -325,31 +382,47 @@ export function Workspace({
   }
   function deletePhrase(item) {
     setNotice('');
-    setDeletedPhrase({
-      phrase: item,
-      index: workspace.phrases.findIndex((p) => p.id === item.id)
-    });
+    setDeletedPhrases((old) => [
+      ...old.slice(-9),
+      {
+        phrase: item,
+        index: workspace.phrases.findIndex((p) => p.id === item.id)
+      }
+    ]);
     update('delete-phrase', item.id);
   }
   function undoDelete() {
+    const last = deletedPhrases[deletedPhrases.length - 1];
+    if (!last) return;
     try {
-      update('restore-phrase', deletedPhrase);
-      setDeletedPhrase(null);
+      update('restore-phrase', last);
+      setDeletedPhrases((old) => old.slice(0, -1));
       setNotice('');
     } catch {
       setNotice(c.workspaceFull);
     }
   }
   function activatePhrase(item) {
-    if (undoDraft?.kind === 'board') setUndoDraft(null);
+    // An unfinished message is kept for Undo instead of being discarded.
+    if (tokens.length || phrase)
+      setUndoDraft({ kind: 'board', tokens: [...tokens], phrase });
+    else if (undoDraft?.kind === 'board') setUndoDraft(null);
     setPhrase(item);
     setTokens([]);
+    setAnnouncement(item[language] || item.text);
     say(item[language] || item.text, item.segments || []);
   }
   function savePhrase() {
     const message = text.trim();
-    if (!message || missingTranslation || workspace.phrases.length >= 100)
+    if (!message || missingTranslation) return;
+    if (workspace.phrases.length >= 100) {
+      setNotice(c.phrasesFull);
       return;
+    }
+    if (message.length > 500) {
+      setNotice(c.messageTooLong);
+      return;
+    }
     try {
       const saved = {
         id: `phrase-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`,
@@ -392,6 +465,31 @@ export function Workspace({
     }
     setUndoDraft(null);
   }
+  const noticeAction =
+    !missingTranslation && notice === c.phraseSaved
+      ? {
+          label: c.saved,
+          run: () => {
+            switchSection('quick');
+            setPhraseTab('saved');
+          }
+        }
+      : missingTranslation || notice === c.translationMissing
+        ? {
+            label: c.edit,
+            run: () => {
+              const word =
+                translationWord ||
+                selected.find((item) => !item.translated)?.id;
+              if (word) setEditWord(word);
+              setNotice('');
+            }
+          }
+        : notice === c.timerDone
+          ? { label: c.routine, run: () => switchSection('routine') }
+          : notice === c.noVoice || notice === c.speechError
+            ? { label: c.settings, run: () => setModal('settings') }
+            : null;
   const editorWord =
     catalog.words.find((word) => word.id === editWord) ||
     (workspace.customWords || []).find((word) => word.id === editWord);
@@ -432,6 +530,15 @@ export function Workspace({
               <Icon name={icon} />
               <span>{c[id]}</span>
               {section === id && <span className="aac-nav-dot" />}
+              {id === 'routine' && timerDone && (
+                <span
+                  className="aac-nav-badge"
+                  role="img"
+                  aria-label={c.timerDoneShort}
+                >
+                  <Icon name="clock" />
+                </span>
+              )}
             </button>
           ))}
         </nav>
@@ -446,7 +553,7 @@ export function Workspace({
           </p>
         </div>
       </aside>
-      <main className="aac-main">
+      <main className="aac-main" ref={mainArea}>
         <header className="aac-topbar">
           <div className="aac-mobile-brand">
             <img src="/app-icon.svg" alt="" />
@@ -491,7 +598,7 @@ export function Workspace({
           <button
             className={`aac-readiness-voice ${voiceChecked ? '' : 'needs-check'}`}
             onClick={() => setModal('voice')}
-            aria-label={`${languageInfo(language).label} · ${c.testVoice}`}
+            aria-label={`${languageInfo(language).label} · ${voiceChecked ? c.listen : c.checkVoice}`}
           >
             <Icon name="speaker" />
             {languageInfo(language).label} ·{' '}
@@ -510,7 +617,7 @@ export function Workspace({
             <Icon name="chat" />
             <span>{c.responsesShort}</span>
           </button>
-          <span role="status" className="aac-offline-status">
+          <span className="aac-offline-status">
             <button
               onClick={() => setModal('offline')}
               aria-label={`${c.offlineDetails}: ${offlineLabel}`}
@@ -525,6 +632,7 @@ export function Workspace({
             <section
               className={`aac-composer ${section === 'typing' ? 'is-typing' : ''}`}
               aria-label={c.message}
+              data-scan-group="message"
             >
               <div className="aac-composer-top">
                 <span>{c.message}</span>
@@ -532,6 +640,7 @@ export function Workspace({
                   <button
                     className="aac-icon-button"
                     aria-label={c.backspace}
+                    data-scan-target=""
                     disabled={!text}
                     onClick={() => {
                       if (section === 'typing')
@@ -548,6 +657,7 @@ export function Workspace({
                   <button
                     className="aac-icon-button"
                     aria-label={c.clear}
+                    data-scan-target=""
                     disabled={!text}
                     onClick={clear}
                   >
@@ -570,7 +680,7 @@ export function Workspace({
                   }}
                 />
               ) : (
-                <div className="aac-message" aria-live="polite">
+                <div className="aac-message" ref={messageArea}>
                   {phrase && !phrase.segments ? (
                     <span className="aac-phrase-output">{text}</span>
                   ) : messagePictures.length ? (
@@ -600,7 +710,7 @@ export function Workspace({
                       className="aac-text-button"
                       aria-label={c.partner}
                       title={c.partner}
-                      disabled={!text}
+                      disabled={!text || missingTranslation}
                       onClick={() => {
                         setRotated(false);
                         setModal('partner');
@@ -615,6 +725,7 @@ export function Workspace({
                   {canUndo && (
                     <button
                       className="aac-text-button aac-undo"
+                      data-scan-target=""
                       onClick={undoClear}
                     >
                       <Icon name="refresh" />
@@ -636,11 +747,7 @@ export function Workspace({
                     className="aac-text-button"
                     aria-label={c.savePhrase}
                     title={c.savePhrase}
-                    disabled={
-                      !text.trim() ||
-                      missingTranslation ||
-                      workspace.phrases.length >= 100
-                    }
+                    disabled={!text.trim() || missingTranslation}
                     onClick={savePhrase}
                   >
                     <Icon name="star" />
@@ -649,6 +756,7 @@ export function Workspace({
                 </div>
                 <button
                   className="aac-primary aac-speak"
+                  data-scan-target=""
                   disabled={!text || missingTranslation}
                   onClick={() => (speaking ? stop() : say(text, segments))}
                 >
@@ -658,47 +766,12 @@ export function Workspace({
               </div>
             </section>
           )}
+          <span className="aac-sr-only" aria-live="polite">
+            {announcement}
+          </span>
         </div>
         <div className="aac-scroll-area" ref={scrollArea}>
           <h1 className="aac-sr-only">{c[section]}</h1>
-          {deletedPhrase && (
-            <div className="aac-notice aac-deletion-notice" role="status">
-              <span>{c.phraseDeleted}</span>
-              <button className="aac-text-button" onClick={undoDelete}>
-                {c.undoDelete}
-              </button>
-            </div>
-          )}
-          {(notice || missingTranslation) && (
-            <div className="aac-notice" role="status">
-              {missingTranslation ? c.translationMissing : notice}
-              <button
-                className="aac-text-button"
-                onClick={() => {
-                  if (notice === c.phraseSaved) {
-                    switchSection('quick');
-                    setPhraseTab('saved');
-                  } else if (
-                    missingTranslation ||
-                    notice === c.translationMissing
-                  ) {
-                    const word =
-                      translationWord ||
-                      selected.find((item) => !item.translated)?.id;
-                    if (word) setEditWord(word);
-                    setNotice('');
-                  } else setModal('settings');
-                }}
-              >
-                {notice === c.phraseSaved
-                  ? c.saved
-                  : missingTranslation || notice === c.translationMissing
-                    ? c.edit
-                    : c.settings}
-                <Icon name="arrow" />
-              </button>
-            </div>
-          )}
           {section === 'board' && (
             <>
               <div className="aac-board-controls">
@@ -732,7 +805,6 @@ export function Workspace({
                           onChange={(e) => {
                             setQuery(e.target.value);
                             setScanning(false);
-                            setScanIndex(0);
                           }}
                         />
                       </label>
@@ -755,10 +827,11 @@ export function Workspace({
                     className="aac-secondary aac-add-word"
                     aria-label={c.addWord}
                     title={c.addWord}
-                    disabled={(workspace.customWords || []).length >= 100}
                     onClick={() => {
-                      setAddingWord(true);
                       setScanning(false);
+                      if ((workspace.customWords || []).length >= 100)
+                        setNotice(c.wordsFull);
+                      else setAddingWord(true);
                     }}
                   >
                     <Icon name="plus" />
@@ -782,6 +855,9 @@ export function Workspace({
                       title={scanning ? c.stopScan : c.scan}
                       aria-pressed={scanning}
                       onClick={toggleScan}
+                      {...(scanning
+                        ? { 'data-scan-target': '', 'data-scan-group': 'stop' }
+                        : {})}
                     >
                       <Icon name={scanning ? 'pause' : 'play'} />
                       <span>{scanning ? c.stopScan : c.scan}</span>
@@ -800,7 +876,6 @@ export function Workspace({
                         setCategory(id);
                         setQuery('');
                         setScanning(false);
-                        setScanIndex(0);
                         if (scrollArea.current)
                           scrollArea.current.scrollTop = 0;
                       }}
@@ -818,12 +893,6 @@ export function Workspace({
                   </>
                 )}
               </div>
-              {editing && (
-                <p className="aac-scan-hint" role="status">
-                  {c.editingHelp}
-                </p>
-              )}
-              {scanning && <p className="aac-scan-hint">{c.scanHint}</p>}
               {pictureBrowsing ? (
                 <PictureBrowser
                   words={words}
@@ -835,36 +904,23 @@ export function Workspace({
                   onAdd={() => setAddingWord(true)}
                   c={c}
                   editing={editing}
-                  disabled={!editing && tokens.length >= 30}
                   highlighted={lastPicked?.id}
-                  scanning={scanning}
-                  scanIndex={scanIndex}
-                  scanGrid={scanGrid}
-                  onScanKey={scanKey}
                 />
               ) : (
                 <div
                   className="aac-word-grid"
-                  ref={scanGrid}
-                  tabIndex={scanning ? 0 : -1}
                   role="group"
                   aria-label={c.board}
-                  onKeyDown={scanKey}
+                  data-scan-group="board"
                 >
-                  {visible.map((word, index) => (
+                  {visible.map((word) => (
                     <PictureCard
                       key={word.id}
                       word={word}
                       c={c}
-                      disabled={!editing && tokens.length >= 30}
                       editing={editing}
                       onSelect={selectWord}
                       highlighted={lastPicked?.id === word.id}
-                      attributes={
-                        scanning && scanIndex === index
-                          ? { 'data-scan-focus': true }
-                          : {}
-                      }
                     />
                   ))}
                 </div>
@@ -878,8 +934,11 @@ export function Workspace({
                   </p>
                   <button
                     className="aac-secondary"
-                    onClick={() => setAddingWord(true)}
-                    disabled={(workspace.customWords || []).length >= 100}
+                    onClick={() =>
+                      (workspace.customWords || []).length >= 100
+                        ? setNotice(c.wordsFull)
+                        : setAddingWord(true)
+                    }
                   >
                     <Icon name="plus" />
                     {c.addWord}
@@ -979,7 +1038,55 @@ export function Workspace({
               c={c}
               say={say}
               onMissingTranslation={missingWord}
+              onTimerDone={breakOver}
             />
+          </div>
+          {/* Notices float over the bottom of the board, so showing one never
+              moves the pictures a user is about to tap. */}
+          <div className="aac-toasts">
+            {deletedPhrases.length > 0 && (
+              <div className="aac-notice aac-deletion-notice" role="status">
+                <span>{c.phraseDeleted}</span>
+                <button className="aac-text-button" onClick={undoDelete}>
+                  {c.undoDelete}
+                </button>
+              </div>
+            )}
+            {(notice || missingTranslation) && (
+              <div className="aac-notice" role="status">
+                <span>
+                  {missingTranslation ? c.translationMissing : notice}
+                </span>
+                {noticeAction && (
+                  <button
+                    className="aac-text-button"
+                    onClick={noticeAction.run}
+                  >
+                    {noticeAction.label}
+                    <Icon name="arrow" />
+                  </button>
+                )}
+                {notice && !missingTranslation && (
+                  <button
+                    className="aac-icon-button aac-notice-close"
+                    aria-label={c.close}
+                    onClick={() => setNotice('')}
+                  >
+                    <Icon name="close" />
+                  </button>
+                )}
+              </div>
+            )}
+            {section === 'board' && editing && (
+              <p className="aac-notice aac-scan-hint" role="status">
+                {c.editingHelp}
+              </p>
+            )}
+            {section === 'board' && scanning && (
+              <p className="aac-notice aac-scan-hint">
+                {preferences.scanMode === 'step' ? c.scanStepHint : c.scanHint}
+              </p>
+            )}
           </div>
         </div>
         <nav className="aac-mobile-nav" aria-label={c.brand}>
@@ -992,6 +1099,15 @@ export function Workspace({
             >
               <Icon name={icon} />
               <span>{c[id]}</span>
+              {id === 'routine' && timerDone && (
+                <span
+                  className="aac-nav-badge"
+                  role="img"
+                  aria-label={c.timerDoneShort}
+                >
+                  <Icon name="clock" />
+                </span>
+              )}
             </button>
           ))}
         </nav>
@@ -1139,7 +1255,7 @@ export function Workspace({
           update={(operation, payload) => {
             if (operation === 'restore') {
               stop();
-              setDeletedPhrase(null);
+              setDeletedPhrases([]);
               setUndoDraft(null);
             }
             update(operation, payload);
@@ -1175,7 +1291,10 @@ export function Workspace({
             </button>
             <button
               className="aac-primary"
-              onClick={() => (speaking ? stop() : say(text, segments))}
+              disabled={missingTranslation}
+              onClick={() =>
+                speaking ? stop() : !missingTranslation && say(text, segments)
+              }
             >
               <Icon name="speaker" />
               {speaking ? c.stop : c.speak}

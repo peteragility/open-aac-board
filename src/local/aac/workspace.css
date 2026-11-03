@@ -2336,3 +2336,182 @@
 .aac-large-text .aac-guide-content .aac-guide-words .aac-word-label {
   font-size: 23px;
 }
+
+/* ---- 2026-11-03 usability and accessibility pass ---- */
+
+/* Notices float over the bottom of the scrolling board instead of pushing the
+   pictures down while someone is about to tap one. */
+.aac-toasts {
+  position: sticky;
+  bottom: 10px;
+  z-index: 6;
+  display: grid;
+  gap: 8px;
+  max-width: 1400px;
+  margin: 12px auto 0;
+  pointer-events: none;
+}
+.aac-toasts:empty {
+  display: none;
+}
+.aac-toasts > * {
+  pointer-events: auto;
+  margin: 0 !important;
+  box-shadow: 0 8px 24px #1d49302e;
+}
+.aac-toasts .aac-scan-hint {
+  display: block;
+  background: #fff8e6;
+  color: #5c4513;
+  font-size: 13px;
+}
+/* The message keeps one height; longer messages scroll inside it. */
+.aac-message {
+  height: 60px;
+  min-height: 60px;
+  max-height: 60px;
+}
+@media (max-width: 760px) {
+  .aac-message {
+    height: 56px;
+    min-height: 56px;
+    max-height: 56px;
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .aac-message {
+    height: 50px;
+    min-height: 50px;
+    max-height: 50px;
+  }
+}
+/* Switch scanning highlights any control, and whole rows in row scanning. */
+.aac-workspace [data-scan-focus='true'] {
+  outline: 4px solid #b67816 !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 7px #f3d98d77;
+}
+.aac-workspace .aac-word[data-scan-focus='true'] {
+  outline-offset: -4px;
+}
+.aac-workspace [data-scan-group-focus='true'] {
+  outline: 3px dashed #b67816 !important;
+  outline-offset: -3px;
+  background-color: #fff7e2 !important;
+}
+/* The break timer is easy to see, and announces when it ends. */
+.aac-timer-dial {
+  background: conic-gradient(#2f7a52 var(--progress), #e3eadf 0);
+}
+.aac-timer-done {
+  margin: 16px 0 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #fff1d1;
+  color: #5c3d00;
+  font-weight: 650;
+}
+.aac-nav-badge {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 4px;
+  border-radius: 50%;
+  background: #b4441c;
+  color: #fff;
+}
+.aac-nav-badge svg {
+  width: 13px !important;
+  height: 13px !important;
+}
+.aac-mobile-nav .aac-nav-badge {
+  position: absolute;
+  top: 2px;
+  right: calc(50% - 22px);
+}
+.aac-mobile-nav button {
+  position: relative;
+}
+/* Readable secondary text (at least 4.5:1) in the normal colours. */
+.aac-text-button {
+  color: #56685c;
+}
+.aac-categories button {
+  color: #5a6857;
+}
+.aac-stability {
+  color: #66745f;
+}
+.aac-composer-top {
+  color: #63705f;
+}
+.aac-grid-heading h2 > span {
+  color: #4f5c4a;
+}
+/* High contrast reaches the small text that matters too. */
+.aac-high-contrast .aac-text-button,
+.aac-high-contrast .aac-categories button,
+.aac-high-contrast .aac-stability,
+.aac-high-contrast .aac-composer-top,
+.aac-high-contrast .aac-grid-heading h2 > span,
+.aac-high-contrast .aac-muted,
+.aac-high-contrast .aac-header-greeting,
+.aac-high-contrast .aac-language-picker button,
+.aac-high-contrast .aac-timer-presets button {
+  color: #10231b !important;
+}
+.aac-high-contrast .aac-categories button,
+.aac-high-contrast .aac-timer-presets button {
+  border-color: #314d38;
+}
+/* The keyboard focus ring stays visible inside the scrolling category strip. */
+.aac-categories button:focus-visible {
+  outline-offset: -4px;
+}
+/* No double-tap zoom delay or long-press picture menu on word cards. */
+.aac-workspace button,
+.aac-dialog button {
+  touch-action: manipulation;
+}
+.aac-word,
+.aac-word img {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+/* Larger text applies to controls and dialogs, not only to word labels. */
+.aac-large-text .aac-text-button,
+.aac-large-text .aac-secondary,
+.aac-large-text .aac-composer-top,
+.aac-large-text .aac-composer-top .aac-icon-button,
+.aac-large-text .aac-stability,
+.aac-large-text .aac-muted,
+.aac-large-text .aac-notice,
+.aac-large-text .aac-readiness-bar button,
+.aac-large-text .aac-language-picker button,
+.aac-large-text .aac-timer-presets button,
+.aac-large-text .aac-tabs button,
+.aac-large-text .aac-suggestions > button {
+  font-size: 16px !important;
+}
+.aac-large-text .aac-speak,
+.aac-large-text .aac-primary {
+  font-size: 19px !important;
+}
+.aac-large-text .aac-eyebrow {
+  font-size: 13px !important;
+}
+.aac-large-text .aac-mobile-nav button {
+  font-size: 13px !important;
+}
+.aac-large-text .aac-dialog {
+  font-size: 18px;
+}
+.aac-large-text .aac-dialog .aac-field,
+.aac-large-text .aac-dialog .aac-toggle,
+.aac-large-text .aac-dialog select,
+.aac-large-text .aac-dialog p,
+.aac-large-text .aac-dialog h3 {
+  font-size: 17px !important;
+}

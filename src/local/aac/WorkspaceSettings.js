@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LANGUAGES, matchesLanguage } from './languages';
 import { copy } from './copy';
-import { createWorkspaceBackup, parseWorkspaceBackup } from './model';
+import {
+  createWorkspaceBackup,
+  parseWorkspaceBackup,
+  SCAN_HOLDS,
+  SCAN_MODES
+} from './model';
 import { Icon, Modal } from './UI';
 
 export default function WorkspaceSettings({
@@ -123,10 +128,42 @@ export default function WorkspaceSettings({
               />
             </label>
           ))}
+          <label className="aac-toggle">
+            <span>{c.keepAwake}</span>
+            <input
+              type="checkbox"
+              checked={p.keepAwake !== false}
+              onChange={(e) =>
+                update('preferences', { keepAwake: e.target.checked })
+              }
+            />
+          </label>
+        </section>
+        <section>
+          <h3>{c.scanSettings}</h3>
+          <label className="aac-field">
+            {c.scanMode}
+            <select
+              value={p.scanMode || 'auto'}
+              onChange={(e) =>
+                update('preferences', { scanMode: e.target.value })
+              }
+            >
+              {SCAN_MODES.map((mode) => (
+                <option key={mode} value={mode}>
+                  {mode === 'step' ? c.scanStep : c.scanAuto}
+                </option>
+              ))}
+            </select>
+          </label>
+          <p className="aac-muted">
+            {(p.scanMode || 'auto') === 'step' ? c.scanStepHint : c.scanHint}
+          </p>
           <label className="aac-field">
             {c.scanDelay}
             <select
               value={p.scanDelay}
+              disabled={p.scanMode === 'step'}
               onChange={(e) =>
                 update('preferences', { scanDelay: Number(e.target.value) })
               }
@@ -138,6 +175,33 @@ export default function WorkspaceSettings({
               ))}
             </select>
           </label>
+          <label className="aac-field">
+            {c.scanHold}
+            <select
+              value={p.scanHold || 0}
+              onChange={(e) =>
+                update('preferences', { scanHold: Number(e.target.value) })
+              }
+            >
+              {SCAN_HOLDS.map((hold) => (
+                <option key={hold} value={hold}>
+                  {hold ? `${hold / 1000} ${c.seconds}` : c.scanHoldNone}
+                </option>
+              ))}
+            </select>
+          </label>
+          {['scanRows', 'scanPreview'].map((field) => (
+            <label className="aac-toggle" key={field}>
+              <span>{c[field]}</span>
+              <input
+                type="checkbox"
+                checked={Boolean(p[field])}
+                onChange={(e) =>
+                  update('preferences', { [field]: e.target.checked })
+                }
+              />
+            </label>
+          ))}
         </section>
         <section>
           <h3>{c.backup}</h3>

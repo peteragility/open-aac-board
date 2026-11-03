@@ -11,7 +11,11 @@ test('start, speak, persist, and reopen offline without third-party services', a
   context.on('request', (request) => {
     if (
       /^https?:/.test(request.url()) &&
-      !request.url().startsWith('http://127.0.0.1:3017/')
+      !request
+        .url()
+        .startsWith(
+          `http://127.0.0.1:${Number(process.env.AAC_TEST_PORT) || 3017}/`
+        )
     )
       remoteRequests.push(request.url());
   });

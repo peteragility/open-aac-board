@@ -19,6 +19,9 @@ export const RESPONSE_IDS = [
   'try-again'
 ];
 export const DEFAULT_RESPONSES = RESPONSE_IDS.slice(0, 4);
+export const SCAN_MODES = ['auto', 'step'];
+// Milliseconds a switch must be held before a press counts.
+export const SCAN_HOLDS = [0, 250, 500, 1000];
 export const initialWorkspace = {
   language: DEFAULT_LANGUAGE,
   preferences: {
@@ -31,6 +34,11 @@ export const initialWorkspace = {
     installHintDismissed: false,
     haptics: false,
     scanDelay: 2,
+    scanMode: 'auto',
+    scanRows: false,
+    scanPreview: false,
+    scanHold: 0,
+    keepAwake: true,
     rate: 1
   },
   voices: { yue: '', en: '', cmn: '' },
@@ -169,6 +177,13 @@ export function validateWorkspace(value) {
     throw new Error('Invalid scanning preference.');
   if (p.pictureBrowsing !== undefined && typeof p.pictureBrowsing !== 'boolean')
     throw new Error('Invalid picture browsing preference.');
+  if (p.scanMode !== undefined && !SCAN_MODES.includes(p.scanMode))
+    throw new Error('Invalid scanning method.');
+  if (p.scanHold !== undefined && !SCAN_HOLDS.includes(p.scanHold))
+    throw new Error('Invalid switch hold time.');
+  for (const field of ['scanRows', 'scanPreview', 'keepAwake'])
+    if (p[field] !== undefined && typeof p[field] !== 'boolean')
+      throw new Error('Invalid scanning preference.');
   if (
     p.installHintDismissed !== undefined &&
     typeof p.installHintDismissed !== 'boolean'
@@ -200,7 +215,7 @@ export function validateWorkspace(value) {
     !value.overrides ||
     typeof value.overrides !== 'object' ||
     Array.isArray(value.overrides) ||
-    Object.keys(value.overrides).length > 200
+    Object.keys(value.overrides).length > 500
   )
     throw new Error('Invalid word customizations.');
   const overrides = {};
@@ -268,6 +283,11 @@ export function validateWorkspace(value) {
       installHintDismissed: p.installHintDismissed ?? false,
       haptics: p.haptics,
       scanDelay: p.scanDelay,
+      scanMode: p.scanMode ?? 'auto',
+      scanRows: p.scanRows ?? false,
+      scanPreview: p.scanPreview ?? false,
+      scanHold: p.scanHold ?? 0,
+      keepAwake: p.keepAwake ?? true,
       rate: p.rate
     },
     voices,
@@ -307,9 +327,14 @@ export function workspaceReducer(state = initialWorkspace, action) {
           }
         : state;
     case 'word':
+      // Keep only what the user changed (labels, recordings, photo), so later
+      // vocabulary updates still reach the word's picture and category.
       return {
         ...state,
-        overrides: { ...state.overrides, [payload.id]: payload.word }
+        overrides: {
+          ...state.overrides,
+          [payload.id]: wordContent(payload.word)
+        }
       };
     case 'reset-word': {
       const overrides = { ...state.overrides };

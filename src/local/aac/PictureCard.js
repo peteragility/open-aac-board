@@ -16,6 +16,7 @@ export default function PictureCard({
     <button
       className={`aac-word tone-${word.tone} ${editing ? 'is-editing' : ''} ${highlighted ? 'aac-just-picked' : ''}`}
       data-word-id={word.id}
+      data-scan-target=""
       disabled={disabled}
       onClick={() => onSelect(word)}
       {...attributes}

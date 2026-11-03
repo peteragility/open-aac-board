@@ -442,10 +442,44 @@ const strings = {
   scan: ['開啟圖卡掃描', 'Start picture scanning', '开启图卡扫描'],
   stopScan: ['停止掃描', 'Stop scanning', '停止扫描'],
   scanHint: [
-    '空白鍵／Enter 選取圖卡，Esc 停止。',
-    'Space / Enter selects the highlighted picture. Esc stops.',
-    '空格键／Enter 选择高亮图卡，Esc 停止。'
+    '空白鍵／Enter 選取，Esc 停止。',
+    'Space / Enter selects the highlighted item. Esc stops.',
+    '空格键／Enter 选择，Esc 停止。'
   ],
+  scanStepHint: [
+    '空白鍵移去下一個，Enter 選取，Esc 停止。',
+    'Space moves to the next item, Enter selects. Esc stops.',
+    '空格键移到下一个，Enter 选择，Esc 停止。'
+  ],
+  scanSettings: ['開關掃描', 'Switch scanning', '开关扫描'],
+  scanMode: ['掃描方式', 'Scanning method', '扫描方式'],
+  scanAuto: [
+    '自動掃描（一個開關）',
+    'Automatic (one switch)',
+    '自动扫描（一个开关）'
+  ],
+  scanStep: [
+    '逐步掃描（兩個開關）',
+    'Step by step (two switches)',
+    '逐步扫描（两个开关）'
+  ],
+  scanRows: [
+    '先揀一行，再揀項目',
+    'Choose a row first, then an item',
+    '先选一行，再选项目'
+  ],
+  scanPreview: [
+    '輕聲讀出掃描到嘅項目',
+    'Quietly speak each highlighted item',
+    '轻声读出扫描到的项目'
+  ],
+  scanHold: [
+    '開關要撳住幾耐先算',
+    'Hold the switch this long to count',
+    '开关要按住多久才算'
+  ],
+  scanHoldNone: ['即時', 'Instantly', '立即'],
+  seconds: ['秒', 's', '秒'],
   scanDelay: [
     '掃描間距（秒）',
     'Scanning interval (seconds)',
@@ -477,6 +511,38 @@ const strings = {
     '時間到。準備好先繼續，唔使急。',
     'Time is up. Carry on when you are ready.',
     '时间到。准备好再继续，不用急。'
+  ],
+  timerDoneShort: ['休息時間到', 'Break is over', '休息时间到'],
+  messageFull: [
+    '訊息已滿（30 個字）。請先講出或者清除。',
+    'The message is full (30 words). Speak or clear it first.',
+    '消息已满（30 个字）。请先说出或清除。'
+  ],
+  wordsFull: [
+    '已經有 100 個自己嘅字詞。請先刪除用唔到嘅字詞。',
+    'You already have 100 personal words. Delete unused words first.',
+    '已有 100 个自己的词语。请先删除不用的词语。'
+  ],
+  phrasesFull: [
+    '已經儲存咗 100 句。請先刪除用唔到嘅句子。',
+    'You already have 100 saved phrases. Delete unused phrases first.',
+    '已保存 100 句。请先删除不用的句子。'
+  ],
+  messageTooLong: [
+    '訊息太長，最多 500 個字元。',
+    'The message is too long (500 characters at most).',
+    '消息太长，最多 500 个字符。'
+  ],
+  resetWordConfirm: [
+    '還原之後，呢個圖卡嘅相片、錄音同修改都會刪除。',
+    "Resetting deletes this word's photo, recordings and edits.",
+    '恢复后，这个图卡的照片、录音和修改都会删除。'
+  ],
+  confirmReset: ['確認還原', 'Reset word', '确认恢复'],
+  keepAwake: [
+    '溝通時保持螢幕開啟',
+    'Keep the screen on while communicating',
+    '沟通时保持屏幕常亮'
   ],
   welcomeTitle: [
     '你嘅說話，\n你嘅聲音。',

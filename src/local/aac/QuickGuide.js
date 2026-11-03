@@ -34,7 +34,9 @@ export default function QuickGuide({
   async function listen() {
     setVoiceState('playing');
     const success = await onSpeak(sample);
-    if (active.current) setVoiceState(success ? 'played' : 'error');
+    if (!active.current) return;
+    if (success === 'cancelled') setVoiceState('idle');
+    else setVoiceState(success ? 'played' : 'error');
   }
   function changeStep(next) {
     onStop();

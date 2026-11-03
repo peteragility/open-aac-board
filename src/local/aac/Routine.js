@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Icon, Modal } from './UI';
 import { languageInfo } from './languages';
 
@@ -8,7 +8,8 @@ export default function Routine({
   words,
   c,
   say,
-  onMissingTranslation
+  onMissingTranslation,
+  onTimerDone
 }) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState([]);
@@ -16,12 +17,18 @@ export default function Routine({
   const [duration, setDuration] = useState(180);
   const [end, setEnd] = useState(null);
   const [started, setStarted] = useState(false);
+  const timerDone = useRef(onTimerDone);
+  timerDone.current = onTimerDone;
   useEffect(() => {
     if (!end) return;
     const tick = () => {
       const seconds = Math.max(0, Math.ceil((end - Date.now()) / 1000));
       setRemaining(seconds);
-      if (!seconds) setEnd(null);
+      if (!seconds) {
+        setEnd(null);
+        // Alert even when another tab of the app is showing.
+        timerDone.current?.();
+      }
     };
     tick();
     const timer = setInterval(tick, 250);
@@ -163,7 +170,10 @@ export default function Routine({
             <Icon name="refresh" />
           </button>
         </div>
-        <p className="aac-muted" role="status">
+        <p
+          className={started && !remaining ? 'aac-timer-done' : 'aac-muted'}
+          role="status"
+        >
           {started && !remaining ? c.timerDone : c.routineHint}
         </p>
       </section>
