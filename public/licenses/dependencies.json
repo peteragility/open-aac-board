@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "scope": "All installed packages in package-lock.json, including development/build tools. This is broader than the browser bundle and is not a legal clearance or an assertion that every package is redistributed.",
-  "lockfileSha256": "100fa1e4d5aa81ae9ad7fc3a37ca2e8b88bfb1b3340c80b586bad076a2aaa5a0",
+  "lockfileSha256": "139d7a6140640d5773eeda794871f262500e65ba9db7ceb7a26ed1a03ad85c6e",
   "packageCount": 2239,
   "reviewCount": 98,
   "packages": [
