@@ -77,6 +77,16 @@ describe('createMigratingStorage', () => {
       );
     });
 
+    it('rejects when new storage read fails and there is no legacy copy, so nothing empty is saved over it', async () => {
+      newStorage.getItem.mockRejectedValue(new Error('IndexedDB error'));
+      oldStorage.getItem.mockResolvedValue(null);
+
+      await expect(storage.getItem('persist:root')).rejects.toThrow(
+        'IndexedDB error'
+      );
+      expect(newStorage.setItem).not.toHaveBeenCalled();
+    });
+
     it('returns old value but does not remove from old storage when migration write fails', async () => {
       newStorage.getItem.mockResolvedValue(null);
       oldStorage.getItem.mockResolvedValue('legacy-data');

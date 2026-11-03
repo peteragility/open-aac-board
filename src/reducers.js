@@ -8,6 +8,11 @@ import {
 import localForage from 'localforage';
 import localStorage from 'redux-persist/lib/storage';
 import { appInsights } from './appInsights';
+import {
+  consumeTakeOver,
+  createPersistGuard,
+  createTabLock
+} from './local/persistGuard';
 
 import appReducer from './components/App/App.reducer';
 import languageProviderReducer from './providers/LanguageProvider/LanguageProvider.reducer';
@@ -43,12 +48,14 @@ export const createMigratingStorage = (oldStorage, newStorage) => ({
    * Called by redux-persist on app initialization.
    */
   async getItem(key) {
+    let readError = null;
     try {
       const newValue = await newStorage.getItem(key);
       if (newValue !== null && newValue !== undefined) {
         return newValue;
       }
     } catch (err) {
+      readError = err;
       console.warn('Cboard: IndexedDB read failed', err);
       appInsights.trackException({
         exception: err,
@@ -96,6 +103,9 @@ export const createMigratingStorage = (oldStorage, newStorage) => ({
       });
     }
 
+    // A failed read is not an empty workspace: report it, so nothing is saved
+    // over data that could not be read.
+    if (readError) throw readError;
     return null;
   },
 
@@ -116,7 +126,10 @@ export const createMigratingStorage = (oldStorage, newStorage) => ({
   }
 });
 
-const migratingStorage = createMigratingStorage(localStorage, localForage);
+const migratingStorage = createPersistGuard(
+  createMigratingStorage(localStorage, localForage),
+  { tab: createTabLock({ takeOver: consumeTakeOver() }) }
+);
 
 export const boardMigrations = {
   0: (state) => {
@@ -150,19 +163,22 @@ const config = {
   storage: migratingStorage,
   blacklist: ['language'],
   version: 1,
+  // Wait for the saved workspace however long the device takes; the default
+  // 5-second timeout would start with an empty one.
+  timeout: 0,
   migrate: createMigrate(boardMigrations, { debug: false }),
   transforms: [
     boardSyncTransform,
     createTransform(null, recoverCommunication, {
       whitelist: ['communication']
     })
-  ],
-  writeFailHandler: () => window.dispatchEvent(new Event('aac-storage-error'))
+  ]
 };
 
 const languagePersistConfig = {
   key: 'open-aac-board-language',
   storage: migratingStorage,
+  timeout: 0,
   blacklist: ['langsFetched']
 };
 

@@ -107,7 +107,7 @@ Unfinished communication drafts are device-local and excluded from exported work
 
 The main workspace allows up to 100 personal words and 100 saved phrases. Pictures remain limited to 2 MB per upload and recordings to 15 seconds/1 MB. Saved picture messages copy their media, so repeated recordings/photos can use additional storage; the combined workspace remains bounded to approximately 24 MB. A failed save reports the limit without overwriting the existing workspace. Personal text without a recording still requires a matching installed device voice.
 
-The app offers storage protection and a write-failure recovery download; neither replaces backups. Workspace media is bounded so an exported workspace fits the import limit. Uninstalling the app, clearing site data, private browsing and storage eviction can remove the local copy. Imported external media links still depend on their origin.
+The app offers storage protection and a write-failure recovery download; neither replaces backups. A failed save shows a notice with that download instead of failing silently. The app waits for the saved workspace however long the device takes, and a workspace that could not be read is never saved over. Only one tab saves at a time: a second tab says the board is open elsewhere and offers to take over. Workspace media is bounded so an exported workspace fits the import limit. Uninstalling the app, clearing site data, private browsing and storage eviction can remove the local copy. Imported external media links still depend on their origin.
 
 ## Attribution and licenses
 

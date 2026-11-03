@@ -6,6 +6,7 @@ import { Router, Route } from 'react-router-dom';
 import { TouchBackend } from 'react-dnd-touch-backend';
 import { DndProvider } from 'react-dnd';
 import { PersistGate } from 'redux-persist/es/integration/react';
+import StartupNotice from './local/StartupNotice';
 
 import App from './components/App';
 import {
@@ -38,7 +39,7 @@ const renderApp = () => {
   }
   ReactDOM.render(
     <Provider store={store}>
-      <PersistGate persistor={persistor}>
+      <PersistGate persistor={persistor} loading={<StartupNotice />}>
         <SpeechProvider>
           <LanguageProvider>
             <ThemeProvider>

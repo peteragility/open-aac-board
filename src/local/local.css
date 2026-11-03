@@ -209,6 +209,35 @@
   text-decoration: underline;
   font-weight: bold;
 }
+.local-storage-error button {
+  min-height: 44px;
+  margin-top: 8px;
+  padding: 0 14px;
+  border: 2px solid #a73716;
+  border-radius: 8px;
+  background: #fff;
+  color: #7a2408;
+  font: inherit;
+  font-weight: bold;
+}
+.local-startup {
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+  font-size: 18px;
+  color: #26332a;
+}
+.local-startup button {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 2px solid #26332a;
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+}
 @media (max-width: 750px) {
   .local-welcome {
     padding: 20px;
