@@ -52,6 +52,8 @@ export function useSwitchScanning({
     let holdTimer = null;
     let pressed = null;
     let lastPreview = null;
+    let frame = null;
+    let stopped = false;
 
     const groups = () =>
       scanGroups(readTargets(scope), { rows: options.current.rows });
@@ -123,8 +125,17 @@ export function useSwitchScanning({
       };
       lastPreview = null;
       schedule();
-      // Let the click update the page before highlighting again.
-      requestAnimationFrame(show);
+      showSoon();
+    }
+    // Let a click update the page before highlighting again. A selection can
+    // also end scanning (Stop, or opening a dialog), so a late highlight must
+    // never come back after the scan has stopped.
+    function showSoon() {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        frame = null;
+        if (!stopped) show();
+      });
     }
     function select() {
       const s = state.current;
@@ -192,8 +203,10 @@ export function useSwitchScanning({
     window.addEventListener('keyup', keyup, true);
     scope.addEventListener('focusin', focusin);
     schedule();
-    requestAnimationFrame(show);
+    showSoon();
     return () => {
+      stopped = true;
+      cancelAnimationFrame(frame);
       clearInterval(timer);
       clearTimeout(holdTimer);
       window.removeEventListener('keydown', keydown, true);
