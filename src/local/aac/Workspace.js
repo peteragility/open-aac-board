@@ -19,7 +19,14 @@ import {
 } from './languages';
 import { copy } from './copy';
 import { speech } from './speech';
-import { Icon, Modal, useDeviceVoices, useOfflineStatus } from './UI';
+import {
+  HoldButton,
+  Icon,
+  Modal,
+  useDeviceVoices,
+  useOfflineStatus
+} from './UI';
+import { PrintSheet } from './Print';
 import VoiceCheck from './VoiceCheck';
 import WorkspaceSettings from './WorkspaceSettings';
 import WordEditor from './WordEditor';
@@ -33,7 +40,7 @@ import PictureCard from './PictureCard';
 import PinnedWordEditor from './PinnedWordEditor';
 import { wordsInGroup, DEFAULT_PINNED_WORDS } from './pictureGroups';
 import { COMMUNICATION_ACTION, initialCommunication } from './communication';
-import { workspaceWords, pictureSegments } from './vocabulary';
+import { matchesQuery, workspaceWords, pictureSegments } from './vocabulary';
 import { useSwitchScanning } from './scanning';
 import { playChime, useWakeLock } from './device';
 import './workspace.css';
@@ -118,6 +125,8 @@ export function Workspace({
   const [scanning, setScanning] = useState(false);
   const [announcement, setAnnouncement] = useState('');
   const [timerDone, setTimerDone] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
+  const [printSheet, setPrintSheet] = useState(null);
   const mainArea = useRef();
   const messageArea = useRef();
   const scrollArea = useRef();
@@ -127,6 +136,13 @@ export function Workspace({
     () => workspaceWords(catalog.words, { overrides, customWords }, language),
     [overrides, customWords, language]
   );
+  // Words offered on the boards; language-only grammar words are left out.
+  const boardWords = useMemo(
+    () => words.filter((word) => word.available !== false),
+    [words]
+  );
+  // The caregiver lock hides everything that changes the board.
+  const locked = Boolean(preferences.editLock) && !unlocked;
   const categories = [
     catalog.categories[0],
     { id: 'personal', icon: 'people', [language]: c.myWords },
@@ -145,16 +161,10 @@ export function Workspace({
             language
           );
   const visible = pictureBrowsing
-    ? wordsInGroup(words, pictureGroup)
+    ? wordsInGroup(boardWords, pictureGroup)
     : query
-      ? words.filter((word) =>
-          [word.yue, word.en, word.cmn, word.text].some((label) =>
-            (label || '')
-              .toLocaleLowerCase()
-              .includes(query.toLocaleLowerCase())
-          )
-        )
-      : wordsInGroup(words, category);
+      ? boardWords.filter((word) => matchesQuery(word, query))
+      : wordsInGroup(boardWords, category);
   const segments =
     section === 'typing'
       ? []
@@ -278,6 +288,31 @@ export function Workspace({
         volume: 0.6
       })
       .catch(() => {});
+  }
+  const closePrint = useCallback(() => setPrintSheet(null), []);
+  function printBoard(all) {
+    setModal(null);
+    setScanning(false);
+    const usable = (list) => list.filter((word) => word.translated);
+    const title = (id) =>
+      categories.find((cat) => cat.id === id)?.[language] || c.board;
+    setPrintSheet({
+      language,
+      title: c.printTitle,
+      groups: all
+        ? categories
+            .map((cat) => ({
+              title: title(cat.id),
+              words: usable(wordsInGroup(boardWords, cat.id))
+            }))
+            .filter((group) => group.words.length)
+        : [
+            {
+              title: pictureBrowsing ? c.browsePictures : title(category),
+              words: usable(visible)
+            }
+          ]
+    });
   }
   // Share the built message through the system share sheet when available
   // (WhatsApp, WeChat, Messages…), falling back to the clipboard.
@@ -474,22 +509,24 @@ export function Workspace({
             setPhraseTab('saved');
           }
         }
-      : missingTranslation || notice === c.translationMissing
-        ? {
-            label: c.edit,
-            run: () => {
-              const word =
-                translationWord ||
-                selected.find((item) => !item.translated)?.id;
-              if (word) setEditWord(word);
-              setNotice('');
+      : locked && notice !== c.timerDone
+        ? null
+        : missingTranslation || notice === c.translationMissing
+          ? {
+              label: c.edit,
+              run: () => {
+                const word =
+                  translationWord ||
+                  selected.find((item) => !item.translated)?.id;
+                if (word) setEditWord(word);
+                setNotice('');
+              }
             }
-          }
-        : notice === c.timerDone
-          ? { label: c.routine, run: () => switchSection('routine') }
-          : notice === c.noVoice || notice === c.speechError
-            ? { label: c.settings, run: () => setModal('settings') }
-            : null;
+          : notice === c.timerDone
+            ? { label: c.routine, run: () => switchSection('routine') }
+            : notice === c.noVoice || notice === c.speechError
+              ? { label: c.settings, run: () => setModal('settings') }
+              : null;
   const editorWord =
     catalog.words.find((word) => word.id === editWord) ||
     (workspace.customWords || []).find((word) => word.id === editWord);
@@ -543,10 +580,26 @@ export function Workspace({
           ))}
         </nav>
         <div className="aac-sidebar-footer">
-          <button onClick={() => setModal('settings')}>
-            <Icon name="settings" />
-            {c.settings}
-          </button>
+          {locked ? (
+            <HoldButton
+              label={c.holdToUnlock}
+              onComplete={() => setUnlocked(true)}
+            >
+              <Icon name="lock" />
+              {c.holdShort}
+            </HoldButton>
+          ) : (
+            <button onClick={() => setModal('settings')}>
+              <Icon name="settings" />
+              {c.settings}
+            </button>
+          )}
+          {preferences.editLock && unlocked && (
+            <button onClick={() => setUnlocked(false)}>
+              <Icon name="unlock" />
+              {c.lockNow}
+            </button>
+          )}
           <p>
             <span className="aac-status-dot" />
             {c.local}
@@ -579,13 +632,23 @@ export function Workspace({
               </button>
             ))}
           </div>
-          <button
-            className="aac-icon-button aac-mobile-settings"
-            aria-label={c.settings}
-            onClick={() => setModal('settings')}
-          >
-            <Icon name="settings" />
-          </button>
+          {locked ? (
+            <HoldButton
+              className="aac-icon-button aac-mobile-settings"
+              label={c.holdToUnlock}
+              onComplete={() => setUnlocked(true)}
+            >
+              <Icon name="lock" />
+            </HoldButton>
+          ) : (
+            <button
+              className="aac-icon-button aac-mobile-settings"
+              aria-label={c.settings}
+              onClick={() => setModal('settings')}
+            >
+              <Icon name="settings" />
+            </button>
+          )}
         </header>
         <InstallHint
           language={language}
@@ -823,20 +886,22 @@ export function Workspace({
                       </button>
                     )}
                   </div>
-                  <button
-                    className="aac-secondary aac-add-word"
-                    aria-label={c.addWord}
-                    title={c.addWord}
-                    onClick={() => {
-                      setScanning(false);
-                      if ((workspace.customWords || []).length >= 100)
-                        setNotice(c.wordsFull);
-                      else setAddingWord(true);
-                    }}
-                  >
-                    <Icon name="plus" />
-                    <span>{c.addWordShort}</span>
-                  </button>
+                  {!locked && (
+                    <button
+                      className="aac-secondary aac-add-word"
+                      aria-label={c.addWord}
+                      title={c.addWord}
+                      onClick={() => {
+                        setScanning(false);
+                        if ((workspace.customWords || []).length >= 100)
+                          setNotice(c.wordsFull);
+                        else setAddingWord(true);
+                      }}
+                    >
+                      <Icon name="plus" />
+                      <span>{c.addWordShort}</span>
+                    </button>
+                  )}
                   <button
                     className={`aac-secondary ${editing ? 'is-active' : ''}`}
                     aria-label={editing ? c.done : c.tools}
@@ -895,7 +960,8 @@ export function Workspace({
               </div>
               {pictureBrowsing ? (
                 <PictureBrowser
-                  words={words}
+                  words={boardWords}
+                  locked={locked}
                   group={pictureGroup}
                   onGroup={selectPictureGroup}
                   slots={workspace.pinnedWords || DEFAULT_PINNED_WORDS}
@@ -932,17 +998,19 @@ export function Workspace({
                       ? c.emptyMyWords
                       : c.noResults}
                   </p>
-                  <button
-                    className="aac-secondary"
-                    onClick={() =>
-                      (workspace.customWords || []).length >= 100
-                        ? setNotice(c.wordsFull)
-                        : setAddingWord(true)
-                    }
-                  >
-                    <Icon name="plus" />
-                    {c.addWord}
-                  </button>
+                  {!locked && (
+                    <button
+                      className="aac-secondary"
+                      onClick={() =>
+                        (workspace.customWords || []).length >= 100
+                          ? setNotice(c.wordsFull)
+                          : setAddingWord(true)
+                      }
+                    >
+                      <Icon name="plus" />
+                      {c.addWord}
+                    </button>
+                  )}
                 </div>
               )}
               {!pictureBrowsing && (
@@ -990,13 +1058,15 @@ export function Workspace({
                         <Icon name="speaker" />
                       </button>
                       {phraseTab === 'saved' ? (
-                        <button
-                          className="aac-icon-button"
-                          aria-label={`${c.delete}: ${item.text}`}
-                          onClick={() => deletePhrase(item)}
-                        >
-                          <Icon name="trash" />
-                        </button>
+                        !locked && (
+                          <button
+                            className="aac-icon-button"
+                            aria-label={`${c.delete}: ${item.text}`}
+                            onClick={() => deletePhrase(item)}
+                          >
+                            <Icon name="trash" />
+                          </button>
+                        )
                       ) : (
                         <button
                           className={`aac-icon-button ${workspace.favourites.includes(item.id) ? 'is-favourite' : ''}`}
@@ -1034,7 +1104,8 @@ export function Workspace({
             <Routine
               workspace={workspace}
               update={update}
-              words={words}
+              words={boardWords}
+              locked={locked}
               c={c}
               say={say}
               onMissingTranslation={missingWord}
@@ -1112,9 +1183,10 @@ export function Workspace({
           ))}
         </nav>
       </main>
+      <PrintSheet sheet={printSheet} brand={c.brand} onDone={closePrint} />
       {modal === 'pins' && (
         <PinnedWordEditor
-          words={words}
+          words={boardWords}
           slots={workspace.pinnedWords || DEFAULT_PINNED_WORDS}
           initialSlot={pinSlot}
           c={c}
@@ -1132,20 +1204,32 @@ export function Workspace({
           onClose={() => setModal(null)}
         >
           <div className="aac-settings-body aac-tools-panel">
-            <button className="aac-secondary" onClick={() => openPins()}>
-              <Icon name="star" />
-              {c.choosePins}
+            {!locked && (
+              <>
+                <button className="aac-secondary" onClick={() => openPins()}>
+                  <Icon name="star" />
+                  {c.choosePins}
+                </button>
+                <button
+                  className="aac-secondary"
+                  onClick={() => {
+                    setModal(null);
+                    setEditing(true);
+                    setScanning(false);
+                  }}
+                >
+                  <Icon name="edit" />
+                  {c.edit}
+                </button>
+              </>
+            )}
+            <button className="aac-secondary" onClick={() => printBoard(false)}>
+              <Icon name="print" />
+              {c.printBoard}
             </button>
-            <button
-              className="aac-secondary"
-              onClick={() => {
-                setModal(null);
-                setEditing(true);
-                setScanning(false);
-              }}
-            >
-              <Icon name="edit" />
-              {c.edit}
+            <button className="aac-secondary" onClick={() => printBoard(true)}>
+              <Icon name="print" />
+              {c.printAll}
             </button>
             <button className="aac-secondary" onClick={toggleScan}>
               <Icon name={scanning ? 'pause' : 'play'} />
@@ -1190,11 +1274,15 @@ export function Workspace({
           voiceChecked={voiceChecked}
           onVoiceConfirmed={() => update('voice-check', language)}
           onClose={finishGuide}
-          onAddWord={() => {
-            finishGuide();
-            setSection('board');
-            setAddingWord(true);
-          }}
+          onAddWord={
+            locked
+              ? undefined
+              : () => {
+                  finishGuide();
+                  setSection('board');
+                  setAddingWord(true);
+                }
+          }
         />
       )}
       {modal === 'responses' && (
@@ -1203,7 +1291,7 @@ export function Workspace({
           language={language}
           phrases={catalog.phrases}
           selected={workspace.quickResponses}
-          onSave={(ids) => update('quick-responses', ids)}
+          onSave={locked ? undefined : (ids) => update('quick-responses', ids)}
           onSpeak={say}
           speaking={speaking}
           notice={notice}
@@ -1261,7 +1349,10 @@ export function Workspace({
             update(operation, payload);
           }}
           voices={voices}
-          onClose={() => setModal(null)}
+          onClose={() => {
+            setModal(null);
+            if (workspace.preferences.editLock) setUnlocked(false);
+          }}
           tryVoice={() => say(catalog.phrases[0][language])}
           onGuide={() => {
             stop();

@@ -15,7 +15,8 @@ export default function PictureBrowser({
   c,
   editing,
   disabled,
-  highlighted
+  highlighted,
+  locked = false
 }) {
   const heading = useRef();
   const previousGroup = useRef(group);
@@ -143,10 +144,12 @@ export default function PictureBrowser({
           {!visible.length && (
             <div className="aac-empty">
               <p>{c.emptyMyWords}</p>
-              <button className="aac-secondary" onClick={onAdd}>
-                <Icon name="plus" />
-                {c.addWord}
-              </button>
+              {!locked && (
+                <button className="aac-secondary" onClick={onAdd}>
+                  <Icon name="plus" />
+                  {c.addWord}
+                </button>
+              )}
             </div>
           )}
           {['people', 'personal'].includes(group) && (
@@ -160,10 +163,12 @@ export default function PictureBrowser({
             <Icon name="star" />
             {c.pinnedWords}
           </h3>
-          <button className="aac-text-button" onClick={onPins}>
-            <Icon name="edit" />
-            {c.choosePins}
-          </button>
+          {!locked && (
+            <button className="aac-text-button" onClick={onPins}>
+              <Icon name="edit" />
+              {c.choosePins}
+            </button>
+          )}
         </div>
         <div className="aac-pin-slots" data-scan-group="pins">
           {slots.map((id, index) => {
@@ -172,6 +177,8 @@ export default function PictureBrowser({
               <div className="aac-pin-slot" key={index} data-pin-slot={index}>
                 {word ? (
                   card(word, index, `pin-${index}-`)
+                ) : locked ? (
+                  <span className="aac-empty-pin" aria-hidden="true" />
                 ) : (
                   <button
                     className="aac-empty-pin"

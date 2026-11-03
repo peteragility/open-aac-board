@@ -184,3 +184,55 @@ test('scanning and screen preferences validate, and older backups gain defaults'
       })
     );
 });
+
+test('search finds words by Jyutping, with or without tone numbers', async () => {
+  const { matchesQuery } = await import('./aac/vocabulary.js');
+  const water = catalog.words.find((w) => w.id === 'water');
+  assert.equal(water.jyutping, 'seoi2');
+  for (const query of ['seoi2', 'seoi', 'SEOI', '水', 'water'])
+    assert.equal(matchesQuery(water, query), true, query);
+  assert.equal(matchesQuery(water, 'seoi3'), false);
+  const drink = catalog.phrases.find((p) => p.id === 'need-water');
+  assert.equal(matchesQuery(drink, 'jam seoi'), true);
+  assert.equal(matchesQuery(drink, 'jam2seoi2'), true);
+  for (const entry of [...catalog.words, ...catalog.phrases])
+    assert.match(entry.jyutping, /^[a-z]+[1-6]( [a-z]+[1-6])*$/, entry.id);
+});
+
+test('language-only grammar words stay out of other languages boards', () => {
+  const words = workspaceWords(
+    [
+      {
+        id: 'marker-done',
+        category: 'core',
+        yue: '咗',
+        en: '',
+        cmn: '了',
+        only: ['yue', 'cmn']
+      },
+      { id: 'i', category: 'core', yue: '我', en: 'I', cmn: '我' }
+    ],
+    { overrides: {}, customWords: [] },
+    'en'
+  );
+  const marker = words.find((w) => w.id === 'marker-done');
+  assert.equal(marker.available, false);
+  assert.equal(marker.translated, false, 'never spoken in English');
+  assert.equal(words.find((w) => w.id === 'i').available, true);
+  const mandarin = workspaceWords(
+    [
+      {
+        id: 'marker-done',
+        category: 'core',
+        yue: '咗',
+        en: '',
+        cmn: '了',
+        only: ['yue', 'cmn']
+      }
+    ],
+    { overrides: {}, customWords: [] },
+    'cmn'
+  );
+  assert.equal(mandarin[0].available, true);
+  assert.equal(mandarin[0].text, '了');
+});

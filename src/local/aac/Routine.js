@@ -9,7 +9,8 @@ export default function Routine({
   c,
   say,
   onMissingTranslation,
-  onTimerDone
+  onTimerDone,
+  locked = false
 }) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState([]);
@@ -51,16 +52,18 @@ export default function Routine({
       <section className="aac-routine-list">
         <div className="aac-section-row">
           <p className="aac-muted">{c.routineHint}</p>
-          <button
-            className="aac-secondary"
-            onClick={() => {
-              setDraft([...workspace.routine]);
-              setEditing(true);
-            }}
-          >
-            <Icon name="edit" />
-            {c.editRoutine}
-          </button>
+          {!locked && (
+            <button
+              className="aac-secondary"
+              onClick={() => {
+                setDraft([...workspace.routine]);
+                setEditing(true);
+              }}
+            >
+              <Icon name="edit" />
+              {c.editRoutine}
+            </button>
+          )}
         </div>
         {items.map((word) => {
           const done = workspace.routineDone.includes(word.id);

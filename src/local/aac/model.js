@@ -39,6 +39,7 @@ export const initialWorkspace = {
     scanPreview: false,
     scanHold: 0,
     keepAwake: true,
+    editLock: false,
     rate: 1
   },
   voices: { yue: '', en: '', cmn: '' },
@@ -181,7 +182,7 @@ export function validateWorkspace(value) {
     throw new Error('Invalid scanning method.');
   if (p.scanHold !== undefined && !SCAN_HOLDS.includes(p.scanHold))
     throw new Error('Invalid switch hold time.');
-  for (const field of ['scanRows', 'scanPreview', 'keepAwake'])
+  for (const field of ['scanRows', 'scanPreview', 'keepAwake', 'editLock'])
     if (p[field] !== undefined && typeof p[field] !== 'boolean')
       throw new Error('Invalid scanning preference.');
   if (
@@ -288,6 +289,7 @@ export function validateWorkspace(value) {
       scanPreview: p.scanPreview ?? false,
       scanHold: p.scanHold ?? 0,
       keepAwake: p.keepAwake ?? true,
+      editLock: p.editLock ?? false,
       rate: p.rate
     },
     voices,

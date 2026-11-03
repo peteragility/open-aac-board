@@ -95,15 +95,17 @@ export default function QuickResponses({
               <button className="aac-secondary" onClick={onClose}>
                 {c.returnMessage}
               </button>
-              <button
-                className="aac-text-button"
-                onClick={() => {
-                  onStop();
-                  setEditing(true);
-                }}
-              >
-                {c.chooseResponses}
-              </button>
+              {onSave && (
+                <button
+                  className="aac-text-button"
+                  onClick={() => {
+                    onStop();
+                    setEditing(true);
+                  }}
+                >
+                  {c.chooseResponses}
+                </button>
+              )}
             </div>
           </>
         )}

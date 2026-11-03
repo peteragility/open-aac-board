@@ -204,6 +204,20 @@ export default function WorkspaceSettings({
           ))}
         </section>
         <section>
+          <h3>{c.editLock}</h3>
+          <label className="aac-toggle">
+            <span>{c.editLock}</span>
+            <input
+              type="checkbox"
+              checked={Boolean(p.editLock)}
+              onChange={(e) =>
+                update('preferences', { editLock: e.target.checked })
+              }
+            />
+          </label>
+          <p className="aac-muted">{c.editLockHelp}</p>
+        </section>
+        <section>
           <h3>{c.backup}</h3>
           <p className="aac-muted">{c.backupHint}</p>
           <div className="aac-button-row">

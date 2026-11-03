@@ -346,3 +346,101 @@ test('the break timer alerts when it ends, even from another tab of the app', as
   await expect(page.getByRole('img', { name: 'Break is over' })).toHaveCount(0);
   await expect(page.locator('.aac-timer-done')).toContainText('Time is up');
 });
+
+test('the caregiver lock hides editing until the lock is held', async ({
+  page
+}) => {
+  await installVoices(page);
+  await open(page);
+  await preferences(page, (dialog) =>
+    dialog
+      .getByRole('checkbox', { name: 'Caregiver lock: hold to unlock editing' })
+      .check()
+  );
+  await expect(page.getByRole('button', { name: 'Add a word' })).toHaveCount(0);
+  await expect(
+    page.getByRole('button', { name: 'Preferences', exact: true })
+  ).toHaveCount(0);
+  await page.getByRole('button', { name: 'Tools', exact: true }).click();
+  const tools = page.getByRole('dialog');
+  await expect(
+    tools.getByRole('button', { name: 'Personalize words' })
+  ).toHaveCount(0);
+  await expect(
+    tools.getByRole('button', { name: 'Start picture scanning' })
+  ).toBeVisible();
+  await tools.getByRole('button', { name: 'Close', exact: true }).click();
+  const lock = page
+    .getByRole('button', { name: 'Hold for 2 seconds to unlock editing' })
+    .first();
+  // A tap does nothing.
+  await lock.click();
+  await expect(
+    page.getByRole('button', { name: 'Preferences', exact: true })
+  ).toHaveCount(0);
+  const box = await lock.boundingBox();
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await page.mouse.down();
+  await page.waitForTimeout(2300);
+  await page.mouse.up();
+  await expect(
+    page.getByRole('button', { name: 'Preferences', exact: true }).first()
+  ).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Add a word' })).toBeVisible();
+  await page.getByRole('button', { name: 'Lock', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Add a word' })).toHaveCount(0);
+});
+
+test('a paper copy of the board prints with pictures and labels', async ({
+  page
+}) => {
+  await page.addInitScript(() => {
+    window.printed = 0;
+    window.print = () => {
+      window.printed++;
+    };
+  });
+  await installVoices(page);
+  await open(page);
+  await page.getByRole('button', { name: 'Tools', exact: true }).click();
+  await page
+    .getByRole('dialog')
+    .getByRole('button', { name: 'Print this board', exact: true })
+    .click();
+  await expect.poll(() => page.evaluate(() => window.printed)).toBe(1);
+  const sheet = page.locator('.aac-print-sheet');
+  await expect(sheet.locator('.aac-print-cell')).toHaveCount(
+    await page.locator('.aac-word-grid [data-word-id]').count()
+  );
+  await expect(sheet).toContainText('want');
+  await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
+  await expect(sheet).toHaveCount(0);
+  await page.getByRole('button', { name: 'Tools', exact: true }).click();
+  await page
+    .getByRole('dialog')
+    .getByRole('button', { name: 'Print all words', exact: true })
+    .click();
+  await expect.poll(() => page.evaluate(() => window.printed)).toBe(2);
+  // The sheet is hidden on screen and shown only when printing.
+  await expect(page.locator('.aac-print-sheet h2')).not.toHaveCount(0);
+  await expect(page.locator('.aac-print-sheet')).toBeHidden();
+});
+
+test('partners can find words by Jyutping', async ({ page }) => {
+  await installVoices(page);
+  await open(page);
+  await page
+    .getByRole('button', { name: 'Find vocabulary', exact: true })
+    .click();
+  await page.getByRole('searchbox', { name: 'Find vocabulary' }).fill('seoi');
+  await expect(
+    page.locator('.aac-word-grid [data-word-id="water"]')
+  ).toBeVisible();
+  await page
+    .getByRole('searchbox', { name: 'Find vocabulary' })
+    .fill('ci3 so2');
+  await expect(
+    page.locator('.aac-word-grid [data-word-id="toilet"]')
+  ).toBeVisible();
+  await expect(page.locator('.aac-word-grid [data-word-id]')).toHaveCount(1);
+});

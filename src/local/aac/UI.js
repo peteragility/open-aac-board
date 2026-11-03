@@ -32,8 +32,77 @@ const paths = {
   play: 'm7 3 15 9-15 9Z',
   microphone:
     'M8 5a4 4 0 0 1 8 0v8a4 4 0 0 1-8 0ZM4 10v3a8 8 0 0 0 16 0v-3M12 21v3',
-  refresh: 'M20 8A9 9 0 1 0 21 15M20 2v7h-7'
+  refresh: 'M20 8A9 9 0 1 0 21 15M20 2v7h-7',
+  lock: 'M5 11h14v11H5zM8 11V7a4 4 0 0 1 8 0v4M12 15v3',
+  unlock: 'M5 11h14v11H5zM8 11V7a4 4 0 0 1 7.5-2M12 15v3',
+  print: 'M6 9V2h12v7M6 18H3v-8h18v8h-3M6 14h12v8H6z',
+  body: 'M12 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM5 10h14M12 10v6M8 22l4-6 4 6',
+  book: 'M4 4h6a3 3 0 0 1 3 3v14a2 2 0 0 0-2-2H4ZM20 4h-6a3 3 0 0 0-3 3v14a2 2 0 0 1 2-2h7Z'
 };
+
+// A button that acts only after being held, so a user cannot trigger it with a
+// tap or an accidental touch. Works with touch, mouse and keyboard.
+export function HoldButton({
+  label,
+  duration = 2000,
+  onComplete,
+  className = '',
+  children
+}) {
+  const [progress, setProgress] = useState(0);
+  const frame = useRef(null);
+  const done = useRef(onComplete);
+  done.current = onComplete;
+  useEffect(() => () => cancelAnimationFrame(frame.current), []);
+  function cancel() {
+    cancelAnimationFrame(frame.current);
+    frame.current = null;
+    setProgress(0);
+  }
+  function begin() {
+    if (frame.current) return;
+    const start = performance.now();
+    const tick = () => {
+      const value = Math.min(1, (performance.now() - start) / duration);
+      setProgress(value);
+      if (value < 1) frame.current = requestAnimationFrame(tick);
+      else {
+        frame.current = null;
+        setProgress(0);
+        done.current();
+      }
+    };
+    frame.current = requestAnimationFrame(tick);
+  }
+  const holdKey = (key) => key === ' ' || key === 'Enter';
+  return (
+    <button
+      type="button"
+      className={`aac-hold-button ${className}`}
+      aria-label={label}
+      title={label}
+      style={{ '--hold': progress }}
+      onPointerDown={begin}
+      onPointerUp={cancel}
+      onPointerLeave={cancel}
+      onPointerCancel={cancel}
+      onContextMenu={(event) => event.preventDefault()}
+      onKeyDown={(event) => {
+        if (!holdKey(event.key)) return;
+        event.preventDefault();
+        if (!event.repeat) begin();
+      }}
+      onKeyUp={(event) => {
+        if (!holdKey(event.key)) return;
+        event.preventDefault();
+        cancel();
+      }}
+      onClick={(event) => event.preventDefault()}
+    >
+      {children}
+    </button>
+  );
+}
 export function Icon({ name, ...props }) {
   return (
     <svg

@@ -152,10 +152,12 @@ export default function QuickGuide({
           <section>
             <h3>{c.guidePersonal}</h3>
             <p>{c.guidePersonalHelp}</p>
-            <button className="aac-primary" onClick={onAddWord}>
-              <Icon name="plus" />
-              {c.addWord}
-            </button>
+            {onAddWord && (
+              <button className="aac-primary" onClick={onAddWord}>
+                <Icon name="plus" />
+                {c.addWord}
+              </button>
+            )}
             <p className="aac-muted">{c.guideReplayHelp}</p>
           </section>
         )}

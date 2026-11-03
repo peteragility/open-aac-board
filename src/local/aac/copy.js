@@ -28,9 +28,9 @@ const strings = {
   backShort: ['刪一字', 'Back', '删一字'],
   backspace: ['刪除上一個字', 'Remove last word', '删除上一个词'],
   search: [
-    '搵字詞，例如：水、開心⋯⋯',
-    'Find a word, e.g. water, happy…',
-    '找词语，例如：水、开心……'
+    '搵字詞或粵拼，例如：水、seoi2⋯⋯',
+    'Find a word or Jyutping, e.g. water, seoi…',
+    '找词语或粤拼，例如：水、seoi……'
   ],
   searchLabel: ['搜尋字詞', 'Find vocabulary', '搜索词语'],
   allResults: ['搜尋結果', 'Search results', '搜索结果'],
@@ -539,6 +539,26 @@ const strings = {
     '恢复后，这个图卡的照片、录音和修改都会删除。'
   ],
   confirmReset: ['確認還原', 'Reset word', '确认恢复'],
+  editLock: [
+    '照顧者鎖：撳住先可以修改',
+    'Caregiver lock: hold to unlock editing',
+    '照顾者锁：按住才能修改'
+  ],
+  editLockHelp: [
+    '開啟後，新增、修改、刪除同偏好設定會收埋，要撳住鎖頭兩秒先會出返嚟。',
+    'When on, adding, editing, deleting and Preferences stay hidden until the lock is held for 2 seconds.',
+    '开启后，添加、修改、删除和偏好设置会隐藏，需按住锁两秒才会出现。'
+  ],
+  holdToUnlock: [
+    '撳住兩秒解鎖修改',
+    'Hold for 2 seconds to unlock editing',
+    '按住两秒解锁修改'
+  ],
+  holdShort: ['撳住解鎖', 'Hold to unlock', '按住解锁'],
+  lockNow: ['鎖上', 'Lock', '锁上'],
+  printBoard: ['列印呢版', 'Print this board', '打印这一版'],
+  printAll: ['列印全部字詞', 'Print all words', '打印全部词语'],
+  printTitle: ['紙本溝通板', 'Paper communication board', '纸本沟通板'],
   keepAwake: [
     '溝通時保持螢幕開啟',
     'Keep the screen on while communicating',
